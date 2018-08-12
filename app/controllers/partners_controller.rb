@@ -1,6 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token  
+  skip_before_action :verify_authenticity_token, :only: :register 
 
   # GET /partners
   # GET /partners.json

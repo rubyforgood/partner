@@ -12,6 +12,9 @@
   <tbody>
     <% @partners.each do |partner| %>
       <tr>
+        <td><%= partner.email %></td>
+        <td><%= partner.diaper_bank_id %></td>
+        <td><%= partner.diaper_partner_id %></td>
         <td><%= link_to 'Show', partner %></td>
         <td><%= link_to 'Edit', edit_partner_path(partner) %></td>
         <td><%= link_to 'Destroy', partner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
