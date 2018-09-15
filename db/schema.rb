@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_08_11_230421) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "partners", force: :cascade do |t|
     t.integer "diaper_bank_id"
     t.string "executive_director_name"
@@ -108,7 +111,7 @@ ActiveRecord::Schema.define(version: 2018_08_11_230421) do
     t.datetime "invitation_accepted_at"
     t.integer "invitation_limit"
     t.string "invited_by_type"
-    t.integer "invited_by_id"
+    t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.index ["diaper_bank_id"], name: "index_partners_on_diaper_bank_id"
     t.index ["email"], name: "index_partners_on_email", unique: true
