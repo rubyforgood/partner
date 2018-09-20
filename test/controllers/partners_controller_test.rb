@@ -17,7 +17,7 @@ class PartnersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create partner" do
     assert_difference('Partner.count') do
-      post partners_url, params: { partner: {  } }
+      post partners_url, params: { partner: {} }
     end
 
     assert_redirected_to partner_url(Partner.last)
@@ -34,7 +34,7 @@ class PartnersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update partner" do
-    patch partner_url(@partner), params: { partner: {  } }
+    patch partner_url(@partner), params: { partner: {} }
     assert_redirected_to partner_url(@partner)
   end
 
