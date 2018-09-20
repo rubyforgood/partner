@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class PartnersControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +16,7 @@ class PartnersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create partner" do
-    assert_difference('Partner.count') do
+    assert_difference("Partner.count") do
       post partners_url, params: { partner: {} }
     end
 
@@ -39,7 +39,7 @@ class PartnersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy partner" do
-    assert_difference('Partner.count', -1) do
+    assert_difference("Partner.count", -1) do
       delete partner_url(@partner)
     end
 

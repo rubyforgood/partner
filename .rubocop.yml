@@ -20,7 +20,7 @@ AllCops:
   - "tmp/*"
   UseCache: false
 Bundler/OrderedGems:
-  Enabled: false
+  Enabled: true
 Layout/TrailingBlankLines:
   Description: 'Checks trailing blank lines and final newline.'
   StyleGuide: '#newline-eof'
@@ -139,6 +139,9 @@ Style/StringLiteralsInInterpolation:
   SupportedStyles:
   - double_quotes
   - single_quotes
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: brackets
 Style/TrailingCommaInArguments:
   Description: Checks for trailing comma in argument lists.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas

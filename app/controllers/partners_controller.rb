@@ -1,6 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token, :only: :register 
+  skip_before_action :verify_authenticity_token, only: :register
 
   # GET /partners
   # GET /partners.json
@@ -10,8 +10,7 @@ class PartnersController < ApplicationController
 
   # GET /partners/1
   # GET /partners/1.json
-  def show
-  end
+  def show; end
 
   # GET /partners/new
   def new
@@ -19,8 +18,7 @@ class PartnersController < ApplicationController
   end
 
   # GET /partners/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /partners
   # POST /partners.json
@@ -29,7 +27,7 @@ class PartnersController < ApplicationController
 
     respond_to do |format|
       if @partner.save
-        format.html { redirect_to @partner, notice: 'Partner was successfully created.' }
+        format.html { redirect_to @partner, notice: "Partner was successfully created." }
         format.json { render :show, status: :created, location: @partner }
       else
         format.html { render :new }
@@ -40,17 +38,18 @@ class PartnersController < ApplicationController
 
   def register
     partner = params["partner"]
-    Partner.invite!(diaper_partner_id: partner["diaper_partner_id"], 
-                    diaper_bank_id: partner["diaper_bank_id"], 
+    Partner.invite!(diaper_partner_id: partner["diaper_partner_id"],
+                    diaper_bank_id: partner["diaper_bank_id"],
                     email: partner["email"])
-    render status: 200, json: "Partner Added"
+    render status: :ok, json: "Partner Added"
   end
+
   # PATCH/PUT /partners/1
   # PATCH/PUT /partners/1.json
   def update
     respond_to do |format|
       if @partner.update(partner_params)
-        format.html { redirect_to @partner, notice: 'Partner was successfully updated.' }
+        format.html { redirect_to @partner, notice: "Partner was successfully updated." }
         format.json { render :show, status: :ok, location: @partner }
       else
         format.html { render :edit }
@@ -64,19 +63,20 @@ class PartnersController < ApplicationController
   def destroy
     @partner.destroy
     respond_to do |format|
-      format.html { redirect_to partners_url, notice: 'Partner was successfully destroyed.' }
+      format.html { redirect_to partners_url, notice: "Partner was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_partner
-      @partner = Partner.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def partner_params
-      params.fetch(:partner, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_partner
+    @partner = Partner.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def partner_params
+    params.fetch(:partner, {})
+  end
 end
