@@ -33,6 +33,8 @@ group :development, :test do
   gem "guard-rspec"
   gem "pry"
   gem "rspec-rails", "~> 3.5"
+  gem "faker"
+  gem "factory_bot_rails"
   gem "rubocop"
 end
 
