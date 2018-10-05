@@ -4,5 +4,5 @@ class Partner < ApplicationRecord
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates_presence_of :name
+  validates :email, presence: true
 end

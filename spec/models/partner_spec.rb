@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
-describe Partner, :type => :model do
-  it 'make name required' do
-    partner = FactoryBot.build(:partner, name: nil)
+describe Partner, type: :model do
+  it "make name required" do
+    partner = FactoryBot.build(:partner, email: nil)
 
     expect(partner).to_not be_valid
 
-    partner.name = 'Partner A'
+    partner.email = "partner@email.com"
 
     expect(partner).to be_valid
   end
