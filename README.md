@@ -1,5 +1,7 @@
 # README
 
+[![Build Status](https://travis-ci.org/rubyforgood/diaper.svg?branch=master)](https://travis-ci.org/rubyforgood/diaper)
+
 This is the companion application to the [diaper](https://github.com/rubyforgood/diaper) app. The diaper app is an
 inventory management system and this partner application handles the onboarding, approving, and handling of requests
 from diaper banks from their partners. Diaper banks do not distribute diapers directly to the public, instead they
