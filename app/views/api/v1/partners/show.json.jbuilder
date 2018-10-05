@@ -1,1 +1,1 @@
-json.message 'success'
+json.message "success"
