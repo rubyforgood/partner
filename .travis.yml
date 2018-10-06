@@ -1,7 +1,10 @@
+dist: xenial
 language: ruby
 rvm:
   - 2.5.1
-sudo: required
+sudo: true
+services:
+  - postgresql
 addons:
   postgresql: "10"
   apt:
