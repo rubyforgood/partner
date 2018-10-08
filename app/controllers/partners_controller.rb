@@ -1,5 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_partner!
   skip_before_action :verify_authenticity_token, only: :register
 
   # GET /partners

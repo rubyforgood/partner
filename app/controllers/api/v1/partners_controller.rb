@@ -1,7 +1,11 @@
 class Api::V1::PartnersController < ApiController
+  protect_from_forgery with: :null_session
+
   def create
-    partner_service = PartnerService.new
-    partner = partner_service.create(create_params)
+    partner = Partner.invite!(email: create_params[:email],
+      diaper_bank_id: create_params[:diaper_bank_id],
+      diaper_partner_id: create_params[:diaper_partner_id]
+    )
 
     render json: partner.to_json(
       only: [:id, :email]
@@ -15,6 +19,10 @@ class Api::V1::PartnersController < ApiController
     render json: partners.to_json(
       only: [:diaper_partner_id, :name]
     )
+  end
+
+  def after_invite_path_for(_resource)
+    partners_path
   end
 
   private
