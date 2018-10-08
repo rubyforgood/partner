@@ -1,4 +1,9 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "partner@diaper-app.org"
   layout "mailer"
+
+  def invitation(email)
+    mail to: email,
+         subject: "Account Registration"
+  end
 end

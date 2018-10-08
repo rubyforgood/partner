@@ -4,25 +4,37 @@
 
 <table>
   <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @partners.each do |partner| %>
-      <tr>
-        <td><%= partner.email %></td>
-        <td><%= partner.diaper_bank_id %></td>
-        <td><%= partner.diaper_partner_id %></td>
-        <td><%= link_to 'Show', partner %></td>
-        <td><%= link_to 'Edit', edit_partner_path(partner) %></td>
-        <td><%= link_to 'Destroy', partner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <header class="container">
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <%= link_to 'Diaper App', root_path, class: 'navbar-brand' %>
+      </div>
+      <div class="pull-right right-buttons">
+        <% if partner_signed_in? %>
+          <%= link_to 'Sign out', destroy_partner_session_path, :method => :delete, class: 'btn btn-default navbar-btn' %>
+        <% end %>
+      </div>
+    </nav>
+  </header>
+  <% @partners.each do |partner| %>
+    <tr>
+      <td><%= partner.email %></td>
+      <td><%= partner.diaper_bank_id %></td>
+      <td><%= partner.diaper_partner_id %></td>
+      <!--        <td><%#= link_to 'Show', partner %></td>-->
+      <!--        <td><%#= link_to 'Edit', edit_partner_path(partner) %></td>-->
+      <!--        <td><%#= link_to 'Destroy', partner, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Partner', new_partner_path %>
+<%#= link_to 'New Partner', new_partner_path %>
