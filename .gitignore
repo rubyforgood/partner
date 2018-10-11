@@ -32,3 +32,5 @@
 
 # Ignore IDE specific settings
 .idea/
+
+.DS_Store
