@@ -1,7 +1,11 @@
 class Api::V1::PartnersController < ApiController
-  protect_from_forgery with: :null_session
+  skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!
+  skip_before_action :authorize_user
+  respond_to :json
 
   def create
+    return head :forbidden unless api_key_valid?
     partner = Partner.invite!(email: create_params[:email],
       diaper_bank_id: create_params[:diaper_bank_id],
       diaper_partner_id: create_params[:diaper_partner_id]
@@ -14,21 +18,15 @@ class Api::V1::PartnersController < ApiController
     render e.message
   end
 
-  def index
-    partners = Partner.all
-    render json: partners.to_json(
-      only: [:diaper_partner_id, :name]
-    )
-  end
-
-  def after_invite_path_for(_resource)
-    partners_path
-  end
 
   private
 
+  def api_key_valid?
+    request.headers["X-Api-Key"] == ENV["DIAPER_KEY"]
+  end
+
   def create_params
-    params.permit(
+    params.require(:partner).permit(
       :diaper_bank_id,
       :diaper_partner_id,
       :email
