@@ -1,7 +1,5 @@
 class Api::V1::PartnersController < ApiController
   skip_before_action :verify_authenticity_token
-  skip_before_action :authenticate_user!
-  skip_before_action :authorize_user
   respond_to :json
 
   def create
