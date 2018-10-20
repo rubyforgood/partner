@@ -4,10 +4,10 @@ class Api::V1::PartnersController < ApiController
 
   def create
     return head :forbidden unless api_key_valid?
+
     partner = Partner.invite!(email: create_params[:email],
       diaper_bank_id: create_params[:diaper_bank_id],
-      diaper_partner_id: create_params[:diaper_partner_id]
-    )
+      diaper_partner_id: create_params[:diaper_partner_id])
 
     render json: partner.to_json(
       only: [:id, :email]
@@ -16,6 +16,13 @@ class Api::V1::PartnersController < ApiController
     render e.message
   end
 
+  def show
+    return head :forbidden unless api_key_valid?
+
+    partner = Partner.find(params[:id])
+
+    render json: { agency: partner.export_json }
+  end
 
   private
 
