@@ -3,7 +3,7 @@ class StaticController < ApplicationController
   layout false
 
   def index
-    redirect_to partner_url(current_partner) if current_partner
+    redirect_to partner_path(current_partner) if current_partner
   end
 
   def page
