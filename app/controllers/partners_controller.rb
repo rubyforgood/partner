@@ -1,7 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_partner!
-  skip_before_action :verify_authenticity_token, only: :register
 
   # GET /partners
   # GET /partners.json
@@ -21,6 +20,11 @@ class PartnersController < ApplicationController
   # GET /partners/1/edit
   def edit; end
 
+  def approve
+    @partner = Partner.find(params[:partner_id])
+    @partner.approve_me
+    redirect_to @partner, notice: "The Partner was successfully created."
+  end
   # POST /partners
   # POST /partners.json
   def create
@@ -35,14 +39,6 @@ class PartnersController < ApplicationController
         format.json { render json: @partner.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def register
-    partner = params["partner"]
-    Partner.invite!(diaper_partner_id: partner["diaper_partner_id"],
-                    diaper_bank_id: partner["diaper_bank_id"],
-                    email: partner["email"])
-    render status: :ok, json: "Partner Added"
   end
 
   # PATCH/PUT /partners/1
