@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :partners
 
+  resources :partners do
+    get :approve
+  end
+
   get "/api", action: :show, controller: "api"
   namespace :api, defaults: { format: "json" } do
     namespace :v1 do

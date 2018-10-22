@@ -3,6 +3,8 @@ class Partner < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
+         
+  include DiaperBankClient
 
   validates :email, presence: true
 
@@ -110,4 +112,9 @@ class Partner < ApplicationRecord
       }
     }
   end
+
+  def approve_me
+    DiaperBankClient.post(self.diaper_partner_id)
+  end
+
 end
