@@ -94,6 +94,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.raise_delivery_errors = true
-  host = "diaper.app"
+  host = "partner.diaper.app"
   config.action_mailer.default_url_options = { host: host }
 end
