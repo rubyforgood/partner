@@ -94,16 +94,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  host = ENV["HOSTNAME"]
+  host = "diaper.app"
   config.action_mailer.default_url_options = { host: host }
-  ActionMailer::Base.smtp_settings = {
-    address: ENV["EMAIL_SERVER"],
-    port: ENV["EMAIL_SERVER_PORT"],
-    authentication: :login,
-    user_name: ENV["EMAIL_USERNAME"],
-    password: ENV["EMAIL_PASSWORD"],
-    domain: "heroku.com",
-    enable_starttls_auto: true
-  }
 end
