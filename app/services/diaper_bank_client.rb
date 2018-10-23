@@ -1,6 +1,6 @@
 module DiaperBankClient
   def self.post(partner_id)
-    #return if Rails.env != "production"
+    return if Rails.env != "production"
 
     partner = { partner:
       { diaper_partner_id: partner_id} }

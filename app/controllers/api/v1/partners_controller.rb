@@ -5,13 +5,24 @@ class Api::V1::PartnersController < ApiController
   def create
     return head :forbidden unless api_key_valid?
 
-    partner = Partner.invite!(email: create_params[:email],
-      diaper_bank_id: create_params[:diaper_bank_id],
-      diaper_partner_id: create_params[:diaper_partner_id])
+    partner = Partner.invite!(email: partner_params[:email],
+      diaper_bank_id: partner_params[:diaper_bank_id],
+      diaper_partner_id: partner_params[:diaper_partner_id])
 
     render json: partner.to_json(
       only: [:id, :email]
     )
+  rescue ActiveRecord::RecordInvalid => e
+    render e.message
+  end
+
+  def update
+    return head :forbidden unless api_key_valid?
+
+    partner = Partner.find_by(diaper_partner_id: partner_params[:diaper_partner_id])
+    partner.update(partner_status: "Verified")
+    render json: { message: "Partner status changed to verified." }, status: :ok
+
   rescue ActiveRecord::RecordInvalid => e
     render e.message
   end
@@ -27,10 +38,10 @@ class Api::V1::PartnersController < ApiController
   private
 
   def api_key_valid?
-    request.headers["X-Api-Key"] == ENV["DIAPER_KEY"]
+    request.headers["X-Api-Key"] == ENV["DIAPERBANK_KEY"]
   end
 
-  def create_params
+  def partner_params
     params.require(:partner).permit(
       :diaper_bank_id,
       :diaper_partner_id,
