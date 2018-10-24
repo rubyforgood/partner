@@ -1,4 +1,4 @@
-<%= form_with(model: partner, local: true) do |form| %>
+<%= form_with(model: partner, local: true, class: "col-6") do |form| %>
   <% if partner.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(partner.errors.count, "error") %> prohibited this partner from being saved:</h2>
@@ -10,6 +10,419 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="form-inputs">
+    <h5>Agency Information</h5>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Distributor Type</h5>
+
+    <div class="form-group">
+      <%= form.label :agency_type %>
+      <%= form.text_field :agency_type, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :proof_of_agency_status %>
+      <%= form.text_field :proof_of_agency_status, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :agency_mission %>
+      <%= form.text_field :agency_mission, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :address %>
+      <%= form.text_field :address, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :city %>
+      <%= form.text_field :city, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :state %>
+      <%= form.text_field :state, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :zip_code %>
+      <%= form.text_field :zip_code, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Media Information</h5>
+
+    <div class="form-group">
+      <%= form.label :website %>
+      <%= form.text_field :website, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :facebook %>
+      <%= form.text_field :facebook, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :twitter %>
+      <%= form.text_field :twitter, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Agency Stability</h5>
+
+    <div class="form-group">
+      <%= form.label :founded %>
+      <%= form.text_field :founded, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :form_990 %>
+      <%= form.text_field :form_990, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_name %>
+      <%= form.text_field :program_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_description %>
+      <%= form.text_field :program_description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_age %>
+      <%= form.text_field :program_age, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :case_management %>
+      <%= form.text_field :case_management, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :evidence_based %>
+      <%= form.text_field :evidence_based, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :evidence_based_description %>
+      <%= form.text_field :evidence_based_description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_client_improvement %>
+      <%= form.text_field :program_client_improvement, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :diaper_use %>
+      <%= form.text_field :diaper_use, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :other_diaper_use %>
+      <%= form.text_field :other_diaper_use, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :currently_provide_diapers %>
+      <%= form.text_field :currently_provide_diapers, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :turn_away_childcare %>
+      <%= form.text_field :turn_away_childcare, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_address %>
+      <%= form.text_field :program_address, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_address %>
+      <%= form.text_field :program_address, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_city %>
+      <%= form.text_field :program_city, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_state %>
+      <%= form.text_field :program_state, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_zip_code %>
+      <%= form.text_field :program_zip_code, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Organizational Capacity</h5>
+
+    <div class="form-group">
+      <%= form.label :max_serve %>
+      <%= form.text_field :max_serve, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :incorporate_plan %>
+      <%= form.text_field :incorporate_plan, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :responsible_staff_position %>
+      <%= form.text_field :responsible_staff_position, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :storage_space %>
+      <%= form.text_field :storage_space, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :storage_space_description %>
+      <%= form.text_field :storage_space_description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :trusted_pickup %>
+      <%= form.text_field :trusted_pickup, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Population Served</h5>
+
+    <div class="form-group">
+      <%= form.label :income_requirement_description %>
+      <%= form.text_field :income_requirement_description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :serve_income_circumstances %>
+      <%= form.text_field :serve_income_circumstances, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :income_verification %>
+      <%= form.text_field :income_verification, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :internal_db %>
+      <%= form.text_field :internal_db, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :MAAC %>
+      <%= form.text_field :maac, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :african_american %>
+      <%= form.text_field :african_american, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :caucasian %>
+      <%= form.text_field :caucasian, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :hispanic %>
+      <%= form.text_field :hispanic, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :asian %>
+      <%= form.text_field :asian, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :american_indian %>
+      <%= form.text_field :american_indian, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :pacific_island %>
+      <%= form.text_field :pacific_island, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :multi_racial %>
+      <%= form.text_field :multi_racial, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :other %>
+      <%= form.text_field :other, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :zips %>
+      <%= form.text_field :zips, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :at_fpl_or_below %>
+      <%= form.text_field :at_fpl_or_below, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :above_1_or_2_times_fpl %>
+      <%= form.text_field :above_1_or_2_times_fpl, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :greater_2_times_fpl %>
+      <%= form.text_field :greater_2_times_fpl, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :poverty_unknown %>
+      <%= form.text_field :poverty_unknown, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :ages %>
+      <%= form.text_field :ages, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Executive Director</h5>
+
+    <div class="form-group">
+      <%= form.label :executive_director_name %>
+      <%= form.text_field :executive_director_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :executive_director_phone %>
+      <%= form.text_field :executive_director_phone, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :executive_director_email %>
+      <%= form.text_field :executive_director_email, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Program Contact Person</h5>
+
+    <div class="form-group">
+      <%= form.label :program_contact_name %>
+      <%= form.text_field :program_contact_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_contact_phone %>
+      <%= form.text_field :program_contact_phone, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_contact_mobile %>
+      <%= form.text_field :program_contact_mobile, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :program_contact_email %>
+      <%= form.text_field :program_contact_email, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Diaper Pick Up Person</h5>
+
+    <div class="form-group">
+      <%= form.label :pickup_method %>
+      <%= form.text_field :pickup_method, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :pickup_name %>
+      <%= form.text_field :pickup_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :pickup_phone %>
+      <%= form.text_field :pickup_phone, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :pickup_email %>
+      <%= form.text_field :pickup_email, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Agency Distribution Information</h5>
+
+    <div class="form-group">
+      <%= form.label :distribution_times %>
+      <%= form.text_field :distribution_times, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :new_client_times %>
+      <%= form.text_field :new_client_times, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :more_docs_required %>
+      <%= form.text_field :more_docs_required, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Sources of Funding</h5>
+
+    <div class="form-group">
+      <%= form.label :source_of_funding %>
+      <%= form.text_field :source_of_funding, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :sources_of_diapers %>
+      <%= form.text_field :sources_of_diapers, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :diaper_budget %>
+      <%= form.text_field :diaper_budget, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :diaper_funding_source %>
+      <%= form.text_field :diaper_funding_source, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-inputs">
+    <h5>Documents</h5>
+
+    <div class="form-group">
+      <%= form.label :attach_document %>
+      <%= form.text_field :attach_document, class: "form-control" %>
+    </div>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

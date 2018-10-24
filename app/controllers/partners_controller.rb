@@ -1,6 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_partner!
+  before_action :authenticate_partner!, except: [:new, :create]
 
   # GET /partners
   # GET /partners.json
