@@ -39,12 +39,12 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :address %>
+      <%= form.label :address1, "Address" %>
       <%= form.text_field :address1, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :address %>
+      <%= form.label :address2, "Address" %>
       <%= form.text_field :address2, class: "form-control" %>
     </div>
 
@@ -152,12 +152,12 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :program_address %>
+      <%= form.label :program_address1, "Program Address" %>
       <%= form.text_field :program_address1, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :program_address %>
+      <%= form.label :program_address2, "Program Address" %>
       <%= form.text_field :program_address2, class: "form-control" %>
     </div>
 
@@ -201,7 +201,7 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :storage_space_description %>
+      <%= form.label :describe_storage_space, "Storage space description" %>
       <%= form.text_area :describe_storage_space, class: "form-control" %>
     </div>
 
@@ -215,7 +215,7 @@
     <h5>Population Served</h5>
 
     <div class="form-group">
-      <%= form.label :income_requirement_description %>
+      <%= form.label :income_requirement_desc, "Income requirement description" %>
       <%= form.check_box :income_requirement_desc, class: "form-control" %>
     </div>
 
@@ -235,47 +235,47 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :MAAC %>
+      <%= form.label :maac, "MAAC" %>
       <%= form.check_box :maac, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :african_american %>
+      <%= form.label :population_black, "African American" %>
       <%= form.number_field :population_black, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :caucasian %>
+      <%= form.label :population_white, "Caucasian" %>
       <%= form.number_field :population_white, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :hispanic %>
+      <%= form.label :population_hispanic, "Hispanic" %>
       <%= form.number_field :population_hispanic, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :asian %>
+      <%= form.label :population_asian, "Asian" %>
       <%= form.number_field :population_asian, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :american_indian %>
+      <%= form.label :population_american_indian, "American Indian" %>
       <%= form.number_field :population_american_indian, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :pacific_island %>
+      <%= form.label :population_island, "Pacific Island" %>
       <%= form.number_field :population_island, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :multi_racial %>
+      <%= form.label :population_multi_racial, "Multi-racial" %>
       <%= form.number_field :population_multi_racial, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :other %>
+      <%= form.label :population_other, "Other" %>
       <%= form.number_field :population_other, class: "form-control" %>
     </div>
 
@@ -285,17 +285,17 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :at_fpl_or_below %>
+      <%= form.label :at_fpl_or_below, "At FPL or below" %>
       <%= form.number_field :at_fpl_or_below, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :above_1_or_2_times_fpl %>
+      <%= form.label :above_1_2_times_fpl, "Above 1 or 2 times FPL" %>
       <%= form.number_field :above_1_2_times_fpl, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :greater_2_times_fpl %>
+      <%= form.label :greater_2_times_fpl, "Greater than 2 times FPL" %>
       <%= form.number_field :greater_2_times_fpl, class: "form-control" %>
     </div>
 
@@ -305,7 +305,7 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :ages %>
+      <%= form.label :ages_served, "Ages" %>
       <%= form.text_field :ages_served, class: "form-control" %>
     </div>
   </div>
@@ -430,6 +430,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
