@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <%= form.label :proof_of_agency_status, class: "form-check-label" %>
-      <%= form.check_box :proof_of_agency_status, class: "form-control" %>
+      <!-- TODO: Add proof -->
     </div>
 
     <div class="form-group">
@@ -280,7 +280,7 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :zips %>
+      <%= form.label :zips_served, 'Zip codes served' %>
       <%= form.text_field :zips_served, class: "form-control" %>
     </div>
 
@@ -305,7 +305,7 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :ages_served, "Ages" %>
+      <%= form.label :ages_served %>
       <%= form.text_field :ages_served, class: "form-control" %>
     </div>
   </div>
@@ -425,7 +425,7 @@
 
     <div class="form-group">
       <%= form.label :attach_document %>
-      <%= form.text_field :attach_document, class: "form-control" %>
+      <!-- TODO: Add document upload -->
     </div>
   </div>
 
