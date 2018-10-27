@@ -1,6 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_partner!, except: [:new, :create]
+  before_action :authenticate_partner!
 
   # GET /partners
   # GET /partners.json
@@ -77,6 +77,8 @@ class PartnersController < ApplicationController
     params.require(:partner).permit(
       :name,
       :agency_type,
+      :partner_status,
+      :proof_of_partner_status,
       :agency_mission,
       :address1,
       :address2,
@@ -88,6 +90,7 @@ class PartnersController < ApplicationController
       :twitter,
       :founded,
       :form_990,
+      :proof_of_form_990,
       :program_name,
       :program_description,
       :program_age,
@@ -146,7 +149,8 @@ class PartnersController < ApplicationController
       :sources_of_funding,
       :sources_of_diapers,
       :diaper_budget,
-      :diaper_funding_source
+      :diaper_funding_source,
+      documents: []
     )
   end
 end

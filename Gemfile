@@ -31,11 +31,13 @@ gem "jquery-rails", "~> 4.3", ">= 4.3.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem "better_errors"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "factory_bot_rails"
   gem "faker"
   gem "guard-rspec"
   gem "pry"
+  gem "pry-rails"
   gem "rspec-rails", "~> 3.5"
   gem "rubocop"
 end

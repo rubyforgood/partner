@@ -11,6 +11,7 @@ describe "Partner edit", type: :feature do
   it "partner fills out partner details" do
     fill_in "partner_name", with: Faker::Company.name
     fill_in "partner_agency_type", with: Faker::Company.suffix
+    fill_in "partner_partner_status", with: Faker::Company.name
     fill_in "partner_agency_mission", with: Faker::Lorem.paragraph
     fill_in "partner_address1", with: Faker::Address.street_address
     fill_in "partner_address2", with: Faker::Address.secondary_address
