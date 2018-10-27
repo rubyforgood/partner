@@ -8,7 +8,7 @@ describe "Partner edit", type: :feature do
     visit "/partners/#{partner.id}/edit"
   end
 
-  it "partner fills out partner details" do
+  it "partner can fill out partner details" do
     fill_in "partner_name", with: Faker::Company.name
     fill_in "partner_agency_type", with: Faker::Company.suffix
     fill_in "partner_partner_status", with: Faker::Company.name
@@ -85,5 +85,18 @@ describe "Partner edit", type: :feature do
     click_button "Update Partner"
 
     expect(page).to have_content "Partner was successfully updated."
+  end
+
+  it "partner can attach documents" do
+    attach_file("Proof of partner status", Rails.root + "spec/fixtures/test.pdf")
+    attach_file("Proof of form 990", Rails.root + "spec/fixtures/test.pdf")
+    attach_file("Documents", Rails.root + "spec/fixtures/test.pdf")
+
+    click_button "Update Partner"
+
+    expect(page).to have_content "Partner was successfully updated."
+    expect(partner.proof_of_partner_status.attached?).to eq true
+    expect(partner.proof_of_form_990.attached?).to eq true
+    expect(partner.documents.attached?).to eq true
   end
 end
