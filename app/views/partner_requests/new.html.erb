@@ -1,6 +1,5 @@
-<h1>New Request</h1>
-
-<%=  %>
+<h3>New Request</h3>
+<p>from <%= current_partner.name %></p>
 
 <%= form_with(model: @partner_request, local: true) do |form| %>
   <% if @partner_request.errors.any? %>
@@ -43,7 +42,7 @@
   <hr>
 
   <div class="actions">
-    <%= form.submit("Send Request", class: "btn btn-primary") %>
+    <%= form.submit("Submit for Review", class: "btn btn-primary") %> or <%= link_to "cancel", partner_path(current_partner) %>
   </div>
 <% end %>
 
