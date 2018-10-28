@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_10_27_200916) do
     t.text "comments"
     t.bigint "partner_id"
     t.bigint "organization_id"
+    t.boolean "sent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_partner_requests_on_organization_id"
