@@ -1,0 +1,49 @@
+<h1>New Request</h1>
+
+<%=  %>
+
+<%= form_with(model: @partner_request, local: true) do |form| %>
+  <% if @partner_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@partner_request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @partner_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= form.label(:comments) %>
+    <%= form.text_field :comments %>
+  </div>
+
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class='fields'>
+      <%= form.fields_for :items do |builder| %>
+        <%= render 'item', f: builder %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <%= link_to_add_row('Add An Item', form, :items, class: 'btn btn-outline-primary') %>
+  </div>
+
+  <hr>
+
+  <div class="actions">
+    <%= form.submit("Send Request", class: "btn btn-primary") %>
+  </div>
+<% end %>
+
