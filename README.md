@@ -26,3 +26,22 @@ and then submits for approval.
 6) The diaper bank sees the request, approves it, and creates a distribution. Once the distribution is created
 the partner gets an email notification stating their pick up date and a pdf copy of their invoice.
 
+## Development
+
+### Ruby Version
+This app uses Ruby version 2.5.1, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
+
+### Database Configuration
+This app uses PostgreSQL for all environments. You'll also need to create the `dev` and `test` databases, the app is expecting them to be named `partner_dev` and `partner_test`, respectively. This should all be handled with `bundle exec rails db:setup`.
+
+### Create your .env with database credentials
+Be sure to create a `.env` file in the root of the app that includes the following lines (change to whatever is appropriate for your system):
+```
+PG_USERNAME=username
+PG_PASSWORD=password
+```
+If you're getting the error `PG::ConnectionBad: fe_sendauth: no password supplied`, it's because you have probably not done this.
+
+## Seed the database
+From the root of the app, run `bundle exec rails db:seed`. This will create some initial data to use while testing the app and developing new features, including setting up the default user.
+
