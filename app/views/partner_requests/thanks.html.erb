@@ -1,2 +1,29 @@
-<h1>Requests#thanks</h1>
-<p>Find me in app/views/requests/thanks.html.erb</p>
+<h1>Thanks</h1>
+
+<div>
+  Request ID: <%= @partner_request.id %>
+  <p><%= @partner_request.partner.name %></p>
+</div>
+
+<div>
+  Comments:
+  <p><%= @partner_request.comments  %></p>
+</div>
+
+<div>
+  Requested Items:
+  <ul>
+    <% @partner_request.items.each do |item| %>
+      <li><%= POSSIBLE_ITEMS[item.name]  %> @ <%= item.quantity  %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <p>Submitted: <%= @partner_request.created_at.localtime  %></p>
+</div>
+
+<div>
+  <p><%= link_to "New Request",  new_partner_request_path %></p>
+</div>
+
