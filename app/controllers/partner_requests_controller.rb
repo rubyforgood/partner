@@ -1,24 +1,27 @@
 class PartnerRequestsController < ApplicationController
+  before_action :authenticate_partner!
+
   def new
     @partner_request = PartnerRequest.new
-    @partner_request.items.build
+    @partner_request.items.build # required to render the empty items form
   end
 
   def create
-    @partner_request = PartnerRequest.new(partner_request_params)
+    @partner_request = PartnerRequest.new(partner_request_params.merge(partner_id: current_partner.id))
 
     respond_to do |format|
       if @partner_request.save
-        format.html { redirect_to partner_request_thanks_path(@partner_request), notice: "partner_request was successfully created." }
-        format.json { render :thanks, status: :created, location: @partner_request }
+        # TODO(chaserx): send request to diaper app. synchronous for now
+        format.html { redirect_to partner_request_thanks_path(@partner_request), notice: "Request was successfully created." }
       else
         format.html { render :new }
-        format.json { render json: @partner_request.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  def thanks; end
+  def thanks
+    @partner_request = PartnerRequest.find(params[:partner_request_id])
+  end
 
   private
 

@@ -12,6 +12,8 @@ class Partner < ApplicationRecord
 
   validates :email, presence: true
 
+  has_many :partner_requests
+
   def export_json
     {
       name: name,
