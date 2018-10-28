@@ -23,7 +23,7 @@ class PartnersController < ApplicationController
   def approve
     @partner = Partner.find(params[:partner_id])
     @partner.approve_me
-    redirect_to @partner, notice: "The Partner was successfully created."
+    redirect_to @partner, notice: "You have submitted your details for approval."
   end
   # POST /partners
   # POST /partners.json

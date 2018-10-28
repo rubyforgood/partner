@@ -118,6 +118,7 @@ class Partner < ApplicationRecord
   end
 
   def approve_me
+    update(partner_status: "Submitted")
     DiaperBankClient.post(self.diaper_partner_id)
   end
 
