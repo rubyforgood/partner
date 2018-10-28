@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PartnerRequestsController, type: :controller do
+  login_partner
 
   describe "GET #new" do
     it "returns http success" do
