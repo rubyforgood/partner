@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 Status: <%= @partner.partner_status %>
-<%= link_to 'Submit for Approval', partner_approve_path(@partner) %>
+<% unless @partner.approved? %>
+  <%= link_to 'Submit for Approval', partner_approve_path(@partner) %>
+<% end %>
 
 <%= link_to 'Edit', edit_partner_path(@partner) %> |
 <%= link_to 'Back', partners_path %>

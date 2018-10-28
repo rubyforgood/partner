@@ -3,7 +3,7 @@ class Partner < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-         
+
   include DiaperBankClient
 
   has_one_attached :proof_of_partner_status
@@ -122,4 +122,7 @@ class Partner < ApplicationRecord
     DiaperBankClient.post(self.diaper_partner_id)
   end
 
+  def approved?
+    partner_status == 'approved'
+  end
 end
