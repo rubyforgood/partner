@@ -7,6 +7,7 @@ gem "coffee-rails", "~> 4.2"
 gem "devise"
 gem "devise_invitable"
 gem "jbuilder", "~> 2.5"
+gem 'blueprinter'
 gem "pg"
 gem "puma", "~> 3.11"
 gem "rails", "~> 5.2.1"
