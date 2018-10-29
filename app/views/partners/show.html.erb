@@ -3,7 +3,7 @@
     <%= link_to 'Account', edit_partner_path(@partner), class: 'nav-link' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Sign Out', destroy_partner_session_path(@partner), class: 'nav-link' %>
+    <%= link_to 'Sign Out', destroy_partner_session_path, class: 'nav-link', method: :delete %>
   </li>
 </ul>
 
