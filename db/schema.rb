@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_27_200916) do
+ActiveRecord::Schema.define(version: 2018_10_27_223440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,19 @@ ActiveRecord::Schema.define(version: 2018_10_27_200916) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "quantity"
+    t.bigint "partner_request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["partner_request_id"], name: "index_items_on_partner_request_id"
+  end
+
   create_table "partner_requests", force: :cascade do |t|
     t.text "comments"
     t.bigint "partner_id"
     t.bigint "organization_id"
-    t.boolean "sent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_partner_requests_on_organization_id"
@@ -154,4 +162,5 @@ ActiveRecord::Schema.define(version: 2018_10_27_200916) do
     t.index ["reset_password_token"], name: "index_partners_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "partner_requests"
 end
