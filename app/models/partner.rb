@@ -124,7 +124,7 @@ class Partner < ApplicationRecord
     DiaperBankClient.post(self.diaper_partner_id)
   end
 
-  def approved?
+  def verified?
     partner_status == 'Verified'
   end
 end

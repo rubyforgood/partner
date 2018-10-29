@@ -1,8 +1,16 @@
 <p id="notice"><%= notice %></p>
-Status: <%= @partner.partner_status %>
-<% unless @partner.approved? %>
-  <%= link_to 'Submit for Approval', partner_approve_path(@partner) %>
-<% end %>
+<p>
+  <%= @partner.name  %><br>
+  <%= @partner.executive_director_name  %><br>
+  <%= @partner.email  %><br>
+  Status: <%= @partner.partner_status %>
+</p>
 
-<%= link_to 'Edit', edit_partner_path(@partner) %> |
-<%= link_to 'Back', partners_path %>
+<div class="actions">
+  <% if @partner.verified? %>
+    <%= link_to 'Submit Request', new_partner_request_path(@partner) %>
+  <% else %>
+    <%= link_to 'Submit for Approval', partner_approve_path(@partner) %>
+  <% end %> |
+  <%= link_to 'Account', edit_partner_path(@partner) %>
+</div>
