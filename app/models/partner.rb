@@ -125,6 +125,6 @@ class Partner < ApplicationRecord
   end
 
   def approved?
-    partner_status == 'approved'
+    partner_status == 'Verified'
   end
 end
