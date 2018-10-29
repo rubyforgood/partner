@@ -1,3 +1,12 @@
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%= link_to 'Account', edit_partner_path(@partner), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Sign Out', destroy_partner_session_path(@partner), class: 'nav-link' %>
+  </li>
+</ul>
+
 <p id="notice"><%= notice %></p>
 <p>
   <%= @partner.name  %><br>
@@ -8,9 +17,8 @@
 
 <div class="actions">
   <% if @partner.verified? %>
-    <%= link_to 'Submit Request', new_partner_request_path(@partner) %>
+    <%= link_to 'Submit Request', new_partner_request_path(@partner), class: 'btn btn-primary' %>
   <% else %>
-    <%= link_to 'Submit for Approval', partner_approve_path(@partner) %>
-  <% end %> |
-  <%= link_to 'Account', edit_partner_path(@partner) %>
+    <%= link_to 'Submit for Approval', partner_approve_path(@partner), class: 'btn btn-primary' %>
+  <% end %>
 </div>
