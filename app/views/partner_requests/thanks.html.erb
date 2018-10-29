@@ -1,5 +1,17 @@
 <h1>Thanks</h1>
 
+<% if @partner_request.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@partner_request.errors.count, "error") %></h2>
+
+    <ul>
+    <% @partner_request.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div>
   Request ID: <%= @partner_request.id %>
   <p><%= @partner_request.partner.name %></p>
