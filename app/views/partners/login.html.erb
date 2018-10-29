@@ -1,0 +1,46 @@
+<style>
+    *{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-box{
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid #666;
+        background: #eee;
+    }
+
+    .login-form label{
+        display: block;
+    }
+
+    .login-form input[type="submit"]{
+        
+        width: 50%;
+        margin: 0 auto;
+        background: #191163;
+        color: #fff;
+
+    }
+</style>
+
+<div class="nav">
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</div>
+
+<div class="login-box">
+    <h1>Partner Login</h1>
+
+    <form class='login-form'>
+        <label for="email">Email</label>
+        <input type="email" name='email'>
+        <label for="password">Password</label>
+        <input type="text" name='password'>
+        <input type="submit" value="Login">
+    </form>
+</div>
