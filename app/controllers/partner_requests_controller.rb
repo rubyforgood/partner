@@ -11,7 +11,12 @@ class PartnerRequestsController < ApplicationController
 
     respond_to do |format|
       if @partner_request.save
-        # TODO(chaserx): send request to diaper app. synchronous for now
+        # NOTE(chaserx): send request to diaper app.
+        if DiaperBankClient.request_submission_post(@partner_request.id)
+          @partner_request.update_columns(sent: true)
+        else
+          @partner_request.errors.add(:base, :sending_failure, message: "request saved but failed to send")
+        end
         format.html { redirect_to partner_request_thanks_path(@partner_request), notice: "Request was successfully created." }
       else
         format.html { render :new }
