@@ -125,6 +125,10 @@ class Partner < ApplicationRecord
   end
 
   def verified?
-    partner_status == 'Verified'
+    partner_status.downcase == 'verified'
+  end
+
+  def pending?
+    partner_status.downcase == "pending"
   end
 end
