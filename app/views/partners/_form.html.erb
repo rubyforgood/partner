@@ -32,7 +32,8 @@
 
       <div class="form-group">
         <%= form.label :partner_status %>
-        <%= form.text_field :partner_status, class: "form-control" %>
+        <!-- NOTE(chaserx): don't allow the partner to update their own status. eventually use some conditional if an admin -->
+        <%= form.text_field :partner_status, class: "form-control", disabled: true %>
       </div>
 
       <div class="form-group">
@@ -198,7 +199,7 @@
           <%= form.label :turn_away_child_care, class: "form-check-label" %>
         </div>
       </div>
-  
+
       <h6 class="card-title font-weight-bold pt-3">Program Address</h6>
       <div class="form-group">
         <%= form.label :program_address1, "Program Address" %>
@@ -532,6 +533,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit class: "btn btn-primary" %> or <%= link_to 'Cancel', partner %>
   </div>
 <% end %>
