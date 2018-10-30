@@ -26,16 +26,17 @@
   Requested Items:
   <ul>
     <% @partner_request.items.each do |item| %>
-      <li><%= POSSIBLE_ITEMS[item.name]  %> @ <%= item.quantity  %></li>
+      <li><%= item.quantity %> of <%= POSSIBLE_ITEMS[item.name] %></li>
     <% end %>
   </ul>
 </div>
 
 <div>
-  <p>Submitted: <%= @partner_request.created_at.localtime  %></p>
+  <p>Submitted: <%= @partner_request.created_at.localtime.strftime('%F %T') %></p>
 </div>
 
 <div>
-  <p><%= link_to "New Request",  new_partner_request_path %></p>
+  <p><%= link_to "New Request",  new_partner_request_path, class: 'btn btn-primary' %></p>
+  <p><%= link_to "Your Previous Requests", partner_requests_path, class: 'btn btn-secondary' %></p>
 </div>
 
