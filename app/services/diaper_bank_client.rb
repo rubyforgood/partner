@@ -22,7 +22,7 @@ module DiaperBankClient
 
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"])
     req = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
-    req.body = PartnerRequestBlueprint.render(PartnerRequest.find(partner_request_id))
+    req.body = PartnerRequest.find(partner_request_id).export_json
     req["Content-Type"] = "application/json"
     req["X-Api-Key"] = ENV["DIAPERBANK_KEY"]
 
