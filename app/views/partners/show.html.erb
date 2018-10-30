@@ -17,7 +17,7 @@
 
 <div class="actions">
   <% if @partner.verified? %>
-    <%= link_to 'Submit Request', new_partner_request_path, class: 'btn btn-primary' %>
+    <%= link_to 'New Request', new_partner_request_path, class: 'btn btn-primary' %>
   <% end %>
   <%= link_to 'Submit for Approval', partner_approve_path(@partner), class: "btn btn-primary #{'disabled' unless @partner.pending?}" %>
 </div>
