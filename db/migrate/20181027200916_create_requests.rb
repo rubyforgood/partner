@@ -4,7 +4,7 @@ class CreateRequests < ActiveRecord::Migration[5.2]
       t.text :comments
       t.references :partner
       t.references :organization
-      t.boolean :sent
+      t.boolean :sent, null: false, default: false
       t.timestamps
     end
   end
