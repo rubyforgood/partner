@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :partner do
     name { "Partner" }
-    email { "parter@email.com" }
+    sequence(:email) { |n| "parter#{n}@email.com" }
     password { "password" }
     address1 { Faker::Address.street_address }
 
