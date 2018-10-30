@@ -18,10 +18,10 @@ RSpec.describe PartnerRequestsController, type: :controller do
     end
   end
 
-  describe 'GET #thanks' do
+  describe 'GET #show' do
     it 'returns http success' do
       @partner_request = create(:partner_request_with_items)
-      get :thanks, params: { partner_request_id: @partner_request.id }
+      get :show, params: { id: @partner_request.id }
       expect(response).to have_http_status(200)
     end
   end

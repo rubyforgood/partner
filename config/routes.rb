@@ -5,9 +5,7 @@ Rails.application.routes.draw do
     get :approve
   end
 
-  resources :partner_requests, only: [:new, :create] do
-    get :thanks
-  end
+  resources :partner_requests, only: [:new, :create, :show, :index]
 
   get "/api", action: :show, controller: "api"
   namespace :api, defaults: { format: "json" } do

@@ -15,17 +15,17 @@ class PartnerRequestsController < ApplicationController
         if DiaperBankClient.request_submission_post(@partner_request.id)
           @partner_request.update_columns(sent: true)
         else
-          @partner_request.errors.add(:base, :sending_failure, message: "request saved but failed to send")
+          @partner_request.errors.add(:base, :sending_failure, message: "Your request saved but failed to send")
         end
-        format.html { redirect_to partner_request_thanks_path(@partner_request), notice: "Request was successfully created." }
+        format.html { redirect_to partner_request_path(@partner_request), notice: "Request was successfully created." }
       else
         format.html { render :new }
       end
     end
   end
 
-  def thanks
-    @partner_request = PartnerRequest.find(params[:partner_request_id])
+  def show
+    @partner_request = PartnerRequest.find(params[:id])
   end
 
   private
