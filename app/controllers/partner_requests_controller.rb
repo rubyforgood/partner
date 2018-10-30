@@ -1,6 +1,11 @@
 class PartnerRequestsController < ApplicationController
   before_action :authenticate_partner!
 
+  def index
+    @partner = current_partner
+    @partner_requests = PartnerRequest.where(partner_id: current_partner.id)
+  end
+
   def new
     @partner_request = PartnerRequest.new
     @partner_request.items.build # required to render the empty items form

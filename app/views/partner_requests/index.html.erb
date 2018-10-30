@@ -1,0 +1,43 @@
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%= link_to 'Account', edit_partner_path(@partner), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Sign Out', destroy_partner_session_path, class: 'nav-link', method: :delete %>
+  </li>
+</ul>
+
+<p id="notice"><%= notice %></p>
+<p>
+  <%= @partner.name  %><br>
+  <%= @partner.executive_director_name  %><br>
+  <%= @partner.email  %><br>
+  Status: <%= @partner.partner_status %>
+</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Contents</th>
+      <th scope="col">Submission Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @partner_requests.each do |partner_request| %>
+      <tr>
+        <th scope="row"><%= link_to partner_request.id, partner_request_path(partner_request) %></th>
+        <td><%= partner_request.items.map { |item| "#{item.quantity} of #{POSSIBLE_ITEMS[item.name]}" }.join(", ") %></td>
+        <td><%= partner_request.created_at.localtime.strftime('%F %T') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<div class="actions">
+  <% if @partner.verified? %>
+    <%= link_to 'Submit Request', new_partner_request_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>
