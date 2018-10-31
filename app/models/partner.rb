@@ -3,7 +3,7 @@ class Partner < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-         
+
   include DiaperBankClient
 
   has_one_attached :proof_of_partner_status
@@ -11,6 +11,8 @@ class Partner < ApplicationRecord
   has_many_attached :documents
 
   validates :email, presence: true
+
+  has_many :partner_requests
 
   def export_json
     {
@@ -122,4 +124,11 @@ class Partner < ApplicationRecord
     DiaperBankClient.post(self.diaper_partner_id)
   end
 
+  def verified?
+    partner_status.downcase == 'verified'
+  end
+
+  def pending?
+    partner_status.downcase == "pending"
+  end
 end

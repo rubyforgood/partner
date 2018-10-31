@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveModel::ValidationError do |exception|
     render json: { errors: exception.model.errors.full_messages }, status: :unprocessable_entity
   end
+
+  def after_sign_out_path_for(*)
+    new_partner_session_path
+  end
 end
