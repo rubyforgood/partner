@@ -273,7 +273,7 @@
   <h3>Attached Documents</h3>
   <% if @partner.documents.attached? %>
     <dt>Attached files:</dt>
-    <% partner.documents.each do |doc| %>
+    <% @partner.documents.each do |doc| %>
       <dd><%= link_to doc.blob['filename'], rails_blob_path(doc), class: "font-weight-bold" %></dd>
     <% end %>
   <% else %>
