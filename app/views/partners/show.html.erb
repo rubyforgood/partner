@@ -67,7 +67,7 @@
     <dd><%= @partner.founded %></dd>
 
     <dt>Form 990 Filed</dt>
-    <dd><%= @partner.form_990 %></dd>
+    <dd><%= humanize_boolean(@partner.form_990) %></dd>
 
     <dt>Form 990</dt>
     <% if @partner.proof_of_form_990.attached? %>
@@ -86,10 +86,10 @@
     <dd><%= @partner.program_age %></dd>
 
     <dt>Case Management</dt>
-    <dd><%= @partner.case_management %></dd>
+    <dd><%= humanize_boolean(@partner.case_management) %></dd>
 
     <dt>Evidence Based</dt>
-    <dd><%= @partner.evidence_based %></dd>
+    <dd><%= humanize_boolean(@partner.evidence_based) %></dd>
 
     <dt>Evidence Base Description</dt>
     <dd><%= @partner.evidence_based_description %></dd>
@@ -104,10 +104,10 @@
     <dd><%= @partner.other_diaper_use %></dd>
 
     <dt>Current Providing Diapers</dt>
-    <dd><%= @partner.currently_provide_diapers %></dd>
+    <dd><%= humanize_boolean(@partner.currently_provide_diapers) %></dd>
 
     <dt>Turn Away Child Care</dt>
-    <dd><%= @partner.turn_away_child_care %></dd>
+    <dd><%= humanize_boolean(@partner.turn_away_child_care) %></dd>
 
     <address>
       <strong>Program Address</strong> <br>
@@ -129,10 +129,10 @@
     <dd><%= @partner.incorporate_plan %></dd>
 
     <dt>Responsible Staff Position</dt>
-    <dd><%= @partner.responsible_staff_position %></dd>
+    <dd><%= humanize_boolean(@partner.responsible_staff_position) %></dd>
 
     <dt>Storage Space</dt>
-    <dd><%= @partner.storage_space %></dd>
+    <dd><%= humanize_boolean(@partner.storage_space) %></dd>
 
     <dt>Storage Space Description</dt>
     <dd><%= @partner.describe_storage_space %></dd>
@@ -141,19 +141,19 @@
   <h3>Population Served</h3>
   <dl>
     <dt>Income Requirement Description</dt>
-    <dd><%= @partner.income_requirement_desc %></dd>
+    <dd><%= humanize_boolean(@partner.income_requirement_desc) %></dd>
 
     <dt>Serve Income Circumstances</dt>
-    <dd><%= @partner.serve_income_circumstances %></dd>
+    <dd><%= humanize_boolean(@partner.serve_income_circumstances) %></dd>
 
     <dt>Income Verification</dt>
-    <dd><%= @partner.income_verification %></dd>
+    <dd><%= humanize_boolean(@partner.income_verification) %></dd>
 
     <dt>Internal DB</dt>
-    <dd><%= @partner.internal_db %></dd>
+    <dd><%= humanize_boolean(@partner.internal_db) %></dd>
 
     <dt>MAAC</dt>
-    <dd><%= @partner.maac %></dd>
+    <dd><%= humanize_boolean(@partner.maac) %></dd>
 
     <h6>Ethnic Composition of Those Served</h6>
     <dt>African American</dt>
