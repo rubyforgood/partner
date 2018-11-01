@@ -71,7 +71,7 @@
 
     <dt>Form 990</dt>
     <% if @partner.proof_of_form_990.attached? %>
-      <dd>Attached file: <%= link_to partner.proof_of_form_990.blob['filename'], rails_blob_path(partner.proof_of_form_990), class: "font-weight-bold" %></dd>
+      <dd>Attached file: <%= link_to @partner.proof_of_form_990.blob['filename'], rails_blob_path(@partner.proof_of_form_990), class: "font-weight-bold" %></dd>
     <% else %>
       <dd>Form 990 not on file</dd>
     <% end %>
