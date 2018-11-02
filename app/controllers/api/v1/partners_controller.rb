@@ -30,7 +30,7 @@ class Api::V1::PartnersController < ApiController
   def show
     return head :forbidden unless api_key_valid?
 
-    partner = Partner.find(params[:id])
+    partner = Partner.find_by(diaper_partner_id: params[:id])
 
     render json: { agency: partner.export_json }
   end
