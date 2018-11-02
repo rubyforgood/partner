@@ -25,6 +25,7 @@ class PartnersController < ApplicationController
     @partner.approve_me
     redirect_to @partner, notice: "You have submitted your details for approval."
   end
+
   # POST /partners
   # POST /partners.json
   def create
@@ -46,7 +47,7 @@ class PartnersController < ApplicationController
   def update
     respond_to do |format|
       if @partner.update(partner_params)
-        format.html { redirect_to @partner, notice: "Partner was successfully updated." }
+        format.html { redirect_to @partner, notice: "Details were successfully updated." }
         format.json { render :show, status: :ok, location: @partner }
       else
         format.html { render :edit }

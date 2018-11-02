@@ -3,7 +3,7 @@ module DiaperBankClient
     return unless Rails.env.production?
 
     partner = { partner:
-      { diaper_partner_id: partner_id} }
+      { diaper_partner_id: partner_id } }
 
     uri = URI(ENV["DIAPERBANK_APPROVAL_URL"])
     req = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")

@@ -3,7 +3,7 @@ class PartnerRequestsController < ApplicationController
 
   def index
     @partner = current_partner
-    @partner_requests = PartnerRequest.where(partner_id: current_partner.id)
+    @partner_requests = current_partner.partner_requests # PartnerRequest.where(partner_id: current_partner.id)
   end
 
   def new

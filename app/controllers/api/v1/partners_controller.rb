@@ -22,7 +22,6 @@ class Api::V1::PartnersController < ApiController
     partner = Partner.find_by(diaper_partner_id: partner_params[:diaper_partner_id])
     partner.update(partner_status: "Verified")
     render json: { message: "Partner status changed to verified." }, status: :ok
-
   rescue ActiveRecord::RecordInvalid => e
     render e.message
   end

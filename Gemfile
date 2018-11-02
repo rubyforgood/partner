@@ -33,6 +33,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "better_errors"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "faker"
   gem "guard-rspec"
@@ -40,16 +41,15 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails", "~> 3.5"
   gem "rubocop"
-  gem 'dotenv-rails'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem "capistrano-rails"
-  gem "capistrano-rvm"
   gem "capistrano-bundler"
-  gem "capistrano3-puma"
+  gem "capistrano-rails"
   gem "capistrano-rails-console", require: false
+  gem "capistrano-rvm"
+  gem "capistrano3-puma"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "web-console", ">= 3.3.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

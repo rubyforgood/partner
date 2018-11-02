@@ -121,14 +121,14 @@ class Partner < ApplicationRecord
 
   def approve_me
     update(partner_status: "Submitted")
-    DiaperBankClient.post(self.diaper_partner_id)
+    DiaperBankClient.post(diaper_partner_id)
   end
 
   def verified?
-    partner_status.downcase == 'verified'
+    partner_status.casecmp("verified").zero?
   end
 
   def pending?
-    partner_status.downcase == "pending"
+    partner_status.casecmp("pending").zero?
   end
 end

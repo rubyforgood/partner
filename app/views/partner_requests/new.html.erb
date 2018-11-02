@@ -1,4 +1,4 @@
-<h3>New Request</h3>
+<h3>New Diaper Request</h3>
 <p>from <%= current_partner.name %></p>
 
 <%= form_with(model: @partner_request, local: true) do |form| %>
@@ -42,7 +42,7 @@
   <hr>
 
   <div class="actions">
-    <%= form.submit("Submit for Review", class: "btn btn-primary") %> or <%= link_to "cancel", partner_requests_path %>
+    <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
   </div>
 <% end %>
 
