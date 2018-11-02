@@ -81,7 +81,7 @@ describe "Partner edit", type: :feature do
     fill_in "partner_diaper_budget", with: Faker::Name.name
     fill_in "partner_diaper_funding_source", with: Faker::Name.name
 
-    click_button "Update Partner"
+    click_button "Update Information"
 
     expect(page).to have_content "pending"
     expect(page).to have_content "Details were successfully updated."
@@ -92,7 +92,7 @@ describe "Partner edit", type: :feature do
     attach_file("Proof of form 990", Rails.root + "spec/fixtures/test.pdf")
     attach_file("Documents", Rails.root + "spec/fixtures/test.pdf")
 
-    click_button "Update Partner"
+    click_button "Update Information"
 
     expect(page).to have_content "Details were successfully updated."
     expect(partner.proof_of_partner_status.attached?).to eq true

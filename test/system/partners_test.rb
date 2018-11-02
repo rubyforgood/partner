@@ -24,7 +24,7 @@ class PartnersTest < ApplicationSystemTestCase
     visit partners_url
     click_on "Edit", match: :first
 
-    click_on "Update Partner"
+    click_on "Update Information"
 
     assert_text "Details were successfully updated."
     click_on "Back"
