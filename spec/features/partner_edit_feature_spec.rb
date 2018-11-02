@@ -84,7 +84,7 @@ describe "Partner edit", type: :feature do
     click_button "Update Partner"
 
     expect(page).to have_content "pending"
-    expect(page).to have_content "Partner was successfully updated."
+    expect(page).to have_content "Details were successfully updated."
   end
 
   it "partner can attach documents" do
@@ -94,7 +94,7 @@ describe "Partner edit", type: :feature do
 
     click_button "Update Partner"
 
-    expect(page).to have_content "Partner was successfully updated."
+    expect(page).to have_content "Details were successfully updated."
     expect(partner.proof_of_partner_status.attached?).to eq true
     expect(partner.proof_of_form_990.attached?).to eq true
     expect(partner.documents.attached?).to eq true

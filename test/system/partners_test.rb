@@ -26,7 +26,7 @@ class PartnersTest < ApplicationSystemTestCase
 
     click_on "Update Partner"
 
-    assert_text "Partner was successfully updated"
+    assert_text "Details were successfully updated."
     click_on "Back"
   end
 
