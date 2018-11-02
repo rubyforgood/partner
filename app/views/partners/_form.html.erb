@@ -533,6 +533,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary" %> or <%= link_to 'Cancel', partner %>
+    <%= form.submit("Update Information", class: "btn btn-primary") %>  <%= link_to "Cancel Update", partner_requests_path, class: "btn btn-danger" %>
   </div>
 <% end %>
