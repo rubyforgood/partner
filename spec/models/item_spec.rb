@@ -6,9 +6,15 @@ RSpec.describe Item, type: :model do
       expect(build(:item)).to be_valid
       expect(build(:item, name: 'foo')).not_to be_valid
     end
-
+    
     it 'requires a quantity greater than or equal to 1' do
-      expect(build(:item)).to be_valid
+      expect(build(:item, quantity: 1)).to be_valid
+      expect(build(:item, quantity: 3)).to be_valid
+    end
+  end
+  
+  describe 'an invalid Item' do
+    it 'requires a quantity greater than or equal to 1' do
       expect(build(:item, quantity: 0)).not_to be_valid
     end
   end
