@@ -17,7 +17,7 @@ en:
         submit_button: "Create Account"
     mailer:
       invitation_instructions:
-        subject: "Invitation instructions"
+        subject: "Diaper Bank Partner Invitation"
         hello: "Hello %{email}"
         someone_invited_you: "Someone has invited you to %{url}, you can accept it through the link below."
         accept: "Accept invitation"
