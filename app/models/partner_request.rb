@@ -18,8 +18,6 @@ class PartnerRequest < ApplicationRecord
   end
 
   def formatted_items_hash(items)
-    hsh = {}
-    items.each { |item| hsh[item.name] = item.quantity }
-    hsh
+    items.each_with_object({}) { |item, hsh| hsh[item.name] = item.quantity }
   end
 end
