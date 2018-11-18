@@ -45,3 +45,14 @@ If you're getting the error `PG::ConnectionBad: fe_sendauth: no password supplie
 ## Seed the database
 From the root of the app, run `bundle exec rails db:seed`. This will create some initial data to use while testing the app and developing new features, including setting up the default user.
 
+To login, use these default credentials provided in the seeds:
+
+    Verified Organization
+      Email: org_admin1@example.com
+      Password: password
+
+    Pending Organization
+      Email: user_1@example.com
+      Password: password
+
+
