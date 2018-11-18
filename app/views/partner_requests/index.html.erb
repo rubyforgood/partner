@@ -1,5 +1,5 @@
 <ul class="nav justify-content-end">
-    <%= link_to 'Organization', partner_path(@partner), class: 'btn btn-primary' %>
+    <%= link_to 'Organization', partner_path(current_partner), class: 'btn btn-primary' %>
     &nbsp
     <%= link_to 'Sign Out', destroy_partner_session_path, class: 'btn btn-warning', method: :delete %>
 </ul>

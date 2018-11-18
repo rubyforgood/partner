@@ -1,3 +1,12 @@
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%= link_to 'Account', edit_partner_path(current_partner), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Sign Out', destroy_partner_session_path, class: 'nav-link', method: :delete %>
+  </li>
+</ul>
+
 <h1>Thanks</h1>
 
 <% if @partner_request.errors.any? %>
