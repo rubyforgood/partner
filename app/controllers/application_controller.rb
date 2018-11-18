@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   rescue_from ActiveRecord::RecordInvalid do |exception|
     Rails.logger.error(exception.message)
 
@@ -14,5 +18,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(*)
     new_partner_session_path
+  end
+
+  private
+
+  def user_not_authorized
+    redirect_to(request.referrer || root_path, notice: "You are not authorized to perform this action.")
   end
 end
