@@ -6,6 +6,7 @@ class PartnersController < ApplicationController
   # GET /partners.json
   def index
     @partners = Partner.all
+    authorize @partners
   end
 
   # GET /partners/1
@@ -69,8 +70,10 @@ class PartnersController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  # NOTE(chaserx): pundit let's us authorize partner specific actions here as a
+  #  convenience rather than in each of the partner specific methods
   def set_partner
-    @partner = Partner.find(params[:id])
+    @partner = authorize Partner.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -153,5 +156,10 @@ class PartnersController < ApplicationController
       :diaper_funding_source,
       documents: []
     )
+  end
+
+  # NOTE(chaserx): the is required for pundit since our auth'd user is named `partner`
+  def pundit_user
+    current_partner
   end
 end
