@@ -4,9 +4,8 @@
   </li>
 </ul>
 
-<p id="notice"><%= notice %></p>
-
 <div class="container">
+  <p id="notice"><%= notice %></p>
   <div class="actions">
     <% if @partner.verified? %>
       <%= link_to 'Request Diapers', partner_requests_path, class: 'btn btn-success' %>
