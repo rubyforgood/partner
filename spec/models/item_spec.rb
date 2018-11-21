@@ -17,5 +17,13 @@ RSpec.describe Item, type: :model do
     it "requires a quantity greater than or equal to 1" do
       expect(build(:item, quantity: 0)).not_to be_valid
     end
+
+    it "requires a quantity with integer value only" do
+      expect(build(:item, quantity: 1.2)).not_to be_valid
+    end
+
+    it "requires a name" do
+      expect(build(:item, name: nil)).not_to be_valid
+    end
   end
 end

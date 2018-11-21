@@ -31,11 +31,17 @@ class PartnerRequestsController < ApplicationController
 
   def show
     @partner_request = PartnerRequest.find(params[:id])
+    authorize @partner_request
   end
 
   private
 
   def partner_request_params
     params.require(:partner_request).permit(:comments, items_attributes: Item.attribute_names.map(&:to_sym).push(:_destroy))
+  end
+
+  # NOTE(chaserx): the is required for pundit since our auth'd user is named `partner`
+  def pundit_user
+    current_partner
   end
 end
