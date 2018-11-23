@@ -29,6 +29,13 @@ require_relative "support/controller_macros"
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+# NOTE(chaserx): this is required to include fixture_file_upload in factories
+# see also: https://blog.eq8.eu/til/factory-bot-trait-for-active-storange-has_attached.html
+#
+FactoryBot::SyntaxRunner.class_eval do
+  include ActionDispatch::TestProcess
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

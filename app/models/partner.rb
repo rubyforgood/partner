@@ -19,7 +19,7 @@ class Partner < ApplicationRecord
       name: name,
       distributor_type: distributor_type,
       agency_type: agency_type,
-      proof_of_agency_status:  "",
+      proof_of_agency_status: expose_attachment_path(proof_of_partner_status),
       agency_mission: agency_mission,
       address: {
         address1: address1,
@@ -36,7 +36,7 @@ class Partner < ApplicationRecord
       stability: {
         founded: founded,
         form_990: form_990,
-        form_990_link: "",
+        form_990_link: expose_attachment_path(proof_of_form_990),
         program_name: program_name,
         program_description: program_description,
         program_age: program_age,
@@ -115,7 +115,8 @@ class Partner < ApplicationRecord
         diapers: sources_of_diapers,
         budget: diaper_budget,
         diaper_funding_source: diaper_funding_source
-      }
+      },
+      documents: document_list
     }
   end
 
@@ -130,5 +131,30 @@ class Partner < ApplicationRecord
 
   def pending?
     partner_status.casecmp("pending").zero?
+  end
+
+  private
+
+  def expose_attachment_path(documentation)
+    # NOTE(chaserx): I'm not sure how I feel about this.
+    #    I think smells because the `export_json` method should probably be
+    #    a jbuilder view or similar where url_helpers are already available.
+    # Also, we have to use the `only_path` option here or else we need to set
+    #    `default_url_options` to a domain name. That might be ok though as
+    #    the diaper app probably has knowledge of that anyway.
+    if documentation.attached?
+      Rails.application.routes.url_helpers.rails_blob_path(documentation, only_path: true)
+    else
+      ""
+    end
+  end
+
+  def document_list
+    # NOTE(chaserx): see same note as above.
+    list = []
+    documents.each do |doc|
+      list.push(document_link: Rails.application.routes.url_helpers.rails_blob_path(doc, only_path: true))
+    end
+    list
   end
 end
