@@ -18,7 +18,7 @@ class PartnerRequestsController < ApplicationController
       if @partner_request.save
         # NOTE(chaserx): send request to diaper app.
         if DiaperBankClient.request_submission_post(@partner_request.id)
-          @partner_request.update_columns(sent: true)
+          @partner_request.update(sent: true)
         else
           @partner_request.errors.add(:base, :sending_failure, message: "Your request saved but failed to send")
         end

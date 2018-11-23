@@ -30,7 +30,7 @@
     </thead>
     <tbody class='fields'>
       <%= form.fields_for :items do |builder| %>
-        <%= render 'item', f: builder %>
+        <%= render 'item', form: builder %>
       <% end %>
     </tbody>
   </table>

@@ -21,7 +21,6 @@ RSpec.describe PartnersController, type: :controller do
   describe "Post #create" do
     it "creates a new partner" do
       expect do
-        print(FactoryBot.attributes_for(:partner))
         post :create, params: { partner: FactoryBot.attributes_for(:partner) }
       end.to change(Partner, :count).by(0)
     end
