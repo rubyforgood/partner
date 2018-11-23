@@ -18,6 +18,8 @@ AllCops:
   - "Vagrantfile"
   - "Rakefile"
   - "tmp/*"
+  - "config/deploy/*"
+  - "config/deploy.rb"
   UseCache: false
 Bundler/OrderedGems:
   Enabled: true

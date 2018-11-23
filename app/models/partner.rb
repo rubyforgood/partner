@@ -12,7 +12,7 @@ class Partner < ApplicationRecord
 
   validates :email, presence: true
 
-  has_many :partner_requests
+  has_many :partner_requests, dependent: :destroy
 
   def export_json
     {

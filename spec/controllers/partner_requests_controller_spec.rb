@@ -13,13 +13,13 @@ RSpec.describe PartnerRequestsController, type: :controller do
   describe "POST #create" do
     it "creates a new partner_request" do
       expect do
-        post :create, params: { partner_request: FactoryBot.attributes_for(:partner_request_with_items) }
+        post :create, params: { partner_request: attributes_for(:partner_request_with_items) }
       end.to change(PartnerRequest, :count).by(1)
     end
   end
 
-  describe 'GET #show' do
-    it 'returns http success' do
+  describe "GET #show" do
+    it "returns http success" do
       @partner = create(:partner)
       sign_in @partner
       @partner_request = create(:partner_request_with_items, partner: @partner)
