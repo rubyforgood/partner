@@ -16,4 +16,14 @@ RSpec.describe PartnerRequest, type: :model do
       expect(partner_request.formatted_items_hash(partner_request.items)).to eql(formatted_hash)
     end
   end
+
+  describe "a request without an item quantity" do
+    let(:partner_request) { build(:partner_request) }
+    let(:item) { build(:item, name: "test", quantity: nil, partner_request: partner_request) }
+    it "fails" do
+      partner_request.items << item
+      expect(partner_request.save).to be false
+      expect(partner_request.errors.messages[:"items.quantity"]).to include("can't be blank")
+    end
+  end
 end
