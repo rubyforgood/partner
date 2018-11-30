@@ -29,7 +29,7 @@ the partner gets an email notification stating their pick up date and a pdf copy
 ## Development
 
 ### Ruby Version
-This app uses Ruby version 2.5.1, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
+This app uses Ruby version 2.5.3, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
 
 ### Database Configuration
 This app uses PostgreSQL for all environments. You'll also need to create the `dev` and `test` databases, the app is expecting them to be named `partner_dev` and `partner_test`, respectively. This should all be handled with `bundle exec rails db:setup`.
