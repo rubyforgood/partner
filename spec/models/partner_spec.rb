@@ -1,14 +1,28 @@
 require "rails_helper"
 
 describe Partner, type: :model do
-  it "make name required" do
-    partner = build(:partner, email: nil)
+  it { is_expected.to have_many(:partner_requests).dependent(:destroy) }
 
+  it { is_expected.to validate_presence_of(:email) }
+
+  it "is not valid without an email address" do
+    partner = build(:partner, email: nil)
     expect(partner).to_not be_valid
 
     partner.email = "partner@email.com"
-
     expect(partner).to be_valid
+  end
+
+  describe "#approve_me" do
+    let(:partner) { create(:partner) }
+    it "changes the partner status to Submitted" do
+      expect{partner.approve_me}.to change {partner.partner_status}.from("pending").to("Submitted")
+    end
+
+    it "posts the diaper partner id" do
+      expect(DiaperBankClient).to receive(:post).with(partner.diaper_partner_id)
+      partner.approve_me
+    end
   end
 
   describe "verified?" do
