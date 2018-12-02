@@ -16,7 +16,7 @@ describe Partner, type: :model do
   describe "#approve_me" do
     let(:partner) { create(:partner) }
     it "changes the partner status to Submitted" do
-      expect{partner.approve_me}.to change {partner.partner_status}.from("pending").to("Submitted")
+      expect { partner.approve_me }.to change { partner.partner_status }.from("pending").to("Submitted")
     end
 
     it "posts the diaper partner id" do
