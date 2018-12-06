@@ -8,6 +8,7 @@ class PartnerRequestsController < ApplicationController
 
   def new
     @partner_request = PartnerRequest.new
+    @valid_items = DiaperBankClient.get(current_partner.diaper_bank_id)
     @partner_request.items.build # required to render the empty items form
   end
 
