@@ -22,7 +22,7 @@ module DiaperBankClient
     req["X-Api-Key"] = ENV["PARTNER_KEY"]
 
     response = https(uri).request(req)
-    response.body
+    JSON.parse(response.body)
   end
 
   def self.request_submission_post(partner_request_id)
