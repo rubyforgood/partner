@@ -12,6 +12,19 @@ module DiaperBankClient
     response.body
   end
 
+  def self.get(id)
+    return if Rails.env != "production"
+
+    uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"] + "/#{id}")
+    req = Net::HTTP::Get.new(uri, "Content-Type" => "application/json")
+
+    req["Content-Type"] = "application/json"
+    req["X-Api-Key"] = ENV["PARTNER_KEY"]
+
+    response = https(uri).request(req)
+    response.body
+  end
+
   def self.request_submission_post(partner_request_id)
     return unless Rails.env.production?
     return unless PartnerRequest.exists?(partner_request_id)
