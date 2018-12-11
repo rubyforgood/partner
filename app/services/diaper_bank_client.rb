@@ -12,17 +12,22 @@ module DiaperBankClient
     response.body
   end
 
-  def self.get(id)
-    return if Rails.env != "production"
+  def self.get_available_items(diaper_bank_id)
+    return unless Rails.env.production?
 
-    uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"] + "/#{id}")
-    req = Net::HTTP::Get.new(uri, "Content-Type" => "application/json")
+    uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"] + "/#{diaper_bank_id}")
+    req = Net::HTTP::Get.new(uri)
 
     req["Content-Type"] = "application/json"
-    req["X-Api-Key"] = ENV["PARTNER_KEY"]
+    req["X-Api-Key"] = ENV["DIAPERBANK_KEY"]
 
     response = https(uri).request(req)
-    JSON.parse(response.body)
+
+    if response.code.to_i == 200
+      JSON.parse(response.body)
+    else
+      []
+    end
   end
 
   def self.request_submission_post(partner_request_id)
