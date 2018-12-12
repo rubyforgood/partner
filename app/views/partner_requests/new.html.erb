@@ -42,6 +42,7 @@
   <hr>
 
   <div class="actions">
+    <!-- TODO(chaserx): we should add some js to prevent submission if the items selected are the blank option or any item has an empty quantity -->
     <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
   </div>
 <% end %>
