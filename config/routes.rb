@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :partners
+  devise_for :partners, controllers: {sessions: 'partners/sessions'}
 
   resources :partners do
     get :approve

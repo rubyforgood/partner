@@ -38,10 +38,17 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
   <ul class="app-menu">
-    <li>
-      <%= link_to partner_path(current_partner), class: "app-menu__item #{active_class(['partners'])}" do %>
-        <i class="app-menu__icon fa fa-dashboard"></i> <span class="app-menu__label">My Organization</span>
+    <li class="treeview">
+      <%= link_to partner_path(current_partner), {class: "app-menu__item #{active_class(['partners'])}", 'data-toggle': "treeview" } do %>
+        <i class="app-menu__icon fa fa-dashboard"></i> <span class="app-menu__label">My Organization</span><i class="treeview-indicator fa fa-angle-right"></i>
       <% end %>
+      <ul class="treeview-menu">
+        <li>
+          <%= link_to edit_partner_path(current_partner), class: "treeview-item" do %>
+            <i class="fa fa-cog fa-lg"></i> Edit Partner
+          <% end %>
+          <a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
+      </ul>
     </li>
     <% if current_partner.verified? %>
       <li>
