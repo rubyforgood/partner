@@ -3,7 +3,7 @@ class PartnerRequestsController < ApplicationController
 
   def index
     @partner = current_partner
-    @partner_requests = current_partner.partner_requests # PartnerRequest.where(partner_id: current_partner.id)
+    @partner_requests = current_partner.partner_requests.order(created_at: :desc) # PartnerRequest.where(partner_id: current_partner.id)
   end
 
   def new
@@ -22,7 +22,7 @@ class PartnerRequestsController < ApplicationController
         else
           @partner_request.errors.add(:base, :sending_failure, message: "Your request saved but failed to send")
         end
-        format.html { redirect_to partner_request_path(@partner_request), notice: "Request was successfully created." }
+        format.html { redirect_to partner_requests_path, notice: "Request was successfully created." }
       else
         format.html { render :new }
       end

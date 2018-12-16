@@ -1,48 +1,62 @@
-<h3>New Diaper Request</h3>
-<p>from <%= current_partner.name %></p>
 
-<%= form_with(model: @partner_request, local: true) do |form| %>
-  <% if @partner_request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@partner_request.errors.count, "error") %> prohibited this request from being saved:</h2>
-
-      <ul>
-      <% @partner_request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-  <div class="form-group">
-    <%= form.label(:comments) %>
-    <%= form.text_area :comments %>
-  </div>
-
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody class='fields'>
-      <%= form.fields_for :items do |builder| %>
-        <%= render 'item', form: builder %>
-      <% end %>
-    </tbody>
-  </table>
-
+<div class="app-title">
   <div>
-    <%= link_to_add_row('Add An Item', form, :items, class: 'btn btn-outline-primary') %>
+    <h1><i class="fa fa-dashboard"></i> New Diaper Bank Request</h1>
   </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">New Request</a></li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <%= form_with(model: @partner_request, local: true) do |form| %>
+        <% if @partner_request.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@partner_request.errors.count, "error") %> prohibited this request from being saved:</h2>
 
-  <hr>
+            <ul>
+              <% @partner_request.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-  <div class="actions">
-    <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
+
+        <div class="form-group">
+          <%= form.label(:comments) %>
+          <%= form.text_area :comments, class: 'form-control' %>
+        </div>
+
+        <table class='table'>
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody class='fields'>
+          <%= form.fields_for :items do |builder| %>
+            <%= render 'item', form: builder %>
+          <% end %>
+          </tbody>
+        </table>
+
+        <div>
+          <%= link_to_add_row('Add Another Item', form, :items, class: 'btn btn-outline-primary') %>
+        </div>
+
+        <hr>
+
+        <div class="actions">
+          <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+
+
+    </div>
   </div>
-<% end %>
-
+</div>

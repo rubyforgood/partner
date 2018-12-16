@@ -1,35 +1,45 @@
-<ul class="nav justify-content-end">
-    <%= link_to 'Organization', partner_path(current_partner), class: 'btn btn-primary' %>
-    &nbsp
-    <%= link_to 'Sign Out', destroy_partner_session_path, class: 'btn btn-warning', method: :delete %>
-</ul>
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-edit"></i> Diaper Bank Requests</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">My Requests</a></li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <h3>Diaper Request History</h3>
 
-<p id="notice"><%= notice %></p>
-<h3>Diaper Request History</h3>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Contents</th>
+          <th scope="col">Request Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @partner_requests.each do |partner_request| %>
+          <tr>
+            <th scope="row"><%= link_to partner_request.id, partner_request_path(partner_request) %></th>
+            <td><%= partner_request.items.map {|item| "#{item.quantity} of #{POSSIBLE_ITEMS[item.name]}"}.join(", ") %></td>
+            <td><%= partner_request.created_at.strftime("%B %-d %Y") %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Contents</th>
-      <th scope="col">Request Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @partner_requests.each do |partner_request| %>
-      <tr>
-        <th scope="row"><%= link_to partner_request.id, partner_request_path(partner_request) %></th>
-        <td><%= partner_request.items.map { |item| "#{item.quantity} of #{POSSIBLE_ITEMS[item.name]}" }.join(", ") %></td>
-        <td><%= partner_request.created_at.strftime("%B %-d %Y") %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <hr>
 
-<hr>
+      <div class="actions">
+        <% if @partner.verified? %>
+          <%= link_to 'Create New Diaper Request', new_partner_request_path, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
 
-<div class="actions">
-  <% if @partner.verified? %>
-    <%= link_to 'Create New Diaper Request', new_partner_request_path, class: 'btn btn-primary' %>
-  <% end %>
+
+    </div>
+  </div>
 </div>

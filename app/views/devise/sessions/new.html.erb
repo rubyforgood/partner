@@ -1,31 +1,41 @@
-<div class="row justify-content-center mt-5">
-  <div class="card thick-grey-border mx-auto px-5">
-    <h2 class="mt-4">Partner Login</h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-group mt-3">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-      </div>
-
-      <% if devise_mapping.rememberable? -%>
-        <div class="form-group form-check">
-          <%= f.check_box :remember_me, class: 'form-check-input' %>
-          <%= f.label :remember_me, class: 'form-check-label' %>
+<form class="login-form">
+  <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, "EMAIL", class: 'control-label' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, "PASSWORD", class: 'control-label' %>
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <div class="utility">
+        <div class="animated-checkbox">
+          <label>
+            <input type="checkbox"><span class="label-text">Stay Signed in</span>
+          </label>
         </div>
-      <% end -%>
-
-      <div class="form-group mx-4 mb-5">
-        <%= f.submit "Login", class: 'btn btn-primary btn-block' %>
+        <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p>
       </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
-
+    </div>
+    <div class="form-group btn-container">
+      <%= button_tag type: 'submit', class: "btn btn-primary btn-block" do %>
+        <i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+      <% end %>
+    </div>
+  <% end %>
+</form>
+<form class="forget-form" action="index.html">
+  <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
+  <div class="form-group">
+    <label class="control-label">EMAIL</label>
+    <input class="form-control" type="text" placeholder="Email">
   </div>
-</div>
-
+  <div class="form-group btn-container">
+    <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+  </div>
+  <div class="form-group mt-3">
+    <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
+  </div>
+</form>
