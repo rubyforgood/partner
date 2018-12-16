@@ -52,5 +52,10 @@ describe PartnerRequestsController, type: :controller do
 
       it_behaves_like "user is not logged in"
     end
+
+    describe "GET #index" do
+      subject { get :index }
+      it_behaves_like "user is not logged in"
+    end
   end
 end
