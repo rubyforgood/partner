@@ -1,6 +1,6 @@
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-edit"></i> Editing Organization</h1>
+    <h1><i class="fa fa-edit"></i> Editing Organization &nbsp<span class="badge badge-pill badge-primary float-right"><%= @partner.partner_status %></span></h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -14,7 +14,7 @@
       <div class="tile">
         <h3 class="tile-title">Agency Information</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Name</label>
               <div class="col-md-8">
@@ -39,6 +39,7 @@
               <% else %>
                 <div class="col-md-8">
                   <%= form.file_field :proof_of_partner_status, class: "form-control-file" %>
+                </div>
               <% end %>
               </div>
               <div class="form-group row">
@@ -77,13 +78,13 @@
                   <%= form.text_field :zip_code, class: "form-control" %>
                 </div>
               </div>
-          </form>
+          </div>
         </div>
       </div>
       <div class="tile">
         <h3 class="tile-title">Agency Stability</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Year Founded</label>
               <div class="col-md-8">
@@ -108,6 +109,7 @@
               <% else %>
                 <div class="col-md-8">
                   <%= form.file_field :proof_of_form_990, class: "form-control-file" %>
+                </div>
               <% end %>
               </div>
               <div class="form-group row">
@@ -176,14 +178,14 @@
                   <%= form.check_box :turn_away_child_care, class: "form-check-input form-control" %>
                 </div>
               </div>
-          </form>
+          </div>
         </div>
       </div>
 
       <div class="tile">
         <h3 class="tile-title">Program Address</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Address 1</label>
               <div class="col-md-8">
@@ -214,14 +216,14 @@
                 <%= form.number_field :program_zip_code, class: "form-control" %>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
       <div class="tile">
         <h3 class="tile-title">Media Information</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Website</label>
               <div class="col-md-8">
@@ -240,14 +242,14 @@
                 <%= form.text_field :twitter, class: "form-control" %>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
       <div class="tile">
         <h3 class="tile-title">Organization Capacity</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Max Serve</label>
               <div class="col-md-8">
@@ -284,53 +286,40 @@
                 <%= form.check_box :trusted_pickup, class: "form-control form-check-input" %>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
       <div class="tile">
-        <h3 class="tile-title">Population Served</h3>
+        <h3 class="tile-title">Additional Documents</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
-            <div class="form-group row">
-              <label class="control-label col-md-3">Max Serve</label>
-              <div class="col-md-8">
-                <%= form.text_field :max_serve, class: "form-control" %>
-              </div>
+          <div class="form-horizontal">
+            <div class="form-group">
+              <% if partner.documents.attached? %>
+                <div class="row">
+                  <div class="col-6">
+                    Attached files:
+                    <ul>
+                      <% partner.documents.each do |doc| %>
+                        <li><%= link_to doc.blob['filename'], rails_blob_path(doc), class: "font-weight-bold" %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <div class="col-6">
+                    <%= form.file_field :documents, multiple: true, class: "form-control-file" %>
+                  </div>
+                </div>
+              <% else %>
+                <%= form.file_field :documents, multiple: true, class: "form-control-file" %>
+              <% end %>
             </div>
-            <div class="form-group row">
-              <label class="control-label col-md-3">Incorporate Plane</label>
-              <div class="col-md-8">
-                <%= form.text_area :incorporate_plan, class: "form-control" %>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="control-label col-md-3">Responsible Staff Position</label>
-              <div class="col-md-8">
-                <%= form.check_box :responsible_staff_position, class: "form-check-input form-control" %>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="control-label col-md-3">Storage Space</label>
-              <div class="col-md-8">
-                <%= form.check_box :storage_space, class: "form-control form-check-input" %>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="control-label col-md-3">Storage Space Description</label>
-              <div class="col-md-8">
-                <%= form.text_area :describe_storage_space, class: "form-control" %>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="control-label col-md-3">Trusted Pickup</label>
-              <div class="col-md-8">
-                <%= form.check_box :trusted_pickup, class: "form-control form-check-input" %>
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
+
+
+
+
 
 
     </div>
@@ -339,7 +328,7 @@
       <div class="tile">
         <h3 class="tile-title">Population Served</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Income Requirement</label>
               <div class="col-md-8">
@@ -457,7 +446,7 @@
                 <%= form.text_field :ages_served, class: "form-control" %>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
@@ -465,7 +454,7 @@
       <div class="tile">
         <h3 class="tile-title">Executive Director</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Executive Director Name</label>
               <div class="col-md-8">
@@ -484,14 +473,14 @@
                 <%= form.text_field :executive_director_email, class: "form-control" %>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
       <div class="tile">
         <h3 class="tile-title">Program Contact</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Program Contact Name</label>
               <div class="col-md-8">
@@ -510,14 +499,20 @@
                 <%= form.text_field :program_contact_mobile, class: "form-control" %>
               </div>
             </div>
-          </form>
+            <div class="form-group row">
+              <label class="control-label col-md-3">Program Contact Email</label>
+              <div class="col-md-8">
+                <%= form.text_field :program_contact_email, class: "form-control" %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="tile">
         <h3 class="tile-title">Diaper Pick Up Person</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Pick Up Method</label>
               <div class="col-md-8">
@@ -542,14 +537,14 @@
                 <%= form.text_field :pick_up_email, class: "form-control" %>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
       <div class="tile">
         <h3 class="tile-title">Agency Distribution Information</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Distribution Times</label>
               <div class="col-md-8">
@@ -568,14 +563,14 @@
                 <%= form.text_field :more_docs_required, class: "form-control" %>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
       <div class="tile">
         <h3 class="tile-title">Sources of Funding</h3>
         <div class="tile-body">
-          <form class="form-horizontal">
+          <div class="form-horizontal">
             <div class="form-group row">
               <label class="control-label col-md-3">Sources Of Funding</label>
               <div class="col-md-8">
@@ -600,43 +595,17 @@
                 <%= form.text_field :diaper_funding_source, class: "form-control" %>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
-      <div class="tile">
-        <h3 class="tile-title">Additional Documents</h3>
-        <div class="tile-body">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <% if partner.documents.attached? %>
-                <div class="row">
-                  <div class="col-6">
-                    Attached files:
-                    <ul>
-                      <% partner.documents.each do |doc| %>
-                        <li><%= link_to doc.blob['filename'], rails_blob_path(doc), class: "font-weight-bold" %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="col-6">
-                    <%= form.file_field :documents, multiple: true, class: "form-control-file" %>
-                  </div>
-                </div>
-              <% else %>
-                <%= form.file_field :documents, multiple: true, class: "form-control-file" %>
-              <% end %>
-            </div>
-          </form>
-        </div>
-      </div>
 
     </div>
 
     <div class="col-md-12">
       <div class="tile">
         <div class="tile-body">
-          <form class="row">
+          <div class="row">
 
             <div class="form-group col-md-6">
               <%= form.submit("Update Information", class: "btn btn-primary") %>
@@ -644,7 +613,7 @@
             <div class="form-group col-md-6">
               <%= link_to "Cancel Update", partner_requests_path, class: "btn btn-danger float-right" %>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
