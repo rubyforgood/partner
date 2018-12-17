@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :partners, controllers: {sessions: 'partners/sessions'}
+  devise_for :partners, controllers: { sessions: "partners/sessions" }
   devise_scope :partner do
-    get '/partners/sign_out' => 'devise/sessions#destroy'
+    get "/partners/sign_out" => "devise/sessions#destroy"
   end
 
   resources :partners do

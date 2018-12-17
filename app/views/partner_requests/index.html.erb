@@ -9,6 +9,13 @@
 </div>
 <div class="row">
   <div class="col-md-12">
+    <% if notice %>
+    <div class="alert alert-dismissible alert-success">
+      <button class="close" type="button" data-dismiss="alert">×</button>
+      <p><%= notice %><a class="alert-link" href="#"></p>
+      </a></p>
+    </div>
+      <% end %>
     <div class="tile">
       <h3>Diaper Request History</h3>
 

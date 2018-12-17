@@ -10,6 +10,13 @@
 </div>
 <div class="row">
   <div class="col-md-12">
+    <% if notice %>
+      <div class="alert alert-dismissible alert-success">
+        <button class="close" type="button" data-dismiss="alert">×</button>
+        <p><%= notice %><a class="alert-link" href="#"></p>
+        </a></p>
+      </div>
+    <% end %>
     <div class="tile">
       <%= form_with(model: @partner_request, local: true) do |form| %>
         <% if @partner_request.errors.any? %>
