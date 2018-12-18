@@ -88,9 +88,9 @@ describe "Partner edit", type: :feature do
   end
 
   it "partner can attach documents" do
-    attach_file("Proof of partner status", Rails.root + "spec/fixtures/test.pdf")
-    attach_file("Proof of form 990", Rails.root + "spec/fixtures/test.pdf")
-    attach_file("Documents", Rails.root + "spec/fixtures/test.pdf")
+    attach_file("partner_proof_of_partner_status", Rails.root + "spec/fixtures/test.pdf")
+    attach_file("partner_proof_of_form_990", Rails.root + "spec/fixtures/test.pdf")
+    attach_file("partner_documents", Rails.root + "spec/fixtures/test.pdf")
 
     click_button "Update Information"
 
