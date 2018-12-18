@@ -1,6 +1,6 @@
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-dashboard"></i> Organization Details</h1>
+    <h1><i class="fa fa-dashboard"></i> Organization Details &nbsp<span class="badge badge-pill badge-primary float-right"><%= @partner.partner_status %></span></h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -16,12 +16,11 @@
         </a></p>
       </div>
     <% end %>
-    <div class="tile">
       <div class="container">
         <div class="row">
           <div class="col-6">
             <div class="card mb-4">
-              <h5 class="card-header">Agency Information</h5>
+              <h5 class="card-header bg-primary text-white">Agency Information</h5>
               <div class="card-body">
                 <dl>
                   <dt>Name</dt>
@@ -58,7 +57,7 @@
             </div>
 
             <div class="card mb-4">
-              <h5 class="card-header">Media Information</h5>
+              <h5 class="card-header bg-primary text-white">Media Information</h5>
               <div class="card-body">
                 <dl>
                   <dt>Website</dt>
@@ -74,7 +73,7 @@
             </div>
 
             <div class="card mb-4">
-              <h5 class="card-header">Agency Stability</h5>
+              <h5 class="card-header bg-primary text-white">Agency Stability</h5>
               <div class="card-body">
                 <dl>
                   <dt>Year Founded</dt>
@@ -137,7 +136,7 @@
               </div>
             </div>
             <div class="card mb-4">
-              <h5 class="card-header">Organizational Capacity</h5>
+              <h5 class="card-header bg-primary text-white">Organizational Capacity</h5>
               <div class="card-body">
                 <dl>
                   <dt>Max Serve</dt>
@@ -158,7 +157,7 @@
               </div>
             </div>
             <div class="card mb-4">
-              <h5 class="card-header">Sources of Funding</h5>
+              <h5 class="card-header bg-primary text-white">Sources of Funding</h5>
               <div class="card-body">
                 <dl>
                   <dt>Sources of Funding</dt>
@@ -180,7 +179,7 @@
 
           <div class="col-6">
             <div class="card mb-4">
-              <h5 class="card-header">Population Served</h5>
+              <h5 class="card-header bg-primary text-white">Population Served</h5>
               <div class="card-body">
                 <dl>
                   <dt>Income Requirement Description</dt>
@@ -247,7 +246,7 @@
             </div>
 
             <div class="card mb-4">
-              <h5 class="card-header">Executive Director</h5>
+              <h5 class="card-header bg-primary text-white">Executive Director</h5>
               <div class="card-body">
                 <dl>
                   <dt>Name</dt>
@@ -278,7 +277,7 @@
             </div>
 
             <div class="card mb-4">
-              <h5 class="card-header">Diaper Pick Up Person</h5>
+              <h5 class="card-header bg-primary text-white">Diaper Pick Up Person</h5>
               <div class="card-body">
                 <dl>
                   <dt>Pick Up Method</dt>
@@ -297,7 +296,7 @@
             </div>
 
             <div class="card mb-4">
-              <h5 class="card-header">Agency Distribution Information</h5>
+              <h5 class="card-header bg-primary text-white">Agency Distribution Information</h5>
               <div class="card-body">
                 <dl>
                   <dt>Distribution Times</dt>
@@ -313,7 +312,7 @@
             </div>
 
             <div class="card mb-4">
-              <h5 class="card-header">Attached Documents</h5>
+              <h5 class="card-header bg-primary text-white">Attached Documents</h5>
               <div class="card-body">
                 <% if @partner.documents.attached? %>
                   <dt>Attached files:</dt>
@@ -338,5 +337,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
