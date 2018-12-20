@@ -13,7 +13,7 @@ module DiaperBankClient
   end
 
   def self.get_available_items(diaper_bank_id)
-    return unless Rails.env.production?
+    return POSSIBLE_ITEMS.keys unless Rails.env.production?
 
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"] + "/#{diaper_bank_id}")
     req = Net::HTTP::Get.new(uri)
