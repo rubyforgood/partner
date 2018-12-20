@@ -60,6 +60,18 @@ describe PartnersController, type: :controller do
         expect(response).to have_http_status(200)
       end
     end
+
+    describe "DELETE #destroy" do
+      subject { delete :destroy, params: { id: @partner.id } }
+      it "redirects the user" do
+        expect(subject.request).to redirect_to(root_path)
+      end
+
+      it "does not delete partner" do
+        expect{ subject }.to change(Partner, :count).by(0)
+        expect(subject.request.flash[:notice]).to eq('You are not authorized to perform this action.')
+      end
+    end
   end
 
   context "when not authenticated" do
@@ -112,7 +124,14 @@ describe PartnersController, type: :controller do
     end
 
     describe "DELETE #destroy" do
-      ##TODO
+      let!(:partner) { create(:partner) }
+      subject { delete :destroy, params: { id: partner.id } }
+      it_behaves_like "user is not logged in"
+      it "does not delete partner" do
+        expect{ subject }.not_to change(Partner, :count)
+        expect(subject.request.flash[:notice]).to eq('You are not authorized to perform this action.')
+      end
+
     end
   end
 end
