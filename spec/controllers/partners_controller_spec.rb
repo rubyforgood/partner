@@ -42,15 +42,15 @@ describe PartnersController, type: :controller do
     end
 
     describe "PATCH #update" do
-      subject { patch :update, params: { id: @partner.id, partner: { name: 'updated name' } } }
+      subject { patch :update, params: { id: @partner.id, partner: { name: "updated name" } } }
 
       it "updates the partner" do
-        expect { subject }.to change { @partner.reload.name }.to('updated name')
+        expect { subject }.to change { @partner.reload.name }.to("updated name")
       end
 
       it "redirects to #show" do
         expect(subject.request).to redirect_to(@partner)
-        expect(subject.request.flash[:notice]).to eq('Details were successfully updated.')
+        expect(subject.request.flash[:notice]).to eq("Details were successfully updated.")
       end
     end
 
@@ -68,8 +68,8 @@ describe PartnersController, type: :controller do
       end
 
       it "does not delete partner" do
-        expect{ subject }.to change(Partner, :count).by(0)
-        expect(subject.request.flash[:notice]).to eq('You are not authorized to perform this action.')
+        expect { subject }.to change(Partner, :count).by(0)
+        expect(subject.request.flash[:notice]).to eq("You are not authorized to perform this action.")
       end
     end
   end
@@ -111,15 +111,15 @@ describe PartnersController, type: :controller do
     end
 
     describe "GET #edit" do
-      subject { get :edit, params: { id: partner.id} }
+      subject { get :edit, params: { id: partner.id } }
       it_behaves_like "user is not logged in"
     end
 
     describe "PATCH #update" do
-      subject { patch :update, params: { id: partner.id, partner: { name: 'updated name' } } }
+      subject { patch :update, params: { id: partner.id, partner: { name: "updated name" } } }
       it_behaves_like "user is not logged in"
       it "does not save the partner" do
-        expect { subject }.not_to change { partner.reload.name }
+        expect { subject }.not_to(change { partner.reload.name })
       end
     end
 
@@ -128,10 +128,9 @@ describe PartnersController, type: :controller do
       subject { delete :destroy, params: { id: partner.id } }
       it_behaves_like "user is not logged in"
       it "does not delete partner" do
-        expect{ subject }.not_to change(Partner, :count)
-        expect(subject.request.flash[:notice]).to eq('You are not authorized to perform this action.')
+        expect { subject }.not_to change(Partner, :count)
+        expect(subject.request.flash[:notice]).to eq("You are not authorized to perform this action.")
       end
-
     end
   end
 end
