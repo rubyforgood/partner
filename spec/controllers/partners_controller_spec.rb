@@ -33,6 +33,45 @@ describe PartnersController, type: :controller do
         end.to change(Partner, :count).by(0)
       end
     end
+
+    describe "Post #index" do
+      it "does not allow access to partner" do
+        get :index
+        expect(response).to have_http_status(:redirect)
+      end
+    end
+
+    describe "PATCH #update" do
+      subject { patch :update, params: { id: @partner.id, partner: { name: "updated name" } } }
+
+      it "updates the partner" do
+        expect { subject }.to change { @partner.reload.name }.to("updated name")
+      end
+
+      it "redirects to #show" do
+        expect(subject.request).to redirect_to(@partner)
+        expect(subject.request.flash[:notice]).to eq("Details were successfully updated.")
+      end
+    end
+
+    describe "GET #edit" do
+      it "displays the partner form" do
+        get :edit, params: { id: @partner.id }
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    describe "DELETE #destroy" do
+      subject { delete :destroy, params: { id: @partner.id } }
+      it "redirects the user" do
+        expect(subject.request).to redirect_to(root_path)
+      end
+
+      it "does not delete partner" do
+        expect { subject }.to change(Partner, :count).by(0)
+        expect(subject.request.flash[:notice]).to eq("You are not authorized to perform this action.")
+      end
+    end
   end
 
   context "when not authenticated" do
@@ -63,6 +102,34 @@ describe PartnersController, type: :controller do
 
       it "does not create a new partner" do
         expect { subject }.to_not change(Partner, :count)
+      end
+    end
+
+    describe "GET #index" do
+      subject { get :index }
+      it_behaves_like "user is not logged in"
+    end
+
+    describe "GET #edit" do
+      subject { get :edit, params: { id: partner.id } }
+      it_behaves_like "user is not logged in"
+    end
+
+    describe "PATCH #update" do
+      subject { patch :update, params: { id: partner.id, partner: { name: "updated name" } } }
+      it_behaves_like "user is not logged in"
+      it "does not save the partner" do
+        expect { subject }.not_to(change { partner.reload.name })
+      end
+    end
+
+    describe "DELETE #destroy" do
+      let!(:partner) { create(:partner) }
+      subject { delete :destroy, params: { id: partner.id } }
+      it_behaves_like "user is not logged in"
+      it "does not delete partner" do
+        expect { subject }.not_to change(Partner, :count)
+        expect(subject.request.flash[:notice]).to eq("You are not authorized to perform this action.")
       end
     end
   end
