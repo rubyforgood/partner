@@ -30,4 +30,15 @@ RSpec.describe PartnerRequest, type: :model do
       expect(partner_request.errors.messages[:"items.quantity"]).to include("can't be blank")
     end
   end
+=begin
+  describe "an attribute without an item quantity" do
+    let(:partner_request) { build(:partner_request) }
+    let(:item) { build(:item, name: "test2", quantity: nil, partner_request: partner_request) }
+    it "fails" do
+      partner_request.items << item
+      expect(partner_request.save).to be false
+      expect(partner_request.errors.messages[:"items.quantity"]).to include("can't be blank")
+    end
+  end
+=end
 end
