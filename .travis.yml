@@ -1,7 +1,7 @@
 dist: xenial
 language: ruby
 rvm:
-- 2.5.3
+- 2.6.1
 sudo: true
 services:
 - postgresql
