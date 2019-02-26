@@ -5,7 +5,7 @@ class PartnerRequest < ApplicationRecord
   accepts_nested_attributes_for :items, allow_destroy: true, reject_if: proc { |attributes| attributes["quantity"].blank? }
 
   validates :partner, presence: true
-
+  validates_associated :items
   def export_json
     {
       request: {
