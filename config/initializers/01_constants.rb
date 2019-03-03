@@ -3,6 +3,7 @@ POSSIBLE_ITEMS = {
     "adult_ml" => "Adult Briefs (Medium/Large)",
     "adult_sm" => "Adult Briefs (Small/Medium)",
     "adult_xxl" => "Adult Briefs (XXL)",
+    "adult_xs" => "Adult Briefs (XS/Small)",
     "cloth" => "Cloth Diapers (Plastic Cover Pants)",
     "disposable_inserts" => "Disposable Inserts",
     "k_newborn" => "Kids (Newborn)",
