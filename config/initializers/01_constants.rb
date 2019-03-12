@@ -40,3 +40,29 @@ POSSIBLE_ITEMS = {
     "cloth_training_pants" => "Cloth Potty Training Pants/Underwear",
     "wipes" => "Wipes (Baby)"
   }
+
+AGENCY_TYPES = {
+    "CAREER" => "Career technical training",
+    "ABUSE" => "Child abuse resource center",
+    "CHURCH" => "Church outreach ministry",
+    "CDC" => "Community development corporation",
+    "HEALTH" => "Community health program",
+    "OUTREACH" => "Community outreach services",
+    "CRISIS" => "Crisis/Disaster services",
+    "DISAB" => "Developmental disabilities program",
+    "DOMV" => "Domestic violence shelter",
+    "CHILD" => "Early childhood services",
+    "EDU" => "Education program",
+    "FAMILY" => "Family resource center",
+    "FOOD" => "Food bank/pantry",
+    "GOVT" => "Government Agency/Affiliate",
+    "HEADSTART" => "Head Start/Early Head Start",
+    "HOMEVISIT" => "Home visits",
+    "HOMELESS" => "Homeless resource center",
+    "INFPAN" => "Infant/Child Pantry/Closet",
+    "PREG" => "Pregnancy resource center",
+    "REF" => "Refugee resource center",
+    "TREAT" => "Treatment clinic",
+    "WIC" => "Women, Infants and Children",
+    "OTHER" => "Other"
+}

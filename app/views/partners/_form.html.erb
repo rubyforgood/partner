@@ -24,8 +24,7 @@
             <div class="form-group row">
               <label class="control-label col-md-3">Agency Type</label>
               <div class="col-md-8">
-                <%= form.text_field :agency_type, class: "form-control" %>
-
+                  <%= form.select :agency_type, AGENCY_TYPES.values, {}, class: "form-control" %>
               </div>
             </div>
             <div class="form-group row">
