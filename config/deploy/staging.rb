@@ -36,6 +36,9 @@ server "45.79.146.211", roles: %w{web app db}, primary: true,
            forward_agent: true,
            keys: ["~/.ssh/id_rsa"]
        }
+
+set :rvm_ruby_version, "2.6.1"
+
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
