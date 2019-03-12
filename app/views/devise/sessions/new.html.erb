@@ -28,18 +28,25 @@
 </div>
 <div class="forget-form" action="index.html">
   <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <div class="form-group">
-    <%= f.label :email, "EMAIL", class: 'control-label' %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-  </div>
-  <div class="form-group btn-container">
-    <%= button_tag type: 'submit', class: "btn btn-primary btn-block" do %>
-      <i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
-    <% end %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, "EMAIL", class: 'control-label' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+    </div>
+    <div class="form-group btn-container">
+      <%= button_tag type: 'submit', class: "btn btn-primary btn-block" do %>
+        <i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+      <% end %>
+    </div>
   <% end %>
   <div class="form-group mt-3">
-    <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
+    <p class="semibold-text mb-0">
+      <a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
   </div>
 </div>
+
+<script>
+    if (document.URL == "https://partnerbase.org/partners/sign_in") {
+        alert("Note: This site is the demo site for https://partner.diaper.app and is a shared demonstration site. Please do not save any information you wouldn't want others to see.");
+    }
+</script>
