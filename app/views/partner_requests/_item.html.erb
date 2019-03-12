@@ -1,5 +1,5 @@
 <tr>
-  <td><%= form.select :name, POSSIBLE_ITEMS.slice(*@valid_items).invert.collect, {include_blank: 'Select an item'}, {class: 'form-control'} %></td>
+<td><%= form.select :name, POSSIBLE_ITEMS.slice(*@valid_items).invert.sort_by{|k,v|k}, {include_blank: 'Select an item'}, {class: 'form-control'} %></td>
   <td><%= form.number_field :quantity, label: false, step: 1, min: 1, class: 'form-control' %></td>
   <td>
     <%= form.hidden_field :_destroy, as: :hidden %>
