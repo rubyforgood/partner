@@ -127,6 +127,7 @@ class Partner < ApplicationRecord
       name: name,
       distributor_type: distributor_type,
       agency_type: agency_type,
+      other_agency_type: other_agency_type,
       proof_of_agency_status: expose_attachment_path(proof_of_partner_status),
       agency_mission: agency_mission,
       address: {
