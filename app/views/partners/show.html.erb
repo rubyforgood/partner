@@ -32,6 +32,11 @@
                   <dt>Agency Type</dt>
                   <dd><%= @partner.agency_type %></dd>
 
+                  <% if @partner.agency_type == "Other" %>
+                    <dt>Other Agency Type</dt>
+                    <dd><%= @partner.other_agency_type %></dd>
+                  <% end %>
+
                   <dt>Status</dt>
                   <dd><%= @partner.partner_status %></dd>
 

@@ -65,6 +65,7 @@ class PartnersController < ApplicationController
     params.require(:partner).permit(
       :name,
       :agency_type,
+      :other_agency_type,
       :partner_status,
       :proof_of_partner_status,
       :agency_mission,
