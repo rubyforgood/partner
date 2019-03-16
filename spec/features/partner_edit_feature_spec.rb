@@ -8,7 +8,15 @@ describe "Partner edit", type: :feature do
     visit "/partners/#{partner.id}/edit"
   end
 
-  it "partner can fill out partner details" do
+  scenario "partner can select and provide an Other agency type", js: true do
+    select "Other", from: "partner_agency_type"
+    fill_in "partner_other_agency_type", with: Faker::Name.name
+    click_button "Update Information"
+
+    expect(page).to have_content "Details were successfully updated."
+  end
+
+  scenario "partner can fill out partner details" do
     fill_in "partner_name", with: Faker::Company.name
     select "Career technical training", from: "partner_agency_type"
     fill_in "partner_agency_mission", with: Faker::Lorem.paragraph
@@ -87,7 +95,7 @@ describe "Partner edit", type: :feature do
     expect(page).to have_content "Details were successfully updated."
   end
 
-  it "partner can attach documents" do
+  scenario "partner can attach documents" do
     attach_file("partner_proof_of_partner_status", Rails.root + "spec/fixtures/test.pdf")
     attach_file("partner_proof_of_form_990", Rails.root + "spec/fixtures/test.pdf")
     attach_file("partner_documents", Rails.root + "spec/fixtures/test.pdf")
