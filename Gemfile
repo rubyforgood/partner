@@ -55,8 +55,8 @@ group :test do
   gem "chromedriver-helper"
   gem "email_spec"
   gem "selenium-webdriver"
-  gem "shoulda-matchers"
   gem "webmock"
+  gem "shoulda-matchers", "~> 4.0"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
