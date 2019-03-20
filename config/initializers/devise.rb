@@ -9,7 +9,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   config.secret_key = '0561a3f3f8ce115bc4ee026866988a955655b04f8a9d1c68abce4a75056dd6b8d8914b22bb747b446744ccd45d417ba075aafc6b5004fcdf90cf04081b979cab'
-  
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -126,7 +126,7 @@ Devise.setup do |config|
   # The period the generated invitation token is valid, after
   # this period, the invited resource won't be able to accept the invitation.
   # When invite_for is 0 (the default), the invitation won't expire.
-  # config.invite_for = 2.weeks
+  config.invite_for = 0
 
   # Number of invitations users can send.
   # - If invitation_limit is nil, there is no limit for invitations, users can
