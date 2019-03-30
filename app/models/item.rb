@@ -1,4 +1,4 @@
-class Item < ApplicationRecord
+class ItemRequest < ApplicationRecord
   belongs_to :partner_request, optional: true
   validates :name, :quantity, presence: true
   validates :name, inclusion: { in: POSSIBLE_ITEMS.keys }
