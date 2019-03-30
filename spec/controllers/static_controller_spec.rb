@@ -1,6 +1,14 @@
 require "rails_helper"
 
 describe StaticController, type: :controller do
+  context "when getting the root url" do
+    describe "GET #index" do
+      it "returns http success" do
+        get :index
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
   context "when url is correct and template is available" do
     describe "GET #page" do
       it "returns http success" do
