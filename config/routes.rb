@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :children
   resources :families
   devise_for :partners, controllers: { sessions: "partners/sessions" }
   devise_scope :partner do
