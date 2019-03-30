@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :families
   devise_for :partners, controllers: { sessions: "partners/sessions" }
   devise_scope :partner do
     get "/partners/sign_out" => "devise/sessions#destroy"

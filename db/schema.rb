@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_27_223440) do
+ActiveRecord::Schema.define(version: 2019_03_30_183642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,26 @@ ActiveRecord::Schema.define(version: 2018_10_27_223440) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.string "guardian_first_name"
+    t.string "guardian_last_name"
+    t.string "guardian_zip_code"
+    t.string "guardian_country"
+    t.string "guardian_phone"
+    t.string "agency_guardian_id"
+    t.integer "home_adult_count"
+    t.integer "home_child_count"
+    t.integer "home_young_child_count"
+    t.jsonb "sources_of_income"
+    t.boolean "guardian_employed"
+    t.jsonb "guardian_employment_type"
+    t.decimal "guardian_monthly_pay"
+    t.jsonb "guardian_health_insurance"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
