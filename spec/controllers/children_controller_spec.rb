@@ -130,7 +130,7 @@ RSpec.describe ChildrenController, type: :controller do
     describe "POST #create" do
       it "does not create a new child" do
         expect do
-          post :create, params: { children: valid_attributes }
+          post :create, params: { child: valid_attributes }
         end.to_not change(Child, :count)
       end
     end
