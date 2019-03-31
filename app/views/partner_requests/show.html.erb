@@ -34,7 +34,7 @@
 <div>
   Requested Items:
   <ul>
-    <% @partner_request.items.each do |item| %>
+    <% @partner_request.item_requests.each do |item| %>
       <li><%= item.quantity %> of <%= POSSIBLE_ITEMS[item.name] %></li>
     <% end %>
   </ul>
