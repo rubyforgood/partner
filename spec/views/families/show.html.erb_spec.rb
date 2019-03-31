@@ -1,24 +1,24 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "families/show", type: :view do
   before(:each) do
     @family = assign(:family, Family.create!(
-      :guardian_first_name => "Guardian First Name",
-      :guardian_last_name => "Guardian Last Name",
-      :guardian_zip_code => "Guardian Zip Code",
-      :guardian_country => "Guardian Country",
-      :guardian_phone => "Guardian Phone",
-      :agency_guardian_id => "Agency Guardian",
-      :home_adult_count => 2,
-      :home_child_count => 3,
-      :home_young_child_count => 4,
-      :sources_of_income => "",
-      :guardian_employed => false,
-      :guardian_employment_type => "",
-      :guardian_monthly_pay => "9.99",
-      :guardian_health_insurance => "",
-      :comments => "MyText"
-    ))
+                                guardian_first_name: "Guardian First Name",
+                                guardian_last_name: "Guardian Last Name",
+                                guardian_zip_code: "Guardian Zip Code",
+                                guardian_country: "Guardian Country",
+                                guardian_phone: "Guardian Phone",
+                                agency_guardian_id: "Agency Guardian",
+                                home_adult_count: 2,
+                                home_child_count: 3,
+                                home_young_child_count: 4,
+                                sources_of_income: "",
+                                guardian_employed: false,
+                                guardian_employment_type: "",
+                                guardian_monthly_pay: "9.99",
+                                guardian_health_insurance: "",
+                                comments: "MyText"
+                              ))
   end
 
   it "renders attributes in <p>" do

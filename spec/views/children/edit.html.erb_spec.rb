@@ -1,25 +1,24 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "children/edit", type: :view do
   before(:each) do
     @child = assign(:child, Child.create!(
-      :first_name => "MyString",
-      :last_name => "MyString",
-      :gender => "MyString",
-      :child_lives_with => "",
-      :race => "",
-      :agency_child_id => "MyString",
-      :health_insurance => "",
-      :item_needed => "MyString",
-      :comments => "MyText"
-    ))
+                              first_name: "MyString",
+                              last_name: "MyString",
+                              gender: "MyString",
+                              child_lives_with: "",
+                              race: "",
+                              agency_child_id: "MyString",
+                              health_insurance: "",
+                              item_needed: "MyString",
+                              comments: "MyText"
+                            ))
   end
 
   it "renders the edit child form" do
     render
 
     assert_select "form[action=?][method=?]", child_path(@child), "post" do
-
       assert_select "input[name=?]", "child[first_name]"
 
       assert_select "input[name=?]", "child[last_name]"
