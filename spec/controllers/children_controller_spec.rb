@@ -1,15 +1,10 @@
 require "rails_helper"
 
-RSpec.describe ChildrenController, type: :controller do
-  # This should return the minimal set of attributes required to create a valid
-  # Child. As you add validations to Child, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) do
-    {
-      first_name: "Kevin",
-      last_name: "McCallister"
-    }
-  end
+# This controller is _probably_ no longer necessary - delete it before merging
+# the families branch
+RSpec.xdescribe ChildrenController, type: :controller do
+  let(:family) { create(:family, partner: create(:partner)) }
+  let(:valid_attributes) { attributes_for(:child, family: family) }
 
   let(:invalid_attributes) do
     skip("Add a hash of attributes invalid for your model")

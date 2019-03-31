@@ -40,5 +40,6 @@ FactoryBot.define do
     guardian_monthly_pay { "9.99" }
     guardian_health_insurance { "" }
     comments { "MyText" }
+    partner
   end
 end
