@@ -20,6 +20,7 @@
 #  comments                  :text
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  partner_id                :bigint(8)
 #
 
 require 'rails_helper'

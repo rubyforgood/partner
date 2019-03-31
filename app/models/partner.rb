@@ -114,9 +114,13 @@ class Partner < ApplicationRecord
   has_one_attached :proof_of_form_990
   has_many_attached :documents
 
+  has_many :families, dependent: :destroy
+  has_many :children, through: :families
+
   validates :email, presence: true
 
   has_many :partner_requests, dependent: :destroy
+  has_many :family_requests, dependent: :destroy
 
   def export_json
     {

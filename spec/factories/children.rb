@@ -15,6 +15,7 @@
 #  comments         :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  family_id        :bigint(8)
 #
 
 FactoryBot.define do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_30_222256) do
+ActiveRecord::Schema.define(version: 2019_03_31_181321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,22 @@ ActiveRecord::Schema.define(version: 2019_03_30_222256) do
     t.datetime "updated_at", null: false
     t.bigint "partner_id"
     t.index ["partner_id"], name: "index_families_on_partner_id"
+  end
+
+  create_table "family_request_children", force: :cascade do |t|
+    t.bigint "family_request_id"
+    t.bigint "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_family_request_children_on_child_id"
+    t.index ["family_request_id"], name: "index_family_request_children_on_family_request_id"
+  end
+
+  create_table "family_requests", force: :cascade do |t|
+    t.bigint "partner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["partner_id"], name: "index_family_requests_on_partner_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -204,5 +220,8 @@ ActiveRecord::Schema.define(version: 2019_03_30_222256) do
 
   add_foreign_key "children", "families"
   add_foreign_key "families", "partners"
+  add_foreign_key "family_request_children", "children"
+  add_foreign_key "family_request_children", "family_requests"
+  add_foreign_key "family_requests", "partners"
   add_foreign_key "items", "partner_requests"
 end

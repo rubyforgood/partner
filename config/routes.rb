@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  # TODO: remove these two
   resources :children
   resources :families
+
   devise_for :partners, controllers: { sessions: "partners/sessions" }
   devise_scope :partner do
     get "/partners/sign_out" => "devise/sessions#destroy"
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :partner_requests, only: [:new, :create, :show, :index]
+  resources :family_requests, only: [:new, :create]
 
   get "/api", action: :show, controller: "api"
   namespace :api, defaults: { format: "json" } do
