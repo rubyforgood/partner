@@ -9,7 +9,7 @@ class PartnerRequestsController < ApplicationController
   def new
     @partner_request = PartnerRequest.new
     @valid_items = DiaperBankClient.get_available_items(current_partner.diaper_bank_id)
-    @partner_request.items.build # required to render the empty items form
+    @partner_request.item_requests.build # required to render the empty items form
   end
 
   def create
@@ -38,7 +38,7 @@ class PartnerRequestsController < ApplicationController
   private
 
   def partner_request_params
-    params.require(:partner_request).permit(:comments, items_attributes: ItemRequest.attribute_names.map(&:to_sym).push(:_destroy))
+    params.require(:partner_request).permit(:comments, item_requests_attributes: ItemRequest.attribute_names.map(&:to_sym).push(:_destroy))
   end
 
   # NOTE(chaserx): the is required for pundit since our auth'd user is named `partner`

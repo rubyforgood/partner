@@ -31,7 +31,7 @@
         <% @partner_requests.each do |partner_request| %>
           <tr>
             <th scope="row"><%= link_to partner_request.id, partner_request_path(partner_request) %></th>
-            <td><%= partner_request.items.map {|item| "#{item.quantity} of #{POSSIBLE_ITEMS[item.name]}"}.join(", ") %></td>
+            <td><%= partner_request.item_requests.map {|item| "#{item.quantity} of #{POSSIBLE_ITEMS[item.name]}"}.join(", ") %></td>
             <td><%= partner_request.created_at.strftime("%B %-d %Y") %></td>
           </tr>
         <% end %>

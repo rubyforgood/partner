@@ -46,8 +46,8 @@
           </tr>
           </thead>
           <tbody class='fields'>
-          <%= form.fields_for :items do |builder| %>
-            <%= render 'item', form: builder %>
+          <%= form.fields_for :item_requests do |builder| %>
+            <%= render 'item_request', form: builder %>
           <% end %>
           </tbody>
         </table>
