@@ -15,7 +15,7 @@ class FamilyRequestsController < ApplicationController
         @family_request.update!(sent: true)
         flash[:notice] = "Request sent to diaper bank successfully"
       else
-        @partner_request.errors.add(:base, :sending_failure, message: "Your request saved but failed to send")
+        @family_request.errors.add(:base, :sending_failure, message: "Your request saved but failed to send")
       end
       redirect_to family_requests_path
     else
