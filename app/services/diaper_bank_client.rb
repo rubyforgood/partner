@@ -38,7 +38,7 @@ module DiaperBankClient
     body = family_request.export_json
     response = https(uri).request(post_request(uri: uri, body: body))
 
-    response.body
+    response.body ? JSON.parse(response.body) : nil
   end
 
   def self.request_submission_post(partner_request_id)
@@ -73,7 +73,7 @@ module DiaperBankClient
   # testing easier.  If you actually want to test the interaction with that,
   # hardcode this to `true`
   def self.actually_send?
-    Rails.env.production?
+    true || Rails.env.production?
   end
 
   def self.api_root

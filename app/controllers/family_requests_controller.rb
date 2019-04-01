@@ -11,13 +11,25 @@ class FamilyRequestsController < ApplicationController
     children = Child.find(create_params.delete(:child_ids))
     @family_request = current_partner.family_requests.new(children: children)
     if @family_request.save
-      if DiaperBankClient.send_family_request(@family_request.id)
+      if api_response = DiaperBankClient.send_family_request(@family_request.id)
         @family_request.update!(sent: true)
         flash[:notice] = "Request sent to diaper bank successfully"
+        partner_request = PartnerRequest.new(api_response.slice("partner_id", "organization_id"))
+        api_response["requested_items"].each do |item_hash|
+          # NOTE: this currently does not work.  The api gives us a hash like:
+          # {"item_id"=>7, "count"=>50, "item_name"=>"Disposable Inserts"}
+          # But we need a valid "item_name" (which is a slug like
+          # 'disposable_inserts').
+          partner_request.item_requests.new(
+            name: item_hash["item_name"],
+            quantity: item_hash["count"]
+          )
+        end
+        partner_request.save!
       else
         @family_request.errors.add(:base, :sending_failure, message: "Your request saved but failed to send")
       end
-      redirect_to family_requests_path
+      redirect_to partner_requests_path
     else
       render :new
     end
