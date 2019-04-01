@@ -16,12 +16,9 @@ class FamilyRequestsController < ApplicationController
         flash[:notice] = "Request sent to diaper bank successfully"
         partner_request = PartnerRequest.new(api_response.slice("partner_id", "organization_id"))
         api_response["requested_items"].each do |item_hash|
-          # NOTE: this currently does not work.  The api gives us a hash like:
-          # {"item_id"=>7, "count"=>50, "item_name"=>"Disposable Inserts"}
-          # But we need a valid "item_name" (which is a slug like
-          # 'disposable_inserts').
           partner_request.item_requests.new(
-            name: item_hash["item_name"],
+            name: POSSIBLE_ITEMS.key(item_hash["item_name"]),
+            item_id: item_hash["item_id"],
             quantity: item_hash["count"]
           )
         end
