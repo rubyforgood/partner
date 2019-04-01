@@ -2,11 +2,6 @@ require "rails_helper"
 
 RSpec.describe ItemRequest, type: :model do
   describe "a valid ItemRequest" do
-    it "requires a name within the list of POSSIBLE_ITEMS keys" do
-      expect(build(:item_request)).to be_valid
-      expect(build(:item_request, name: "foo")).not_to be_valid
-    end
-
     it "requires a quantity greater than or equal to 1" do
       expect(build(:item_request, quantity: 1)).to be_valid
       expect(build(:item_request, quantity: 3)).to be_valid

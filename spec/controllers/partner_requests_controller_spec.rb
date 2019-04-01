@@ -13,9 +13,14 @@ describe PartnerRequestsController, type: :controller do
 
     describe "POST #create" do
       it "creates a new partner_request" do
+        sample_params = { "partner_request" =>
+          { "comments" => "aaaa", "item_requests_attributes" =>
+            { "0" => { "item_id" => "412", "quantity" => "1", "_destroy" => "false" } } } }
+
         expect do
-          post :create, params: { partner_request: attributes_for(:partner_request_with_item_requests) }
+          post :create, params: sample_params
         end.to change(PartnerRequest, :count).by(1)
+                                             .and change(ItemRequest, :count).by(1)
       end
     end
 
