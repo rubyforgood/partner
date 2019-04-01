@@ -13,7 +13,7 @@ module DiaperBankClient
   end
 
   def self.get_available_items(diaper_bank_id)
-    return POSSIBLE_ITEMS.keys unless Rails.env.production?
+    return ItemRequest::POSSIBLE_ITEMS unless Rails.env.production?
 
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"] + "/#{diaper_bank_id}")
     req = Net::HTTP::Get.new(uri)
@@ -36,7 +36,6 @@ module DiaperBankClient
 
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"])
     body = PartnerRequest.find(partner_request_id).export_json
-
     response = https(uri).request(post_request(uri: uri, body: body))
 
     response.body
