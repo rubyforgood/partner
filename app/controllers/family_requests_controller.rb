@@ -10,9 +10,17 @@ class FamilyRequestsController < ApplicationController
     create_params = family_request_params
     children = Child.find(create_params.delete(:child_ids))
     @family_request = current_partner.family_requests.new(children: children)
-    flash[:notice] = "Created!  TODO: actually send the request"
-    # TODO: send a request to the diaper bank
-    redirect_to action: :new
+    if @family_request.save
+      if DiaperBankClient.send_family_request(@family_request.id)
+        @family_request.update!(sent: true)
+        flash[:notice] = "Request sent to diaper bank successfully"
+      else
+        @partner_request.errors.add(:base, :sending_failure, message: "Your request saved but failed to send")
+      end
+      redirect_to family_requests_path
+    else
+      render :new
+    end
   end
 
   private
