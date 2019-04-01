@@ -46,14 +46,14 @@
           </tr>
           </thead>
           <tbody class='fields'>
-          <%= form.fields_for :items do |builder| %>
-            <%= render 'item', form: builder %>
+          <%= form.fields_for :item_requests do |builder| %>
+            <%= render 'item_request', form: builder %>
           <% end %>
           </tbody>
         </table>
 
         <div>
-          <%= link_to_add_row('Add Another Item', form, :items, class: 'btn btn-outline-primary') %>
+          <%= link_to_add_row('Add Another Item', form, :item_requests, class: 'btn btn-outline-primary') %>
         </div>
 
         <hr>
