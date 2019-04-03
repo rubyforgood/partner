@@ -11,8 +11,6 @@ module DiaperBankClient
   end
 
   def self.get_available_items(diaper_bank_id)
-    return POSSIBLE_ITEMS.keys
-
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"] + "/#{diaper_bank_id}")
     req = Net::HTTP::Get.new(uri)
 
