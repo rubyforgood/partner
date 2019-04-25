@@ -1,7 +1,5 @@
 module DiaperBankClient
   def self.post(partner_id)
-    return unless Rails.env.production?
-
     partner = { partner:
       { diaper_partner_id: partner_id } }
 
@@ -13,8 +11,6 @@ module DiaperBankClient
   end
 
   def self.get_available_items(diaper_bank_id)
-    return ItemRequest::POSSIBLE_ITEMS unless Rails.env.production?
-
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"] + "/#{diaper_bank_id}")
     req = Net::HTTP::Get.new(uri)
 
@@ -31,7 +27,6 @@ module DiaperBankClient
   end
 
   def self.request_submission_post(partner_request_id)
-    return unless Rails.env.production?
     return unless PartnerRequest.exists?(partner_request_id)
 
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"])
