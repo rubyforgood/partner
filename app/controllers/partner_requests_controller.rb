@@ -39,7 +39,7 @@ class PartnerRequestsController < ApplicationController
   private
 
   def partner_request_params
-    params.require(:partner_request).permit(:comments)
+    params.require(:partner_request).permit(:comments, :item_requests_attributes)
   end
 
   def get_full_item_values(id)

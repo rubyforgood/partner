@@ -6,6 +6,6 @@ class ItemRequest < ApplicationRecord
   POSSIBLE_ITEMS = JSON.parse(RAW_JSON)
 
   belongs_to :partner_request, optional: true
-  validates :name, :quantity, presence: true
+  validates :quantity, presence: true
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 end

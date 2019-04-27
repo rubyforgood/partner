@@ -16,9 +16,5 @@ RSpec.describe ItemRequest, type: :model do
     it "requires a quantity with integer value only" do
       expect(build(:item_request, quantity: 1.2)).not_to be_valid
     end
-
-    it "requires a name" do
-      expect(build(:item_request, name: nil)).not_to be_valid
-    end
   end
 end
