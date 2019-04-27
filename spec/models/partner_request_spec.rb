@@ -17,7 +17,7 @@ RSpec.describe PartnerRequest, type: :model do
     it "builds the item_requests hash values for export json" do
       partner_request.reload
       item = partner_request.item_requests.first
-      formatted_hash = { item.name => item.quantity }
+      formatted_hash = [{ "item_id" => item["item_id"], "quantity" => item.quantity }]
       expect(partner_request.formatted_item_requests_hash(partner_request.item_requests)).to eql(formatted_hash)
     end
   end

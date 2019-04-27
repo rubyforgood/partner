@@ -31,7 +31,6 @@ module DiaperBankClient
 
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"])
     body = PartnerRequest.find(partner_request_id).export_json
-
     response = https(uri).request(post_request(uri: uri, body: body))
 
     response.body
