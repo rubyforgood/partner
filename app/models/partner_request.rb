@@ -3,6 +3,7 @@ class PartnerRequest < ApplicationRecord
 
   has_many :items, dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true, reject_if: proc { |attributes| attributes["quantity"].blank? }
+  validates :items, presence: true, if: proc { |a| a.comments.blank? }
 
   validates :partner, presence: true
 
