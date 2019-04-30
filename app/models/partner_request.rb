@@ -31,6 +31,6 @@ class PartnerRequest < ApplicationRecord
   end
 
   def formatted_item_requests_hash(item_requests)
-    item_requests.each_with_object({}) { |item_request, hsh| hsh[item_request.name] = item_request.quantity }
+    item_requests.map { |item| { "item_id" => item.item_id, "quantity" => item.quantity } }
   end
 end

@@ -13,7 +13,7 @@ puts "Adding an 'approved' partner."
 Partner.create(
     executive_director_name: "Leslie Knope",
     program_contact_name: "Leslie Knope",
-    name: "Pawnee Indiana Diaper Bank",
+    name: "Pawnee Indiana Diaper Bank Partner",
     address1: "123 Main St",
     address2: "",
     city: "Pawnee",
@@ -21,8 +21,10 @@ Partner.create(
     zip_code: 62558,
     website: "http://pawneeindiana.com",
     zips_served: 62558,
-    executive_director_email: "org_admin1@example.com",
-    email: "org_admin1@example.com",
+    diaper_bank_id: 1,
+    diaper_partner_id: 1,
+    executive_director_email: "verified@example.com",
+    email: "verified@example.com",
     password: "password",
     partner_status: "Verified"
 )
@@ -40,8 +42,8 @@ Partner.create(
     zip_code: Faker::Address.zip,
     website: Faker::Internet.domain_name,
     zips_served: Faker::Address.zip,
-    executive_director_email: "user1@example.com",
-    email: "user1@example.com",
+    executive_director_email: "unverified@example.com",
+    email: "unverified@example.com",
     password: "password"
 )
 puts "Done creating partners."

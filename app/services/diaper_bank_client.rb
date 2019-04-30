@@ -1,7 +1,5 @@
 module DiaperBankClient
   def self.post(partner_id)
-    return unless actually_send?
-
     partner = { partner:
       { diaper_partner_id: partner_id } }
 
@@ -13,8 +11,6 @@ module DiaperBankClient
   end
 
   def self.get_available_items(diaper_bank_id)
-    return POSSIBLE_ITEMS.keys unless actually_send?
-
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"] + "/#{diaper_bank_id}")
     req = Net::HTTP::Get.new(uri)
 
@@ -31,7 +27,6 @@ module DiaperBankClient
   end
 
   def self.send_family_request(family_request_id)
-    return unless actually_send?
     return unless family_request = FamilyRequest.find(family_request_id)
 
     uri = URI(api_root + "/family_requests")
@@ -42,7 +37,6 @@ module DiaperBankClient
   end
 
   def self.request_submission_post(partner_request_id)
-    return unless actually_send?
     return unless PartnerRequest.exists?(partner_request_id)
 
     uri = URI(ENV["DIAPERBANK_PARTNER_REQUEST_URL"])
@@ -56,7 +50,7 @@ module DiaperBankClient
   def self.https(uri)
     # Use a uri with `http://` to not use ssl.
     Net::HTTP.new(uri.host, uri.port).tap do |http|
-      http.use_ssl = Rails.env.production? || uri.scheme != "http"
+      http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
   end
