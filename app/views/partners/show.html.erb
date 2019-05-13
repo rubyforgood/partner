@@ -331,19 +331,24 @@
       </div>
     </div>
 </div>
-<div class="col-md-12">
+<div class="col-md-10 offset-md-1">
   <div class="tile">
     <div class="tile-body">
       <div class="row">
         <div class="form-group col-md-6">
-
-        <% if @partner.verified? %>
-          <%= link_to 'Request Diapers', partner_requests_path, class: 'btn btn-success' %>
-        <% end %>
-        <% unless @partner.verified? %>
-          <%= link_to 'Submit for Approval', partner_approve_path(@partner), class: "btn btn-primary #{'disabled' unless @partner.pending?}" %>
-        <% end %>
-        <%= link_to 'Update Information', edit_partner_path(@partner), class: "btn btn-primary float-right" %>
+          <div class="actions">
+            <% if @partner.verified? %>
+              <%= link_to "Request Diapers", partner_requests_path, class: 'btn btn-success' %>
+            <% end %>
+            <% unless @partner.verified? %>
+              <%= link_to partner_approve_path(@partner), class: "btn btn-primary #{'disabled' unless @partner.pending? || @partner.partner_status == "Recertification Required"}" do %>
+                <i class="fa fa-paper-plane"></i> Submit for Approval
+              <% end %>
+            <% end %>
+            <%= link_to edit_partner_path(@partner), class: 'btn btn-primary' do %>
+              <i class="fa fa-pencil"></i> Update Information
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
