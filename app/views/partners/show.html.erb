@@ -1,6 +1,8 @@
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-dashboard"></i> Organization Details &nbsp<span class="badge badge-pill badge-primary float-right"><%= @partner.partner_status %></span></h1>
+
+    <div class="alert alert-danger"><i class="fa fa-warning"></i>&nbsp;Please review your application details and submit for approval.</div>
+    <h1><i class="fa fa-dashboard"></i> Organization Details &nbsp <%= partner_status_badge(@partner) %></h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>

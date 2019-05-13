@@ -10,4 +10,12 @@ module ApplicationHelper
   def valid_items_for_select(items)
     items.map { |item| [item["name"], item["id"]] }.sort
   end
+
+  def partner_status_badge(partner)
+    if @partner.partner_status == "Verified"
+      content_tag :span, partner.partner_status, class: ["badge", "badge-pill", "badge-primary", "float-right"]
+    elsif @partner.partner_status == "Recertification Required"
+      content_tag :span, partner.partner_status, class: ["badge", "badge-pill", "badge-danger", "float-right"]
+    end
+  end
 end
