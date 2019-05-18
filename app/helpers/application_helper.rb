@@ -16,6 +16,8 @@ module ApplicationHelper
       content_tag :span, partner.partner_status, class: ["badge", "badge-pill", "badge-primary", "float-right"]
     elsif @partner.partner_status == "Recertification Required"
       content_tag :span, partner.partner_status, class: ["badge", "badge-pill", "badge-danger", "float-right"]
+    else
+      content_tag :span, partner.partner_status, class: ["badge", "badge-pill", "badge-info", "float-right"]
     end
   end
 end
