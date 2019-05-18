@@ -2,12 +2,23 @@ require "rails_helper"
 
 describe PartnerRequestsController, type: :controller do
   context "when authenticated" do
-    login_partner
+    context "when approved" do
+      login_partner(partner_status: "Approved")
+      describe "GET #new" do
+        it "returns http success" do
+          get :new
+          expect(response).to have_http_status(200)
+        end
+      end
+    end
 
-    describe "GET #new" do
-      it "returns http success" do
-        get :new
-        expect(response).to have_http_status(200)
+    context "when pending" do
+      login_partner
+      describe "GET #new" do
+        it "returns http success" do
+          get :new
+          expect(response).to have_http_status(302)
+        end
       end
     end
   end
