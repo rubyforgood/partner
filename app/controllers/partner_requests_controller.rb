@@ -7,7 +7,7 @@ class PartnerRequestsController < ApplicationController
   end
 
   def new
-    if current_partner.approved?
+    if current_partner.partner_status == "Approved"
       @partner_request = PartnerRequest.new
       @valid_items = DiaperBankClient.get_available_items(current_partner.diaper_bank_id)
       @valid_items = @valid_items.map { |item| [item["name"], item["id"]] }
