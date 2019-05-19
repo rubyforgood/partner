@@ -252,12 +252,4 @@ class Partner < ApplicationRecord
     end
     list
   end
-
-  def valid_password?(password)
-    if ::Rails.env.development?
-      true
-    else
-      super
-    end
-  end
 end
