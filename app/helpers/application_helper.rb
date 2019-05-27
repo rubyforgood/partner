@@ -6,4 +6,8 @@ module ApplicationHelper
   def active_class(name)
     name.include?(controller_name) ? "active" : controller_name
   end
+
+  def valid_items_for_select(items)
+    items.map { |item| [item["name"], item["id"]] }.sort
+  end
 end
