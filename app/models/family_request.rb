@@ -16,8 +16,8 @@ class FamilyRequest < ApplicationRecord
 
   def export_json
     items_count_map = children.each_with_object({}) do |child, map|
-      map[child.item_needed] ||= 0
-      map[child.item_needed] += 1
+      map[child.item_needed_diaperid] ||= 0
+      map[child.item_needed_diaperid] += 1
     end
 
     requested_items = items_count_map.map do |item, count|
