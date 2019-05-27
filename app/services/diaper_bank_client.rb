@@ -63,13 +63,6 @@ module DiaperBankClient
     req
   end
 
-  # Actually sending requests to the diaper bank app is disabled to make local
-  # testing easier.  If you actually want to test the interaction with that,
-  # hardcode this to `true`
-  def self.actually_send?
-    true || Rails.env.production?
-  end
-
   def self.api_root
     unless root = ENV["DIAPER_BANK_API_ROOT"]
       raise "Mising DIAPER_BANK_API_ROOT env variable" unless Rails.env.production?
