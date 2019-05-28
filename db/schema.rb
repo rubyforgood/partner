@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_220231) do
+ActiveRecord::Schema.define(version: 2019_05_28_003648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_05_27_220231) do
     t.datetime "updated_at", null: false
     t.bigint "family_id"
     t.integer "item_needed_diaperid"
+    t.boolean "active", default: true
     t.index ["family_id"], name: "index_children_on_family_id"
   end
 
