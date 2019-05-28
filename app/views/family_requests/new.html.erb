@@ -53,7 +53,7 @@
                   <%= item_id_to_display_string_map[child.item_needed_diaperid] %>
                 </td>
                 <td>
-                  <%= check_box_tag("family_request[child_ids][]", child.id, true) %>
+                  <%= check_box_tag("family_request[child_ids][]", child.id, child.active) %>
                 </td>
               </tr>
             <% end %>
