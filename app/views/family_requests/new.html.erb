@@ -50,7 +50,7 @@
                   <%= child.first_name %> <%= child.last_name %>
                 </td>
                 <td>
-                  <%= child.item_needed %>
+                  <%= item_id_to_display_string_map[child.item_needed_diaperid] %>
                 </td>
                 <td>
                   <%= check_box_tag("family_request[child_ids][]", child.id, true) %>
