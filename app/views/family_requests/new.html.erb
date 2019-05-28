@@ -53,7 +53,12 @@
                   <%= item_id_to_display_string_map[child.item_needed_diaperid] %>
                 </td>
                 <td>
-                  <%= check_box_tag 'Active', child.active, child.active, data: {url: child_active_path(child), remote: true, method: :post} %>
+                  <div class="toggle lg">
+                    <label>
+                      <%= check_box_tag 'Active', child.active, child.active, data: {url: child_active_path(child), remote: true, method: :post} %><span class="button-indecator"></span>
+                    </label>
+                  </div>
+
                 </td>
               </tr>
             <% end %>
