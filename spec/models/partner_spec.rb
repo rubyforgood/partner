@@ -120,6 +120,16 @@ describe Partner, type: :model do
   describe "#approve_me" do
     let(:partner) { create(:partner) }
     it "changes the partner status to Submitted" do
+     stub_request(:post, ENV["DIAPERBANK_APPROVAL_URL"]).with(
+       body: {partner: {diaper_partner_id: partner.id}}.to_json,
+       headers: {
+         'Accept'=>'*/*',
+         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+         'Content-Type'=>'application/json',
+         'Host'=>'diaper.test',
+         'User-Agent'=>'Ruby',
+         'X-Api-Key'=> ENV["DIAPERBANK_KEY"]
+       }).to_return(status: 200, body: "", headers: {})
       expect { partner.approve_me }.to change { partner.partner_status }.from("pending").to("Submitted")
     end
 
