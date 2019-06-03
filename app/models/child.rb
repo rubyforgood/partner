@@ -23,4 +23,6 @@ class Child < ApplicationRecord
   belongs_to :family
   has_many :family_request_child, dependent: :destroy
   has_many :family_requests, through: :family_request_child
+
+  scope :active, -> { where(active: true) }
 end

@@ -29,7 +29,7 @@ module DiaperBankClient
   def self.send_family_request(family_request_id)
     return unless family_request = FamilyRequest.find(family_request_id)
 
-    uri = URI(api_root + "/family_requests")
+    uri = URI(ENV["DIAPERBANK_FAMILY_REQUEST_URL"])
     body = family_request.export_json
     response = https(uri).request(post_request(uri: uri, body: body))
 
@@ -61,12 +61,5 @@ module DiaperBankClient
     req["Content-Type"] = content_type
     req["X-Api-Key"] = ENV["DIAPERBANK_KEY"]
     req
-  end
-
-  def self.api_root
-    unless root = ENV["DIAPER_BANK_API_ROOT"]
-      raise "Mising DIAPER_BANK_API_ROOT env variable" unless Rails.env.production?
-    end
-    root
   end
 end

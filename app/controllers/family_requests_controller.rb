@@ -7,8 +7,7 @@ class FamilyRequestsController < ApplicationController
   end
 
   def create
-    create_params = family_request_params
-    children = Child.find(create_params.delete(:child_ids))
+    children = current_partner.children.active
     @family_request = current_partner.family_requests.new(children: children)
     if @family_request.save
       if api_response = DiaperBankClient.send_family_request(@family_request.id)
@@ -17,7 +16,7 @@ class FamilyRequestsController < ApplicationController
         partner_request = PartnerRequest.new(api_response.slice("partner_id", "organization_id"))
         api_response["requested_items"].each do |item_hash|
           partner_request.item_requests.new(
-            name: POSSIBLE_ITEMS.key(item_hash["item_name"]),
+            name: item_hash["item_name"],
             item_id: item_hash["item_id"],
             quantity: item_hash["count"]
           )
