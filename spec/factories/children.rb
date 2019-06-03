@@ -21,15 +21,16 @@
 
 FactoryBot.define do
   factory :child do
-    first_name { "MyString" }
-    last_name { "MyString" }
-    date_of_birth { "2019-03-30" }
-    gender { "MyString" }
-    child_lives_with { "" }
-    race { "" }
-    agency_child_id { "MyString" }
-    health_insurance { "" }
-    item_needed { "MyString" }
-    comments { "MyText" }
+    association :family
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    date_of_birth { Faker::Date.backward(14).iso8601 }
+    active { true }
+    gender { Faker::Gender.type }
+    child_lives_with { "Parent" }
+    race { "Unknown" }
+    agency_child_id { "Agency" }
+    health_insurance { "Blue Rabbit" }
+    comments { "What's up" }
   end
 end
