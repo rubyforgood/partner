@@ -29,6 +29,7 @@ FactoryBot.define do
     gender { Faker::Gender.type }
     child_lives_with { "Parent" }
     race { "Unknown" }
+    item_needed_diaperid { 1 }
     agency_child_id { "Agency" }
     health_insurance { "Blue Rabbit" }
     comments { "What's up" }

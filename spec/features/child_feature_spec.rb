@@ -9,6 +9,10 @@ describe Child, type: :feature, js: true do
   end
 
   scenario "User can see a list of children" do
+    diaper_type = "Magic diaper"
+    stub_request(:any, "#{ENV["DIAPERBANK_PARTNER_REQUEST_URL"]}/#{partner.id}")
+      .to_return(body: [{id: 1, name: diaper_type}].to_json, status: 200)
+
     family = create(:family, partner: partner)
     children = [
       create(:child, family: family),
@@ -32,6 +36,8 @@ describe Child, type: :feature, js: true do
 
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(8)"))
           .to have_text(child.health_insurance)
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(9)"))
+          .to have_text(diaper_type)
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(10)"))
           .to have_text(child.comments)
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(11)"))
