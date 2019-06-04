@@ -26,5 +26,9 @@
 require "rails_helper"
 
 RSpec.describe Family, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'concatenates guardian first and last names' do
+    family =
+      create(:family, guardian_first_name: 'John', guardian_last_name: 'Wick')
+    expect('John Wick').to eq(family.guardian_display_name)
+  end
 end
