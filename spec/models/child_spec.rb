@@ -22,5 +22,9 @@
 require "rails_helper"
 
 RSpec.describe Child, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'scopes children to active' do
+    create(:child, active: true)
+    create(:child, active: false)
+    expect(described_class.all.active.count).to eq(1)
+  end
 end
