@@ -6,6 +6,7 @@ sudo: true
 services:
 - postgresql
 addons:
+  chrome: stable
   postgresql: '10'
   apt:
     packages:
