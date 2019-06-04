@@ -30,8 +30,6 @@ after_success:
   fi
 env:
   global:
-  - DIAPERBANK_PARTNER_REQUEST_URL="https://example.com"
-  - DIAPERBANK_APPROVAL_URL="https://example.com"
+  - DIAPERBANK_ENDPOINT=https://example.com
   - DIAPERBANK_KEY=diaperkey
-  - DIAPERBANK_FAMILY_REQUEST_URL="https://diaper.test/api/v1/family_requests"
   - secure: H+QARNvkmJFBCyXtwHhRwHnfNUJ1N+maa8cDMg9r34GG6lqDIt+zQGiaEeuopDcd6KemdjrWAYQR4gzHkbkhRaZCDoMxhFysTUcKI+GZrVgDg2EuAqiqXwFvVW3tpSVXU/o27XvL9Q1GIynqtA17TvmwiHgyGpcC50XR+RDx3NzxKPTw3gXoRzxAnFkuwIA9dovMLwGFJxByxRfKgiz4LqIw5+Mv+hpAIvIiRHfeACY2tXfX8FBhsf9zf4ShCRmOSBHFoPwEA8W7/8dNLxqJYhqv6yRysYFCxa6iCbjz+9UdAimsmb43nakUaF/obMK+SBwAEJq0hLOMRzC5pu5lhJSqCQn2J/FdelCMxS742RTkGqS4kBgSiCp+5cayaaG8Gz4/Vez57/6CxGGhhyy4XoxCu9EbPu4/VYNDi4060bEn27SEOzUFJ2808KIPf7bl4vSeRmKxjI8vPNfC8PCa9UaFwHppIe/y0OZr3SpAHsMylkHmOPeQBWvriTzjeLyarE19l9Scrdg8bidTtg3wYzTBvClwbc5sChazLwaVBCK+gK8Bh/vQN3QZYluM1J40+G98eHxyMA4GFcInJiZL2+7S9kTe4xb5xKD8rVZ7+g5WNqR706zcB5QiXohzxuLDDUVQdzS5+38ThI5v4ZxLUGoJY+gTnon2YIrhKEx4IUo=
