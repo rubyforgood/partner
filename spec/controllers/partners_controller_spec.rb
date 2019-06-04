@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PartnersController, type: :controller do
+describe PartnersController, type: :controller, include_shared: true do
   context "when authenticated" do
     login_partner
 
@@ -135,15 +135,16 @@ describe PartnersController, type: :controller do
   end
 
   def stub_partner_requst
-    stub_request(:post, ENV["DIAPERBANK_APPROVAL_URL"]).with(
+    stub_request(:post, diaperbank_routes.partner_approvals).with(
       body: {partner: {diaper_partner_id: @partner.id}}.to_json,
       headers: {
         'Accept'=>'*/*',
         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
         'Content-Type'=>'application/json',
-        'Host'=> URI(ENV["DIAPERBANK_APPROVAL_URL"]).host,
+        'Host'=> diaperbank_routes.partner_approvals.host,
         'User-Agent'=>'Ruby',
         'X-Api-Key'=>ENV["DIAPERBANK_KEY"]
-      }).to_return(status: 200, body: "", headers: {})
+      }
+    ).to_return(status: 200, body: "", headers: {})
   end
 end

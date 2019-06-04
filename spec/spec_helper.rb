@@ -16,6 +16,8 @@
 require "email_spec"
 require "email_spec/rspec"
 require 'webmock/rspec'
+require './spec/shared_context.rb'
+
 WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
