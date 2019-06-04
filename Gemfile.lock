@@ -99,6 +99,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
+    capybara-screenshot (1.0.22)
+      capybara (>= 1.0, < 4)
+      launchy
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chromedriver-helper (2.1.0)
@@ -377,6 +380,7 @@ DEPENDENCIES
   capistrano-rvm
   capistrano3-puma
   capybara (>= 2.15)
+  capybara-screenshot
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise

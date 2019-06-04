@@ -36,6 +36,7 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "capybara-screenshot"
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "faker"
