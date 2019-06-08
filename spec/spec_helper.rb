@@ -15,8 +15,8 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require "email_spec"
 require "email_spec/rspec"
-require 'webmock/rspec'
-require './spec/shared_context.rb'
+require "webmock/rspec"
+require "./spec/shared_context.rb"
 
 WebMock.disable_net_connect!(allow_localhost: true)
 

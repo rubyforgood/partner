@@ -17,6 +17,7 @@ module DiaperBankClient
 
   def self.send_family_request(family_request_id)
     return unless family_request = FamilyRequest.find(family_request_id)
+
     response = diaper_post_request(
       routes.family_requests,
       family_request.export_json
@@ -26,6 +27,7 @@ module DiaperBankClient
 
   def self.request_submission_post(partner_request_id)
     return unless PartnerRequest.exists?(partner_request_id)
+
     diaper_post_request(
       routes.partner_requests,
       PartnerRequest.find(partner_request_id).export_json
@@ -71,7 +73,7 @@ module DiaperBankClient
     end
 
     [:partner_requests, :family_requests, :partner_approvals].each do |path|
-      define_method(path) do |id = ''|
+      define_method(path) do |id = ""|
         URI("#{@endpoint}/#{path}/#{id}")
       end
     end
