@@ -27,9 +27,9 @@ describe Child, type: :feature, js: true do
           .to have_text(child.last_name)
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(3)"))
           .to have_text(child.date_of_birth)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(4)"))
-          .to have_text(child.family.guardian_display_name)
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(5)"))
+          .to have_text(child.family.guardian_display_name)
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(6)"))
           .to have_text(child.comments)
       end
     end
