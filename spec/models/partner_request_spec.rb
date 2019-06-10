@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: partner_requests
+#
+#  id              :bigint(8)        not null, primary key
+#  comments        :text
+#  partner_id      :bigint(8)
+#  organization_id :bigint(8)
+#  sent            :boolean          default(FALSE), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 require "rails_helper"
 
 RSpec.describe PartnerRequest, type: :model do

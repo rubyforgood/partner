@@ -1,0 +1,77 @@
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-edit"></i> New Diaper Bank Request From Families</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">New Family Request</a></li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <% if notice %>
+      <div class="alert alert-dismissible alert-success">
+        <button class="close" type="button" data-dismiss="alert">×</button>
+        <p><%= notice %><a class="alert-link" href="#"></p>
+        </a></p>
+      </div>
+    <% end %>
+    <div class="tile">
+      <%= form_with(model: @family_request, local: true) do |form| %>
+        <% if @family_request.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@family_request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+            <ul>
+              <% @family_request.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <table class='table'>
+          <thead>
+          <tr>
+            <th>Guardian</th>
+            <th>Child</th>
+            <th>Item Needed</th>
+            <th>Include</th>
+          </tr>
+          </thead>
+          <tbody class='fields'>
+            <% @children.each_with_index do |child, index| %>
+              <tr>
+                <td>
+                  <%= child.family.guardian_first_name %>
+                  <%= child.family.guardian_last_name %>
+                </td>
+                <td>
+                  <%= child.first_name %> <%= child.last_name %>
+                </td>
+                <td>
+                  <%= item_id_to_display_string_map[child.item_needed_diaperid] %>
+                </td>
+                <td>
+                  <div class="toggle lg">
+                    <label>
+                      <%= check_box_tag 'Active', child.active, child.active, data: {url: child_active_path(child), remote: true, method: :post} %><span class="button-indecator"></span>
+                    </label>
+                  </div>
+
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+          <hr>
+
+          <div class="actions">
+            <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

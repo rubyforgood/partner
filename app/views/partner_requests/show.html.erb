@@ -1,51 +1,54 @@
-<ul class="nav justify-content-end">
-  <li class="nav-item">
-    <%= link_to 'Account', edit_partner_path(current_partner), class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <%= link_to 'Sign Out', destroy_partner_session_path, class: 'nav-link', method: :delete %>
-  </li>
-</ul>
-
-<h1>Thanks</h1>
-
-<% if @partner_request.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@partner_request.errors.count, "error") %></h2>
-
-    <ul>
-    <% @partner_request.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-doc"></i> </h1>
   </div>
-<% end %>
-
-<div>
-  Request ID: <%= @partner_request.id %>
-  <p><%= @partner_request.partner.name %></p>
-</div>
-
-<div>
-  Comments:
-  <p><%= @partner_request.comments  %></p>
-</div>
-
-<div>
-  Requested Items:
-  <ul>
-    <% @partner_request.item_requests.each do |item| %>
-      <li><%= item.quantity %> of <%= item.name %></li>
-    <% end %>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-users"></i></li>
+    <li class="breadcrumb-item"><a href="#">Show Family</a></li>
   </ul>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <% if notice %>
+      <div class="alert alert-dismissible alert-success">
+        <button class="close" type="button" data-dismiss="alert">×</button>
+        <p><%= notice %><a class="alert-link" href="#"></p>
+        </a></p>
+      </div>
+    <% end %>
 
-<div>
-  <p>Submitted: <%= @partner_request.created_at.localtime.strftime('%F %T') %></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-12">
+            <h5 class="card-header bg-primary text-white">Request Details</h5>
+            <div class="card-body">
+              <div>
+                Request ID: <%= @partner_request.id %>
+                <p><%= @partner_request.partner.name %></p>
+              </div>
+
+              <div>
+                Comments:
+                <p><%= @partner_request.comments  %></p>
+              </div>
+
+              <div>
+                Requested Items:
+                <ul>
+                  <% @partner_request.item_requests.each do |item| %>
+                    <li><%= item.quantity %> of <%= item.name %></li>
+                  <% end %>
+                </ul>
+              </div>
+              <div>
+                <p>Submitted: <%= @partner_request.created_at.localtime.strftime('%F %T') %></p>
+              </div>
+              <p><%= link_to "Your Previous Requests", partner_requests_path, class: 'btn btn-success' %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div>
-  <p><%= link_to "New Request",  new_partner_request_path, class: 'btn btn-primary' %></p>
-  <p><%= link_to "Your Previous Requests", partner_requests_path, class: 'btn btn-secondary' %></p>
-</div>
-

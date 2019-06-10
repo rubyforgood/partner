@@ -1,0 +1,66 @@
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-child"></i> Children</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-child fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">Children</a></li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <% if notice %>
+      <div class="alert alert-dismissible alert-success">
+        <button class="close" type="button" data-dismiss="alert">×</button>
+        <p><%= notice %><a class="alert-link" href="#"></p>
+        </a></p>
+      </div>
+    <% end %>
+    <div class="tile">
+      <h3><%= current_partner.name %> Children Served</h3>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Date of birth</th>
+          <th scope="col">Guardian</th>
+          <th scope="col">Comments</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% children.each do |child| %>
+          <tr>
+            <td><%= child.first_name %></td>
+            <td><%= child.last_name %></td>
+            <td><%= child.date_of_birth %></td>
+            <td><%= child.family.guardian_display_name %></td>
+            <td><%= child.comments %></td>
+            <td><%= link_to 'View Child Details', child, class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to 'Edit Child Details', edit_child_path(child), class: "btn btn-sm btn-danger pull-right" %>
+            </td>
+        <% end %>
+        </tbody>
+      </table>
+      <hr>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <h3>Adding Children</h3>
+
+      <hr>
+
+      Children must be added from their individual families to prevent accidentally associating the child with the wrong family in the situation where there are may families with similar names. Visit the family list below to view and confirm the family you'd like to associate a new child with.
+      <hr>
+      <%= link_to 'Visit Family List', families_path, class: "btn btn-info" %>
+    </div>
+  </div>
+</div>

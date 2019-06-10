@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_31_165342) do
+ActiveRecord::Schema.define(version: 2019_05_28_003648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,63 @@ ActiveRecord::Schema.define(version: 2019_03_31_165342) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "children", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.jsonb "child_lives_with"
+    t.jsonb "race"
+    t.string "agency_child_id"
+    t.jsonb "health_insurance"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "family_id"
+    t.integer "item_needed_diaperid"
+    t.boolean "active", default: true
+    t.index ["family_id"], name: "index_children_on_family_id"
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.string "guardian_first_name"
+    t.string "guardian_last_name"
+    t.string "guardian_zip_code"
+    t.string "guardian_country"
+    t.string "guardian_phone"
+    t.string "agency_guardian_id"
+    t.integer "home_adult_count"
+    t.integer "home_child_count"
+    t.integer "home_young_child_count"
+    t.jsonb "sources_of_income"
+    t.boolean "guardian_employed"
+    t.jsonb "guardian_employment_type"
+    t.decimal "guardian_monthly_pay"
+    t.jsonb "guardian_health_insurance"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "partner_id"
+    t.index ["partner_id"], name: "index_families_on_partner_id"
+  end
+
+  create_table "family_request_children", force: :cascade do |t|
+    t.bigint "family_request_id"
+    t.bigint "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_family_request_children_on_child_id"
+    t.index ["family_request_id"], name: "index_family_request_children_on_family_request_id"
+  end
+
+  create_table "family_requests", force: :cascade do |t|
+    t.bigint "partner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "sent"
+    t.index ["partner_id"], name: "index_family_requests_on_partner_id"
   end
 
   create_table "item_requests", force: :cascade do |t|
@@ -166,5 +223,10 @@ ActiveRecord::Schema.define(version: 2019_03_31_165342) do
     t.index ["reset_password_token"], name: "index_partners_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "children", "families"
+  add_foreign_key "families", "partners"
+  add_foreign_key "family_request_children", "children"
+  add_foreign_key "family_request_children", "family_requests"
+  add_foreign_key "family_requests", "partners"
   add_foreign_key "item_requests", "partner_requests"
 end

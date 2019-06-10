@@ -24,17 +24,20 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "capybara-screenshot"
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "faker"
   gem "guard-rspec"
   gem "pry"
   gem "pry-rails"
+  gem "pry-remote"
   gem "rspec-rails", "~> 3.5"
   gem "rubocop"
 end
 
 group :development do
+  gem "annotate"
   gem "capistrano-bundler"
   gem "capistrano-rails"
   gem "capistrano-rails-console", require: false
@@ -53,6 +56,7 @@ group :test do
   gem "email_spec"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
+  gem "webmock"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

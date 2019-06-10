@@ -42,6 +42,31 @@ FactoryBot::SyntaxRunner.class_eval do
   include ActionDispatch::TestProcess
 end
 
+# If an element is hidden, Capybara should ignore it
+Capybara.ignore_hidden_elements = true
+
+# https://docs.travis-ci.com/user/chrome
+Capybara.register_driver :chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1680,1050])
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
+# Enable JS for Capybara tests
+Capybara.javascript_driver = :chrome
+
+Capybara::Screenshot.autosave_on_failure = true
+# The driver name should match the Capybara driver config name.
+Capybara::Screenshot.register_driver(:chrome) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
+# Set the asset host so that the screenshots look nice
+Capybara.asset_host = "http://localhost:3456"
+
+# Only keep the most recent run
+Capybara::Screenshot.prune_strategy = :keep_last_run
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -65,6 +90,12 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  # set driver for system tests
+  config.before(:each, type: :system) do
+    driven_by :chrome
+    Capybara.server = :puma, { Silent: true }
+  end
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!

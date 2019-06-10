@@ -55,10 +55,28 @@
         <% end %>
       </li>
     <% end %>
+    <li>
+      <%= link_to families_path, class: "app-menu__item #{'active' if current_page?(families_path)}" do %>
+        <i class="fa fa-users app-menu__icon"></i>
+        <span class="app-menu__label">Families</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to children_path, class: "app-menu__item #{'active' if current_page?(children_path)}" do %>
+        <i class="fa fa-child app-menu__icon"></i>
+        <span class="app-menu__label">Children</span>
+      <% end %>
+    </li>
   </ul>
 </aside>
 <main class="app-content">
   <%= yield %>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+    </div>
+    <strong>Partnerbase was built with <i class="fa fa-heart"></i> by <a href="http://rubyforgood.org">Ruby for Good</a>.</strong>
+  </footer>
 </main>
 </body>
 </html>

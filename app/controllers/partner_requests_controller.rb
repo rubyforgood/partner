@@ -8,8 +8,6 @@ class PartnerRequestsController < ApplicationController
 
   def new
     @partner_request = PartnerRequest.new
-    @valid_items = DiaperBankClient.get_available_items(current_partner.diaper_bank_id)
-    @valid_items = @valid_items.map { |item| [item["name"], item["id"]] }
     @partner_request.item_requests.build # required to render the empty items form
   end
 
