@@ -30,7 +30,7 @@
           </div>
         <% end %>
 
-        <table class='table'>
+        <table class='table table-striped'>
           <thead>
           <tr>
             <th>Guardian</th>
@@ -58,7 +58,6 @@
                       <%= check_box_tag 'Active', child.active, child.active, data: {url: child_active_path(child), remote: true, method: :post} %><span class="button-indecator"></span>
                     </label>
                   </div>
-
                 </td>
               </tr>
             <% end %>

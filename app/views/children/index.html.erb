@@ -12,8 +12,7 @@
     <% if notice %>
       <div class="alert alert-dismissible alert-success">
         <button class="close" type="button" data-dismiss="alert">×</button>
-        <p><%= notice %><a class="alert-link" href="#"></p>
-        </a></p>
+        <p><%= notice %><a class="alert-link" href="#"></a></p>
       </div>
     <% end %>
     <div class="tile">
@@ -25,6 +24,7 @@
           <th scope="col">First name</th>
           <th scope="col">Last name</th>
           <th scope="col">Date of birth</th>
+          <th scope="col">Active</th>
           <th scope="col">Guardian</th>
           <th scope="col">Comments</th>
           <th scope="col"></th>
@@ -37,6 +37,7 @@
             <td><%= child.first_name %></td>
             <td><%= child.last_name %></td>
             <td><%= child.date_of_birth %></td>
+            <td><%= child.active ? "Yes" : "No" %></td>
             <td><%= child.family.guardian_display_name %></td>
             <td><%= child.comments %></td>
             <td><%= link_to 'View Child Details', child, class: "btn btn-sm btn-success" %></td>
