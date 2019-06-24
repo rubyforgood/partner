@@ -119,6 +119,18 @@ FactoryBot.define do
       partner_status { "approved" }
     end
 
+    trait(:verified) do
+      partner_status { "Verified" }
+    end
+
+    trait(:recertification_required) do
+      partner_status { "Recertification Required" }
+    end
+
+    trait(:submitted) do
+      partner_status { "submitted" }
+    end
+
     trait(:with_990_attached) do
       proof_of_form_990 { fixture_file_upload(Rails.root.join("spec", "support", "dummy_pdfs", "f990.pdf"), "application/pdf") }
     end

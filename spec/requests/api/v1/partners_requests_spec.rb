@@ -49,10 +49,10 @@ describe "Partners Api Requests" do
   end
 
   def valid_partner_creation_request(
-        email: "test@example.com",
-        diaper_bank_id: "diaper-bank-id",
-        diaper_partner_id: "diaper-partner-id"
-      )
+    email: "test@example.com",
+    diaper_bank_id: "diaper-bank-id",
+    diaper_partner_id: "diaper-partner-id"
+  )
     post api_v1_partners_path(
       partner: {
         email: email,

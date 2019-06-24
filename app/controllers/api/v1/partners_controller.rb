@@ -20,7 +20,15 @@ class Api::V1::PartnersController < ApiController
     return head :forbidden unless api_key_valid?
 
     partner = Partner.find_by(diaper_partner_id: partner_params[:diaper_partner_id])
-    partner.update(partner_status: "Verified")
+    if partner_params[:status] == "pending"
+      partner.update(partner_status: "pending")
+    elsif partner_params[:status] == "recertification_required"
+      partner.update(partner_status: "Recertification Required")
+    elsif partner_params[:status] == "approved"
+      partner.update(partner_status: "Verified")
+    else
+      partner.update(partner_status: "pending")
+    end
     render json: { message: "Partner status changed to verified." }, status: :ok
   rescue ActiveRecord::RecordInvalid => e
     render e.message
@@ -46,7 +54,8 @@ class Api::V1::PartnersController < ApiController
     params.require(:partner).permit(
       :diaper_bank_id,
       :diaper_partner_id,
-      :email
+      :email,
+      :status
     )
   end
 end

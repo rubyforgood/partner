@@ -1,6 +1,9 @@
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-dashboard"></i> Organization Details &nbsp<span class="badge badge-pill badge-primary float-right"><%= @partner.partner_status %></span></h1>
+    <% if @partner.partner_status == "Recertification Required" %>
+      <div class="alert alert-danger"><i class="fa fa-warning"></i>&nbsp;Please review your application details and submit for approval.</div>
+    <% end %>
+    <h1><i class="fa fa-dashboard"></i> Organization Details &nbsp <%= partner_status_badge(@partner) %></h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -329,19 +332,24 @@
       </div>
     </div>
 </div>
-<div class="col-md-12">
+<div class="col-md-10 offset-md-1">
   <div class="tile">
     <div class="tile-body">
       <div class="row">
         <div class="form-group col-md-6">
-
-        <% if @partner.verified? %>
-          <%= link_to 'Request Diapers', partner_requests_path, class: 'btn btn-success' %>
-        <% end %>
-        <% unless @partner.verified? %>
-          <%= link_to 'Submit for Approval', partner_approve_path(@partner), class: "btn btn-primary #{'disabled' unless @partner.pending?}" %>
-        <% end %>
-        <%= link_to 'Update Information', edit_partner_path(@partner), class: "btn btn-primary float-right" %>
+          <div class="actions">
+            <% if @partner.verified? %>
+              <%= link_to "Request Diapers", partner_requests_path, class: 'btn btn-success' %>
+            <% end %>
+            <% unless @partner.verified? %>
+              <%= link_to partner_approve_path(@partner), class: "btn btn-primary #{'disabled' unless @partner.pending? || @partner.partner_status == "Recertification Required"}" do %>
+                <i class="fa fa-paper-plane"></i> Submit for Approval
+              <% end %>
+            <% end %>
+            <%= link_to edit_partner_path(@partner), class: 'btn btn-primary' do %>
+              <i class="fa fa-pencil"></i> Update Information
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
