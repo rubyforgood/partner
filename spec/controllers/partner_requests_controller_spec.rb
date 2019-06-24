@@ -11,17 +11,18 @@ describe PartnerRequestsController, type: :controller do
           # We get at @partner from the login_partner method above
           #
           id = @partner.diaper_bank_id
-          stub_request(:get, "https://diaper.test/partner_requests/#{id}").
-           with(
-             headers: {
-            'Accept'=>'*/*',
-            'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Content-Type'=>'application/json',
-            'Host'=>'diaper.test',
-            'User-Agent'=>'Ruby',
-            'X-Api-Key'=>'diaperkey'
-             }).
-           to_return(status: 200, body: "{}", headers: {})
+          stub_request(:get, "https://diaper.test/partner_requests/#{id}")
+            .with(
+              headers: {
+                "Accept" => "*/*",
+             "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+             "Content-Type" => "application/json",
+             "Host" => "diaper.test",
+             "User-Agent" => "Ruby",
+             "X-Api-Key" => "diaperkey"
+              }
+            )
+            .to_return(status: 200, body: "{}", headers: {})
 
           get :new
           expect(response).to have_http_status(200)
