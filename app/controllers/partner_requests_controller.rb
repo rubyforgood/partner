@@ -7,14 +7,8 @@ class PartnerRequestsController < ApplicationController
   end
 
   def new
-    if current_partner.partner_status == "Verified"
-      @partner_request = PartnerRequest.new
-      @valid_items = DiaperBankClient.get_available_items(current_partner.diaper_bank_id)
-      @valid_items = @valid_items.map { |item| [item["name"], item["id"]] }
-      @partner_request.item_requests.build # required to render the empty items form
-    else
-      redirect_to partner_requests_path, notice: "Please review your application details and submit for approval in order to make a new request."
-    end
+    @partner_request = PartnerRequest.new
+    @partner_request.item_requests.build # required to render the empty items form
   end
 
   def create
