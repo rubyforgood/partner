@@ -55,11 +55,11 @@ From the root of the app, run `bundle exec rails db:seed`. This will create some
 To login, use these default credentials provided in the seeds:
 
     Verified Organization
-      Email: org_admin1@example.com
+      Email: verified@example.com
       Password: password
 
     Pending Organization
-      Email: user_1@example.com
+      Email: unverifed@example.com
       Password: password
 
 
