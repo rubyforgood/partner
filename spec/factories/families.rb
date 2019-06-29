@@ -17,6 +17,7 @@
 #  guardian_employment_type  :jsonb
 #  guardian_monthly_pay      :decimal(, )
 #  guardian_health_insurance :jsonb
+#  military                  :boolean
 #  comments                  :text
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
@@ -39,6 +40,7 @@ FactoryBot.define do
     guardian_employment_type { "" }
     guardian_monthly_pay { "9.99" }
     guardian_health_insurance { "" }
+    military { false }
     comments { "MyText" }
     partner
   end
