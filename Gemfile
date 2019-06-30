@@ -55,7 +55,7 @@ group :test do
   gem "chromedriver-helper"
   gem "email_spec"
   gem "selenium-webdriver"
-  gem "shoulda-matchers", "~> 4.0"
+  gem "shoulda-matchers"
   gem "webmock"
 end
 
