@@ -67,6 +67,12 @@
         <span class="app-menu__label">Children</span>
       <% end %>
     </li>
+     <li>
+      <%= link_to authorized_family_members_path, class: "app-menu__item #{'active' if current_page?(authorized_family_members_path)}" do %>
+        <i class="fa fa-user app-menu__icon"></i>
+        <span class="app-menu__label">Authorized Members</span>
+      <% end %>
+    </li>
   </ul>
 </aside>
 <main class="app-content">
