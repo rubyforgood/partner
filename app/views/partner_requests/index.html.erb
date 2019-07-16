@@ -44,7 +44,7 @@
         <% if @partner.verified? %>
           <%= link_to 'Create New Bulk Diaper Request', new_partner_request_path, class: 'btn btn-primary' %>
         <% end %>
-        <% if @partner.verified? %>
+        <% if @partner.verified? && @partner.family_request_active? %>
           <%= link_to 'Create New Family Diaper Request', new_family_request_path, class: 'btn btn-primary' %>
         <% end %>
       </div>

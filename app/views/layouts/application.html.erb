@@ -55,6 +55,7 @@
         <% end %>
       </li>
     <% end %>
+    <% if current_partner.family_request_active? %>
     <li>
       <%= link_to families_path, class: "app-menu__item #{'active' if current_page?(families_path)}" do %>
         <i class="fa fa-users app-menu__icon"></i>
@@ -67,6 +68,7 @@
         <span class="app-menu__label">Children</span>
       <% end %>
     </li>
+    <% end %>
   </ul>
 </aside>
 <main class="app-content">

@@ -105,6 +105,8 @@
 class Partner < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  ACTIVE_FAMILY_REQUESTS = [3, 27].freeze
+
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -240,6 +242,10 @@ class Partner < ApplicationRecord
 
   def pending?
     partner_status.casecmp("pending").zero?
+  end
+
+  def family_request_active?
+    ACTIVE_FAMILY_REQUESTS.include?(diaper_bank_id)
   end
 
   private
