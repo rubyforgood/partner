@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Child, type: :feature, js: true do
-  let(:partner) { create(:partner) }
+  let(:partner) { create(:partner, id: 3) }
 
   before do
     sign_in(partner)
