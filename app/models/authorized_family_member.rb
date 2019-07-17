@@ -12,7 +12,6 @@
 #  updated_at           :datetime         not null
 #  family_id            :bigint(8)
 
-
 class AuthorizedFamilyMember < ApplicationRecord
   belongs_to :family
 end
