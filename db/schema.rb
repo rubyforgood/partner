@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_182738) do
+ActiveRecord::Schema.define(version: 2019_07_08_185154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 2019_06_29_182738) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "authorized_family_members", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.text "comments"
+    t.bigint "family_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_id"], name: "index_authorized_family_members_on_family_id"
   end
 
   create_table "children", force: :cascade do |t|
@@ -225,6 +237,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_182738) do
     t.index ["reset_password_token"], name: "index_partners_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "authorized_family_members", "families"
   add_foreign_key "children", "families"
   add_foreign_key "families", "partners"
   add_foreign_key "family_request_children", "children"

@@ -27,6 +27,7 @@
 class Family < ApplicationRecord
   belongs_to :partner
   has_many :children, dependent: :destroy
+  has_many :authorized_family_members, dependent: :destroy
 
   def guardian_display_name
     "#{guardian_first_name} #{guardian_last_name}"
