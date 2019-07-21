@@ -27,6 +27,8 @@
 require "rails_helper"
 
 RSpec.describe Family, type: :model do
+  it { is_expected.to have_many(:authorized_family_members).dependent(:destroy) }
+
   it "concatenates guardian first and last names" do
     family =
       create(:family, guardian_first_name: "John", guardian_last_name: "Wick")
