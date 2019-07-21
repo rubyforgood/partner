@@ -118,6 +118,7 @@ class Partner < ApplicationRecord
 
   has_many :families, dependent: :destroy
   has_many :children, through: :families
+  has_many :authorized_family_members, through: :families
 
   validates :email, presence: true
 

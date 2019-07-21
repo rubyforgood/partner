@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :families
 
+  resources :authorized_family_members
   devise_for :partners, controllers: { sessions: "partners/sessions" }
   devise_scope :partner do
     get "/partners/sign_out" => "devise/sessions#destroy"
