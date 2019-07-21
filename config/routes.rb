@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # TODO: remove these two
   resources :children do
     post :active
