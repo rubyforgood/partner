@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_182738) do
+ActiveRecord::Schema.define(version: 2019_07_21_044143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_182738) do
     t.bigint "family_id"
     t.integer "item_needed_diaperid"
     t.boolean "active", default: true
+    t.boolean "archived"
     t.index ["family_id"], name: "index_children_on_family_id"
   end
 

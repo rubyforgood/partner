@@ -105,7 +105,7 @@
 class Partner < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  ACTIVE_FAMILY_REQUESTS = [3, 27].freeze
+  ACTIVE_FAMILY_REQUESTS = [1, 3, 27].freeze
 
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
