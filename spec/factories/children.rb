@@ -27,7 +27,7 @@ FactoryBot.define do
     date_of_birth { Faker::Date.backward(14).iso8601 }
     active { true }
     gender { Faker::Gender.type }
-    child_lives_with { "Parent" }
+    child_lives_with { ["Mother"] }
     race { "Unknown" }
     item_needed_diaperid { 1 }
     agency_child_id { "Agency" }

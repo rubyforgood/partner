@@ -35,11 +35,11 @@ FactoryBot.define do
     home_adult_count { 1 }
     home_child_count { 1 }
     home_young_child_count { 1 }
-    sources_of_income { "" }
+    sources_of_income { ["WIC"] }
     guardian_employed { false }
     guardian_employment_type { "" }
     guardian_monthly_pay { "9.99" }
-    guardian_health_insurance { "" }
+    guardian_health_insurance { "Uninsured" }
     military { false }
     comments { "MyText" }
     partner

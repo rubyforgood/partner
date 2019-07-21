@@ -28,6 +28,9 @@ class Family < ApplicationRecord
   belongs_to :partner
   has_many :children, dependent: :destroy
   has_many :authorized_family_members, dependent: :destroy
+  serialize :sources_of_income, Array
+
+  INCOME_TYPES = %w[SSI SNAP/FOOD\ Stamps TANF WIC Housing/subsidized Housing/unsubsidized N/A].freeze
 
   def guardian_display_name
     "#{guardian_first_name} #{guardian_last_name}"
