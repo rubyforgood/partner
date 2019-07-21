@@ -17,6 +17,7 @@
 #  family_id            :bigint(8)
 #  item_needed_diaperid :integer
 #  active               :boolean          default(TRUE)
+#  archived             :boolean
 #
 
 FactoryBot.define do

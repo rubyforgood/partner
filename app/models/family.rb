@@ -17,11 +17,11 @@
 #  guardian_employment_type  :jsonb
 #  guardian_monthly_pay      :decimal(, )
 #  guardian_health_insurance :jsonb
-#  military                  :boolean
 #  comments                  :text
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  partner_id                :bigint(8)
+#  military                  :boolean          default(FALSE)
 #
 
 class Family < ApplicationRecord

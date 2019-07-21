@@ -21,6 +21,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  partner_id                :bigint(8)
+#  military                  :boolean          default(FALSE)
 #
 
 require "rails_helper"
