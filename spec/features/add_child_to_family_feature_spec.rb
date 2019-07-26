@@ -19,8 +19,6 @@ describe Child, type: :feature do
     expect(page).to have_current_path(family_path(family))
     click_link("Add Child To This Family", :match => :first)
     expect(page).to have_current_path(new_child_path, ignore_query: true)
-    puts page.current_path
-
     expect(page).to have_text("New Child")
     fill_in('First name', with: 'John')
     fill_in('Last name', with: 'Smith')
