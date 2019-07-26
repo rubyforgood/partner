@@ -9,7 +9,7 @@ describe AuthorizedFamilyMember, type: :feature do
     visit(families_path)
   end
 
-  scenario "vists families path" do
+  scenario "creates a new authorized family member" do
     expect(page).to have_text("Families")
     expect(page).to have_text("Morales")
     click_link("View Family")
