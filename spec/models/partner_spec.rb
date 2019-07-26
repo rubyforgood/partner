@@ -82,24 +82,6 @@
 #  diaper_funding_source      :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  email                      :string           default(""), not null
-#  encrypted_password         :string           default(""), not null
-#  reset_password_token       :string
-#  reset_password_sent_at     :datetime
-#  remember_created_at        :datetime
-#  sign_in_count              :integer          default(0), not null
-#  current_sign_in_at         :datetime
-#  last_sign_in_at            :datetime
-#  current_sign_in_ip         :string
-#  last_sign_in_ip            :string
-#  invitation_token           :string
-#  invitation_created_at      :datetime
-#  invitation_sent_at         :datetime
-#  invitation_accepted_at     :datetime
-#  invitation_limit           :integer
-#  invited_by_type            :string
-#  invited_by_id              :bigint(8)
-#  invitations_count          :integer          default(0)
 #  other_agency_type          :string
 #
 
@@ -107,16 +89,7 @@ require "rails_helper"
 
 describe Partner, type: :model, include_shared: true do
   it { is_expected.to have_many(:partner_requests).dependent(:destroy) }
-
-  it { is_expected.to validate_presence_of(:email) }
-
-  it "is not valid without an email address" do
-    partner = build(:partner, email: nil)
-    expect(partner).to_not be_valid
-
-    partner.email = "partner@email.com"
-    expect(partner).to be_valid
-  end
+  it { is_expected.to have_many(:users) }
 
   describe "#approve_me" do
     let(:partner) { create(:partner) }
