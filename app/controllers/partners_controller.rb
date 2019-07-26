@@ -2,9 +2,6 @@ class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_partner!
 
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-
   def index
     @partners = Partner.all
     authorize @partners
@@ -28,17 +25,25 @@ class PartnersController < ApplicationController
     @partner = Partner.new(partner_params)
 
     respond_to do |format|
-      @partner.save
+      if @partner.save
         format.html { redirect_to @partner, notice: "Partner was successfully created." }
         format.json { render :show, status: :created, location: @partner }
+      else
+        format.html { render :new }
+        format.json { render json: @partner.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
     respond_to do |format|
-      @partner.update(partner_params)
-      format.html { redirect_to @partner, notice: "Details were successfully updated." }
-      format.json { render :show, status: :ok, location: @partner }
+      if @partner.update(partner_params)
+        format.html { redirect_to @partner, notice: "Details were successfully updated." }
+        format.json { render :show, status: :ok, location: @partner }
+      else
+        format.html { render :edit }
+        format.json { render json: @partner.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -51,14 +56,6 @@ class PartnersController < ApplicationController
   end
 
   private
-
-  def render_unprocessable_entity_response(exception)
-    render json: exception.record.errors, status: :unprocessable_entity
-  end
-
-  def render_not_found_response(exception)
-    render json: { error: exception.message }, status: :not_found
-  end
 
   def set_partner
     @partner = authorize Partner.find(params[:id])
