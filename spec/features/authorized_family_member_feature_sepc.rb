@@ -16,5 +16,9 @@ describe AuthorizedFamilyMember, type: :feature do
     expect(page).to have_current_path(family_path(family))
     click_link("Add An Authorized Member To This Family")
     expect(page).to have_current_path(new_authorized_family_member_path, ignore_query: true)
+    fill_in('First name', with: 'John')
+    fill_in('Last name', with: 'Smith')
+    click_button
+    expect(AuthorizedFamilyMember.count).to change.by(1)
   end
 end
