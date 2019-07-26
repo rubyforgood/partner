@@ -19,6 +19,6 @@ describe AuthorizedFamilyMember, type: :feature do
     fill_in('First name', with: 'John')
     fill_in('Last name', with: 'Smith')
     click_button
-    expect(AuthorizedFamilyMember.count).to change.by(1)
+    expect(AuthorizedFamilyMember.count).to eq 1
   end
 end
