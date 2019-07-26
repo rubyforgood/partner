@@ -26,11 +26,11 @@
 
 FactoryBot.define do
   factory :family do
-    guardian_first_name { "MyString" }
-    guardian_last_name { "MyString" }
-    guardian_zip_code { "MyString" }
-    guardian_country { "MyString" }
-    guardian_phone { "MyString" }
+    guardian_first_name { "Miles" }
+    guardian_last_name { "Morales" }
+    guardian_zip_code { "40514" }
+    guardian_country { "USA" }
+    guardian_phone { "8595551212" }
     agency_guardian_id { "MyString" }
     home_adult_count { 1 }
     home_child_count { 1 }
