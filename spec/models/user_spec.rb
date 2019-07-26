@@ -23,10 +23,11 @@
 #  invited_by_type        :string
 #  invited_by_id          :bigint(8)
 #  invitations_count      :integer          default(0)
+#  partner_id             :bigint(8)
 #
 
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to belong_to(:partner) }
 end
