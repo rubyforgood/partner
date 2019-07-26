@@ -23,6 +23,7 @@
 #  invited_by_type        :string
 #  invited_by_id          :bigint(8)
 #  invitations_count      :integer          default(0)
+#  partner_id             :bigint(8)
 #
 
 FactoryBot.define do

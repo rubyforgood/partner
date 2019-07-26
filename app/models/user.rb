@@ -23,6 +23,7 @@
 #  invited_by_type        :string
 #  invited_by_id          :bigint(8)
 #  invitations_count      :integer          default(0)
+#  partner_id             :bigint(8)
 #
 
 class User < ApplicationRecord
@@ -30,4 +31,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  belongs_to :partner
 end
