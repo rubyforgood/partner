@@ -1,0 +1,35 @@
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-edit"></i> Pickup Sheet</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-scroll fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">Pickup Sheet</a></li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Child's name</th>
+                <th scope="col">Authorized Persons</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% family_request.children.each do |child| %>
+                <tr>
+                  <td><%= child.display_name %></td>
+                  <td><%= child.family.authorized_family_members.map(&:display_name).join(", ") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
