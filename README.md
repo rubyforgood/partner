@@ -52,6 +52,7 @@ PG_HOST=hostname
 ## Seed the database
 From the root of the app, run `bundle exec rails db:seed`. This will create some initial data to use while testing the app and developing new features, including setting up the default user.
 
+## Logging In
 To login, use these default credentials provided in the seeds:
 
     Verified Organization
