@@ -7,13 +7,14 @@ class Api::V1::PartnersController < ApiController
 
     partner = Partner.new(
       diaper_bank_id: partner_params[:diaper_bank_id],
-      diaper_partner_id: partner_params[:diaper_partner_id])
+      diaper_partner_id: partner_params[:diaper_partner_id]
+    )
     user = User.invite!(email: partner_params[:email], partner: partner)
 
     render json: {
-             email: user.email,
-             id: partner.id,
-           }
+      email: user.email,
+             id: partner.id
+    }
   rescue ActiveRecord::RecordInvalid => e
     render e.message
   end
