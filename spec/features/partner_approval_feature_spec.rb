@@ -6,8 +6,6 @@ describe "Partner approval", type: :feature do
     sign_in(partner)
     visit "/partners/#{partner.id}"
 
-    page.execute_script("window.scrollTo(0,10000)")
-
     stub_request(:post, "#{ENV["DIAPERBANK_ENDPOINT"]}/approvals/")
       .with(body: { partner: { diaper_partner_id: partner.id } })
       .to_return(status: 200)
