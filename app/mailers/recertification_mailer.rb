@@ -6,6 +6,6 @@ class RecertificationMailer < ActionMailer::Base
     @partner = params[:partner]
 
     mail to: @partner.email,
-         subject: "Please recertify your account"
+         subject: "Please update your agency information"
   end
 end
