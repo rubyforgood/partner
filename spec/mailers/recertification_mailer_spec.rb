@@ -4,7 +4,7 @@ describe RecertificationMailer, type: :mailer do
     let!(:mail) { RecertificationMailer.with(partner: partner).notice_email.deliver_now }
 
     it 'email renders the subject' do
-      expect(mail.subject).to eq('Please recertify your account')
+      expect(mail.subject).to eq('Please update your agency information')
     end
 
     it 'email renders the receiver email' do
