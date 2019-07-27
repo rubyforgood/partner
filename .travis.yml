@@ -1,35 +1,35 @@
 dist: xenial
 language: ruby
 rvm:
-- 2.6.2
+  - 2.6.2
 sudo: true
 services:
-- postgresql
+  - postgresql
 addons:
   chrome: stable
-  postgresql: '10'
+  postgresql: "10"
   apt:
     packages:
-    - postgresql-10
-    - postgresql-client-10
+      - postgresql-10
+      - postgresql-client-10
 before_install:
-- gem update --system
-- gem install bundler
+  - gem update --system
+  - gem install bundler
 script:
-- export RAILS_ENV=test
-- bundle exec rake db:create db:migrate
-- bundle exec rake spec
-- bundle exec rubocop
+  - export RAILS_ENV=test
+  - bundle exec rake db:create db:migrate
+  - bundle exec rake spec
+  - bundle exec rubocop
 bundler_args: "--without production"
 after_success:
-- if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_BRANCH == "master" ]; then
-      openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa -d;
-      chmod 600 config/deploy_id_rsa;
-      eval `ssh-agent -s`; ssh-add config/deploy_id_rsa;
-      bundle exec cap staging deploy; ssh-agent -k;
-  fi
+  - if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_BRANCH == "master" ]; then
+    openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa -d;
+    chmod 600 config/deploy_id_rsa;
+    eval `ssh-agent -s`; ssh-add config/deploy_id_rsa;
+    bundle exec cap staging deploy; ssh-agent -k;
+    fi
 env:
   global:
-  - DIAPERBANK_ENDPOINT=https://diaper.test
-  - DIAPERBANK_KEY=diaperkey
-  - secure: H+QARNvkmJFBCyXtwHhRwHnfNUJ1N+maa8cDMg9r34GG6lqDIt+zQGiaEeuopDcd6KemdjrWAYQR4gzHkbkhRaZCDoMxhFysTUcKI+GZrVgDg2EuAqiqXwFvVW3tpSVXU/o27XvL9Q1GIynqtA17TvmwiHgyGpcC50XR+RDx3NzxKPTw3gXoRzxAnFkuwIA9dovMLwGFJxByxRfKgiz4LqIw5+Mv+hpAIvIiRHfeACY2tXfX8FBhsf9zf4ShCRmOSBHFoPwEA8W7/8dNLxqJYhqv6yRysYFCxa6iCbjz+9UdAimsmb43nakUaF/obMK+SBwAEJq0hLOMRzC5pu5lhJSqCQn2J/FdelCMxS742RTkGqS4kBgSiCp+5cayaaG8Gz4/Vez57/6CxGGhhyy4XoxCu9EbPu4/VYNDi4060bEn27SEOzUFJ2808KIPf7bl4vSeRmKxjI8vPNfC8PCa9UaFwHppIe/y0OZr3SpAHsMylkHmOPeQBWvriTzjeLyarE19l9Scrdg8bidTtg3wYzTBvClwbc5sChazLwaVBCK+gK8Bh/vQN3QZYluM1J40+G98eHxyMA4GFcInJiZL2+7S9kTe4xb5xKD8rVZ7+g5WNqR706zcB5QiXohzxuLDDUVQdzS5+38ThI5v4ZxLUGoJY+gTnon2YIrhKEx4IUo=
+    - DIAPERBANK_ENDPOINT=https://diaper.test
+    - DIAPERBANK_KEY=diaperkey
+    - secure: H+QARNvkmJFBCyXtwHhRwHnfNUJ1N+maa8cDMg9r34GG6lqDIt+zQGiaEeuopDcd6KemdjrWAYQR4gzHkbkhRaZCDoMxhFysTUcKI+GZrVgDg2EuAqiqXwFvVW3tpSVXU/o27XvL9Q1GIynqtA17TvmwiHgyGpcC50XR+RDx3NzxKPTw3gXoRzxAnFkuwIA9dovMLwGFJxByxRfKgiz4LqIw5+Mv+hpAIvIiRHfeACY2tXfX8FBhsf9zf4ShCRmOSBHFoPwEA8W7/8dNLxqJYhqv6yRysYFCxa6iCbjz+9UdAimsmb43nakUaF/obMK+SBwAEJq0hLOMRzC5pu5lhJSqCQn2J/FdelCMxS742RTkGqS4kBgSiCp+5cayaaG8Gz4/Vez57/6CxGGhhyy4XoxCu9EbPu4/VYNDi4060bEn27SEOzUFJ2808KIPf7bl4vSeRmKxjI8vPNfC8PCa9UaFwHppIe/y0OZr3SpAHsMylkHmOPeQBWvriTzjeLyarE19l9Scrdg8bidTtg3wYzTBvClwbc5sChazLwaVBCK+gK8Bh/vQN3QZYluM1J40+G98eHxyMA4GFcInJiZL2+7S9kTe4xb5xKD8rVZ7+g5WNqR706zcB5QiXohzxuLDDUVQdzS5+38ThI5v4ZxLUGoJY+gTnon2YIrhKEx4IUo=
