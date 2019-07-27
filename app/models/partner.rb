@@ -90,6 +90,7 @@ class Partner < ApplicationRecord
 
   include DiaperBankClient
 
+  has_one :user
   has_one_attached :proof_of_partner_status
   has_one_attached :proof_of_form_990
   has_many_attached :documents
@@ -100,6 +101,8 @@ class Partner < ApplicationRecord
 
   has_many :partner_requests, dependent: :destroy
   has_many :family_requests, dependent: :destroy
+
+  delegate :email, to: :user
 
   def export_json
     {

@@ -2,7 +2,8 @@ require "rails_helper"
 
 describe "Partner account registration" do
   it "User with invitation link can register an account" do
-    Partner.invite!(email: "partner@email.com")
+    partner = create(:partner)
+    User.invite!(email: "partner@email.com", partner: partner)
 
     open_email "partner@email.com"
     visit_in_email "Accept invitation"

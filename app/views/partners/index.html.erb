@@ -17,7 +17,7 @@
       </div>
       <div class="pull-right right-buttons">
         <% if partner_signed_in? %>
-          <%= link_to 'Sign out', destroy_partner_session_path, :method => :delete, class: 'btn btn-default navbar-btn' %>
+          <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: 'btn btn-default navbar-btn' %>
         <% end %>
       </div>
     </nav>

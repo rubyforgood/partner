@@ -1,9 +1,10 @@
 module ControllerMacros
-  def login_partner(options = {})
+  def login_user(options = {})
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:partner]
+      @request.env["devise.mapping"] = Devise.mappings[:user]
       @partner = create(:partner, options)
-      sign_in @partner
+      @user = create(:user, partner: @partner)
+      sign_in @user
     end
   end
 end

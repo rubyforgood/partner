@@ -11,11 +11,11 @@ class PartnerPolicy < ApplicationPolicy
   end
 
   def show?
-    record == user
+    user&.partner == record
   end
 
   def update?
-    record == user
+    user&.partner == record
   end
 
   # TODO(chaserx): I think we should prevent deletion until we add a soft delete

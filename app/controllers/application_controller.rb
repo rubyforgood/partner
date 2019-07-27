@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
+  helper_method :current_partner
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   rescue_from ActiveRecord::RecordInvalid do |exception|
@@ -17,7 +19,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(*)
-    new_partner_session_path
+    new_user_session_path
+  end
+
+  def current_partner
+    current_user&.partner
   end
 
   private
