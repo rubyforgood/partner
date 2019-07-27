@@ -28,4 +28,8 @@ class Child < ApplicationRecord
   has_many :family_requests, through: :family_request_child
 
   scope :active, -> { where(active: true) }
+
+  def display_name
+    "#{first_name} #{last_name}"
+  end
 end
