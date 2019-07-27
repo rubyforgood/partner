@@ -24,35 +24,24 @@ class PartnersController < ApplicationController
   def create
     @partner = Partner.new(partner_params)
 
-    respond_to do |format|
-      if @partner.save
-        format.html { redirect_to @partner, notice: "Partner was successfully created." }
-        format.json { render :show, status: :created, location: @partner }
-      else
-        format.html { render :new }
-        format.json { render json: @partner.errors, status: :unprocessable_entity }
-      end
+    if @partner.save
+      redirect_to @partner, notice: "Partner was successfully created."
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @partner.update(partner_params)
-        format.html { redirect_to @partner, notice: "Details were successfully updated." }
-        format.json { render :show, status: :ok, location: @partner }
-      else
-        format.html { render :edit }
-        format.json { render json: @partner.errors, status: :unprocessable_entity }
-      end
+    if @partner.update(partner_params)
+      redirect_to @partner, notice: "Details were successfully updated."
+    else
+      render :edit
     end
   end
 
   def destroy
     @partner.destroy
-    respond_to do |format|
-      format.html { redirect_to partners_url, notice: "Partner was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to partners_url, notice: "Partner was successfully destroyed."
   end
 
   private
