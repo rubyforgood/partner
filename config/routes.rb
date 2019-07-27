@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   end
 
   resources :partner_requests, only: [:new, :create, :show, :index]
-  resources :family_requests, only: [:new, :create]
+  resources :family_requests, only: [:new, :create] do
+    resource :pickup_sheets, only: :show
+  end
 
   get "/api", action: :show, controller: "api"
   namespace :api, defaults: { format: "json" } do
