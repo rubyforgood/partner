@@ -17,19 +17,7 @@
       </div>
     <% end %>
     <div class="tile">
-      <%= form_with(model: @family_request, local: true) do |form| %>
-        <% if @family_request.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@family_request.errors.count, "error") %> prohibited this request from being saved:</h2>
-
-            <ul>
-              <% @family_request.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
+      <%= form_tag(family_requests_path) do %>
         <table class='table table-striped'>
           <thead>
           <tr>
@@ -67,7 +55,8 @@
           <hr>
 
           <div class="actions">
-            <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
+            <%= submit_tag("Submit Diaper Request", class: "btn btn-primary") %>
+            <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
           </div>
         </div>
       <% end %>

@@ -16,4 +16,6 @@ class ItemRequest < ApplicationRecord
   belongs_to :partner_request, optional: true
   validates :quantity, presence: true
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  has_many :child_item_requests, dependent: :destroy
+  has_many :children, through: :child_item_requests
 end
