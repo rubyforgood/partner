@@ -49,18 +49,18 @@ describe "Partners API Requests", type: :request do
   end
 
   describe "PUT /api/v1/partners" do
-    let(:headers) { {'X-Api-Key': ENV["DIAPER_KEY"]} }
+    let(:headers) { { 'X-Api-Key': ENV["DIAPER_KEY"] } }
 
     context "when we set the partner to pending" do
       let(:partner) { create(:partner) }
-      let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "pending" }} }
+      let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "pending" } } }
 
-      it 'returns OK' do
+      it "returns OK" do
         valid_partner_update_request(params, headers)
         expect(response).to have_http_status(:ok)
       end
 
-      it 'sets the status to pending' do
+      it "sets the status to pending" do
         valid_partner_update_request(params, headers)
         expect(partner.reload.partner_status).to eq("pending")
       end
@@ -68,61 +68,61 @@ describe "Partners API Requests", type: :request do
 
     context "when we set the partner to recertification_required" do
       let(:partner) { create(:partner) }
-      let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "recertification_required" }} }
+      let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "recertification_required" } } }
 
-      it 'returns OK' do
+      it "returns OK" do
         valid_partner_update_request(params, headers)
         expect(response).to have_http_status(:ok)
       end
 
-      it 'sets the status to Recertification Required' do
+      it "sets the status to Recertification Required" do
         valid_partner_update_request(params, headers)
         expect(partner.reload.partner_status).to eq("Recertification Required")
       end
 
-      it 'shows recertification required status in the response body' do
+      it "shows recertification required status in the response body" do
         valid_partner_update_request(params, headers)
-        expect(JSON.parse(response.body)['message']).to eq('Partner status: Recertification Required.')
+        expect(JSON.parse(response.body)["message"]).to eq("Partner status: Recertification Required.")
       end
     end
 
     context "when we set the partner to approved" do
       let(:partner) { create(:partner) }
-      let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "approved" }} }
+      let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "approved" } } }
 
-      it 'returns OK' do
+      it "returns OK" do
         valid_partner_update_request(params, headers)
         expect(response).to have_http_status(:ok)
       end
 
-      it 'sets the status to Verified' do
+      it "sets the status to Verified" do
         valid_partner_update_request(params, headers)
         expect(partner.reload.partner_status).to eq("Verified")
       end
 
-      it 'shows verified status in the response body' do
+      it "shows verified status in the response body" do
         valid_partner_update_request(params, headers)
-        expect(JSON.parse(response.body)['message']).to eq('Partner status: Verified.')
+        expect(JSON.parse(response.body)["message"]).to eq("Partner status: Verified.")
       end
     end
 
     context "when we try to set the partner to blarg" do
       let(:partner) { create(:partner) }
-      let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "blarg" }} }
+      let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "blarg" } } }
 
-      it 'returns OK' do
+      it "returns OK" do
         valid_partner_update_request(params, headers)
         expect(response).to have_http_status(:ok)
       end
 
-      it 'sets the status to pending' do
+      it "sets the status to pending" do
         valid_partner_update_request(params, headers)
         expect(partner.reload.partner_status).to eq("pending")
       end
 
-      it 'shows pending status in the response body' do
+      it "shows pending status in the response body" do
         valid_partner_update_request(params, headers)
-        expect(JSON.parse(response.body)['message']).to eq('Partner status: pending.')
+        expect(JSON.parse(response.body)["message"]).to eq("Partner status: pending.")
       end
     end
   end
@@ -141,7 +141,7 @@ describe "Partners API Requests", type: :request do
     )
   end
 
-  def valid_partner_update_request(params, headers={})
-    put '/api/v1/partners', params: params, headers: headers, as: :json
+  def valid_partner_update_request(params, headers = {})
+    put "/api/v1/partners", params: params, headers: headers, as: :json
   end
 end
