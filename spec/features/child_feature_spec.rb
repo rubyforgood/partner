@@ -2,9 +2,10 @@ require "rails_helper"
 
 describe Child, type: :feature, js: true do
   let(:partner) { create(:partner, id: 3) }
+  let(:user) { create(:user, partner: partner) }
 
   before do
-    sign_in(partner)
+    sign_in(user)
     visit(root_path)
   end
 

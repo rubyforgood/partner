@@ -1,5 +1,5 @@
 class FamilyRequestsController < ApplicationController
-  before_action :authenticate_partner!
+  before_action :authenticate_user!
 
   def new
     @family_request = current_partner.family_requests.new

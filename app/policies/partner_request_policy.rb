@@ -10,10 +10,10 @@ class PartnerRequestPolicy < ApplicationPolicy
   end
 
   def create?
-    record.partner == user
+    record.partner == user.partner
   end
 
   def show?
-    record.partner == user
+    record.partner == user.partner
   end
 end

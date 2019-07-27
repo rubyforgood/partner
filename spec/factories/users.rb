@@ -31,5 +31,6 @@ FactoryBot.define do
     sequence(:email, 100) { |n| "person#{n}@example.com" }
     password { "password" }
     password_confirmation { "password" }
+    partner
   end
 end
