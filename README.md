@@ -59,5 +59,5 @@ To login, use these default credentials provided in the seeds:
       Password: password
 
     Pending Organization
-      Email: unverifed@example.com
+      Email: unverified@example.com
       Password: password
