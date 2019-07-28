@@ -28,6 +28,9 @@ the partner gets an email notification stating their pick up date and a pdf copy
 
 ## Development
 
+There are detailed instructions for installation on Ubuntu hosts in the [ubuntu-installation.md](ubuntu-installation.md) file. As of now, there are no detailed instructions for Mac installation, but if you have any problems, the Ubuntu file may shed some light on them.
+
+
 ### Ruby Version
 This app uses Ruby version 2.6.2, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
 

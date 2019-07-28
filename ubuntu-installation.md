@@ -88,23 +88,20 @@ Don't forget that semicolon!
 You can now exit `psql`, by pressing `<Ctrl-D>` or typing `\q<Enter>`.
 
 
-### Making the Postgres Credentials Available in Your Environment 
+### The .env File
 
-You will see in `config/database.yml` that for the `development` and `test` environments, the Postgres username and password are fetched from the environment variables `PG_USERNAME` and `PG_PASSWORD`, respectively. In one way or another, the following commands will need to be executed:
- 
+
+This project uses a `.env` file in the project root directory, and it is recommended to use it to include a) the Postgres credentials, and b) the Diaperbank key and endpoint (needed for running the tests locally).
+
+In the project root directory, create an`.env` file containing:
+
 ```
 export PG_USERNAME=postgres
 export PG_PASSWORD=password
-```
-
-This project uses a `.env` file in the project root directory, and that is a good place for these statements. 
-
-In addition, if you will be running the tests, you will also need to include this in the `.env` file:
-
- ```
 DIAPERBANK_KEY="secretpassword"
 DIAPERBANK_ENDPOINT="https://diaper.test/api/v1"
 ```
+
 
 ### Initializing the Data Base
 
