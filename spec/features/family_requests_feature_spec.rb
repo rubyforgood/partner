@@ -31,6 +31,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
       expect(find("h3")).to have_text("Diaper Request History")
       expect(ChildItemRequest.count - children.count).to eq(child_item_requests)
       expect(ItemRequest.count - 2).to eq(item_requests)
+      expect(PartnerRequest.last.for_families?).to eq(true)
     end
   end
 end
