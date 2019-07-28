@@ -15,13 +15,11 @@ module DiaperBankClient
     end
   end
 
-  def self.send_family_request(family_request_id)
-    return unless family_request = FamilyRequest.find(family_request_id)
+  def self.send_family_request(children:, partner:)
+    payload = FamilyRequestPayloadService
+      .execute(children: children, partner: partner)
 
-    response = diaper_post_request(
-      routes.family_requests,
-      family_request.export_json
-    )
+    response = diaper_post_request(routes.family_requests, payload)
     response.body ? JSON.parse(response.body) : nil
   end
 
