@@ -120,11 +120,11 @@ FactoryBot.define do
     end
 
     trait(:verified) do
-      partner_status { "Verified" }
+      partner_status { "verified" }
     end
 
     trait(:recertification_required) do
-      partner_status { "Recertification Required" }
+      partner_status { "recertification_required" }
     end
 
     trait(:submitted) do

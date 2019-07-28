@@ -18,7 +18,7 @@ Partner.create(
     executive_director_email: "verified@example.com",
     email: "verified@example.com",
     password: "password",
-    partner_status: "Verified"
+    partner_status: "verified"
 )
 
 puts "Adding a generic 'pending' partner."

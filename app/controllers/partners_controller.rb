@@ -44,10 +44,7 @@ class PartnersController < ApplicationController
 
   def destroy
     @partner.destroy
-    respond_to do |format|
-      format.html { redirect_to partners_url, notice: "Partner was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to partners_url, notice: "Partner was successfully destroyed."
   end
 
   private
