@@ -127,3 +127,10 @@ Point a browser to `localhost:3000`. You should see the Partner home page. For l
 ### Google Chrome For Testing
 
 If you will be running the tests, you will need to download and install the Google Chrome browser.
+
+
+### Run the Tests
+
+If you would like to run the tests to further test the installation, you can do so with:
+
+`bundle exec rake`
