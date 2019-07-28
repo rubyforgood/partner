@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 2019_10_21_180630) do
     t.index ["family_id"], name: "index_authorized_family_members_on_family_id"
   end
 
+  create_table "child_item_requests", force: :cascade do |t|
+    t.bigint "child_id"
+    t.bigint "item_request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_child_item_requests_on_child_id"
+    t.index ["item_request_id"], name: "index_child_item_requests_on_item_request_id"
+  end
+
   create_table "children", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -262,6 +271,8 @@ ActiveRecord::Schema.define(version: 2019_10_21_180630) do
   end
 
   add_foreign_key "authorized_family_members", "families"
+  add_foreign_key "child_item_requests", "children"
+  add_foreign_key "child_item_requests", "item_requests"
   add_foreign_key "children", "families"
   add_foreign_key "families", "partners"
   add_foreign_key "family_request_children", "children"
