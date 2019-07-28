@@ -10,7 +10,7 @@ describe "Partner approval", type: :feature do
       .with(body: { partner: { diaper_partner_id: partner.id } })
       .to_return(status: 200)
 
-    expect { click_link("Submit for Approval") }.to_not raise_error
+    click_link("Submit for Approval")
     expect(partner.reload.partner_status).to eq("Submitted")
   end
 end
