@@ -17,13 +17,16 @@
               <tr>
                 <th scope="col">Child's name</th>
                 <th scope="col">Authorized Persons</th>
+                <th scope="col">Size Ordered</th>
               </tr>
             </thead>
             <tbody>
-              <% family_request.children.each do |child| %>
+              <% child_item_requests.each do |child_item_request| %>
+                <% child = child_item_request.child %>
                 <tr>
                   <td><%= child.display_name %></td>
                   <td><%= child.family.authorized_family_members.map(&:display_name).join(", ") %></td>
+                  <td><%= child_item_request.quantity %></td>
                 </tr>
               <% end %>
             </tbody>
