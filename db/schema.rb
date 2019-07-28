@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 2019_10_21_180630) do
     t.boolean "sent", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "for_families"
     t.index ["organization_id"], name: "index_partner_requests_on_organization_id"
     t.index ["partner_id"], name: "index_partner_requests_on_partner_id"
   end
