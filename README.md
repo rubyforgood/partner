@@ -32,12 +32,17 @@ There are detailed instructions for installation on Ubuntu hosts in the [ubuntu-
 
 
 ### Ruby Version
+
 This app uses Ruby version 2.6.2, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
 
+
 ### Database Configuration
+
 This app uses PostgreSQL for all environments. You'll also need to create the `dev` and `test` databases, the app is expecting them to be named `partner_dev` and `partner_test`, respectively. This should all be handled with `bundle exec rails db:setup`.
 
+
 ### Create your .env with database credentials
+
 Be sure to create a `.env` file in the root of the app that includes the following lines (change to whatever is appropriate for your system):
 ```
 PG_USERNAME=username
@@ -52,10 +57,14 @@ than the default of `localhost`:
 PG_HOST=hostname
 ```
 
+
 ## Seed the database
+
 From the root of the app, run `bundle exec rails db:seed`. This will create some initial data to use while testing the app and developing new features, including setting up the default user.
 
+
 ## Logging In
+
 To login, use these default credentials provided in the seeds:
 
     Verified Organization

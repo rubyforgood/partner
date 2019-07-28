@@ -94,7 +94,6 @@ You can now exit `psql`, by pressing `<Ctrl-D>` or typing `\q<Enter>`.
 
 ### The .env File
 
-
 This project uses a `.env` file in the project root directory, and it is recommended to use it to include a) the Postgres credentials, and b) the Diaperbank key and endpoint (needed for running the tests locally).
 
 In the project root directory, create an `.env` file containing:
