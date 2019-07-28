@@ -89,7 +89,7 @@ require "rails_helper"
 
 describe Partner, type: :model, include_shared: true do
   it { is_expected.to have_many(:partner_requests).dependent(:destroy) }
-  it { is_expected.to have_one(:user) }
+  it { is_expected.to have_one(:user).dependent(:destroy) }
 
   describe "#approve_me" do
     let(:partner) { create(:partner) }
