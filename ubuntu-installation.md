@@ -99,8 +99,8 @@ This project uses a `.env` file in the project root directory, and it is recomme
 In the project root directory, create an `.env` file containing:
 
 ```
-export PG_USERNAME=postgres
-export PG_PASSWORD=password
+PG_USERNAME=postgres
+PG_PASSWORD=password
 DIAPERBANK_KEY="secretpassword"
 DIAPERBANK_ENDPOINT="https://diaper.test/api/v1"
 ```
