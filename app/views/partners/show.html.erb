@@ -1,3 +1,4 @@
+<% @not_provided = 'Not Provided' %>
 <div class="app-title">
   <div>
     <% if @partner.partner_status == "Recertification Required" %>
@@ -207,48 +208,48 @@
 
                   <h6>Ethnic Composition of Those Served</h6>
                   <dt>African American</dt>
-                  <dd><%= @partner.population_black || 'Not Provided' %></dd>
+                  <dd><%= @partner.population_black || @not_provided %></dd>
 
                   <dt>Caucasian</dt>
-                  <dd><%= @partner.population_white || 'Not Provided' %></dd>
+                  <dd><%= @partner.population_white || @not_provided %></dd>
 
                   <dt>Hispanic</dt>
-                  <dd><%= @partner.population_hispanic || 'Not Provided' %></dd>
+                  <dd><%= @partner.population_hispanic || @not_provided %></dd>
 
                   <dt>Asian</dt>
-                  <dd><%= @partner.population_asian || 'Not Provided' %></dd>
+                  <dd><%= @partner.population_asian || @not_provided %></dd>
 
                   <dt>American Indian</dt>
-                  <dd><%= @partner.population_american_indian || 'Not Provided' %></dd>
+                  <dd><%= @partner.population_american_indian || @not_provided %></dd>
 
                   <dt>Pacific Islander</dt>
-                  <dd><%= @partner.population_island || 'Not Provided' %></dd>
+                  <dd><%= @partner.population_island || @not_provided %></dd>
 
                   <dt>Multi-racial</dt>
-                  <dd><%= @partner.population_multi_racial || 'Not Provided' %></dd>
+                  <dd><%= @partner.population_multi_racial || @not_provided %></dd>
 
                   <dt>Other</dt>
-                  <dd><%= @partner.population_other || 'Not Provided' %></dd>
+                  <dd><%= @partner.population_other || @not_provided %></dd>
 
                   <dt>Zip Codes Served</dt>
                   <dd><%= @partner.zips_served %></dd>
 
                   <h6>Poverty Information of Those Served</h6>
                   <dt>At FPL or below</dt>
-                  <dd><%= @partner.at_fpl_or_below || 'Not Provided' %></dd>
+                  <dd><%= @partner.at_fpl_or_below || @not_provided %></dd>
 
                   <dt>Above 1-2 times FPL</dt>
-                  <dd><%= @partner.above_1_2_times_fpl || 'Not Provided' %></dd>
+                  <dd><%= @partner.above_1_2_times_fpl || @not_provided %></dd>
 
                   <dt>Greater than 2 times FPL</dt>
-                  <dd><%= @partner.greater_2_times_fpl || 'Not Provided' %></dd>
+                  <dd><%= @partner.greater_2_times_fpl || @not_provided %></dd>
 
                   <dt>Poverty Unknown</dt>
-                  <dd><%= @partner.poverty_unknown || 'Not Provided' %></dd>
+                  <dd><%= @partner.poverty_unknown || @not_provided %></dd>
 
                   <h6>Ages Served</h6>
                   <dt>Ages</dt>
-                  <dd><%= @partner.ages_served || 'Not Provided' %></dd>
+                  <dd><%= @partner.ages_served || @not_provided %></dd>
                 </dl>
               </div>
             </div>
