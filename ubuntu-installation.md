@@ -112,7 +112,7 @@ The `password` value needs to be whatever password you set in `psql`.
 
 From your project directory, initialize the data base:
 
-`bundle exec rake db:setup`
+`bin/rails db:setup`
 
 
 ### Trying Out the Application
