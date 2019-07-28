@@ -12,9 +12,7 @@ class PickupSheetsController < ApplicationController
   end
 
   def child_item_requests
-    @child_item_requests ||= partner_request.item_requests.map do |item_request|
-      item_request.child_item_requests
-    end.flatten.sort_by do |child_item_request|
+    @child_item_requests ||= partner_request.item_requests.map(&:child_item_requests).flatten.sort_by do |child_item_request|
       child_item_request.child.display_name
     end
   end
