@@ -46,10 +46,10 @@ RSpec.shared_context "stubs", shared_context: :metadata do
           }
         ]
       }.to_json,
-      status: 200)
+      status: 200
+    )
   end
 end
-
 
 RSpec.configure do |config|
   config.include_context "diaperbank routes", include_shared: true
