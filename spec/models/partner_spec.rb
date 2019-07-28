@@ -132,7 +132,7 @@ describe Partner, type: :model, include_shared: true do
           "X-Api-Key" => ENV["DIAPERBANK_KEY"]
         }
       ).to_return(status: 200, body: "", headers: {})
-      expect { partner.approve_me }.to change { partner.partner_status }.from("pending").to("Submitted")
+      expect { partner.approve_me }.to change { partner.partner_status }.from("pending").to("submitted")
     end
 
     it "posts the diaper partner id" do
@@ -144,7 +144,7 @@ describe Partner, type: :model, include_shared: true do
   describe "verified?" do
     context "partner with a verfied status" do
       it "returns a partner verified status as true" do
-        partner = build(:partner, partner_status: "Verified")
+        partner = build(:partner, partner_status: "verified")
         expect(partner.verified?).to be true
       end
     end
@@ -167,7 +167,7 @@ describe Partner, type: :model, include_shared: true do
   describe "pending?" do
     context "partner with a verfied status" do
       it "returns a partner pending status as false" do
-        partner = build(:partner, partner_status: "Verified")
+        partner = build(:partner, partner_status: "verified")
         expect(partner.pending?).to be false
       end
     end

@@ -11,6 +11,6 @@ describe "Partner approval", type: :feature do
       .to_return(status: 200)
 
     click_link("Submit for Approval")
-    expect(partner.reload.partner_status).to eq("Submitted")
+    expect(partner.reload.partner_status).to eq("submitted")
   end
 end
