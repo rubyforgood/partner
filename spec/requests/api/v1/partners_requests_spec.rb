@@ -84,6 +84,10 @@ describe "Partners API Requests", type: :request do
         valid_partner_update_request(params, headers)
         expect(JSON.parse(response.body)["message"]).to eq("Partner status: Recertification Required.")
       end
+
+      it "emails a notification" do
+        expect { valid_partner_update_request(params, headers) }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
     end
 
     context "when we set the partner to approved" do
