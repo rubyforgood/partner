@@ -85,6 +85,10 @@ In `psql`, the following command would add a password whose value is `password`:
 
 Don't forget that semicolon!
 
+If the command succeeds, `psql` will respond with:
+
+`ALTER ROLE`
+
 You can now exit `psql`, by pressing `<Ctrl-D>` or typing `\q<Enter>`.
 
 
@@ -102,6 +106,8 @@ DIAPERBANK_KEY="secretpassword"
 DIAPERBANK_ENDPOINT="https://diaper.test/api/v1"
 ```
 
+The `password` value needs to be whatever password you set in `psql`.
+
 
 ### Initializing the Data Base
 
@@ -116,7 +122,7 @@ You should now be able to successfully run the application:
 
 `rails server`
 
-Point a browser to `localhost:3000`. You should see the Partner home page. For login credentials, consult the "Logging In" section of the README.md file (at the time of this writing at [https://github.com/rubyforgood/partner/blob/master/README.md](https://github.com/rubyforgood/partner/blob/master/README.md).
+Point a browser to `localhost:3000`. You should see the Partner home page. For login credentials, consult the "Logging In" section of the [README.md](README.md) file.
 
 
 ### Google Chrome For Testing
