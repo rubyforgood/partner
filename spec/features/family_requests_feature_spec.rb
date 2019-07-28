@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe FamilyRequestsController , type: :feature, include_shared: true, js: true do
+describe FamilyRequestsController, type: :feature, include_shared: true, js: true do
   let(:partner) { create(:partner, :verified, id: 3) }
   let(:family) { create(:family, partner: partner) }
   let(:another_family) { create(:family, partner: partner) }
@@ -9,7 +9,7 @@ describe FamilyRequestsController , type: :feature, include_shared: true, js: tr
       create(:child, family: family),
       create(:child, family: family, item_needed_diaperid: 2),
       create(:child, family: family, item_needed_diaperid: 2),
-      create(:child, family: another_family,  item_needed_diaperid: 2),
+      create(:child, family: another_family, item_needed_diaperid: 2),
       create(:child, family: another_family)
     ]
   end
@@ -26,9 +26,9 @@ describe FamilyRequestsController , type: :feature, include_shared: true, js: tr
       stub_successful_items_partner_request
       stub_successful_family_request
       visit partner_requests_path
-      find_link('Create New Family Diaper Request').click
+      find_link("Create New Family Diaper Request").click
       find('input[type="submit"]').click
-      expect(find('h3')).to have_text('Diaper Request History')
+      expect(find("h3")).to have_text("Diaper Request History")
       expect(ChildItemRequest.count - children.count).to eq(child_item_requests)
       expect(ItemRequest.count - 2).to eq(item_requests)
     end
