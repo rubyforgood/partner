@@ -17,5 +17,17 @@ FactoryBot.define do
     sequence(:item_id) { |n| n }
     quantity { rand(1..1000) }
     partner_request
+
+    factory :item_request_with_child_item_requests do
+      transient do
+        child Child.new
+      end
+
+      after(:create) do |item_request, evaluator|
+        evaluator.children.each do |child|
+          create(:child_item_request, child: child, item_request: item_request)
+        end
+      end
+    end
   end
 end
