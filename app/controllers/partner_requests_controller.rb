@@ -7,7 +7,7 @@ class PartnerRequestsController < ApplicationController
   end
 
   def new
-    if current_partner.partner_status == "Verified"
+    if current_partner.partner_status == "verified"
       @partner_request = PartnerRequest.new
       @partner_request.item_requests.build # required to render the empty items form
     else

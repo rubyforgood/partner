@@ -234,7 +234,7 @@ class Partner < ApplicationRecord
   end
 
   def approve_me
-    update(partner_status: "Submitted")
+    update(partner_status: "submitted")
     DiaperBankClient.post(diaper_partner_id)
   end
 
