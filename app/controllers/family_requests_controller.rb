@@ -17,7 +17,7 @@ class FamilyRequestsController < ApplicationController
       partner_request = PartnerRequest.new(
         api_response
         .slice("partner_id", "organization_id")
-        .merge({sent: true, for_families: true})
+        .merge(sent: true, for_families: true)
       )
       api_response["requested_items"].each do |item_hash|
         partner_request.item_requests.new(
