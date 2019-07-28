@@ -68,6 +68,10 @@ Install the required version of Ruby (you may be prompted for your system passwo
 
 `rvm install $(cat .ruby-version)`
 
+Bundler will probably already be available, but this command will install it if (and only if) it is not:
+
+`gem install -v 1.17.2 bundler --conservative`
+
 Then, from your project directory, install the gems required for the project:
 
 `bundle`
