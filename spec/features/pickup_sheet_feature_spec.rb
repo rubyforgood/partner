@@ -9,14 +9,14 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
       create(:child, family: family),
       create(:child, family: family, item_needed_diaperid: 2),
       create(:child, family: family, item_needed_diaperid: 2),
-      create(:child, family: another_family,  item_needed_diaperid: 2),
+      create(:child, family: another_family, item_needed_diaperid: 2),
       create(:child, family: another_family)
     ].sort_by(&:display_name)
   end
 
   let!(:authorized_family_members) do
-    [family, another_family].each_with_object({})  do |family, map|
-      map[family.id] = 2.times.map do
+    [family, another_family].each_with_object({}) do |family, map|
+      map[family.id] = Array.new(2).map do
         create(
           :authorized_family_member,
           first_name: Faker::Name.first_name,
@@ -35,9 +35,9 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
     stub_successful_items_partner_request
     stub_successful_family_request
     visit partner_requests_path
-    find_link('Create New Family Diaper Request').click
+    find_link("Create New Family Diaper Request").click
     find('input[type="submit"]').click
-    expect(find('h3')).to have_text('Diaper Request History')
+    expect(find("h3")).to have_text("Diaper Request History")
     partner_request_id = PartnerRequest.last.id
     visit family_request_pickup_sheets_path(family_request_id: partner_request_id)
     within "thead" do

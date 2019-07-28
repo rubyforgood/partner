@@ -1,6 +1,5 @@
 # Returns payload to be sent to DiaperBank via an API request.
 class FamilyRequestPayloadService
-
   def self.execute(children:, partner:)
     new(children: children, partner: partner).execute
   end
@@ -22,9 +21,8 @@ class FamilyRequestPayloadService
   private
 
   def requested_items
-    items_count_map.map { |item, count| {item_id: item, person_count: count} }
+    items_count_map.map { |item, count| { item_id: item, person_count: count } }
   end
-
 
   def items_count_map
     children.each_with_object({}) do |child, map|
@@ -32,5 +30,4 @@ class FamilyRequestPayloadService
       map[child.item_needed_diaperid] += 1
     end
   end
-
 end
