@@ -77,12 +77,12 @@ describe "Partners API Requests", type: :request do
 
       it "sets the status to Recertification Required" do
         valid_partner_update_request(params, headers)
-        expect(partner.reload.partner_status).to eq("Recertification Required")
+        expect(partner.reload.partner_status).to eq("recertification_required")
       end
 
       it "shows recertification required status in the response body" do
         valid_partner_update_request(params, headers)
-        expect(JSON.parse(response.body)["message"]).to eq("Partner status: Recertification Required.")
+        expect(JSON.parse(response.body)["message"]).to eq("Partner status: recertification_required.")
       end
 
       it "emails a notification" do
@@ -101,12 +101,12 @@ describe "Partners API Requests", type: :request do
 
       it "sets the status to Verified" do
         valid_partner_update_request(params, headers)
-        expect(partner.reload.partner_status).to eq("Verified")
+        expect(partner.reload.partner_status).to eq("verified")
       end
 
       it "shows verified status in the response body" do
         valid_partner_update_request(params, headers)
-        expect(JSON.parse(response.body)["message"]).to eq("Partner status: Verified.")
+        expect(JSON.parse(response.body)["message"]).to eq("Partner status: verified.")
       end
     end
 
