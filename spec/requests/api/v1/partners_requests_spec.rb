@@ -67,7 +67,8 @@ describe "Partners API Requests", type: :request do
     end
 
     context "when we set the partner to recertification_required" do
-      let(:partner) { create(:partner) }
+      let(:user) { create(:user) }
+      let(:partner) { create(:partner, user: user) }
       let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "recertification_required" } } }
 
       it "returns OK" do
