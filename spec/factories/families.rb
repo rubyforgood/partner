@@ -44,4 +44,10 @@ FactoryBot.define do
     comments { "MyText" }
     partner
   end
+
+  trait(:with_child) do
+    after(:create) do |family|
+      create(:child, family: family)
+    end
+  end
 end
