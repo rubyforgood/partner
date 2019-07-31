@@ -16,8 +16,6 @@ Partner.create(
     diaper_bank_id: 1,
     diaper_partner_id: 1,
     executive_director_email: "verified@example.com",
-    email: "verified@example.com",
-    password: "password",
     partner_status: "verified"
 )
 
@@ -34,15 +32,11 @@ Partner.create(
     zip_code: Faker::Address.zip,
     website: Faker::Internet.domain_name,
     zips_served: Faker::Address.zip,
-    executive_director_email: "unverified@example.com",
-    email: "unverified@example.com",
-    password: "password"
+    executive_director_email: "unverified@example.com"
 )
 
 puts "Adding a 'invited' partner."
 Partner.create(
-    name: "Pawnee Homeless Shelter",
-    email: "anyone@pawneehomelss.com",
     partner_status: "invited",
     diaper_bank_id: 1,
     diaper_partner_id: 2,
@@ -56,14 +50,11 @@ Partner.create(
     zip_code: Faker::Address.zip,
     website: Faker::Internet.domain_name,
     zips_served: Faker::Address.zip,
-    executive_director_email: "anyone@pawneehomelss.com",
-    password: "password"
+    executive_director_email: "anyone@pawneehomelss.com"
 )
 
 puts "Adding a 'invited' partner."
 Partner.create(
-    name: "Pawnee Pregnancy Center",
-    email: "contactus@pawneepregnancy.com",
     partner_status: "invited",
     diaper_bank_id: 1,
     diaper_partner_id: 3,
@@ -77,20 +68,17 @@ Partner.create(
     zip_code: Faker::Address.zip,
     website: Faker::Internet.domain_name,
     zips_served: Faker::Address.zip,
-    executive_director_email: "contactus@pawneepregnancy.com",
-    password: "password"
+    executive_director_email: "contactus@pawneepregnancy.com"
 )
 
 puts "Adding a 'recertification_required' partner."
 Partner.create(
     name: "Pawnee Senior Citizens Center",
-    email: "help@pscc.org",
     partner_status: "recertification_required",
     diaper_bank_id: 1,
     diaper_partner_id: 5,
     executive_director_name: Faker::Name.name,
     program_contact_name: Faker::Name.name,
-    name: "County Diaper Bank",
     address1: Faker::Address.street_address,
     address2: "",
     city: Faker::Address.city,
@@ -98,8 +86,7 @@ Partner.create(
     zip_code: Faker::Address.zip,
     website: Faker::Internet.domain_name,
     zips_served: Faker::Address.zip,
-    executive_director_email: "help@pscc.org",
-    password: "password"
+    executive_director_email: "help@pscc.org"
 )
 
 puts "Done creating partners."
