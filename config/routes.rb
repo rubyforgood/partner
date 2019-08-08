@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   get "/api", action: :show, controller: "api"
   namespace :api, defaults: { format: "json" } do
     namespace :v1 do
-      resources :partners, only: [:create, :show]
-      resource :partners, only: [:update]
+      resources :partners, only: [:create, :show, :update]
+      # resource :partners, only: [:update]
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

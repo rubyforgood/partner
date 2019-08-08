@@ -48,7 +48,7 @@ describe "Partners API Requests", type: :request do
     end
   end
 
-  describe "PUT /api/v1/partners" do
+  xdescribe "PUT /api/v1/partners" do
     let(:headers) { { 'X-Api-Key': ENV["DIAPER_KEY"] } }
 
     context "when we set the partner to pending" do
