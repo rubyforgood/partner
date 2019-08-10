@@ -48,7 +48,7 @@ describe "Partners API Requests", type: :request do
     end
   end
 
-  xdescribe "PUT /api/v1/partners" do
+  describe "PUT /api/v1/partners" do
     let(:headers) { { 'X-Api-Key': ENV["DIAPER_KEY"] } }
 
     context "when we set the partner to pending" do
@@ -147,6 +147,6 @@ describe "Partners API Requests", type: :request do
   end
 
   def valid_partner_update_request(params, headers = {})
-    put "/api/v1/partners", params: params, headers: headers, as: :json
+    put "/api/v1/partners/1", params: params, headers: headers, as: :json
   end
 end
