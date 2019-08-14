@@ -26,6 +26,17 @@ Rails.application.routes.draw do
       # resource :partners, only: [:update]
     end
   end
+
+  get(
+    "/partners/sign_in",
+    to: redirect("/users/sign_in")
+  )
+
+  get(
+    "/partners/invitiation/accept?_inquiry_groups/:id/edit",
+    to: redirect(path: "/users/invitation/accept")
+  )
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "pages/:name", to: "static#page"
   root "static#index"
