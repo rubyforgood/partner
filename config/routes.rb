@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :families
 
   resources :authorized_family_members
-  devise_scope :users do
+  devise_scope :user do
     get "/users/sign_out" => "devise/sessions#destroy"
   end
 
