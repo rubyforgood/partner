@@ -9,7 +9,10 @@ class Api::V1::PartnersController < ApiController
       diaper_bank_id: partner_params[:diaper_bank_id],
       diaper_partner_id: partner_params[:diaper_partner_id]
     )
-    user = User.invite!(email: partner_params[:email], partner: partner)
+
+    user = User.invite!(email: partner_params[:email], partner: partner) do |new_user|
+      new_user.message = partner_params[:invitation_text]
+    end
 
     render json: {
       email: user.email,
@@ -59,6 +62,7 @@ class Api::V1::PartnersController < ApiController
     params.require(:partner).permit(
       :diaper_bank_id,
       :diaper_partner_id,
+      :invitation_text,
       :email,
       :status
     )
