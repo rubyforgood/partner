@@ -32,5 +32,6 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  attr_accessor :message
   belongs_to :partner
 end
