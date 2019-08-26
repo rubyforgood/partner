@@ -7,7 +7,7 @@
             <i class="fa fa-cog fa-lg"></i> Edit Partner
           <% end %>
         </li>
-        <li><%= link_to destroy_user_session_path, class: "dropdown-item" do %>
+        <li><%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
             <i class="fa fa-sign-out fa-lg"></i> Logout
           <% end %>
         </li>
