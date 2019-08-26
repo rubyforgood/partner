@@ -8,77 +8,13 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <!-- Main CSS-->
-  <!-- Font-icon css-->
 </head>
-<body class="app sidebar-mini rtl">
-<!-- Navbar-->
-<header class="app-header"><a class="app-header__logo" href="#">Partnerbase</a>
-  <!-- Sidebar toggle button-->
-  <!--  <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>-->
-  <!-- Navbar Right Menu-->
-  <ul class="app-nav">
-    <!-- User Menu-->
-    <li class="dropdown">
-      <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-      <ul class="dropdown-menu settings-menu dropdown-menu-right">
-        <li><%= link_to edit_partner_path(current_partner), class: "dropdown-item" do %>
-            <i class="fa fa-cog fa-lg"></i> Edit Partner
-          <% end %>
-        </li>
-        <li><%= link_to destroy_user_session_path, class: "dropdown-item" do %>
-            <i class="fa fa-sign-out fa-lg"></i> Logout
-          <% end %>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</header>
-<!-- Sidebar menu-->
-<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-<aside class="app-sidebar">
-  <ul class="app-menu">
-    <li>
-      <%= link_to partner_path(current_partner), class: "app-menu__item #{'active' if current_page?(partner_path(id: current_partner.id))}" do %>
-        <i class="app-menu__icon fa fa-dashboard"></i> <span class="app-menu__label">My Organization</span>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to edit_partner_path(current_partner), class: "app-menu__item #{'active' if current_page?(edit_partner_path(id: current_partner.id))}" do %>
-        <i class="app-menu__icon fa fa-cog"></i> <span class="app-menu__label">Edit Partner</span>
-      <% end %>
-    </li>
-    <% if current_partner.verified? %>
-      <li>
-        <%= link_to partner_requests_path, class: "app-menu__item #{active_class(['partner_requests'])}" do %>
-          <i class="app-menu__icon fa fa-edit"></i> <span class="app-menu__label">Diaper Request</span>
-        <% end %>
-      </li>
-    <% end %>
-    <% if current_partner.family_request_active? %>
-    <li>
-      <%= link_to families_path, class: "app-menu__item #{'active' if current_page?(families_path)}" do %>
-        <i class="fa fa-users app-menu__icon"></i>
-        <span class="app-menu__label">Families</span>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to children_path, class: "app-menu__item #{'active' if current_page?(children_path)}" do %>
-        <i class="fa fa-child app-menu__icon"></i>
-        <span class="app-menu__label">Children</span>
-      <% end %>
-    </li>
-    <% end %>
-  </ul>
-</aside>
-<main class="app-content">
-  <%= yield %>
-
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-    </div>
-    <strong>Partnerbase was built with <i class="fa fa-heart"></i> by <a href="http://rubyforgood.org">Ruby for Good</a>.</strong>
-  </footer>
-</main>
-</body>
+  <body class="app sidebar-mini rtl">
+    <main class="app-content">
+      <%= render partial: "layouts/navbar" %>
+      <%= render partial: "layouts/sidebar" %>
+      <%= yield %>
+      <%= render partial: "layouts/footer" %>
+    </main>
+  </body>
 </html>
