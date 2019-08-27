@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PartnersController, type: :controller, include_shared: true do
+xdescribe PartnersController, type: :controller, include_shared: true do
   context "when authenticated" do
     login_user
 

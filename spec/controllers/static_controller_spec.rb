@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe StaticController, type: :controller do
+xdescribe StaticController, type: :controller do
   context "when getting the root url" do
     describe "GET #index" do
       it "returns http success" do

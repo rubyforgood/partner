@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PartnerRequestsController, type: :controller do
+xdescribe PartnerRequestsController, type: :controller do
   context "when authenticated" do
     context "when approved" do
       login_user(partner_status: "verified")
