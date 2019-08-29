@@ -14,7 +14,7 @@ require "devise"
 require "capybara/rails"
 require "capybara/rspec"
 require "capybara-screenshot/rspec"
-require_relative "support/controller_macros"
+
 # Add additional requires below this line. Rails is not loaded until this point!
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -138,5 +138,6 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers,  type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.extend ControllerMacros, type: :controller
+  config.include RequestSpecHelper, type: :request
   config.include FactoryBot::Syntax::Methods
 end
