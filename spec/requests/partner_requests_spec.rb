@@ -48,6 +48,22 @@ RSpec.describe "Partner Requests Controller", type: :request do
         end
       end
     end
+
+    describe "GET #show" do
+      let!(:partner_request) { create(:partner_request) }
+
+      it "returns http success" do
+        get partner_requests_path(partner_request.id)
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    describe "GET #index" do
+      it "returns http success" do
+        get partner_requests_path
+        expect(response).to have_http_status(200)
+      end
+    end
   end
 
   context "when user not authenticated" do
