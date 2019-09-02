@@ -10,39 +10,39 @@ RSpec.describe "Families", type: :request do
 
   describe "GET #index" do
     it "return http sucess" do
-      get families_path 
+      get families_path
 
       expect(response).to have_http_status(:ok)
     end
   end
 
   describe "GET #new" do
-    it "should return status code 200" do 
+    it "should return status code 200" do
       get new_family_path
 
       expect(response).to have_http_status :ok
     end
   end
 
-  describe "POST #create" do    
-    it "should create and redirect to family_path" do 
+  describe "POST #create" do
+    it "should create and redirect to family_path" do
       post families_path, params: { family: attributes_for(:family) }
 
       family = Family.select(:id).last
 
       expect(response).to redirect_to(family_path(family.id))
-      expect(request.flash[:notice]).to eql  "Family was successfully created."
+      expect(request.flash[:notice]).to eql "Family was successfully created."
     end
   end
 
   describe "PUT #update" do
-    let(:family) { create(:family, partner: partner) }  
+    let(:family) { create(:family, partner: partner) }
 
     it "should update  and redirect to family_path" do
       put family_path(family), params: { family: attributes_for(:family) }
 
       expect(response).to redirect_to(family_path(family.id))
-      expect(request.flash[:notice]).to eql  "Family was successfully updated."
+      expect(request.flash[:notice]).to eql "Family was successfully updated."
     end
   end
 
@@ -53,7 +53,7 @@ RSpec.describe "Families", type: :request do
       delete family_path(family)
 
       expect(response).to redirect_to(families_path)
-      expect(request.flash[:notice]).to eql  "Family was successfully destroyed."
+      expect(request.flash[:notice]).to eql "Family was successfully destroyed."
     end
   end
 end
