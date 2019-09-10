@@ -135,6 +135,7 @@ RSpec.configure do |config|
 
   # sign_in helpers for feature specs
   config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::ControllerHelpers,  type: :controller
   config.extend ControllerMacros, type: :controller
   config.include FactoryBot::Syntax::Methods
