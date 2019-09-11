@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Partners", :type => :request, include_shared: true do
+RSpec.describe "Partners", type: :request, include_shared: true do
   let(:partner) { create(:partner) }
   let(:user) { create(:user, partner: partner) }
 
