@@ -110,6 +110,9 @@
                   <dt>Case Management</dt>
                   <dd><%= humanize_boolean(@partner.case_management) %></dd>
 
+                  <dt>Internal DB</dt>
+                  <dd><%= humanize_boolean(@partner.internal_db) %></dd>
+
                   <dt>Evidence Based</dt>
                   <dd><%= humanize_boolean(@partner.evidence_based) %></dd>
 
@@ -198,9 +201,6 @@
 
                   <dt>Income Verification</dt>
                   <dd><%= humanize_boolean(@partner.income_verification) %></dd>
-
-                  <dt>Internal DB</dt>
-                  <dd><%= humanize_boolean(@partner.internal_db) %></dd>
 
                   <dt>MAAC</dt>
                   <dd><%= humanize_boolean(@partner.maac) %></dd>
