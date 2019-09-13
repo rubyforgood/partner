@@ -14,6 +14,8 @@ class FamilyRequest < ApplicationRecord
   has_many :family_request_children, dependent: :destroy
   has_many :children, through: :family_request_children
 
+  validates :partner, presence: true
+
   def export_json
     items_count_map = children.each_with_object({}) do |child, map|
       map[child.item_needed_diaperid] ||= 0
