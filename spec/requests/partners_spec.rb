@@ -44,8 +44,7 @@ RSpec.describe "Partners", type: :request, include_shared: true do
         follow_redirect!
         expect(response.body).to include("Details were successfully updated.")
       end
-    end
-    
+    end    
     it "displays the partner form get#edit" do
       get edit_partner_path(partner)
 
