@@ -16,7 +16,7 @@
         <div class="tile-body">
           <div class="form-horizontal">
             <div class="form-group row">
-              <label class="control-label col-md-3">Name</label>
+              <label class="control-label col-md-3">Agency Name</label>
               <div class="col-md-8">
                 <%= form.text_field :name, class: "form-control" %>
               </div>
@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="control-label col-md-3">Proof of Partner Status</label>
+              <label class="control-label col-md-3">501(c)(3) IRS Determination Letter</label>
               <% if partner.proof_of_partner_status.attached? %>
                 <div class="col-md-8">
                   Attached
@@ -136,7 +136,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="control-label col-md-3">Evidence Based</label>
+                <label class="control-label col-md-3">Do You Track Program Results</label>
                 <div class="col-md-8">
                   <%= form.check_box :evidence_based, class: "form-control form-check-input" %>
                 </div>
@@ -166,7 +166,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="control-label col-md-3">Other Diaper Use</label>
+                <label class="control-label col-md-3">Do You Receive Diapers From Other Sources</label>
                 <div class="col-md-8">
                   <%= form.text_field :other_diaper_use, class: "form-control" %>
                 </div>
@@ -335,7 +335,7 @@
         <div class="tile-body">
           <div class="form-horizontal">
             <div class="form-group row">
-              <label class="control-label col-md-3">Income Requirement</label>
+              <label class="control-label col-md-3">Clients Have An Income Requirement to Work With You</label>
               <div class="col-md-8">
                 <%= form.check_box :income_requirement_desc, class: "form-check-input form-control" %>
               </div>
@@ -347,7 +347,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="control-label col-md-3">Income Verification</label>
+              <label class="control-label col-md-3">Do You Verify The Income Of Your Clients</label>
               <div class="col-md-8">
                 <%= form.check_box :income_verification, class: "form-check-input form-control" %>
               </div>
@@ -583,7 +583,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="control-label col-md-3">Sources of Diapers</label>
+              <label class="control-label col-md-3">How do you currently obtain diapers?</label>
               <div class="col-md-8">
                 <%= form.text_field :sources_of_diapers, class: "form-control" %>
               </div>
