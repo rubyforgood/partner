@@ -136,6 +136,12 @@
                 </div>
               </div>
               <div class="form-group row">
+                <label class="control-label col-md-3">Internal Database</label>
+                <div class="col-md-8">
+                <%= form.check_box :internal_db, class: "form-check-input form-control" %>
+                </div>
+              </div>
+              <div class="form-group row">
                 <label class="control-label col-md-3">Evidence Based</label>
                 <div class="col-md-8">
                   <%= form.check_box :evidence_based, class: "form-control form-check-input" %>
@@ -352,12 +358,7 @@
                 <%= form.check_box :income_verification, class: "form-check-input form-control" %>
               </div>
             </div>
-            <div class="form-group row">
-              <label class="control-label col-md-3">Internal Database</label>
-              <div class="col-md-8">
-                <%= form.check_box :internal_db, class: "form-check-input form-control" %>
-              </div>
-            </div>
+          
             <div class="form-group row">
               <label class="control-label col-md-3">MAAC Program Participant</label>
               <div class="col-md-8">
