@@ -1,24 +1,21 @@
 require "rails_helper"
 
 RSpec.describe "Partners", type: :request, include_shared: true do
-  let(:partner) { create(:partner) }
-  let(:user) { create(:user, partner: partner) }
-
+  
   context "when authenticated" do
-    before do
-      sign_in user
-    end
-    it "returns http success get#show" do
-      get partner_path(partner)
+    login_user
 
+    it "returns http success get#show" do
+      get partner_path(@partner)
+      
       expect(response).to have_http_status(200)
     end
 
     it "should redirect to partner get#approve" do
       stub_partner_requst
-      get partner_approve_path(partner)
+      get partner_approve_path(@partner)
 
-      expect(response).to redirect_to(partner)
+      expect(response).to redirect_to(@partner)
     end
 
     it "does not allow access to partner post#index" do
@@ -28,52 +25,56 @@ RSpec.describe "Partners", type: :request, include_shared: true do
     end
 
     describe "PATCH #update" do
-      subject { patch partner_path(partner, params: { partner: { name: "updated name" } }) }
 
       it "updates the partner" do
-        expect { subject }.to change { partner.reload.name }.to("updated name")
+        expect { patch partner_path(@partner, params: { partner: { name: "updated name" } }) }.to change { @partner.reload.name }.to("updated name")
       end
 
       it "redirects to #show" do
-        subject
-        expect(response).to redirect_to(partner)
+        patch partner_path(@partner, params: { partner: { name: "updated name" } })
+
+        expect(response).to redirect_to(@partner)
       end
 
       it "Show message of details" do
-        subject
+        patch partner_path(@partner, params: { partner: { name: "updated name" } })
         follow_redirect!
+
         expect(response.body).to include("Details were successfully updated.")
       end
     end
 
     it "displays the partner form get#edit" do
-      get edit_partner_path(partner)
+      get edit_partner_path(@partner)
 
       expect(response).to have_http_status(200)
     end
 
     describe "DELETE #destroy" do
-      subject { delete partner_path(partner.id) }
 
       it "redirects the user" do
-        subject
+        delete partner_path(@partner.id)
+
         expect(response).to redirect_to(root_path)
       end
 
       it "does not delete partner" do
+        delete partner_path(@partner.id)
+
         expect { subject }.to change(Partner, :count).by(0)
       end
       it "shows the message of not authorized" do
-        subject
+        delete partner_path(@partner.id)
         follow_redirect!
         follow_redirect!
+
         expect(response.body).to include("You are not authorized to perform this action.")
       end
     end
   end
 
   context "when not authenticated" do
-    let(:partner) { create(:partner) }
+    let!(:partner) { create(:partner) }
 
     describe "GET #show" do
       subject { get partner_path(partner) }
@@ -89,29 +90,35 @@ RSpec.describe "Partners", type: :request, include_shared: true do
 
     describe "GET #index" do
       subject { get partners_path }
+
       it_behaves_like "user is not logged in"
     end
 
     describe "GET #edit" do
       subject { get edit_partner_path(partner) }
+
       it_behaves_like "user is not logged in"
     end
 
     describe "PATCH #update" do
       subject { patch partner_path(partner, params: { partner: { name: "updated name" } }) }
+
       it_behaves_like "user is not logged in"
+
       it "does not save the partner" do
         expect { subject }.not_to(change { partner.reload.name })
       end
     end
 
     describe "DELETE #destroy" do
-      let!(:partner) { create(:partner) }
       subject { delete partner_path(partner.id) }
+
       it_behaves_like "user is not logged in"
+
       it "does not delete partner" do
-        expect { subject }.not_to change(Partner, :count)
+        expect { subject }.not_to change{ Partner.count }
       end
+
       it "returns a redirect" do
         subject
         expect(response).to have_http_status(:redirect)
@@ -121,7 +128,7 @@ RSpec.describe "Partners", type: :request, include_shared: true do
 
   def stub_partner_requst
     stub_request(:post, diaperbank_routes.partner_approvals).with(
-      body: { partner: { diaper_partner_id: partner.id } }.to_json,
+      body: { partner: { diaper_partner_id: @partner.id } }.to_json,
       headers: {
         "Accept" => "*/*",
         "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
