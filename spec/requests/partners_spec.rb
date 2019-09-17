@@ -1,13 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "Partners", type: :request, include_shared: true do
-  
   context "when authenticated" do
     login_user
 
     it "returns http success get#show" do
       get partner_path(@partner)
-      
+
       expect(response).to have_http_status(200)
     end
 
@@ -25,7 +24,6 @@ RSpec.describe "Partners", type: :request, include_shared: true do
     end
 
     describe "PATCH #update" do
-
       it "updates the partner" do
         expect { patch partner_path(@partner, params: { partner: { name: "updated name" } }) }.to change { @partner.reload.name }.to("updated name")
       end
@@ -51,7 +49,6 @@ RSpec.describe "Partners", type: :request, include_shared: true do
     end
 
     describe "DELETE #destroy" do
-
       it "redirects the user" do
         delete partner_path(@partner.id)
 
@@ -116,7 +113,7 @@ RSpec.describe "Partners", type: :request, include_shared: true do
       it_behaves_like "user is not logged in"
 
       it "does not delete partner" do
-        expect { subject }.not_to change{ Partner.count }
+        expect { subject }.not_to change(Partner, :count)
       end
 
       it "returns a redirect" do
