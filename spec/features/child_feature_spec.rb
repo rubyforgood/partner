@@ -24,6 +24,8 @@ describe Child, type: :feature, js: true do
       within "tbody" do
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(1)"))
           .to have_text(child.last_name)
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(2)"))
+          .to have_text(child.first_name)
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(3)"))
           .to have_text(child.date_of_birth)
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(5)"))
