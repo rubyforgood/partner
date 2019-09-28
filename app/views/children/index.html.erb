@@ -21,8 +21,8 @@
       <table class="table table-striped">
         <thead>
         <tr>
-          <th scope="col">First name</th>
           <th scope="col">Last name</th>
+          <th scope="col">First name</th>
           <th scope="col">Date of birth</th>
           <th scope="col">Active</th>
           <th scope="col">Guardian</th>
@@ -34,8 +34,8 @@
         <tbody>
         <% children.each do |child| %>
           <tr>
-            <td><%= child.first_name %></td>
             <td><%= child.last_name %></td>
+            <td><%= child.first_name %></td>
             <td><%= child.date_of_birth %></td>
             <td><%= child.active ? "Yes" : "No" %></td>
             <td><%= child.family.guardian_display_name %></td>

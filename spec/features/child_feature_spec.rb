@@ -16,16 +16,16 @@ describe Child, type: :feature, js: true do
 
     family = create(:family, partner: partner)
     children = [
-      create(:child, family: family),
-      create(:child, family: family)
+      create(:child, last_name: "Zeno", family: family),
+      create(:child, last_name: "Arthur", family: family)
     ].reverse
     click_link "Children"
     children.each.with_index do |child, index|
       within "tbody" do
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(1)"))
-          .to have_text(child.first_name)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(2)"))
           .to have_text(child.last_name)
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(2)"))
+          .to have_text(child.first_name)
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(3)"))
           .to have_text(child.date_of_birth)
         expect(find("tr:nth-child(#{index + 1}) td:nth-child(5)"))
