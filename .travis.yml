@@ -33,11 +33,11 @@ jobs:
         - bundle exec rake spec
         - bundle exec rubocop
 
-after_success:
+deploy:
   - provider: script
+    script: ci/deploy-staging.sh
     on:
       branch: master
-    script: ci/deploy-staging.sh
 
   - provider: script
     script: ci/deploy-production.sh
