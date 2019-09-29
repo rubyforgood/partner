@@ -33,7 +33,7 @@ jobs:
         - bundle exec rake spec
         - bundle exec rubocop
 
-deploy:
+after_success:
   - provider: script
     on:
       branch: master
