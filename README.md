@@ -32,7 +32,7 @@ There are detailed instructions for installation on Ubuntu hosts in the [ubuntu-
 
 ### Ruby Version
 
-This app uses Ruby version 2.6.2, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
+This app uses Ruby version 2.6.4, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
 
 ### Database Configuration
 
