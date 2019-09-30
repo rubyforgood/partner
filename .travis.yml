@@ -33,7 +33,7 @@ after_success:
     eval `ssh-agent -s`
     ssh-add config/deploy_id_rsa
     bundle exec cap staging deploy
-    ssh-agent -k
+    ssh-agent -k;
     fi
 env:
   global:
