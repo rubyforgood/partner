@@ -1,6 +1,6 @@
 <div class="app-title">
   <div>
-    <% if @partner.partner_status == "Recertification Required" %>
+    <% if @partner.partner_status == "recertification_required" %>
       <div class="alert alert-danger"><i class="fa fa-warning"></i>&nbsp;Please review your application details and submit for approval.</div>
     <% end %>
     <h1><i class="fa fa-dashboard"></i> Organization Details &nbsp <%= partner_status_badge(@partner) %></h1>
@@ -38,7 +38,7 @@
                   <% end %>
 
                   <dt>Status</dt>
-                  <dd><%= @partner.partner_status %></dd>
+                  <dd><%= @partner.partner_status.humanize %></dd>
 
                   <dt>Proof of Partner Status</dt>
                   <% if @partner.proof_of_partner_status.attached? %>
@@ -48,7 +48,7 @@
                     <dd>Documentation not on file</dd>
                   <% end %>
 
-                  <dt>Agency Mission</dt>
+                  <dt>Description of Agency Mission</dt>
                   <dd><%= @partner.agency_mission %></dd>
 
                   <address>
@@ -104,11 +104,14 @@
                   <dt>Program Description</dt>
                   <dd><%= @partner.program_description %></dd>
 
-                  <dt>Program Age</dt>
+                  <dt>Agency Age</dt>
                   <dd><%= @partner.program_age %></dd>
 
                   <dt>Case Management</dt>
                   <dd><%= humanize_boolean(@partner.case_management) %></dd>
+
+                  <dt>Internal DB</dt>
+                  <dd><%= humanize_boolean(@partner.internal_db) %></dd>
 
                   <dt>Evidence Based</dt>
                   <dd><%= humanize_boolean(@partner.evidence_based) %></dd>
@@ -116,7 +119,7 @@
                   <dt>Evidence Base Description</dt>
                   <dd><%= @partner.evidence_based_description %></dd>
 
-                  <dt>Program Client Improvement</dt>
+                  <dt>Verified Successes of Program</dt>
                   <dd><%= @partner.program_client_improvement %></dd>
 
                   <dt>Diaper Use</dt>
@@ -199,56 +202,53 @@
                   <dt>Income Verification</dt>
                   <dd><%= humanize_boolean(@partner.income_verification) %></dd>
 
-                  <dt>Internal DB</dt>
-                  <dd><%= humanize_boolean(@partner.internal_db) %></dd>
-
                   <dt>MAAC</dt>
                   <dd><%= humanize_boolean(@partner.maac) %></dd>
 
                   <h6>Ethnic Composition of Those Served</h6>
                   <dt>African American</dt>
-                  <dd><%= @partner.population_black %></dd>
+                  <dd><%= @partner.population_black || t(:not_provided) %></dd>
 
                   <dt>Caucasian</dt>
-                  <dd><%= @partner.population_white %></dd>
+                  <dd><%= @partner.population_white || t(:not_provided) %></dd>
 
                   <dt>Hispanic</dt>
-                  <dd><%= @partner.population_hispanic %></dd>
+                  <dd><%= @partner.population_hispanic || t(:not_provided) %></dd>
 
                   <dt>Asian</dt>
-                  <dd><%= @partner.population_asian %></dd>
+                  <dd><%= @partner.population_asian || t(:not_provided) %></dd>
 
                   <dt>American Indian</dt>
-                  <dd><%= @partner.population_american_indian %></dd>
+                  <dd><%= @partner.population_american_indian || t(:not_provided) %></dd>
 
                   <dt>Pacific Islander</dt>
-                  <dd><%= @partner.population_island %></dd>
+                  <dd><%= @partner.population_island || t(:not_provided) %></dd>
 
                   <dt>Multi-racial</dt>
-                  <dd><%= @partner.population_multi_racial %></dd>
+                  <dd><%= @partner.population_multi_racial || t(:not_provided) %></dd>
 
                   <dt>Other</dt>
-                  <dd><%= @partner.population_other %></dd>
+                  <dd><%= @partner.population_other || t(:not_provided) %></dd>
 
                   <dt>Zip Codes Served</dt>
                   <dd><%= @partner.zips_served %></dd>
 
                   <h6>Poverty Information of Those Served</h6>
                   <dt>At FPL or below</dt>
-                  <dd><%= @partner.at_fpl_or_below %></dd>
+                  <dd><%= @partner.at_fpl_or_below || t(:not_provided) %></dd>
 
                   <dt>Above 1-2 times FPL</dt>
-                  <dd><%= @partner.above_1_2_times_fpl %></dd>
+                  <dd><%= @partner.above_1_2_times_fpl || t(:not_provided) %></dd>
 
                   <dt>Greater than 2 times FPL</dt>
-                  <dd><%= @partner.greater_2_times_fpl %></dd>
+                  <dd><%= @partner.greater_2_times_fpl || t(:not_provided) %></dd>
 
                   <dt>Poverty Unknown</dt>
-                  <dd><%= @partner.poverty_unknown %></dd>
+                  <dd><%= @partner.poverty_unknown || t(:not_provided) %></dd>
 
                   <h6>Ages Served</h6>
                   <dt>Ages</dt>
-                  <dd><%= @partner.ages_served %></dd>
+                  <dd><%= @partner.ages_served || t(:not_provided) %></dd>
                 </dl>
               </div>
             </div>
@@ -347,7 +347,7 @@
               <%= link_to "Request Diapers", partner_requests_path, class: 'btn btn-success' %>
             <% end %>
             <% unless @partner.verified? %>
-              <%= link_to partner_approve_path(@partner), class: "btn btn-primary #{'disabled' unless @partner.pending? || @partner.partner_status == "Recertification Required"}" do %>
+              <%= link_to partner_approve_path(@partner), class: "btn btn-primary #{'disabled' unless @partner.pending? || @partner.partner_status == "recertification_required"}" do %>
                 <i class="fa fa-paper-plane"></i> Submit for Approval
               <% end %>
             <% end %>

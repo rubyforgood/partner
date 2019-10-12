@@ -1,6 +1,7 @@
 describe RecertificationMailer, type: :mailer do
   describe "notice_email" do
-    let!(:partner) { create(:partner) }
+    let!(:user) { create(:user) }
+    let!(:partner) { create(:partner, user: user) }
     let!(:mail) { RecertificationMailer.with(partner: partner).notice_email.deliver_now }
 
     it "email renders the subject" do
@@ -8,7 +9,7 @@ describe RecertificationMailer, type: :mailer do
     end
 
     it "email renders the receiver email" do
-      expect(mail.to).to eq([partner.email])
+      expect(mail.to).to eq([partner.user.email])
     end
 
     it "email renders the sender email" do

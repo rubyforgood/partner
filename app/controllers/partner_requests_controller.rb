@@ -1,5 +1,5 @@
 class PartnerRequestsController < ApplicationController
-  before_action :authenticate_partner!
+  before_action :authenticate_user!
 
   def index
     @partner = current_partner
@@ -7,7 +7,7 @@ class PartnerRequestsController < ApplicationController
   end
 
   def new
-    if current_partner.partner_status == "Verified"
+    if current_partner.partner_status.casecmp("verified").zero?
       @partner_request = PartnerRequest.new
       @partner_request.item_requests.build # required to render the empty items form
     else
@@ -60,10 +60,5 @@ class PartnerRequestsController < ApplicationController
         partner_key: full_item["partner_key"]
       )
     end
-  end
-
-  # NOTE(chaserx): the is required for pundit since our auth'd user is named `partner`
-  def pundit_user
-    current_partner
   end
 end

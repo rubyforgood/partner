@@ -1,6 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_partner!
+  before_action :authenticate_user!
 
   def index
     @partners = Partner.all
@@ -9,26 +9,12 @@ class PartnersController < ApplicationController
 
   def show; end
 
-  def new
-    @partner = Partner.new
-  end
-
   def edit; end
 
   def approve
     @partner = Partner.find(params[:partner_id])
     @partner.approve_me
     redirect_to @partner, notice: "You have submitted your details for approval."
-  end
-
-  def create
-    @partner = Partner.new(partner_params)
-
-    if @partner.save
-      redirect_to @partner, notice: "Partner was successfully created."
-    else
-      render :new
-    end
   end
 
   def update
@@ -130,9 +116,5 @@ class PartnersController < ApplicationController
       :diaper_funding_source,
       documents: []
     )
-  end
-
-  def pundit_user
-    current_partner
   end
 end

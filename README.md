@@ -30,11 +30,9 @@ the partner gets an email notification stating their pick up date and a pdf copy
 
 There are detailed instructions for installation on Ubuntu hosts in the [ubuntu-installation.md](ubuntu-installation.md) file. As of now, there are no detailed instructions for Mac installation, but if you have any problems, the Ubuntu file may shed some light on them.
 
-
 ### Ruby Version
 
-This app uses Ruby version 2.6.2, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
-
+This app uses Ruby version 2.6.4, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
 
 ### Database Configuration
 
@@ -74,3 +72,13 @@ To login, use these default credentials provided in the seeds:
     Pending Organization
       Email: unverified@example.com
       Password: password
+
+### Testing
+
+Run all the tests with:
+
+  `bundle exec rspec`            
+
+This app uses RSpec, Capybara, and FactoryBot for testing. Make sure the tests run clean & green before submitting a Pull Request. If you are inexperienced in writing tests or get stuck on one, please reach out so one of us can help you. :)
+
+The one situation where you probably don't need to write new tests is when simple re-stylings are done (ie. the page may look slightly different but the Test suite is unaffected by those changes).

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Partners::SessionsController < Devise::SessionsController
+class Users::SessionsController < Devise::SessionsController
   layout "devise"
   # GET /resource/sign_in
   # def new

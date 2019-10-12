@@ -30,6 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  not_provided: "Not Provided"
   hello: "Hello world"
   :true: 'Yes'
   :false: 'No'

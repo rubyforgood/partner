@@ -1,11 +1,11 @@
 class FamiliesController < ApplicationController
-  before_action :authenticate_partner!
+  before_action :authenticate_user!
 
   helper_method :family, :families
   attr_reader :families
 
   def index
-    @families = current_partner.families
+    @families = current_partner.families.order(:guardian_last_name)
   end
 
   def show; end

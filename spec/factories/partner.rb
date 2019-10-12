@@ -82,31 +82,11 @@
 #  diaper_funding_source      :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  email                      :string           default(""), not null
-#  encrypted_password         :string           default(""), not null
-#  reset_password_token       :string
-#  reset_password_sent_at     :datetime
-#  remember_created_at        :datetime
-#  sign_in_count              :integer          default(0), not null
-#  current_sign_in_at         :datetime
-#  last_sign_in_at            :datetime
-#  current_sign_in_ip         :string
-#  last_sign_in_ip            :string
-#  invitation_token           :string
-#  invitation_created_at      :datetime
-#  invitation_sent_at         :datetime
-#  invitation_accepted_at     :datetime
-#  invitation_limit           :integer
-#  invited_by_type            :string
-#  invited_by_id              :bigint(8)
-#  invitations_count          :integer          default(0)
 #
 
 FactoryBot.define do
   factory :partner do
     name { "Partner" }
-    sequence(:email) { |n| "partner#{n}@email.com" }
-    password { "password" }
     address1 { Faker::Address.street_address }
 
     after(:create) do |partner|
@@ -120,11 +100,11 @@ FactoryBot.define do
     end
 
     trait(:verified) do
-      partner_status { "Verified" }
+      partner_status { "verified" }
     end
 
     trait(:recertification_required) do
-      partner_status { "Recertification Required" }
+      partner_status { "recertification_required" }
     end
 
     trait(:submitted) do

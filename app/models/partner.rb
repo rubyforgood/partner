@@ -82,37 +82,15 @@
 #  diaper_funding_source      :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  email                      :string           default(""), not null
-#  encrypted_password         :string           default(""), not null
-#  reset_password_token       :string
-#  reset_password_sent_at     :datetime
-#  remember_created_at        :datetime
-#  sign_in_count              :integer          default(0), not null
-#  current_sign_in_at         :datetime
-#  last_sign_in_at            :datetime
-#  current_sign_in_ip         :string
-#  last_sign_in_ip            :string
-#  invitation_token           :string
-#  invitation_created_at      :datetime
-#  invitation_sent_at         :datetime
-#  invitation_accepted_at     :datetime
-#  invitation_limit           :integer
-#  invited_by_type            :string
-#  invited_by_id              :bigint(8)
-#  invitations_count          :integer          default(0)
 #  other_agency_type          :string
 #
 
 class Partner < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   ACTIVE_FAMILY_REQUESTS = [1, 3, 27].freeze
-
-  devise :invitable, :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable
 
   include DiaperBankClient
 
+  has_one :user, dependent: :destroy
   has_one_attached :proof_of_partner_status
   has_one_attached :proof_of_form_990
   has_many_attached :documents
@@ -121,10 +99,10 @@ class Partner < ApplicationRecord
   has_many :children, through: :families
   has_many :authorized_family_members, through: :families
 
-  validates :email, presence: true
-
   has_many :partner_requests, dependent: :destroy
   has_many :family_requests, dependent: :destroy
+
+  delegate :email, to: :user
 
   def export_json
     {
@@ -234,7 +212,7 @@ class Partner < ApplicationRecord
   end
 
   def approve_me
-    update(partner_status: "Submitted")
+    update(partner_status: "submitted")
     DiaperBankClient.post(diaper_partner_id)
   end
 

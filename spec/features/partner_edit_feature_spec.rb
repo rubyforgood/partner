@@ -2,9 +2,10 @@ require "rails_helper"
 
 describe "Partner edit", type: :feature do
   let(:partner) { create(:partner) }
+  let(:user) { create(:user, partner: partner) }
 
   before do
-    sign_in(partner)
+    sign_in(user)
     visit "/partners/#{partner.id}/edit"
   end
 

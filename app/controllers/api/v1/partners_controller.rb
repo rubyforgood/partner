@@ -5,13 +5,19 @@ class Api::V1::PartnersController < ApiController
   def create
     return head :forbidden unless api_key_valid?
 
-    partner = Partner.invite!(email: partner_params[:email],
+    partner = Partner.new(
       diaper_bank_id: partner_params[:diaper_bank_id],
-      diaper_partner_id: partner_params[:diaper_partner_id])
-
-    render json: partner.to_json(
-      only: [:id, :email]
+      diaper_partner_id: partner_params[:diaper_partner_id]
     )
+
+    user = User.invite!(email: partner_params[:email], partner: partner) do |new_user|
+      new_user.message = partner_params[:invitation_text]
+    end
+
+    render json: {
+      email: user.email,
+             id: partner.id
+    }
   rescue ActiveRecord::RecordInvalid => e
     render e.message
   end
@@ -23,10 +29,10 @@ class Api::V1::PartnersController < ApiController
     if partner_params[:status] == "pending"
       partner.update(partner_status: "pending")
     elsif partner_params[:status] == "recertification_required"
-      partner.update(partner_status: "Recertification Required")
+      partner.update(partner_status: "recertification_required")
       RecertificationMailer.with(partner: partner).notice_email.deliver_now
     elsif partner_params[:status] == "approved"
-      partner.update(partner_status: "Verified")
+      partner.update(partner_status: "verified")
     else
       partner.update(partner_status: "pending")
     end
@@ -56,6 +62,7 @@ class Api::V1::PartnersController < ApiController
     params.require(:partner).permit(
       :diaper_bank_id,
       :diaper_partner_id,
+      :invitation_text,
       :email,
       :status
     )

@@ -1,5 +1,5 @@
 class ChildrenController < ApplicationController
-  before_action :authenticate_partner!
+  before_action :authenticate_user!
 
   helper_method :child, :children, :family
 
@@ -30,7 +30,6 @@ class ChildrenController < ApplicationController
   def update
     if child.update(child_params)
       redirect_to child, notice: "Child was successfully updated."
-      render :show, status: :ok, location: child
     else
       render :edit
     end
@@ -44,7 +43,7 @@ class ChildrenController < ApplicationController
   private
 
   def children
-    @children ||= current_partner.children.all
+    @children ||= current_partner.children.order(active: :desc, last_name: :asc)
   end
 
   def child
