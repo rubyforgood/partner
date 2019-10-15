@@ -23,7 +23,7 @@
 class Child < ApplicationRecord
   CAN_LIVE_WITH = %w[Mother Father Grandparent Foster\ Parent Other\ Parent/Relative].freeze
   serialize :child_lives_with, Array
-  belongs_to :family
+  belongs_to :family, counter_cache: true
   has_many :family_request_child, dependent: :destroy
   has_many :family_requests, through: :family_request_child
 

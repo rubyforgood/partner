@@ -25,7 +25,7 @@
 #
 
 class Family < ApplicationRecord
-  belongs_to :partner
+  belongs_to :partner, counter_cache: true
   has_many :children, dependent: :destroy
   has_many :authorized_family_members, dependent: :destroy
   serialize :sources_of_income, Array

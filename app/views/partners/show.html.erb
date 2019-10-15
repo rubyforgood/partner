@@ -202,6 +202,12 @@
                   <dt>Income Verification</dt>
                   <dd><%= humanize_boolean(@partner.income_verification) %></dd>
 
+                  <dt>Number of Families Served</dt>
+                  <dd><%= (@partner.families_count) %></dd>
+
+                  <dt>Number of Children Served</dt>
+                  <dd><%= (@partner.number_of_children_served) %></dd>
+
                   <dt>MAAC</dt>
                   <dd><%= humanize_boolean(@partner.maac) %></dd>
 

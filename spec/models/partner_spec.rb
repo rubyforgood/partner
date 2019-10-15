@@ -160,6 +160,25 @@ describe Partner, type: :model, include_shared: true do
     end
   end
 
+  describe "number_of_children_served" do
+    let(:partner) { create(:partner) }
+
+    context "when partner does not have any children served" do
+      it "returns 0" do
+        expect(partner.number_of_children_served).to eq(0)
+      end
+    end
+
+    context "when partner have children served" do
+      let(:family) { create(:family, partner_id: partner.id) }
+      let!(:children) { create_list(:child, 5, family_id: family.id) }
+
+      it "returns the number of served children" do
+        expect(partner.number_of_children_served).to eq(5)
+      end
+    end
+  end
+
   describe "export_json" do
     it "returns a hash" do
       partner = build(:partner)

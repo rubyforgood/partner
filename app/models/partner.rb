@@ -159,6 +159,8 @@ class Partner < ApplicationRecord
         serve_income_circumstances: serve_income_circumstances,
         income_verification: income_verification,
         internal_db: internal_db,
+        number_of_families_served: families_count,
+        number_of_children_served: number_of_children_served,
         maac: maac,
         enthnic_composition: {
           african_american: population_black,
@@ -226,6 +228,12 @@ class Partner < ApplicationRecord
 
   def family_request_active?
     ACTIVE_FAMILY_REQUESTS.include?(diaper_bank_id)
+  end
+
+  def number_of_children_served
+    return 0 if families.blank?
+
+    families.map(&:children_count).reduce(:+)
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_172501) do
+ActiveRecord::Schema.define(version: 2019_10_15_193830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.datetime "updated_at", null: false
     t.bigint "partner_id"
     t.boolean "military", default: false
+    t.integer "children_count", default: 0
     t.index ["partner_id"], name: "index_families_on_partner_id"
   end
 
@@ -211,6 +212,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "other_agency_type"
+    t.integer "families_count", default: 0
     t.index ["diaper_bank_id"], name: "index_partners_on_diaper_bank_id"
   end
 
