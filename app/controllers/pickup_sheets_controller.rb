@@ -1,5 +1,5 @@
 class PickupSheetsController < ApplicationController
-  before_action :authenticate_partner!
+  before_action :authenticate_user!
 
   helper_method :partner_request, :child_item_requests
 
