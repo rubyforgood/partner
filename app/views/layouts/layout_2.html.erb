@@ -10,28 +10,23 @@
     <%= stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css") %>
 
     <!-- Main css styles -->
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
     <!-- Main javascript files -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-</head>
-<body class="fixed-sidebar">
 
-<!-- Skin configuration box -->
-<%= render 'layouts/skinconfig' %>
+</head>
+<body class="top-navigation">
 
     <!-- Wrapper-->
     <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
 
-        <!-- Navigation -->
-        <%= render 'layouts/navigation' %>
-
-        <!-- Page wrapper -->
+        <!-- Page wraper -->
         <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
 
             <!-- Page wrapper -->
-            <%= render 'layouts/topnavbar' %>
+            <%= render 'layouts/topnavbar_2' %>
 
             <!-- Main view  -->
             <%= yield %>
@@ -41,9 +36,6 @@
 
         </div>
         <!-- End page wrapper-->
-
-        <!-- Right sidebar -->
-        <%= render 'layouts/rightsidebar' %>
 
     </div>
     <!-- End wrapper-->

@@ -15,11 +15,9 @@
     <!-- Main javascript files -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-</head>
-<body class="fixed-sidebar">
 
-<!-- Skin configuration box -->
-<%= render 'layouts/skinconfig' %>
+</head>
+<body class="fixed-sidebar no-skin-config full-height-layout">
 
     <!-- Wrapper-->
     <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
@@ -27,7 +25,7 @@
         <!-- Navigation -->
         <%= render 'layouts/navigation' %>
 
-        <!-- Page wrapper -->
+        <!-- Page wraper -->
         <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
 
             <!-- Page wrapper -->
