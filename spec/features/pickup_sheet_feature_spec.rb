@@ -14,7 +14,7 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
       create(:child, family: another_family)
     ].sort_by(&:display_name)
   end
-
+  let!(:child) { children.first }
   let!(:authorized_family_members) do
     [family, another_family].each_with_object({}) do |family, map|
       map[family.id] = Array.new(2).map do
@@ -43,18 +43,22 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
     visit family_request_pickup_sheets_path(family_request_id: partner_request_id)
     within "thead" do
       expect(find("tr th:nth-child(1)")).to have_text("Child's name")
-      expect(find("tr th:nth-child(2)")).to have_text("Authorized Persons")
-      expect(find("tr th:nth-child(3)")).to have_text("Size Ordered")
+      expect(find("tr th:nth-child(2)")).to have_text("Authorized Family Member")
+      expect(find("tr th:nth-child(3)")).to have_text("Quantity Ordered")
+      expect(find("tr th:nth-child(4)")).to have_text("Quantity Picked Up")
+      expect(find("tr th:nth-child(5)")).to have_text("Item Ordered")
+      expect(find("tr th:nth-child(6)")).to have_text("Item Picked Up")
+      expect(find("tr th:nth-child(7)")).to have_text("Picked up")
     end
-    children.each.with_index do |child, index|
-      within "tbody" do
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(1)"))
-          .to have_text(child.display_name)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(2)"))
-          .to have_text(authorized_family_members[child.family.id].join(", "))
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(3)"))
-          .to have_text(50)
+    within "tbody" do
+      expect(find("tr:nth-child(2) td:nth-child(1)"))
+        .to have_text(child.display_name)
+      child.family.authorized_family_members.each do |family_member|
+        expect(find("tr:nth-child(2) td:nth-child(2)"))
+          .to have_text(family_member.display_name)
       end
+      expect(find("tr:nth-child(2) td:nth-child(3)"))
+        .to have_text(50)
     end
   end
 end
