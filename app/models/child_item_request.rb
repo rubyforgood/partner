@@ -12,7 +12,7 @@
 class ChildItemRequest < ApplicationRecord
   belongs_to :item_request
   belongs_to :child
-  belongs_to :authorized_family_member
+  belongs_to :authorized_family_member, optional: true
 
   def quantity
     item_request.quantity.to_i / item_request.children.size
