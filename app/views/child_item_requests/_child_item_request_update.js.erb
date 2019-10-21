@@ -1,0 +1,10 @@
+$('#flash-message-container-nested').html('')
+$('#flash-message-container-nested').prepend(`
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert"
+      aria-label="close" style="text-decoration: none;">
+      <%= fa_icon('times') %>
+    </a>
+    <span><%= child_item_request_update.message %></span>
+  </div>
+`)

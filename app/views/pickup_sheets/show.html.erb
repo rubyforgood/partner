@@ -12,12 +12,18 @@
     <div class="row">
       <div class="col-12">
         <div class="card mb-12">
+          <div id="flash-message-container-nested">
+          </div>
           <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Child's name</th>
                 <th scope="col">Authorized Persons</th>
+                <th scope="col">Quantity Ordered</th>
+                <th scope="col">Quantity Given</th>
                 <th scope="col">Size Ordered</th>
+                <th scope="col">Size Given</th>
+                <th scope="col">Picked up</th>
               </tr>
             </thead>
             <tbody>
@@ -25,8 +31,29 @@
                 <% child = child_item_request.child %>
                 <tr>
                   <td><%= child.display_name %></td>
-                  <td><%= child.family.authorized_family_members.map(&:display_name).join(", ") %></td>
+                  <td>
+                    <%= child.family.authorized_family_members.map(&:display_name).join(", ") %>
+                  </td>
                   <td><%= child_item_request.quantity %></td>
+                  <td><%= "0" %></td>
+                  <td><%= "XL" %></td>
+                  <td><%= "XXL" %></td>
+                  <td>
+                    <div class="toggle lg">
+                      <label>
+                        <%= check_box_tag 'Picked Up',
+                          child_item_request.picked_up,
+                          child_item_request.picked_up, 
+                          data: {
+                            url: child_item_requests_toggle_picked_up_path(child_item_request.id),
+                            remote: true,
+                            method: :post
+                          }
+                        %>
+                        <span class="button-indecator"></span>
+                      </label>
+                    </div>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

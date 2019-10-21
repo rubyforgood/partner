@@ -34,3 +34,9 @@ en:
   hello: "Hello world"
   :true: 'Yes'
   :false: 'No'
+  child_item_requests:
+    pickup:
+      complete:
+        "Pickup for %{child_name} was marked as picked up."
+      not_complete:
+        "Pickup for %{child_name} was marked as not picked up."
