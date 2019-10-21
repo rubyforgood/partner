@@ -56,10 +56,10 @@ class ChildItemRequestsController < ApplicationController
 
   def authorized_family_member_picked_up
     authorized_family_member = child_item_request
-      .child
-      .family
-      .authorized_family_members
-      .find_by(id: params[:authorized_family_member_id])
+                               .child
+                               .family
+                               .authorized_family_members
+                               .find_by(id: params[:authorized_family_member_id])
     child_item_request.update!(authorized_family_member: authorized_family_member)
     respond_to do |format|
       format.js do
