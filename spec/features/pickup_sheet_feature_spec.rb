@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe "PickupSheet", type: :feature, include_shared: true, js: true do
   let(:partner) { create(:partner, :verified, id: 3) }
+  let(:user) { create(:user, partner: partner) }
   let(:family) { create(:family, partner: partner) }
   let(:another_family) { create(:family, partner: partner) }
   let!(:children) do
@@ -28,7 +29,7 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
   end
 
   before do
-    sign_in(partner)
+    sign_in(user)
   end
 
   scenario "partner can view a pickup sheet" do
