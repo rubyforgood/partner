@@ -19,8 +19,8 @@
                 <th scope="col">Authorized Persons</th>
                 <th scope="col">Quantity Ordered</th>
                 <th scope="col">Quantity Picked Up</th>
-                <th scope="col">Size Ordered</th>
-                <th scope="col">Size Picked Up</th>
+                <th scope="col">Item Ordered</th>
+                <th scope="col">Item Picked Up</th>
                 <th scope="col">Picked up</th>
               </tr>
             </thead>
@@ -48,8 +48,23 @@
                       }
                     ) %>
                   </td>
-                  <td><%= "XL" %></td>
-                  <td><%= "XXL" %></td>
+                  <td><%= item_id_to_display_string_map[child_item_request.child.item_needed_diaperid] %></td>
+                  <td>
+                    <%= select_tag :picked_up_item_diaperid,
+                      valid_items_for_select_tag(
+                        valid_items,
+                        child_item_request.picked_up_item_diaperid,
+                        child_item_request.child.item_needed_diaperid
+                      ),
+                      {
+                        data: {
+                          url: child_item_requests_item_picked_up_path(child_item_request.id),
+                          remote: true,
+                          method: :post
+                        }
+                      }
+                    %>
+                  </td>
                   <td>
                     <div class="toggle lg">
                       <label>
