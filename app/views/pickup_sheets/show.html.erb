@@ -42,7 +42,7 @@
                         selected: child.family.authorized_family_members.find_by(id: child_item_request.authorized_family_member_id)&.id
                       ),
                       {
-                        include_blank: "Select Member",
+                        include_blank: "(Select Member)",
                         data: {
                           url: child_item_requests_authorized_family_member_picked_up_path(child_item_request.id),
                           remote: true,
