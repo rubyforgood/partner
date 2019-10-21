@@ -32,6 +32,29 @@ class ChildItemRequestsController < ApplicationController
     end
   end
 
+  def item_picked_up
+    child_item_request.update(
+      picked_up_item_diaperid: params[:picked_up_item_diaperid]
+    )
+    respond_to do |format|
+      format.js do
+        message = t(
+          "child_item_requests.item_picked_up",
+          child_name: child_item_request.child.first_name,
+          item_ordered: item_id_to_display_string_map[
+            child_item_request.child.item_needed_diaperid
+          ],
+          item_picked_up_label: item_id_to_display_string_map[
+            child_item_request.picked_up_item_diaperid
+          ],
+        )
+        render partial: "child_item_requests/child_item_request_update",
+          object: build_open_struct(message)
+      end
+    end
+
+  end
+
   private
 
   def build_open_struct(message)
