@@ -1,0 +1,40 @@
+<div class="app-title">
+  <div>
+    <% if @partner.partner_status == "recertification_required" %>
+      <div class="alert alert-danger"><i class="fa fa-warning"></i>&nbsp;Please review your application details and submit for approval.</div>
+    <% end %>
+    <h1><i class="fa fa-dashboard"></i> Dashboard <small>for <%= current_partner.name %></small></h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <% if notice %>
+      <div class="alert alert-dismissible alert-success">
+        <button class="close" type="button" data-dismiss="alert">×</button>
+        <p><%= notice %><a class="alert-link" href="#"></p>
+        </a></p>
+      </div>
+    <% end %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <%= render partial: "partner_details" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <%= render partial: "diaper_bank_details" %>
+            <%= render partial: "diaper_request_history" %>
+          </div>
+          <div class="col-6">
+            <%= render partial: "family_details" %>
+            <%= render partial: "children_details" %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
