@@ -52,7 +52,25 @@ class ChildItemRequestsController < ApplicationController
           object: build_open_struct(message)
       end
     end
+  end
 
+  def authorized_family_member_picked_up
+    authorized_family_member = child_item_request
+      .child
+      .family
+      .authorized_family_members
+      .find_by(id: params[:authorized_family_member_id])
+    child_item_request.update!(authorized_family_member: authorized_family_member)
+    respond_to do |format|
+      format.js do
+        message = t(
+          "child_item_requests.authorized_family_member_update",
+          name: authorized_family_member.display_name
+        )
+        render partial: "child_item_requests/child_item_request_update",
+          object: build_open_struct(message)
+      end
+    end
   end
 
   private
