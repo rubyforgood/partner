@@ -40,3 +40,7 @@ en:
         "Pickup for %{child_name} was marked as picked up."
       not_complete:
         "Pickup for %{child_name} was marked as not picked up."
+    quantity_picked_up: >-
+      Quantity ordered for %{child_name} is %{quantity_ordered}. Quantity picked
+      up for %{child_name} is %{quantity_picked_up}.
+
