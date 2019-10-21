@@ -12,17 +12,15 @@
     <div class="row">
       <div class="col-12">
         <div class="card mb-12">
-          <div id="flash-message-container-nested">
-          </div>
           <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Child's name</th>
                 <th scope="col">Authorized Persons</th>
                 <th scope="col">Quantity Ordered</th>
-                <th scope="col">Quantity Given</th>
+                <th scope="col">Quantity Picked Up</th>
                 <th scope="col">Size Ordered</th>
-                <th scope="col">Size Given</th>
+                <th scope="col">Size Picked Up</th>
                 <th scope="col">Picked up</th>
               </tr>
             </thead>
@@ -30,12 +28,26 @@
               <% child_item_requests.each do |child_item_request| %>
                 <% child = child_item_request.child %>
                 <tr>
+                  <td colspan="7" id="flash-message-container-nested-<%= child_item_request.id%>">
+                  </td>
+                </tr>
+                <tr>
                   <td><%= child.display_name %></td>
                   <td>
                     <%= child.family.authorized_family_members.map(&:display_name).join(", ") %>
                   </td>
                   <td><%= child_item_request.quantity %></td>
-                  <td><%= "0" %></td>
+                  <td>
+                    <%= text_field_tag(
+                      :quantity_picked_up,
+                      child_item_request.quantity_picked_up || child_item_request.quantity,
+                      data: {
+                        url: child_item_requests_quantity_picked_up_path(child_item_request.id),
+                        remote: true,
+                        method: :post
+                      }
+                    ) %>
+                  </td>
                   <td><%= "XL" %></td>
                   <td><%= "XXL" %></td>
                   <td>
