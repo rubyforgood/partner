@@ -13,7 +13,7 @@ class FamilyRequestsController < ApplicationController
       if api_response = DiaperBankClient.send_family_request(@family_request.id)
         @family_request.update!(sent: true)
         flash[:notice] = "Request sent to diaper bank successfully"
-        partner_request = PartnerRequest.new(api_response.slice("partner_id", "organization_id"))
+        partner_request = current_partner.partner_requests.new(api_response.slice("organization_id"))
         api_response["requested_items"].each do |item_hash|
           partner_request.item_requests.new(
             name: item_hash["item_name"],
