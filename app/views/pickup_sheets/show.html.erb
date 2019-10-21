@@ -16,7 +16,7 @@
             <thead>
               <tr>
                 <th scope="col">Child's name</th>
-                <th scope="col">Authorized Persons</th>
+                <th scope="col">Authorized Family Member</th>
                 <th scope="col">Quantity Ordered</th>
                 <th scope="col">Quantity Picked Up</th>
                 <th scope="col">Item Ordered</th>
@@ -34,7 +34,22 @@
                 <tr>
                   <td><%= child.display_name %></td>
                   <td>
-                    <%= child.family.authorized_family_members.map(&:display_name).join(", ") %>
+                    <%= select_tag :authorized_family_member_id,
+                      options_from_collection_for_select(
+                        child.family.authorized_family_members,
+                        :id,
+                        :display_name,
+                        selected: child.family.authorized_family_members.find_by(id: child_item_request.authorized_family_member_id)&.id
+                      ),
+                      {
+                        include_blank: "Select Member",
+                        data: {
+                          url: child_item_requests_authorized_family_member_picked_up_path(child_item_request.id),
+                          remote: true,
+                          method: :post
+                        }
+                      }
+                    %>
                   </td>
                   <td><%= child_item_request.quantity %></td>
                   <td>
