@@ -5,6 +5,9 @@ $("#flash-message-container-nested-<%= child_item_request_update.item_id %>").pr
       aria-label="close" style="text-decoration: none;">
       <%= fa_icon('times') %>
     </a>
-    <span><%= child_item_request_update.message %></span>
+    <span>
+      <%= sanitize child_item_request_update.message,
+        tags: %w(strong em a b i), attributes: %w(href) %>
+    </span>
   </div>
 `)
