@@ -41,6 +41,10 @@ Rails.application.routes.draw do
     action: :item_picked_up,
     controller: :child_item_requests,
     as: :child_item_requests_item_picked_up
+  post "/child_item_requests_authorized_family_member_picked_up/:id",
+    action: :authorized_family_member_picked_up,
+    controller: :child_item_requests,
+    as: :child_item_requests_authorized_family_member_picked_up
 
   get "/api", action: :show, controller: "api"
   namespace :api, defaults: { format: "json" } do

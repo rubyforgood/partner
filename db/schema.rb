@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_21_180630) do
+ActiveRecord::Schema.define(version: 2019_10_21_182550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_10_21_180630) do
     t.boolean "picked_up", default: false
     t.integer "quantity_picked_up"
     t.integer "picked_up_item_diaperid"
+    t.integer "authorized_family_member_id"
     t.index ["child_id"], name: "index_child_item_requests_on_child_id"
     t.index ["item_request_id"], name: "index_child_item_requests_on_item_request_id"
   end

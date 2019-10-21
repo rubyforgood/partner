@@ -15,6 +15,7 @@
 
 class AuthorizedFamilyMember < ApplicationRecord
   belongs_to :family
+  has_many :child_item_requests
 
   def display_name
     "#{first_name} #{last_name}"
