@@ -32,4 +32,8 @@ module ApplicationHelper
       content_tag :span, partner.partner_status, class: ["badge", "badge-pill", "badge-info", "float-right"]
     end
   end
+
+  def after_sign_in_path_for(resource)
+    dashboard_path || super
+  end
 end

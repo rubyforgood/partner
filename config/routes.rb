@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     to: redirect(path: "/users/invitation/accept")
   )
 
+  get "dashboard", to: "dashboard#index"
+  
   resources :partners do
     get :approve
   end
@@ -59,8 +61,6 @@ Rails.application.routes.draw do
       # resource :partners, only: [:update]
     end
   end
-
-  get "dashboard", to: "dashboard#index"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "pages/:name", to: "static#page", as: "static_page"
