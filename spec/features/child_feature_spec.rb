@@ -1,10 +1,11 @@
 require "rails_helper"
 
-describe Child, type: :feature, js: true do
-  let(:partner) { create(:partner, id: 3) }
+describe Child, type: :feature do
+  let(:partner) { create(:partner) }
   let(:user) { create(:user, partner: partner) }
 
   before do
+    Flipper[:family_requests].enable(partner)
     sign_in(user)
     visit(root_path)
   end
@@ -19,6 +20,7 @@ describe Child, type: :feature, js: true do
       create(:child, last_name: "Zeno", family: family),
       create(:child, last_name: "Arthur", family: family)
     ].reverse
+
     click_link "Children"
     children.each.with_index do |child, index|
       within "tbody" do

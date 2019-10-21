@@ -19,18 +19,18 @@
       </li>
     <% end %>
     <% if Flipper[:family_requests].enabled?(current_partner) %>
-      <li>
-        <%= link_to families_path, class: "app-menu__item #{'active' if current_page?(families_path)}" do %>
-          <i class="fa fa-users app-menu__icon"></i>
-          <span class="app-menu__label">Families</span>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to children_path, class: "app-menu__item #{'active' if current_page?(children_path)}" do %>
-          <i class="fa fa-child app-menu__icon"></i>
-          <span class="app-menu__label">Children</span>
-        <% end %>
-      </li>
+    <li>
+      <%= link_to families_path, class: "app-menu__item #{'active' if current_page?(families_path)}" do %>
+        <i class="fa fa-users app-menu__icon"></i>
+        <span class="app-menu__label">Families</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to children_path, class: "app-menu__item #{'active' if current_page?(children_path)}" do %>
+        <i class="fa fa-child app-menu__icon"></i>
+        <span class="app-menu__label">Children</span>
+      <% end %>
+    </li>
     <% end %>
   </ul>
 </aside>
