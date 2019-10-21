@@ -306,6 +306,9 @@ Rails/PluralizationGrammar:
   Enabled: true
 Rails/ScopeArgs:
   Enabled: true
+Rails/SkipsModelValidations:
+  Exclude:
+  - "app/controllers/child_item_requests_controller.rb"
 Rails/TimeZone:
   Enabled: true
 Rails/UnknownEnv:
