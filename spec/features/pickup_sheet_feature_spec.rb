@@ -29,6 +29,7 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
   end
 
   before do
+    Flipper[:family_requests].enable(partner)
     sign_in(user)
   end
 

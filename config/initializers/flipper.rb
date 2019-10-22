@@ -3,13 +3,8 @@ ActiveSupport.on_load(:active_record) do
 
   Flipper.configure do |config|
     config.default do
-      adapter =
-        if Rails.env.test?
-          Flipper::Adapters::Memory.new
-        else
-          Flipper::Adapters::ActiveRecord.new
-        end
-      Flipper.new(adapter)
+      # TODO: Figure out in memory adapter when js is enabled.
+      Flipper.new(Flipper::Adapters::ActiveRecord.new)
     end
   end
 end

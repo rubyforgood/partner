@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe FamilyRequestsController, type: :feature, include_shared: true, js: true do
   let(:partner) { create(:partner, :verified, id: 3) }
+  let(:user) { create(:user, partner: partner) }
   let(:family) { create(:family, partner: partner) }
   let(:another_family) { create(:family, partner: partner) }
   let!(:children) do
@@ -15,7 +16,8 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
   end
 
   before do
-    sign_in(partner)
+    Flipper[:family_requests].enable(partner)
+    sign_in(user)
     visit(root_path)
   end
 
