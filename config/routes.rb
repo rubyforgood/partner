@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  flipper_app = Flipper::UI.app(Flipper.instance) do |builder|
+    builder.use Rack::Auth::Basic do |username, password|
+      username == ENV["FLIPPER_USERNAME"] && password == ENV["FLIPPER_PASSWORD"]
+    end
+  end
+  mount flipper_app, at: "/flipper"
   devise_for :users, controllers: { sessions: "users/sessions" }
   # TODO: remove these two
   resources :children do
