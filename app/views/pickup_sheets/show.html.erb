@@ -1,6 +1,7 @@
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-edit"></i> Pickup Sheet</h1>
+    <h1><i class="fa fa-edit"></i> Pickup Sheet &nbsp &nbsp<%= link_to 'Create PDF document', family_request_pickup_sheets_path(partner_request, :format => :pdf) %> </h1>
+
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><i class="fa fa-scroll fa-lg"></i></li>
@@ -85,7 +86,7 @@
                       <label>
                         <%= check_box_tag 'Picked Up',
                           child_item_request.picked_up,
-                          child_item_request.picked_up, 
+                          child_item_request.picked_up,
                           data: {
                             url: child_item_requests_toggle_picked_up_path(child_item_request.id),
                             remote: true,

@@ -1,0 +1,62 @@
+<div class="app-title">
+  <div>
+    <h1 style="font-size: 4rem;text-align: center;"> Pickup Sheet</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-12">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Child's name</th>
+              <th scope="col">Picked Up By</th>
+              <th scope="col">Quantity Ordered</th>
+              <th scope="col">Quantity Picked Up</th>
+              <th scope="col">Item Ordered</th>
+              <th scope="col">Item Picked Up</th>
+              <th scope="col">Picked up</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% child_item_requests.each do |child_item_request| %>
+              <% child = child_item_request.child %>
+              <tr>
+                <td colspan="7" id="flash-message-container-nested-<%= child_item_request.id%>">
+                </td>
+              </tr>
+              <tr>
+                <td><%= child.display_name %></td>
+                <td>
+                  <% child.family.authorized_family_members.each do |authed| %>
+                    <div>
+                      <input type="checkbox">
+                      <label><%= authed.display_name %></label>
+                    </div>
+                  <% end %>
+                </td>
+                <td><%= child_item_request.quantity %></td>
+                <td>
+                  <input type="text">
+
+                </td>
+                <td><%= item_id_to_display_string_map[child_item_request.child.item_needed_diaperid] %></td>
+                <td>
+                  <input type="text">
+                </td>
+                <td>
+
+                  <input type="checkbox">
+
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

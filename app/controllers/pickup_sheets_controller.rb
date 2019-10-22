@@ -3,7 +3,16 @@ class PickupSheetsController < ApplicationController
 
   helper_method :partner_request, :child_item_requests
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Your_filename",
+        template: "pickup_sheets/pdf_show.html.erb",
+        layout: "pdf.html"
+      end
+    end
+  end
 
   private
 
