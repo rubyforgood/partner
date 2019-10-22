@@ -3,7 +3,7 @@
     <% if @partner.partner_status == "recertification_required" %>
       <div class="alert alert-danger"><i class="fa fa-warning"></i>&nbsp;Please review your application details and submit for approval.</div>
     <% end %>
-    <h1><i class="fa fa-building"></i> Organization Details &nbsp <%= partner_status_badge(@partner) %></h1>
+    <h1><i class="fa fa-building"></i>&nbsp;&nbsp;Organization Details&nbsp;&nbsp;&nbsp;<%= partner_status_badge(@partner) %></h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
