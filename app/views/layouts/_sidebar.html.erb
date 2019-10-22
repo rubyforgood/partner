@@ -13,13 +13,13 @@
     </li>
     <li>
       <%= link_to edit_partner_path(current_partner), class: "app-menu__item #{'active' if current_page?(edit_partner_path(id: current_partner.id))}" do %>
-        <i class="app-menu__icon fa fa-cog"></i> <span class="app-menu__label">Edit Partner</span>
+        <i class="app-menu__icon fa fa-cog"></i> <span class="app-menu__label">Edit My Organization</span>
       <% end %>
     </li>
     <% if current_partner.verified? %>
       <li>
         <%= link_to partner_requests_path, class: "app-menu__item #{active_class(['partner_requests'])}" do %>
-          <i class="app-menu__icon fa fa-edit"></i> <span class="app-menu__label">Diaper Request</span>
+          <i class="app-menu__icon fa fa-edit"></i> <span class="app-menu__label">Diaper Requests</span>
         <% end %>
       </li>
     <% end %>
