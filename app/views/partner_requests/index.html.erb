@@ -38,7 +38,10 @@
             <% if Flipper[:family_requests].enabled?(@partner) %>
               <td>
                 <% if partner_request.for_families? %>
-                  <%= link_to "Pickup Sheet", family_request_pickup_sheets_path(partner_request) %>
+                  <%= link_to family_request_pickup_sheets_path(partner_request),
+                    class: 'btn btn-sm btn-info' do %>
+                      <i class="fa fa-edit"></i> Pickup Sheet
+                    <% end %>
                 <% end %>
               </td>
             <% end %>
