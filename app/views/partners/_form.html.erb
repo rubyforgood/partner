@@ -4,7 +4,7 @@
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
-    <li class="breadcrumb-item"><a href="<%= partner_path(current_partner) %>">Organization</a></li>
+    <li class="breadcrumb-item"><a href="<%= partner_path(current_partner) %>"><%= "#{current_partner.name}" %></a></li>
     <li class="breadcrumb-item"><a href="#">Editing Partner Details</a></li>
   </ul>
 </div>
