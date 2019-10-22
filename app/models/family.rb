@@ -29,8 +29,18 @@ class Family < ApplicationRecord
   has_many :children, dependent: :destroy
   has_many :authorized_family_members, dependent: :destroy
   serialize :sources_of_income, Array
+  validates :guardian_first_name, :guardian_last_name, :guardian_zip_code, presence: true
 
   INCOME_TYPES = %w[SSI SNAP/FOOD\ Stamps TANF WIC Housing/subsidized Housing/unsubsidized N/A].freeze
+
+  after_create :create_authorized
+
+  def create_authorized
+    authorized_family_members.create!(
+        first_name: guardian_first_name,
+        last_name: guardian_last_name
+    )
+  end
 
   def guardian_display_name
     "#{guardian_first_name} #{guardian_last_name}"
