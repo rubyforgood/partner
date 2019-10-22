@@ -22,7 +22,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
   end
 
   describe "for children with different items, from different families" do
-    scenario "it creates family requests " do
+    scenario "it creates family requests" do
       child_item_requests = ChildItemRequest.count
       item_requests = ItemRequest.count
       stub_successful_items_partner_request
@@ -34,6 +34,25 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
       expect(ChildItemRequest.count - children.count).to eq(child_item_requests)
       expect(ItemRequest.count - 2).to eq(item_requests)
       expect(PartnerRequest.last.for_families?).to eq(true)
+    end
+  end
+
+  describe "pickup sheet link" do
+    scenario "it displays a link to a pickup sheet" do
+      stub_successful_items_partner_request
+      stub_successful_family_request
+      visit partner_requests_path
+      find_link("Create New Family Diaper Request").click
+      find('input[type="submit"]').click
+      expect(find("h3")).to have_text("Diaper Request History")
+      within "tbody" do
+        within find("tr:nth-child(1)") do
+          within find("td:nth-child(3)") do
+            click_link('Pickup Sheet')
+          end
+        end
+      end
+      expect(find('h1')).to have_text('Pickup Sheet')
     end
   end
 end
