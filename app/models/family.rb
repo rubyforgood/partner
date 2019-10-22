@@ -45,4 +45,8 @@ class Family < ApplicationRecord
   def guardian_display_name
     "#{guardian_first_name} #{guardian_last_name}"
   end
+
+  def total_children_count
+    home_child_count + home_young_child_count
+  end
 end
