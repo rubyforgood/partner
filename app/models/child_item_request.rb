@@ -17,4 +17,8 @@ class ChildItemRequest < ApplicationRecord
   def quantity
     item_request.quantity.to_i / item_request.children.size
   end
+
+  def ordered_item_diaperid
+    item_request.item_id
+  end
 end
