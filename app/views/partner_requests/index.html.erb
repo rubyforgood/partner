@@ -25,6 +25,9 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Contents</th>
+          <% if Flipper[:family_requests].enabled?(@partner) %>
+            <th scope="col">Pickup Sheet</th>
+          <% end %>
           <th scope="col">Request Date</th>
         </tr>
         </thead>
@@ -33,6 +36,16 @@
           <tr>
             <th scope="row"><%= link_to partner_request.id, partner_request_path(partner_request) %></th>
             <td><%= partner_request.item_requests.map {|item| "#{item.quantity} of #{item.name}"}.join(", ") %></td>
+            <% if Flipper[:family_requests].enabled?(@partner) %>
+              <td>
+                <% if partner_request.for_families? %>
+                  <%= link_to family_request_pickup_sheets_path(partner_request),
+                    class: 'btn btn-sm btn-info' do %>
+                      <i class="fa fa-edit"></i> Pickup Sheet
+                    <% end %>
+                <% end %>
+              </td>
+            <% end %>
             <td><%= partner_request.created_at.strftime("%B %-d %Y") %></td>
           </tr>
         <% end %>
@@ -45,7 +58,7 @@
         <% if @partner.verified? %>
           <%= link_to 'Create New Bulk Diaper Request', new_partner_request_path, class: 'btn btn-primary' %>
         <% end %>
-        <% if @partner.verified? && @partner.family_request_active? %>
+        <% if @partner.verified? && Flipper[:family_requests].enabled?(@partner) %>
           <%= link_to 'Create New Family Diaper Request', new_family_request_path, class: 'btn btn-primary' %>
         <% end %>
       </div>

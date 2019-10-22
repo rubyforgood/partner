@@ -23,7 +23,7 @@
         <% end %>
       </li>
     <% end %>
-    <% if current_partner.family_request_active? %>
+    <% if Flipper[:family_requests].enabled?(current_partner) %>
     <li>
       <%= link_to families_path, class: "app-menu__item #{'active' if current_page?(families_path)}" do %>
         <i class="fa fa-users app-menu__icon"></i>

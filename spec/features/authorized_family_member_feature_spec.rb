@@ -1,11 +1,12 @@
 require "rails_helper"
 
 describe AuthorizedFamilyMember, type: :feature do
-  let!(:partner) { create(:partner, id: 3) }
+  let!(:partner) { create(:partner) }
   let!(:user) { create(:user, partner: partner) }
   let!(:family) { create(:family, partner: partner) }
 
   before do
+    Flipper[:family_requests].enable(partner)
     sign_in(user)
     visit(families_path)
   end
@@ -20,6 +21,6 @@ describe AuthorizedFamilyMember, type: :feature do
     fill_in("First name", with: "John")
     fill_in("Last name", with: "Smith")
     click_button
-    expect(AuthorizedFamilyMember.count).to eq 1
+    expect(AuthorizedFamilyMember.count).to eq 2
   end
 end

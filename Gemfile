@@ -8,15 +8,21 @@ gem "bootstrap", "~> 4.3.1"
 gem "bugsnag"
 gem "devise"
 gem "devise_invitable"
+gem "flipper"
+gem "flipper-active_record"
+gem "flipper-ui"
 gem "font-awesome-rails"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails", "~> 4.3", ">= 4.3.1"
 gem "pg"
+gem "prawn-rails"
 gem "puma", "~> 3.11"
 gem "pundit", "~> 2.0.0"
 gem "rails", "~> 5.2.1"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
+gem "wicked_pdf", "~> 1.1"
+gem "wkhtmltopdf-binary"
 
 group :development, :test do
   gem "better_errors"
@@ -32,6 +38,7 @@ group :development, :test do
   gem "pry-remote"
   gem "rspec-rails", "~> 3.5"
   gem "rubocop"
+  gem "rubocop-rspec"
   gem "simplecov", require: false
 end
 
