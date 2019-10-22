@@ -33,6 +33,7 @@ module ApplicationHelper
     end
   end
 
+  # Change Devise's default redirect path after sign in
   def after_sign_in_path_for(resource)
     dashboard_path || super
   end

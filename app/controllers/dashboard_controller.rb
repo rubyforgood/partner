@@ -6,7 +6,9 @@ class DashboardController < ApplicationController
     @partner = current_partner
   end
 
-  ### DiaperBase code ###
+  # TODO: Remove commented code below
+  # DiaperBase dashboard code for comparsion
+
   # def index
   #   @recent_donations = current_organization.donations.includes(:line_items).during(helpers.selected_range).recent
   #   @purchases = current_organization.purchases.includes(:line_items).during(helpers.selected_range)
