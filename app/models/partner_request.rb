@@ -15,11 +15,14 @@ class PartnerRequest < ApplicationRecord
   belongs_to :partner
 
   has_many :item_requests, dependent: :destroy
-  accepts_nested_attributes_for :item_requests, allow_destroy: true, reject_if: proc { |attributes| attributes["quantity"].blank? }
+  accepts_nested_attributes_for :item_requests, allow_destroy: true,
+    reject_if: proc { |attributes| attributes["quantity"].blank? }
   validates :item_requests, presence: true, if: proc { |a| a.comments.blank? }
+  has_many :child_item_requests, through: :item_requests
 
   validates :partner, presence: true
   validates_associated :item_requests
+
   def export_json
     {
       request: {
