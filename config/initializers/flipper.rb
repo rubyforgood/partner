@@ -1,10 +1,8 @@
-ActiveSupport.on_load(:active_record) do
-  require "flipper/adapters/active_record"
+require "flipper/adapters/active_record"
 
-  Flipper.configure do |config|
-    config.default do
-      # TODO: Figure out in memory adapter when js is enabled.
-      Flipper.new(Flipper::Adapters::ActiveRecord.new)
-    end
+Flipper.configure do |config|
+  config.default do
+    # TODO: Figure out in memory adapter when js is enabled.
+    Flipper.new(Flipper::Adapters::ActiveRecord.new)
   end
 end
