@@ -23,7 +23,7 @@ FactoryBot.define do
         # This is loaded before the database and migratinos are run. If we use
         # Child.new it doesn't allow the db to be created.
         # TODO: Figure out what's going on here.
-        child OpenStruct.new
+        child { OpenStruct.new }
         # child OpenStruct.new
       end
 

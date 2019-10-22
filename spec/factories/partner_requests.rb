@@ -33,7 +33,7 @@ FactoryBot.define do
 
     factory :partner_request_for_families do
       transient do
-        children []
+        children { [] }
         item_requests_count { 2 }
       end
 
