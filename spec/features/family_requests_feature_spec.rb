@@ -48,11 +48,11 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
       within "tbody" do
         within find("tr:nth-child(1)") do
           within find("td:nth-child(3)") do
-            click_link('Pickup Sheet')
+            click_link("Pickup Sheet")
           end
         end
       end
-      expect(find('h1')).to have_text('Pickup Sheet')
+      expect(find("h1")).to have_text("Pickup Sheet")
     end
   end
 end
