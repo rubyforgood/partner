@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   )
 
   get "dashboard", to: "dashboard#index"
-  
+
   resources :partners do
     get :approve
   end
