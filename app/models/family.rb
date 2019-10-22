@@ -32,6 +32,8 @@ class Family < ApplicationRecord
   validates :guardian_first_name, :guardian_last_name, :guardian_zip_code, presence: true
 
   INCOME_TYPES = %w[SSI SNAP/FOOD\ Stamps TANF WIC Housing/subsidized Housing/unsubsidized N/A].freeze
+  INSURANCE_TYPES = %w[Private\ insurance Medicaid Uninsured].freeze
+  EMPLOYMENT_TYPES = %w[Full-time Part-time N/A].freeze
 
   after_create :create_authorized
 
