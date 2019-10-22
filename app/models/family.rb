@@ -37,8 +37,8 @@ class Family < ApplicationRecord
 
   def create_authorized
     authorized_family_members.create!(
-        first_name: guardian_first_name,
-        last_name: guardian_last_name
+      first_name: guardian_first_name,
+      last_name: guardian_last_name
     )
   end
 
