@@ -3,20 +3,19 @@ body {
   color: #333;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 62.5%;
 }
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 1rem;
+  line-height: 2.2rem;
 }
 
 pre {
   background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+  padding: 1rem;
+  font-size: 1.1rem;
 }
 
 a {
@@ -33,16 +32,16 @@ a {
 }
 
 th {
-  padding-bottom: 5px;
+  padding-bottom: 0.5rem;
 }
 
 td {
-  padding: 0 5px 7px;
+  padding: 0 0.5rem 0.7rem;
 }
 
 div {
   &.field, &.actions {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 }
 
@@ -57,24 +56,24 @@ div {
 }
 
 #error_explanation {
-  width: 450px;
+  width: 45rem;
   border: 2px solid red;
-  padding: 7px 7px 0;
-  margin-bottom: 20px;
+  padding: 0.7rem 0.7rem 0;
+  margin-bottom: 2rem;
   background-color: #f0f0f0;
 
   h2 {
     text-align: left;
     font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px -7px 0;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    font-size: 1.2rem;
+    margin: -0.7rem -0.7rem 0;
     background-color: #c00;
     color: #fff;
   }
 
   ul li {
-    font-size: 12px;
+    font-size: 1.2rem;
     list-style: square;
   }
 }

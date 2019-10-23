@@ -11,10 +11,12 @@
 </head>
   <body class="app sidebar-mini rtl">
     <main class="app-content">
-      <%= render partial: "layouts/navbar" %>
-      <%= render partial: "layouts/sidebar" %>
-      <%= yield %>
-      <%= render partial: "layouts/footer" %>
+      <div class="container-fluid main-content">
+        <%= render partial: "layouts/navbar" %>
+        <%= render partial: "layouts/sidebar" %>
+        <%= yield %>
+        <%= render partial: "layouts/footer" %>
+      </div>
     </main>
   </body>
 </html>
