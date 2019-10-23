@@ -92,7 +92,6 @@ describe "Partner edit", type: :feature do
 
     click_button "Update Information"
 
-    expect(page).to have_content "pending"
     expect(page).to have_content "Details were successfully updated."
   end
 
