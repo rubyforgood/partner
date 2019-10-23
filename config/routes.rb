@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   end
   mount flipper_app, at: "/flipper"
   devise_for :users, controllers: {
-               sessions: "users/sessions",
-               invitations: "users/invitations"
-             }
+    sessions: "users/sessions",
+    invitations: "users/invitations"
+  }
   # TODO: remove these two
   resources :children do
     post :active

@@ -1,6 +1,6 @@
 class Users::InvitationsController < Devise::InvitationsController
   layout "application"
-  
+
   def create
     user = User.invite!(
       email: user_params[:email],
