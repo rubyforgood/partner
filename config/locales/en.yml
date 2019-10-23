@@ -43,9 +43,8 @@ en:
     quantity_picked_up: >-
       Quantity ordered for %{child_name} is %{quantity_ordered}. Quantity picked
       up for %{child_name} is %{quantity_picked_up}.
-    item_picked_up: >-
-      Item ordered for %{child_name} is "%{item_ordered}". Pick up item changed to
-       "%{item_picked_up_label}".
+    item_picked_up: 
+      Item ordered for %{child_name} is "%{item_ordered}". Pick up item changed to "%{item_picked_up_label}".
     authorized_family_member_update: >-
       Pickup authorized person is now %{name}.
 
