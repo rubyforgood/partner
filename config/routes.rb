@@ -5,7 +5,10 @@ Rails.application.routes.draw do
     end
   end
   mount flipper_app, at: "/flipper"
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :users, controllers: {
+               sessions: "users/sessions",
+               invitations: "users/invitations"
+             }
   # TODO: remove these two
   resources :children do
     post :active
@@ -31,6 +34,7 @@ Rails.application.routes.draw do
     get :approve
   end
 
+  resources :users, only: [:index]
   resources :partner_requests, only: [:new, :create, :show, :index]
   resources :family_requests, only: [:new, :create] do
     resource :pickup_sheets, only: :show

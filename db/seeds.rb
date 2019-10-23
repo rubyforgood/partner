@@ -19,6 +19,7 @@ verified_partner = Partner.create(
     partner_status: "verified"
 )
 User.create(
+    name: Faker::Name.name,
     password: "password",
     password_confirmation: "password",
     email: "verified@example.com",
@@ -84,6 +85,7 @@ unverified_partner = Partner.create(
     executive_director_email: "unverified@example.com"
 )
 User.create(
+    name: Faker::Name.name,
     password: "password",
     password_confirmation: "password",
     email: "unverified@example.com",
@@ -132,6 +134,7 @@ invited_partner_2 = Partner.create(
     executive_director_email: "contactus@pawneepregnancy.com"
 )
 User.create(
+    name: Faker::Name.name,
     password: "password",
     password_confirmation: "password",
     email: "invited_partner_2@example.com",
@@ -157,6 +160,7 @@ recertification_required_partner = Partner.create(
     executive_director_email: "help@pscc.org"
 )
 User.create(
+    name: Faker::Name.name,
     password: "password",
     password_confirmation: "password",
     email: "recertification@example.com",
