@@ -23,6 +23,8 @@ class PartnerRequest < ApplicationRecord
   validates :partner, presence: true
   validates_associated :item_requests
 
+  scope :most_recent, -> (integer) { order(:created_at).limit(integer).offset(PartnerRequest.all.count - integer) }
+
   def export_json
     {
       request: {
