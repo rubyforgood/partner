@@ -35,7 +35,7 @@ describe PartnersController, type: :controller, include_shared: true do
 
       it "redirects to #show" do
         expect(subject.request).to redirect_to(@partner)
-        expect(subject.request.flash[:notice]).to eq("Details were successfully updated.")
+        expect(subject.request.flash[:success]).to eq("Details were successfully updated.")
       end
     end
 
