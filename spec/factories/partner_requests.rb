@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :partner_request do
-    comments { Faker::Matz.quote }
+    comments { Faker::Quote.matz }
     partner
     sequence(:organization_id)
 

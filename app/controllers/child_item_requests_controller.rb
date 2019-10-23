@@ -11,7 +11,10 @@ class ChildItemRequestsController < ApplicationController
           child_name: child_item_request.child.first_name
         )
         render partial: "child_item_requests/child_item_request_update",
-          object: build_open_struct(message)
+          object: build_open_struct(
+            message,
+            picked_up: child_item_request.picked_up
+          )
       end
     end
   end
@@ -75,8 +78,12 @@ class ChildItemRequestsController < ApplicationController
 
   private
 
-  def build_open_struct(message)
-    OpenStruct.new(message: message, item_id: child_item_request.id)
+  def build_open_struct(message, picked_up: false)
+    OpenStruct.new(
+      message: message,
+      item_id: child_item_request.id,
+      picked_up: picked_up
+    )
   end
 
   def child_item_request
