@@ -32,7 +32,7 @@
                   <td colspan="7" id="flash-message-container-nested-<%= child_item_request.id%>">
                   </td>
                 </tr>
-                <tr>
+                <tr id="child-item-requests-row-<%= child_item_request.id%>" class="<%= child_item_request.picked_up? ? 'row-success' : '' %>">
                   <td><%= child.display_name %></td>
                   <td>
                     <%= select_tag :authorized_family_member_id,
