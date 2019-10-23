@@ -18,6 +18,7 @@ verified_partner = Partner.create(
     executive_director_email: "verified@example.com",
     partner_status: "verified"
 )
+Flipper[:family_requests].enable(verified_partner)
 User.create(
     password: "password",
     password_confirmation: "password",
