@@ -1,5 +1,5 @@
 WickedPdf.config = {
-    #cross enviroment configs
+  # cross enviroment configs
 }
 
 if Rails.env.development?
