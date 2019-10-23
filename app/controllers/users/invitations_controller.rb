@@ -1,5 +1,5 @@
 class Users::InvitationsController < Devise::InvitationsController
-  layout "application"
+  layout "application", only: [:new]
 
   def create
     user = User.invite!(
