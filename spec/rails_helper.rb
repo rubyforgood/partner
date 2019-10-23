@@ -44,16 +44,6 @@ ActiveRecord::Migration.maintain_test_schema!
 # If an element is hidden, Capybara should ignore it
 Capybara.ignore_hidden_elements = true
 
-# https://docs.travis-ci.com/user/chrome
-Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1680,1050])
-
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-end
-
-# Enable JS for Capybara tests
-Capybara.javascript_driver = :chrome
-
 Capybara::Screenshot.autosave_on_failure = true
 # The driver name should match the Capybara driver config name.
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
@@ -78,8 +68,9 @@ Capybara.ignore_hidden_elements = true
 
 # https://docs.travis-ci.com/user/chrome
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1680,1050])
-
+  args = %w[no-sandbox disable-gpu window-size=1680,1050]
+  args << "headless" unless ENV["NOT_HEADLESS"] == "true"
+  options = Selenium::WebDriver::Chrome::Options.new(args: args)
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
