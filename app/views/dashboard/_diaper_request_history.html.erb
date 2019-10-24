@@ -32,7 +32,7 @@
             <tr class="row">
               <td class="col-1"><%= link_to partner_request.id, partner_request_path(partner_request) %></th>
               <td class="col-6"><%= partner_request.item_requests.map {|item| "#{item.quantity} of #{item.name}"}.join(", ") %></td>
-              <td class="col text-right"><%= link_to '<i class="fa fa-edit"></i>&nbsp;&nbsp;Pickup Sheet'.html_safe, family_request_pickup_sheets_path(partner_request), class: 'btn btn-sm btn-info' %></td>
+              <td class="col text-right"><%= link_to '<i class="fa fa-edit"></i>&nbsp;&nbsp;Pickup Sheet'.html_safe, family_request_pickup_sheets_path(partner_request), class: 'btn btn-sm btn-primary' %></td>
               <td class="col"><%= partner_request.created_at.strftime("%B %-d %Y") %></td>
             </tr>
           <% end %>
