@@ -30,7 +30,9 @@ class Api::V1::PartnersController < ApiController
       partner.update(partner_status: "pending")
     elsif partner_params[:status] == "recertification_required"
       partner.update(partner_status: "recertification_required")
-      RecertificationMailer.with(partner: partner).notice_email.deliver_now
+      partner.users.each do |user|
+        RecertificationMailer.notice_email(user).deliver_later
+      end
     elsif partner_params[:status] == "approved"
       partner.update(partner_status: "verified")
     else
