@@ -10,7 +10,7 @@ class PickupSheetsController < ApplicationController
         render pdf: "pickup_sheets",
                page_size: "A3",
                template: "pickup_sheets/pdf_show.html.erb",
-        layout: "pdf.html",
+               layout: "pdf.html",
                lowquality: true
       end
     end
