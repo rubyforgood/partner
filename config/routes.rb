@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     to: redirect(path: "/users/invitation/accept")
   )
 
+  get "dashboard", to: "dashboard#index"
+
   resources :partners do
     get :approve
   end

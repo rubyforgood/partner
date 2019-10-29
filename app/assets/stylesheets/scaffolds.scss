@@ -3,8 +3,7 @@ body {
   color: #333;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 62.5%;
 }
 
 p, ol, ul, td {
@@ -42,7 +41,7 @@ td {
 
 div {
   &.field, &.actions {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 }
 

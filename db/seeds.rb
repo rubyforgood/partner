@@ -18,6 +18,7 @@ verified_partner = Partner.create(
     executive_director_email: "verified@example.com",
     partner_status: "verified"
 )
+Flipper[:family_requests].enable(verified_partner)
 User.create(
     name: Faker::Name.name,
     password: "password",
@@ -26,7 +27,7 @@ User.create(
     partner: verified_partner
 )
 puts "Adding families."
-5.times do
+Faker::Number.within(range: 4..13).times do
     Family.create(
         guardian_first_name: Faker::Name.first_name,
         guardian_last_name: Faker::Name.last_name,
@@ -52,20 +53,83 @@ puts "Adding children."
 Family.all.each do |family|
     family.home_child_count.times do
         Child.create(
+            family: family,
             first_name: Faker::Name.first_name,
-            last_name: Faker::Name.last_name,
+            last_name: family.guardian_last_name,
             date_of_birth: Faker::Date.birthday(min_age: 5, max_age: 18),
             gender: Faker::Gender.binary_type,
             child_lives_with: Child::CAN_LIVE_WITH.sample(2),
             race: Child::RACES.sample,
-            agency_child_id: Faker::Name.name,
+            agency_child_id: family.agency_guardian_id,
             health_insurance: family.guardian_health_insurance,
             comments: Faker::Lorem.paragraph,
             active: Faker::Boolean.boolean,
             archived: false,
-            item_needed_diaperid: Child::CHILD_ITEMS.sample,
-            family: family
+            item_needed_diaperid: Child::CHILD_ITEMS.sample
         )
+    end
+    family.home_young_child_count.times do
+        Child.create(
+            family: family,
+            first_name: Faker::Name.first_name,
+            last_name: family.guardian_last_name,
+            date_of_birth: Faker::Date.birthday(min_age: 0, max_age: 5),
+            gender: Faker::Gender.binary_type,
+            child_lives_with: Child::CAN_LIVE_WITH.sample(2),
+            race: Child::RACES.sample,
+            agency_child_id: family.agency_guardian_id,
+            health_insurance: family.guardian_health_insurance,
+            comments: Faker::Lorem.paragraph,
+            active: Faker::Boolean.boolean,
+            archived: false,
+            item_needed_diaperid: Child::CHILD_ITEMS.sample
+        )
+    end
+end
+
+puts "Adding authorized family members."
+Family.all.each do |family|
+    AuthorizedFamilyMember.create(
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 100),
+        gender: Faker::Gender.binary_type,
+        comments: Faker::Lorem.paragraph,
+        family: family
+    )
+end
+
+puts "Adding diaper requests."
+Faker::Number.within(range: 32..56).times do
+    PartnerRequest.create(
+        comments: Faker::Lorem.paragraph,
+        partner: verified_partner,
+        for_families: Faker::Boolean.boolean
+    )
+end
+
+PartnerRequest.all.each do |pr|
+    ItemRequest.create(
+        name: Child::CHILD_ITEMS.sample,
+        quantity: Faker::Number.within(range: 10..30),
+        partner_request_id: pr.id,
+        partner_key: Child::CHILD_ITEMS.sample,
+        item_id: Faker::Number.within(range: 1..20)
+    )
+end
+
+PartnerRequest.all.each do |pr|
+    if pr.for_families
+        pr.item_requests.each do |request|
+            ChildItemRequest.create(
+                child_id: Child.all.sample,
+                item_request: request,
+                picked_up: Faker::Boolean.boolean,
+                quantity_picked_up: Faker::Number.within(range: 10..30),
+                picked_up_item_diaperid: Child::CHILD_ITEMS.sample,
+                authorized_family_member: nil
+            )
+        end
     end
 end
 

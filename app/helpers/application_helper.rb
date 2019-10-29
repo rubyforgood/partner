@@ -32,4 +32,9 @@ module ApplicationHelper
       content_tag :span, partner.partner_status, class: %w(badge badge-pill badge-info float-right)
     end
   end
+
+  # Change Devise's default redirect path after sign in
+  def after_sign_in_path_for(resource)
+    dashboard_path || super
+  end
 end
