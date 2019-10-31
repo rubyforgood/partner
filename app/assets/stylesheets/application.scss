@@ -62,3 +62,12 @@
 tr.row-success {
   background-color: #d1ecf1;
 }
+
+
+// Flash messages
+#flash-message-container {
+  position: fixed;
+  top: 4rem;
+  left: 50%;
+  display: block;
+}
