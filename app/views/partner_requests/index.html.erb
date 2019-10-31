@@ -16,7 +16,17 @@
       <p><%= notice %><a class="alert-link" href="#"></p>
       </a></p>
     </div>
+    <% end %>
+
+    <div class="actions">
+      <% if @partner.verified? %>
+        <%= link_to 'Create New Bulk Diaper Request', new_partner_request_path, class: 'btn btn-primary' %>
       <% end %>
+      <% if @partner.verified? && Flipper[:family_requests].enabled?(@partner) %>
+        <%= link_to 'Create New Family Diaper Request', new_family_request_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+
     <div class="tile">
       <h3>Diaper Request History</h3>
 
@@ -51,19 +61,6 @@
         <% end %>
         </tbody>
       </table>
-
-      <hr>
-
-      <div class="actions">
-        <% if @partner.verified? %>
-          <%= link_to 'Create New Bulk Diaper Request', new_partner_request_path, class: 'btn btn-primary' %>
-        <% end %>
-        <% if @partner.verified? && Flipper[:family_requests].enabled?(@partner) %>
-          <%= link_to 'Create New Family Diaper Request', new_family_request_path, class: 'btn btn-primary' %>
-        <% end %>
-      </div>
-
-
     </div>
   </div>
 </div>

@@ -1,17 +1,22 @@
 <div class="card mb-4">
-  <h5 class="card-header bg-primary text-white">Organization Details &nbsp; <%= partner_status_badge(@partner) %></span></h5>
+  <h5 class="card-header bg-primary text-white">Organization Details&nbsp;&nbsp;<%= partner_status_badge(@partner) %></span></h5>
   <div class="card-body">
-    <h2>Name</h2>
-    <dd><%= @partner.name %></dd>
+    <div class="container-fluid">
+      <div class="row text-center">
+        <div class="col-6">
+          <h2>Name</h2>
+          <h3 class="display-4 dashboard"><%= @partner.name %></h3>
+        </div>
+        <div class="col-6">
+          <h2>Agency Type</h2>
+          <h3 class="display-4 dashboard"><%= @partner.agency_type %></h3>
 
-    <h2>Agency Type</h2>
-    <dd><%= @partner.agency_type %></dd>
-
-    <% if @partner.agency_type == "Other" %>
-      <h2>Other Agency Type</h2>
-      <dd><%= @partner.other_agency_type %></dd>
-    <% end %>
-
-    <p>Howdy pardner!</p>
+          <% if @partner.agency_type == "Other" %>
+            <h2>Other Agency Type</h2>
+            <h3 class="display-4 dashboard"><%= @partner.other_agency_type %></h3>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

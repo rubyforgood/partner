@@ -12,29 +12,22 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <% if notice %>
-      <div class="alert alert-dismissible alert-success">
-        <button class="close" type="button" data-dismiss="alert">×</button>
-        <p><%= notice %><a class="alert-link" href="#"></p>
-        </a></p>
+    <div class="container-fluid">
+      <div class="row">
+	<div class="col">
+	  <%= render partial: "partner_details" %>
+	</div>
       </div>
-    <% end %>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
-            <%= render partial: "partner_details" %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <%= render partial: "diaper_request_history" %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <%= render partial: "family_details" %>
-          </div>
-        </div>
+      <div class="row">
+	<div class="col">
+	  <%= render partial: "diaper_request_history" %>
+	</div>
       </div>
+      <div class="row">
+	<div class="col">
+	  <%= render partial: "family_details" %>
+	</div>
+      </div>
+    </div>
   </div>
 </div>

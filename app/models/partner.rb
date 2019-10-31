@@ -88,7 +88,7 @@
 class Partner < ApplicationRecord
   include DiaperBankClient
 
-  has_one :user, dependent: :destroy
+  has_many :users, dependent: :destroy
   has_one_attached :proof_of_partner_status
   has_one_attached :proof_of_form_990
   has_many_attached :documents

@@ -67,8 +67,8 @@ describe "Partners API Requests", type: :request do
     end
 
     context "when we set the partner to recertification_required" do
-      let(:user) { create(:user) }
-      let(:partner) { create(:partner, user: user) }
+      let(:partner) { create(:partner) }
+      let(:user) { create(:user, partner: partner) }
       let(:params) { { partner: { diaper_partner_id: partner.diaper_bank_id, status: "recertification_required" } } }
 
       it "returns OK" do
@@ -87,7 +87,9 @@ describe "Partners API Requests", type: :request do
       end
 
       it "emails a notification" do
-        expect { valid_partner_update_request(params, headers) }.to change { ActionMailer::Base.deliveries.count }.by(1)
+        allow(RecertificationMailer).to receive(:notice_email).with(user)
+        valid_partner_update_request(params, headers)
+        expect(RecertificationMailer).to have_received(:notice_email).with(user)
       end
     end
 

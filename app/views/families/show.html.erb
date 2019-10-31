@@ -19,7 +19,7 @@
 
     <div class="row">
       <div class="col-12">
-        <div class="card mb-12">
+        <div class="card mb-4">
           <h5 class="card-header bg-primary text-white">Family Information
             <%= link_to 'Add An Authorized Member To This Family', new_authorized_family_member_path(family_id: @family.id), class: "btn btn-sm btn-warning pull-right", style: "margin-left:10px;" %>
             <%= link_to 'Add Child To This Family', new_child_path(family_id: @family.id), class: "btn btn-sm btn-warning pull-right" %>
@@ -41,7 +41,7 @@
               <dt>Guardian phone:</dt>
               <dd><%= @family.guardian_phone %></dd>
 
-              <dt>Agency guardian:</dt>
+              <dt>Agency Care Manager:</dt>
               <dd><%= @family.agency_guardian_id %></dd>
 
               <dt>Home adult count:</dt>
@@ -83,7 +83,28 @@
 
         <div class="row">
           <div class="col-12">
-            <div class="card mb-12">
+            <div class="card mb-4">
+            <h5 class="card-header bg-primary text-white">Children Information</h5>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date of birth</th>
+                    <th scope="col">Gender</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @family.children.each do |child| %>
+                    <tr>
+                      <td><%= child.display_name %></td>
+                      <td><%= child.date_of_birth %></td>
+                      <td><%= child.gender %></td>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card mb-4">
             <h5 class="card-header bg-primary text-white">Authorized Members for Pick Up</h5>
               <table class="table table-striped">
                 <thead>

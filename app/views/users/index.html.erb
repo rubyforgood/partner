@@ -1,0 +1,36 @@
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-users"></i>Users</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-users"></i></li>
+    <li class="breadcrumb-item"><a href="#">Users</a></li>
+  </ul>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <h3><%= current_partner.name %> Users </h3>
+      <%= link_to "Invite new user", new_user_invitation_path, class: "btn btn-sam btn-primary pull-right" %>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+	  </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <hr>
+    </div>
+  </div>
+</div>

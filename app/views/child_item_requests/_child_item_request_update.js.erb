@@ -11,3 +11,11 @@ $("#flash-message-container-nested-<%= child_item_request_update.item_id %>").pr
     </span>
   </div>
 `)
+
+element_id = "child-item-requests-row-<%= child_item_request_update.item_id %>"
+classList = document.getElementById(element_id).classList
+<% if child_item_request_update.picked_up %>
+    classList.add("row-success")
+<% else %>
+    classList.remove("row-success")
+<% end %>

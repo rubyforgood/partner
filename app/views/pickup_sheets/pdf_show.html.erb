@@ -6,8 +6,8 @@
 <div class="row">
   <div class="col-12">
     <table class="table table-striped">
-      <thead>
-      <tr>
+      <thead style="display: table-header-group">
+      <tr style="page-break-inside: avoid">
         <th scope="col">Child's name</th>
         <th scope="col">Picked Up By</th>
         <th scope="col">Quantity Ordered</th>
@@ -20,8 +20,8 @@
       <tbody>
       <% child_item_requests.each do |child_item_request| %>
         <% child = child_item_request.child %>
-        <tr>
-          <td><%= child.display_name %></td>
+        <tr style="page-break-inside: avoid">
+          <td><%= child.display_name %><br><%= child.family.guardian_phone %></td>
           <td>
             <% child.family.authorized_family_members.each do |authed| %>
               <div>
@@ -40,9 +40,7 @@
             <input type="text">
           </td>
           <td>
-
             <input type="checkbox">
-
           </td>
         </tr>
       <% end %>

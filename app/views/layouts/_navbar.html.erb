@@ -1,13 +1,23 @@
 <header class="app-header"><a class="app-header__logo" href="#">Partnerbase</a>
   <ul class="app-nav">
     <li class="dropdown">
-      <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+      <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">
+	<i class="fa fa-user fa-lg"></i>
+	<%= current_user.name %>
+      </a>
       <ul class="dropdown-menu settings-menu dropdown-menu-right">
-        <li><%= link_to edit_partner_path(current_partner), class: "dropdown-item" do %>
+        <li>
+	  <%= link_to edit_partner_path(current_partner), class: "dropdown-item" do %>
             <i class="fa fa-cog fa-lg"></i> Edit Partner
           <% end %>
         </li>
-        <li><%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+        <li>
+	  <%= link_to users_path, class: "dropdown-item" do %>
+            <i class="fa fa-users fa-lg"></i> My CoWorkers
+          <% end %>
+        </li>
+        <li>
+	  <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
             <i class="fa fa-sign-out fa-lg"></i> Logout
           <% end %>
         </li>

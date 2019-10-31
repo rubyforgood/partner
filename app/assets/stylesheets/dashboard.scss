@@ -1,16 +1,34 @@
-// Styling for dashboard partner status badge
-h5.card-header > span.badge {
-  display: inline-flex;
-  float: none !important;
-  vertical-align: text-top;
+// Dashboard partner status badge
+h5.card-header {
+  span.badge {
+    display: inline-flex;
+    float: none !important;
+    vertical-align: text-top;
+  }
+  
+  span.badge-primary {
+    color: #009688;
+    background-color: #FFF;
+  }
 }
 
-h5.card-header > span.badge-primary {
-  color: #009688;
-  background-color: #FFF;
+// Dashboard text sizing
+// Families Served --> Areas Served card
+div.card-body > h2.card-text.display-4.zip {
+  font-size: 2.5em;
 }
 
-// Dashboard card headers
-div.card-body > h2 {
-  font-size: 2rem;
+// Organization details card
+h3.display-4.dashboard {
+  font-size: 1.5em;
+}
+
+// Dashboard margins and padding
+table.dashboard,
+div.dashboard {
+  margin-top: 1rem;
+}
+
+div.card.dashboard {
+  padding: 0;
 }
