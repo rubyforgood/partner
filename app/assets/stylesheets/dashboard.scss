@@ -1,13 +1,15 @@
 // Dashboard partner status badge
-h5.card-header > span.badge {
-  display: inline-flex;
-  float: none !important;
-  vertical-align: text-top;
-}
-
-h5.card-header > span.badge-primary {
-  color: #009688;
-  background-color: #FFF;
+h5.card-header {
+  span.badge {
+    display: inline-flex;
+    float: none !important;
+    vertical-align: text-top;
+  }
+  
+  span.badge-primary {
+    color: #009688;
+    background-color: #FFF;
+  }
 }
 
 // Dashboard text sizing

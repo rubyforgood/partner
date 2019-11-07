@@ -35,10 +35,10 @@
   margin: 0 -3rem;
   color: #444444;
   border-top: 1px solid #d2d6de;
-}
-
-.main-footer > strong {
-  margin-left: 1rem;
+  
+  strong {
+    margin-left: 1rem;
+  }
 }
 
 .thick-grey-border {
@@ -61,4 +61,13 @@
 
 tr.row-success {
   background-color: #d1ecf1;
+}
+
+
+// Flash messages
+#flash-message-container {
+  position: fixed;
+  top: 4rem;
+  left: 50%;
+  display: block;
 }

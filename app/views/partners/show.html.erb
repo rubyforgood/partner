@@ -12,7 +12,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-6">
             <div class="card mb-4">
@@ -329,11 +329,11 @@
       </div>
     </div>
 </div>
-<div class="col-md-10 offset-md-1">
+<div class="col-10 offset-1">
   <div class="tile">
     <div class="tile-body">
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-6">
           <div class="actions">
             <% if @partner.verified? %>
               <%= link_to "Request Diapers", partner_requests_path, class: 'btn btn-success' %>
