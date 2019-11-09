@@ -34,4 +34,8 @@ RSpec.describe Family, type: :model do
       create(:family, guardian_first_name: "John", guardian_last_name: "Wick")
     expect("John Wick").to eq(family.guardian_display_name)
   end
+
+  it "when a family is created the first authorized family member is created" do
+    expect { create(:family) }.to change { AuthorizedFamilyMember.count }.by(1)
+  end
 end

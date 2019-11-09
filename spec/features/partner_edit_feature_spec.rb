@@ -28,11 +28,11 @@ describe "Partner edit", type: :feature do
     fill_in "partner_zip_code", with: Faker::Address.zip_code
     fill_in "partner_website", with: Faker::Name.name
     fill_in "partner_facebook", with: Faker::Name.name
-    fill_in "partner_founded", with: Faker::Number.number(4)
+    fill_in "partner_founded", with: Faker::Number.number(digits: 4)
     check "partner_form_990"
     fill_in "partner_program_name", with: Faker::Name.name
     fill_in "partner_program_description", with: Faker::Lorem.paragraph
-    fill_in "partner_program_age", with: Faker::Number.number(1)
+    fill_in "partner_program_age", with: Faker::Number.number(digits: 1)
     check "partner_case_management"
     check "partner_evidence_based"
     fill_in "partner_evidence_based_description", with: Faker::Lorem.paragraph
@@ -57,30 +57,30 @@ describe "Partner edit", type: :feature do
     check "partner_income_verification"
     check "partner_internal_db"
     check "partner_maac"
-    fill_in "partner_population_black", with: Faker::Number.number(2)
-    fill_in "partner_population_white", with: Faker::Number.number(2)
-    fill_in "partner_population_hispanic", with: Faker::Number.number(2)
-    fill_in "partner_population_asian", with: Faker::Number.number(2)
-    fill_in "partner_population_american_indian", with: Faker::Number.number(2)
-    fill_in "partner_population_island", with: Faker::Number.number(2)
-    fill_in "partner_population_multi_racial", with: Faker::Number.number(2)
-    fill_in "partner_population_other", with: Faker::Number.number(2)
+    fill_in "partner_population_black", with: Faker::Number.number(digits: 2)
+    fill_in "partner_population_white", with: Faker::Number.number(digits: 2)
+    fill_in "partner_population_hispanic", with: Faker::Number.number(digits: 2)
+    fill_in "partner_population_asian", with: Faker::Number.number(digits: 2)
+    fill_in "partner_population_american_indian", with: Faker::Number.number(digits: 2)
+    fill_in "partner_population_island", with: Faker::Number.number(digits: 2)
+    fill_in "partner_population_multi_racial", with: Faker::Number.number(digits: 2)
+    fill_in "partner_population_other", with: Faker::Number.number(digits: 2)
     fill_in "partner_zips_served", with: Faker::Name.name
-    fill_in "partner_at_fpl_or_below", with: Faker::Number.number(2)
-    fill_in "partner_above_1_2_times_fpl", with: Faker::Number.number(2)
-    fill_in "partner_greater_2_times_fpl", with: Faker::Number.number(2)
-    fill_in "partner_poverty_unknown", with: Faker::Number.number(2)
+    fill_in "partner_at_fpl_or_below", with: Faker::Number.number(digits: 2)
+    fill_in "partner_above_1_2_times_fpl", with: Faker::Number.number(digits: 2)
+    fill_in "partner_greater_2_times_fpl", with: Faker::Number.number(digits: 2)
+    fill_in "partner_poverty_unknown", with: Faker::Number.number(digits: 2)
     fill_in "partner_ages_served", with: Faker::Name.name
     fill_in "partner_executive_director_name", with: Faker::Name.name
-    fill_in "partner_executive_director_phone", with: Faker::Number.number(10)
+    fill_in "partner_executive_director_phone", with: Faker::PhoneNumber.phone_number
     fill_in "partner_executive_director_email", with: Faker::Name.name
     fill_in "partner_program_contact_name", with: Faker::Name.name
-    fill_in "partner_program_contact_phone", with: Faker::Number.number(10)
-    fill_in "partner_program_contact_mobile", with: Faker::Number.number(10)
+    fill_in "partner_program_contact_phone", with: Faker::PhoneNumber.phone_number
+    fill_in "partner_program_contact_mobile", with: Faker::PhoneNumber.phone_number
     fill_in "partner_program_contact_email", with: Faker::Name.name
     fill_in "partner_pick_up_method", with: Faker::Name.name
     fill_in "partner_pick_up_name", with: Faker::Name.name
-    fill_in "partner_pick_up_phone", with: Faker::Number.number(10)
+    fill_in "partner_pick_up_phone", with: Faker::PhoneNumber.phone_number
     fill_in "partner_pick_up_email", with: Faker::Name.name
     fill_in "partner_distribution_times", with: Faker::Name.name
     fill_in "partner_new_client_times", with: Faker::Name.name

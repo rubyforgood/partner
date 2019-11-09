@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  flipper_app = Flipper::UI.app(Flipper.instance) do |builder|
+    builder.use Rack::Auth::Basic do |username, password|
+      username == ENV["FLIPPER_USERNAME"] && password == ENV["FLIPPER_PASSWORD"]
+    end
+  end
+  mount flipper_app, at: "/flipper"
+  devise_for :users, controllers: {
+    sessions: "users/sessions",
+    invitations: "users/invitations"
+  }
   # TODO: remove these two
   resources :children do
     post :active
@@ -21,12 +30,33 @@ Rails.application.routes.draw do
     to: redirect(path: "/users/invitation/accept")
   )
 
+  get "dashboard", to: "dashboard#index"
+
   resources :partners do
     get :approve
   end
 
+  resources :users, only: [:index]
   resources :partner_requests, only: [:new, :create, :show, :index]
-  resources :family_requests, only: [:new, :create]
+  resources :family_requests, only: [:new, :create] do
+    resource :pickup_sheets, only: :show
+  end
+
+  post "/child_item_requests_toggle_picked_up/:id", action: :toggle_picked_up,
+    controller: :child_item_requests,
+    as: :child_item_requests_toggle_picked_up
+  post "/child_item_requests_quantity_picked_up/:id",
+       action: :quantity_picked_up,
+       controller: :child_item_requests,
+       as: :child_item_requests_quantity_picked_up
+  post "/child_item_requests_item_picked_up/:id",
+       action: :item_picked_up,
+       controller: :child_item_requests,
+       as: :child_item_requests_item_picked_up
+  post "/child_item_requests_authorized_family_member_picked_up/:id",
+       action: :authorized_family_member_picked_up,
+       controller: :child_item_requests,
+       as: :child_item_requests_authorized_family_member_picked_up
 
   get "/api", action: :show, controller: "api"
   namespace :api, defaults: { format: "json" } do

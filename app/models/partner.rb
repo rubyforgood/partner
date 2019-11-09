@@ -86,11 +86,9 @@
 #
 
 class Partner < ApplicationRecord
-  ACTIVE_FAMILY_REQUESTS = [1, 3, 27].freeze
-
   include DiaperBankClient
 
-  has_one :user, dependent: :destroy
+  has_many :users, dependent: :destroy
   has_one_attached :proof_of_partner_status
   has_one_attached :proof_of_form_990
   has_many_attached :documents
@@ -224,8 +222,8 @@ class Partner < ApplicationRecord
     partner_status.casecmp("pending").zero?
   end
 
-  def family_request_active?
-    ACTIVE_FAMILY_REQUESTS.include?(diaper_bank_id)
+  def flipper_id
+    "Partner;#{id}"
   end
 
   private

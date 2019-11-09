@@ -1,11 +1,11 @@
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-edit"></i> Editing Organization &nbsp<span class="badge badge-pill badge-primary float-right"><%= @partner.partner_status %></span></h1>
+    <h1><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit My Organization&nbsp;&nbsp;&nbsp;<%= partner_status_badge(@partner) %></h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
-    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-    <li class="breadcrumb-item">Organization</li>
-    <li class="breadcrumb-item"><a href="#">Editing Details</a></li>
+    <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
+    <li class="breadcrumb-item"><a href="<%= partner_path(current_partner) %>"><%= "#{current_partner.name}" %></a></li>
+    <li class="breadcrumb-item"><a href="#">Edit</a></li>
   </ul>
 </div>
 <%= form_with(model: partner, local: true) do |form| %>
@@ -16,7 +16,7 @@
         <div class="tile-body">
           <div class="form-horizontal">
             <div class="form-group row">
-              <label class="control-label col-md-3">Name</label>
+              <label class="control-label col-md-3">Agency Name</label>
               <div class="col-md-8">
                 <%= form.text_field :name, class: "form-control" %>
               </div>
@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="control-label col-md-3">Proof of Partner Status</label>
+              <label class="control-label col-md-3">501(c)(3) IRS Determination Letter</label>
               <% if partner.proof_of_partner_status.attached? %>
                 <div class="col-md-8">
                   Attached
@@ -136,13 +136,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="control-label col-md-3">Internal Database</label>
-                <div class="col-md-8">
-                <%= form.check_box :internal_db, class: "form-check-input form-control" %>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="control-label col-md-3">Evidence Based</label>
+                <label class="control-label col-md-3">Do You Track Program Results</label>
                 <div class="col-md-8">
                   <%= form.check_box :evidence_based, class: "form-control form-check-input" %>
                 </div>
@@ -172,7 +166,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="control-label col-md-3">Other Diaper Use</label>
+                <label class="control-label col-md-3">Do You Receive Diapers From Other Sources</label>
                 <div class="col-md-8">
                   <%= form.text_field :other_diaper_use, class: "form-control" %>
                 </div>
@@ -341,7 +335,7 @@
         <div class="tile-body">
           <div class="form-horizontal">
             <div class="form-group row">
-              <label class="control-label col-md-3">Income Requirement</label>
+              <label class="control-label col-md-3">Clients Have An Income Requirement to Work With You</label>
               <div class="col-md-8">
                 <%= form.check_box :income_requirement_desc, class: "form-check-input form-control" %>
               </div>
@@ -353,12 +347,17 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="control-label col-md-3">Income Verification</label>
+              <label class="control-label col-md-3">Do You Verify The Income Of Your Clients</label>
               <div class="col-md-8">
                 <%= form.check_box :income_verification, class: "form-check-input form-control" %>
               </div>
             </div>
-          
+            <div class="form-group row">
+              <label class="control-label col-md-3">Internal Database</label>
+              <div class="col-md-8">
+                <%= form.check_box :internal_db, class: "form-check-input form-control" %>
+              </div>
+            </div>
             <div class="form-group row">
               <label class="control-label col-md-3">MAAC Program Participant</label>
               <div class="col-md-8">
@@ -584,7 +583,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="control-label col-md-3">Sources of Diapers</label>
+              <label class="control-label col-md-3">How do you currently obtain diapers?</label>
               <div class="col-md-8">
                 <%= form.text_field :sources_of_diapers, class: "form-control" %>
               </div>
@@ -612,7 +611,6 @@
       <div class="tile">
         <div class="tile-body">
           <div class="row">
-
             <div class="form-group col-md-6">
               <%= form.submit("Update Information", class: "btn btn-primary") %>
             </div>

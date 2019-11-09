@@ -1,0 +1,41 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <div class="row">
+    <div class="col-md-12">
+        <% if user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+            <ul>
+            <% user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+      <div class="tile">
+        <h3 class="tile-title">Invite a New User to <%= current_partner.name %></h3>
+        <div class="tile-body">
+
+          <div class="form-horizontal">
+            <div class="form-group row">
+              <%= form.label :name, class: "control-label col-md-3"%>
+              <%= form.text_field :name, class: "col-md-8 form-control" %>
+            </div>
+          </div>
+
+          <div class="form-horizontal">
+            <div class="form-group row">
+              <%= form.label :email, class: "control-label col-md-3"%>
+              <%= form.text_field :email, class: "col-md-8 form-control" %>
+            </div>
+          </div>
+
+          <div class="actions">
+            <%= form.submit(class: 'btn btn-primary') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

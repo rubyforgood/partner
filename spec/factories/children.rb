@@ -25,7 +25,7 @@ FactoryBot.define do
     association :family
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    date_of_birth { Faker::Date.backward(14).iso8601 }
+    date_of_birth { Faker::Date.backward(days: 14).iso8601 }
     active { true }
     gender { Faker::Gender.type }
     child_lives_with { ["Mother"] }

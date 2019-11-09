@@ -2,10 +2,10 @@ class RecertificationMailer < ActionMailer::Base
   default from: "partner@diaper-app.org"
   layout "mailer"
 
-  def notice_email
-    @partner = params[:partner]
+  def notice_email(user)
+    @partner = user.partner
 
-    mail to: @partner.email,
+    mail to: user.email,
          subject: "Please update your agency information"
   end
 end
