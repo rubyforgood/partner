@@ -5,7 +5,7 @@ inherit_from: .rubocop_todo.yml
 # inherit_from: .rubocop_todo.yml
 
 AllCops:
-  TargetRubyVersion: 2.5.3
+  TargetRubyVersion: 2.6.4
   Exclude:
   - "vendor/**/*"
   - "db/schema.rb"
@@ -216,6 +216,10 @@ Metrics/LineLength:
   URISchemes:
   - http
   - https
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
 Lint/AssignmentInCondition:
   Description: Don't use assignment in conditions.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition
