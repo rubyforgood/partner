@@ -29,6 +29,10 @@ class Child < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
+  CSV_HEADERS = %w[
+    id first_name last_name date_of_birth gender child_lives_with race agency_child_id 
+    health_insurance comments created_at updated_at family_id item_needed_diaperid active archived
+  ].freeze
   CAN_LIVE_WITH = %w[Mother Father Grandparent Foster\ Parent Other\ Parent/Relative].freeze
   RACES = %w[African\ American Caucasian Hispanic Asian American\ Indian Pacific\ Islander Multi-racial Other].freeze
   CHILD_ITEMS = ["Bed Pads (Cloth)",
@@ -61,5 +65,30 @@ class Child < ApplicationRecord
 
   def display_name
     "#{first_name} #{last_name}"
+  end
+
+  def self.csv_headers
+    CSV_HEADERS
+  end
+
+  def to_csv
+    [
+      id,
+      first_name,
+      last_name,
+      date_of_birth,
+      gender,
+      child_lives_with,
+      race,
+      agency_child_id,
+      health_insurance,
+      comments,
+      created_at,
+      updated_at,
+      family_id,
+      item_needed_diaperid,
+      active,
+      archived
+    ]
   end
 end
