@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe FamiliesController, type: :controller do
-  let(:partner) { create :partner, name: 'new partner' }
+  let(:partner) { create :partner, name: "new partner" }
   let(:user) { create :user, partner: partner }
   let!(:family) { create :family, partner: partner }
 
