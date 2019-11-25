@@ -14,7 +14,7 @@ class ChildrenController < ApplicationController
   end
 
   def show
-    @child = current_partner.children.find_by(id: params[:id])
+    @child = current_partner.children.find(params[:id])
     @child_item_requests = @child
                            .child_item_requests
                            .includes(:item_request)

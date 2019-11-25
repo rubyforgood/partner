@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    Rails.logger.error(exception.message)
+    render json: { errors: exception.message }, status: :unprocessable_entity
+  end
+
   rescue_from ActiveRecord::RecordInvalid do |exception|
     Rails.logger.error(exception.message)
 
