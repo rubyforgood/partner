@@ -30,7 +30,7 @@ class Child < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   CSV_HEADERS = %w[
-    id first_name last_name date_of_birth gender child_lives_with race agency_child_id 
+    id first_name last_name date_of_birth gender child_lives_with race agency_child_id
     health_insurance comments created_at updated_at family_id item_needed_diaperid active archived
   ].freeze
   CAN_LIVE_WITH = %w[Mother Father Grandparent Foster\ Parent Other\ Parent/Relative].freeze
