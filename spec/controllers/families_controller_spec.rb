@@ -6,13 +6,12 @@ describe FamiliesController, type: :controller do
   let!(:family) { create :family, partner: partner }
 
   before do
+    user.partner = partner
     sign_in user
   end
-  describe "GET #inde" do
-    before do
-      user.partner = partner
-    end
-    describe "when responding csv" do
+
+  describe "GET #index" do
+    context "when responding csv" do
       subject { get :index, format: :csv }
 
       it "responds correct Content-Type" do
