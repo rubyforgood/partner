@@ -36,6 +36,7 @@ group :development, :test do
   gem "pry"
   gem "pry-rails"
   gem "pry-remote"
+  gem "rails-controller-testing"
   gem "rspec-rails", "~> 3.5"
   gem "rubocop"
   gem "rubocop-rspec"
