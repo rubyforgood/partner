@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 class FamiliesController < ApplicationController
   before_action :authenticate_user!
 
@@ -7,7 +7,7 @@ class FamiliesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        render(csv: @families.map{ |family| family.to_csv } )
+        render(csv: @families.map.map(&:to_csv))
       end
     end
   end
