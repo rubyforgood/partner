@@ -7,7 +7,7 @@ class FamiliesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        render(csv: @families.map.map(&:to_csv))
+        render(csv: @families.map(&:to_csv))
       end
     end
   end
