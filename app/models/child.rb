@@ -27,6 +27,13 @@ class Child < ApplicationRecord
   has_many :family_requests, through: :family_request_child
   has_many :child_item_requests, dependent: :destroy
 
+  include Filterable
+  scope :from_family, ->(family_id) {
+    where(family_id: family_id)
+  }
+  scope :from_children, ->(chidren_id) {
+    where(id: chidren_id)
+  }
   scope :active, -> { where(active: true) }
 
   CSV_HEADERS = %w[
