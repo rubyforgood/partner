@@ -37,6 +37,17 @@ class Family < ApplicationRecord
 
   after_create :create_authorized
 
+  CSV_HEADERS = %w[
+    id guardian_first_name guardian_last_name guardian_zip_code guardian_country
+    guardian_phone agency_guardian_id home_adult_count home_child_count home_young_child_count
+    sources_of_income guardian_employed guardian_employment_type guardian_monthly_pay
+    guardian_health_insuranceb comments created_at updated_at partner_id military
+  ].freeze
+
+  def self.csv_headers
+    CSV_HEADERS
+  end
+
   def create_authorized
     authorized_family_members.create!(
       first_name: guardian_first_name,
@@ -50,5 +61,30 @@ class Family < ApplicationRecord
 
   def total_children_count
     home_child_count + home_young_child_count
+  end
+
+  def to_csv
+    [
+      id,
+      guardian_first_name,
+      guardian_last_name,
+      guardian_zip_code,
+      guardian_country,
+      guardian_phone,
+      agency_guardian_id,
+      home_adult_count,
+      home_child_count,
+      home_young_child_count,
+      sources_of_income,
+      guardian_employed,
+      guardian_employment_type,
+      guardian_monthly_pay,
+      guardian_health_insurance,
+      comments,
+      created_at,
+      updated_at,
+      partner_id,
+      military
+    ]
   end
 end
