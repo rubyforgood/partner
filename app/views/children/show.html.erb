@@ -19,7 +19,7 @@
     <% end %>
 
     <div class="row">
-      <div class="col-<%= Flipper[:family_requests].enabled?(current_partner) ? 3 : 12 %>">
+      <div class="col-3">
         <div class="card mb-6">
           <h5 class="card-header bg-primary text-white">Child Information</h5>
           <div class="card-body">
@@ -54,21 +54,14 @@
               <dt>Comments:</dt>
               <dd><%= @child.comments %></dd>
             </dl>
-            <% unless Flipper[:family_requests].enabled?(current_partner) %>
-              <%= link_to 'Edit Child Details', edit_child_path(@child), class: "btn btn-success" %>
-              <%= link_to 'All Children', children_path, class: "btn btn-info" %>
-            <% end %>
           </div>
 
-          <% if Flipper[:family_requests].enabled?(current_partner) %>
             <%= link_to 'Edit Child Details', edit_child_path(@child), class: "btn btn-success" %>
             </br>
             <%= link_to 'All Children', children_path, class: "btn btn-info" %>
-          <% end %>
         </div>
       </div>
 
-      <% if Flipper[:family_requests].enabled?(current_partner) %>
         <div class="col-9">
           <div class="card mb-6">
             <h5 class="card-header bg-primary text-white">Requested Items</h5>
@@ -117,7 +110,6 @@
             </div>
           </div>
         </div>
-      <% end %>
     </div>
   </div>
 </div>

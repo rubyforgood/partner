@@ -11,7 +11,7 @@
             <% if @partner.verified? %>
               <%= link_to 'Create New Bulk Diaper Request', new_partner_request_path, class: 'btn btn-sm btn-primary' %>
             <% end %>
-            <% if @partner.verified? && Flipper[:family_requests].enabled?(@partner) %>
+            <% if @partner.verified? %>
               <%= link_to 'Create New Family Diaper Request', new_family_request_path, class: 'btn btn-sm btn-primary' %>
             <% end %>
           </div>
