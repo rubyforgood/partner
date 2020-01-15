@@ -9,6 +9,7 @@
 #  sent            :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  for_families    :boolean
 #
 
 class PartnerRequest < ApplicationRecord
