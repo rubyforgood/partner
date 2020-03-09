@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.11.0"
+lock "3.12.0"
 
 set :repo_url,        "git@github.com:rubyforgood/partner.git"
 set :application,     "diaper_partner"
