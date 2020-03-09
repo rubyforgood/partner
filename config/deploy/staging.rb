@@ -32,10 +32,10 @@ set :rails_env, :production
 role :app, "deploy@45.79.146.211"
 
 server "45.79.146.211", roles: %w{web app db}, primary: true,
-       ssh_options: {
-           forward_agent: true,
-           keys: ["~/.ssh/id_rsa"]
-       }
+                        ssh_options: {
+                          forward_agent: true,
+                          keys: ["~/.ssh/id_rsa"]
+                        }
 
 set :rvm_ruby_version, "2.7.0"
 

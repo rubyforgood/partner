@@ -38,6 +38,7 @@ group :development, :test do
   gem "pry-remote"
   gem "rspec-rails", "~> 3.5"
   gem "rubocop"
+  gem "rubocop-rails"
   gem "rubocop-rspec"
   gem "simplecov", require: false
 end

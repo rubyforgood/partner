@@ -18,13 +18,13 @@ describe "Partners API Requests", type: :request do
   end
 
   def valid_add_partner_creation_request(
-      email: "test@example.com",
-      diaper_partner_id: "diaper-partner-id"
-    )
+    email: "test@example.com",
+    diaper_partner_id: "diaper-partner-id"
+  )
     post api_v1_add_partners_path(
       partner: {
         email: email,
-          diaper_partner_id: diaper_partner_id
+        diaper_partner_id: diaper_partner_id
       }
     )
   end

@@ -11,10 +11,10 @@ class ChildItemRequestsController < ApplicationController
           child_name: child_item_request.child.first_name
         )
         render partial: "child_item_requests/child_item_request_update",
-          object: build_open_struct(
-            message,
-            picked_up: child_item_request.picked_up
-          )
+               object: build_open_struct(
+                 message,
+                 picked_up: child_item_request.picked_up
+               )
       end
     end
   end
@@ -30,7 +30,7 @@ class ChildItemRequestsController < ApplicationController
           quantity_picked_up: params[:quantity_picked_up]
         )
         render partial: "child_item_requests/child_item_request_update",
-          object: build_open_struct(message)
+               object: build_open_struct(message)
       end
     end
   end
@@ -52,7 +52,7 @@ class ChildItemRequestsController < ApplicationController
           ],
         )
         render partial: "child_item_requests/child_item_request_update",
-          object: build_open_struct(message)
+               object: build_open_struct(message)
       end
     end
   end
@@ -71,7 +71,7 @@ class ChildItemRequestsController < ApplicationController
           name: authorized_family_member.display_name
         )
         render partial: "child_item_requests/child_item_request_update",
-          object: build_open_struct(message)
+               object: build_open_struct(message)
       end
     end
   end

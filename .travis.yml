@@ -17,6 +17,7 @@ jobs:
       env:
         - DIAPERBANK_ENDPOINT=https://diaper.test
         - DIAPERBANK_KEY=diaperkey
+        - RUBYOPT='-W:no-deprecated -W:no-experimental'
       script:
         - bundle exec rubocop
         - export RAILS_ENV=test

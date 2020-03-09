@@ -43,8 +43,8 @@ Rails.application.routes.draw do
   end
 
   post "/child_item_requests_toggle_picked_up/:id", action: :toggle_picked_up,
-    controller: :child_item_requests,
-    as: :child_item_requests_toggle_picked_up
+                                                    controller: :child_item_requests,
+                                                    as: :child_item_requests_toggle_picked_up
   post "/child_item_requests_quantity_picked_up/:id",
        action: :quantity_picked_up,
        controller: :child_item_requests,
