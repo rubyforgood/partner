@@ -98,4 +98,8 @@ class Child < ApplicationRecord
       archived
     ]
   end
+
+  def export_json
+    { id: id, first_name: first_name, last_name: last_name, date_of_birth: date_of_birth, gender: gender, child_lives_with: child_lives_with, race: race, agency_child_id: agency_child_id, health_insurance: health_insurance, comments: comments, created_at: created_at, updated_at: updated_at, family_id: family_id, item_needed_diaperid: item_needed_diaperid, active: active, archived: archived }
+  end
 end

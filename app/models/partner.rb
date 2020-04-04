@@ -104,8 +104,8 @@ class Partner < ApplicationRecord
 
   delegate :email, to: :user
 
-  def export_json
-    {
+  def export_json(include_family_and_children_data = false)
+    hash = {
       name: name,
       distributor_type: distributor_type,
       agency_type: agency_type,
@@ -209,6 +209,11 @@ class Partner < ApplicationRecord
       },
       documents: document_list
     }
+    if include_family_and_children_data
+      hash[:families] = families.map(&:export_json)
+    end
+
+    hash
   end
 
   def approve_me

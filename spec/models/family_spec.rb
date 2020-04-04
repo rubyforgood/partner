@@ -38,4 +38,11 @@ RSpec.describe Family, type: :model do
   it "when a family is created the first authorized family member is created" do
     expect { create(:family) }.to change { AuthorizedFamilyMember.count }.by(1)
   end
+
+  describe "export_json" do
+    it "returns a hash" do
+      family = build(:family)
+      expect(family.export_json).to be_a(Hash)
+    end
+  end
 end

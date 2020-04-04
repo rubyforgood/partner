@@ -166,6 +166,13 @@ describe Partner, type: :model, include_shared: true do
       expect(partner.export_json).to be_a(Hash)
     end
 
+    context "when include_family_and_children_data is true " do
+      it "returns a hash with family and children data" do
+        partner = create(:partner, :with_families)
+        expect(partner.export_json(true)).to include(:families)
+      end
+    end
+
     context "a partner with a form 990" do
       it "returns a hash with a value for form_990_link" do
         partner = build(:partner, :with_990_attached)

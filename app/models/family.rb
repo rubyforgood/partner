@@ -41,7 +41,7 @@ class Family < ApplicationRecord
     id guardian_first_name guardian_last_name guardian_zip_code guardian_country
     guardian_phone agency_guardian_id home_adult_count home_child_count home_young_child_count
     sources_of_income guardian_employed guardian_employment_type guardian_monthly_pay
-    guardian_health_insuranceb comments created_at updated_at partner_id military
+    guardian_health_insurance comments created_at updated_at partner_id military
   ].freeze
 
   def self.csv_headers
@@ -86,5 +86,9 @@ class Family < ApplicationRecord
       partner_id,
       military
     ]
+  end
+
+  def export_json
+    { id: id, guardian_first_name: guardian_first_name, guardian_last_name: guardian_last_name, guardian_zip_code: guardian_zip_code, guardian_country: guardian_country, guardian_phone: guardian_phone, agency_guardian_id: agency_guardian_id, home_adult_count: home_adult_count, home_child_count: home_child_count, home_young_child_count: home_young_child_count, sources_of_income: sources_of_income, guardian_employed: guardian_employed, guardian_employment_type: guardian_employment_type, guardian_monthly_pay: guardian_monthly_pay, guardian_health_insurance: guardian_health_insurance, comments: comments, created_at: created_at, updated_at: updated_at, partner_id: partner_id, military: military, children: children.map(&:export_json) }
   end
 end
