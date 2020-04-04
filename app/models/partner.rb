@@ -228,14 +228,26 @@ class Partner < ApplicationRecord
     "Partner;#{id}"
   end
 
-  def impact_metrics
-    {
-      families_served: families_served_count,
-      children_served: children_served_count,
-      family_zipcodes: family_zipcodes_count
-    }
+  def partials_to_show
+    ['agency_information_show',
+     'media_information_show',
+     'agency_stability_show',
+     'organizational_capacity_show',
+     'sources_of_funding_show',
+     'population_served_show',
+     'executive_director_show',
+     'diaper_pick_up_person_show',
+     'agency_distribution_information_show',
+     'attached_documents_show']
   end
 
+  def impact_metrics
+    {
+        families_served: families_served_count,
+        children_served: children_served_count,
+        family_zipcodes: family_zipcodes_count
+    }
+  end
   private
 
   def expose_attachment_path(documentation)
