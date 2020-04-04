@@ -18,7 +18,7 @@ class Api::V1::AddPartnersController < ApiController
 
     render json: {
       email: user.email,
-             id: partner.id
+      id: partner.id
     }
   rescue ActiveRecord::RecordInvalid => e
     render e.message

@@ -17,7 +17,7 @@ class PartnerRequest < ApplicationRecord
 
   has_many :item_requests, dependent: :destroy
   accepts_nested_attributes_for :item_requests, allow_destroy: true,
-    reject_if: proc { |attributes| attributes["quantity"].blank? }
+                                                reject_if: proc { |attributes| attributes["quantity"].blank? }
   validates :item_requests, presence: true, if: proc { |a| a.comments.blank? }
   has_many :child_item_requests, through: :item_requests
 
@@ -28,9 +28,9 @@ class PartnerRequest < ApplicationRecord
     {
       request: {
         partner_id: partner.diaper_partner_id,
-          organization_id: partner.diaper_bank_id,
-          comments: comments,
-          request_items: formatted_item_requests_hash(item_requests)
+        organization_id: partner.diaper_bank_id,
+        comments: comments,
+        request_items: formatted_item_requests_hash(item_requests)
       }
     }.to_json
   end

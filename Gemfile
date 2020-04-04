@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.6.4"
+ruby "2.7.0"
 
 gem "bootsnap", ">= 1.1.0", require: false
 gem "bootstrap", "~> 4.3.1"
@@ -38,6 +38,7 @@ group :development, :test do
   gem "pry-remote"
   gem "rspec-rails", "~> 3.5"
   gem "rubocop"
+  gem "rubocop-rails"
   gem "rubocop-rspec"
   gem "simplecov", require: false
 end
