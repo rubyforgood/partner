@@ -229,16 +229,16 @@ class Partner < ApplicationRecord
   end
 
   def partials_to_show
-    ['agency_information_show',
-     'media_information_show',
-     'agency_stability_show',
-     'organizational_capacity_show',
-     'sources_of_funding_show',
-     'population_served_show',
-     'executive_director_show',
-     'diaper_pick_up_person_show',
-     'agency_distribution_information_show',
-     'attached_documents_show']
+    ['agency_information',
+     'media_information',
+     'agency_stability',
+     'organizational_capacity',
+     'sources_of_funding',
+     'population_served',
+     'executive_director',
+     'diaper_pick_up_person',
+     'agency_distribution_information',
+     'attached_documents']
   end
 
   def impact_metrics

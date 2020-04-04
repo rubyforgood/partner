@@ -16,7 +16,7 @@
         <div class="row">
           <% @partner.partials_to_show.each do |partial| %>
             <div class="col-6">
-              <%= render partial %>
+              <%= render "partners/show/#{partial}" %>
             </div>
           <% end %>
         </div>
