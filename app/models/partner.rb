@@ -104,6 +104,19 @@ class Partner < ApplicationRecord
 
   delegate :email, to: :user
 
+  ALL_PARTIALS = %w[
+    agency_information
+    media_information
+    agency_stability
+    organizational_capacity
+    sources_of_funding
+    population_served
+    executive_director
+    diaper_pick_up_person
+    agency_distribution_information
+    attached_documents
+  ].freeze
+
   def export_hash
     {
       name: name,
@@ -229,16 +242,11 @@ class Partner < ApplicationRecord
   end
 
   def partials_to_show
-    ['agency_information',
-     'media_information',
-     'agency_stability',
-     'organizational_capacity',
-     'sources_of_funding',
-     'population_served',
-     'executive_director',
-     'diaper_pick_up_person',
-     'agency_distribution_information',
-     'attached_documents']
+    displayable_partials || ALL_PARTIALS
+  end
+
+  def displayable_partials
+    PartnerForm.find_by(diaper_bank_id: self.diaper_bank_id)&.sections
   end
 
   def impact_metrics

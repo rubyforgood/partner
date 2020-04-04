@@ -114,6 +114,21 @@ describe Partner, type: :model, include_shared: true do
     end
   end
 
+  describe "#partials_to_show" do
+    let(:partner) { create(:partner, diaper_bank_id: 100) }
+    it 'has 10 partials when there are no displayable partials configured' do
+      expect(partner.partials_to_show.size).to eq(10)
+    end
+
+    it 'displays the number of displayable partials when they are configured' do
+      partner.diaper_bank_id = 100
+      FactoryBot.create(:partner_form, diaper_bank_id: 100,
+                        sections: %w[agency_information media_information agency_stability]
+                        )
+      expect(partner.partials_to_show.size).to eq(3)
+    end
+  end
+
   describe "verified?" do
     context "partner with a verfied status" do
       it "returns a partner verified status as true" do

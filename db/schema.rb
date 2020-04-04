@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_144701) do
+ActiveRecord::Schema.define(version: 2020_04_04_230645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,13 @@ ActiveRecord::Schema.define(version: 2019_10_25_144701) do
     t.integer "item_id"
     t.index ["item_id"], name: "index_item_requests_on_item_id"
     t.index ["partner_request_id"], name: "index_item_requests_on_partner_request_id"
+  end
+
+  create_table "partner_forms", force: :cascade do |t|
+    t.integer "diaper_bank_id"
+    t.text "sections", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "partner_requests", force: :cascade do |t|

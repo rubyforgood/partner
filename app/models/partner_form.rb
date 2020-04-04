@@ -1,0 +1,2 @@
+class PartnerForm < ApplicationRecord
+end
