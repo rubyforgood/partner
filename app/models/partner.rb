@@ -246,7 +246,7 @@ class Partner < ApplicationRecord
   end
 
   def displayable_partials
-    PartnerForm.find_by(diaper_bank_id: self.diaper_bank_id)&.sections
+    PartnerForm.find_by(diaper_bank_id: diaper_bank_id)&.sections
   end
 
   def impact_metrics

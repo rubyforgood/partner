@@ -123,8 +123,7 @@ describe Partner, type: :model, include_shared: true do
     it 'displays the number of displayable partials when they are configured' do
       partner.diaper_bank_id = 100
       FactoryBot.create(:partner_form, diaper_bank_id: 100,
-                        sections: %w[agency_information media_information agency_stability]
-                        )
+                                       sections: %w[agency_information media_information agency_stability])
       expect(partner.partials_to_show.size).to eq(3)
     end
   end
