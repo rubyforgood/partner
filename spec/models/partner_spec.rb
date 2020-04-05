@@ -116,8 +116,9 @@ describe Partner, type: :model, include_shared: true do
 
   describe "#partials_to_show" do
     let(:partner) { create(:partner, diaper_bank_id: 100) }
-    it 'has 10 partials when there are no displayable partials configured' do
-      expect(partner.partials_to_show.size).to eq(10)
+
+    it 'has 9 partials when there are no displayable partials configured' do
+      expect(partner.partials_to_show).to eq(Partner::ALL_PARTIALS)
     end
 
     it 'displays the number of displayable partials when they are configured' do

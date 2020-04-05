@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe PartnerForm, type: :model do
-  subject {
-    described_class.new(diaper_bank_id: 1)
-  }
+  subject do
+    described_class.new(diaper_bank_id: Faker::Number.number)
+  end
   it "is valid with valid attributes" do
     expect(subject).to be_valid
   end

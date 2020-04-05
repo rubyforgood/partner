@@ -27,7 +27,7 @@ describe "Partners API Requests", type: :request do
   end
 
   def valid_partner_form_creation_request(
-    diaper_bank_id: 123,
+    diaper_bank_id: 1,
     sections: %w(section1 section2 section3)
   )
     post api_v1_partner_forms_path(

@@ -10,6 +10,9 @@
 </div>
 <%= form_with(model: partner, local: true) do |form| %>
   <div class="row">
+    <div class="col-6">
+      <%= render partial: "partners/edit/agency_information", locals: { form: form, partner: @partner } %>
+    </div>
     <% @partner.partials_to_show.each do |partial| %>
       <div class="col-6">
         <%= render partial: "partners/edit/#{partial}", locals: { form: form, partner: @partner } %>

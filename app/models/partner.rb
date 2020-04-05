@@ -101,11 +101,11 @@ class Partner < ApplicationRecord
 
   has_many :partner_requests, dependent: :destroy
   has_many :family_requests, dependent: :destroy
+  has_one :partner_form, primary_key: :diaper_bank_id, foreign_key: :diaper_bank_id, dependent: :destroy
 
   delegate :email, to: :user
 
   ALL_PARTIALS = %w[
-    agency_information
     media_information
     agency_stability
     organizational_capacity
@@ -245,18 +245,19 @@ class Partner < ApplicationRecord
     displayable_partials || ALL_PARTIALS
   end
 
-  def displayable_partials
-    PartnerForm.find_by(diaper_bank_id: diaper_bank_id)&.sections
-  end
-
   def impact_metrics
     {
-        families_served: families_served_count,
-        children_served: children_served_count,
-        family_zipcodes: family_zipcodes_count
+      families_served: families_served_count,
+      children_served: children_served_count,
+      family_zipcodes: family_zipcodes_count
     }
   end
+
   private
+
+  def displayable_partials
+    partner_form&.sections
+  end
 
   def expose_attachment_path(documentation)
     # NOTE(chaserx): I'm not sure how I feel about this.
