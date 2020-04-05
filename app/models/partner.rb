@@ -211,26 +211,6 @@ class Partner < ApplicationRecord
     }
   end
 
-  def families_served
-    families.count
-  end
-
-  def children_served
-    children.count
-  end
-
-  def family_zipcodes
-    families.pluck(:guardian_zip_code).uniq.count
-  end
-
-  def impact_metrics
-    {
-      families_served: families_served,
-      children_served: children_served,
-      family_zipcodes: family_zipcodes
-    }
-  end
-
   def approve_me
     update(partner_status: "submitted")
     DiaperBankClient.post(diaper_partner_id)
@@ -246,6 +226,14 @@ class Partner < ApplicationRecord
 
   def flipper_id
     "Partner;#{id}"
+  end
+
+  def impact_metrics
+    {
+      families_served: families_served_count,
+      children_served: children_served_count,
+      family_zipcodes: family_zipcodes_count
+    }
   end
 
   private
@@ -271,5 +259,17 @@ class Partner < ApplicationRecord
       list.push(document_link: Rails.application.routes.url_helpers.rails_blob_path(doc, only_path: true))
     end
     list
+  end
+
+  def families_served_count
+    families.count
+  end
+
+  def children_served_count
+    children.count
+  end
+
+  def family_zipcodes_count
+    families.pluck(:guardian_zip_code).uniq.count
   end
 end

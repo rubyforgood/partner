@@ -210,4 +210,18 @@ describe Partner, type: :model, include_shared: true do
       end
     end
   end
+
+  describe "impact_metrics" do
+    it "returns a hash" do
+      partner = build(:partner)
+      expect(partner.impact_metrics).to be_a(Hash)
+    end
+
+    it "returns a hash with family and children aggregate data" do
+      partner = create(:partner, :with_families)
+      expect(partner.impact_metrics[:families_served]).to eq(1)
+      expect(partner.impact_metrics[:children_served]).to eq(1)
+      expect(partner.impact_metrics[:family_zipcodes]).to eq(1)
+    end
+  end
 end
