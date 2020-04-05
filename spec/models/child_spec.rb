@@ -28,10 +28,4 @@ RSpec.describe Child, type: :model do
     create(:child, active: false)
     expect(described_class.all.active.count).to eq(1)
   end
-  describe "export_json" do
-    it "returns a hash" do
-      child = build(:child)
-      expect(child.export_json).to be_a(Hash)
-    end
-  end
 end
