@@ -20,7 +20,7 @@ RSpec.describe DiaperBankClient do
     end
 
     context 'when the response code is 200' do
-      let(:fake_response) { instance_double('response', code: '200', body: {status: Faker::Number.number}.to_json) }
+      let(:fake_response) { instance_double('response', code: '200', body: { status: Faker::Number.number }.to_json) }
       before do
         allow(described_class).to receive(:diaper_get_request).with(fake_route).and_return(fake_response)
       end
@@ -41,13 +41,12 @@ RSpec.describe DiaperBankClient do
         expect(subject).to eq([])
       end
     end
-
   end
 
   describe '.diaper_get_request(uri)' do
     subject { described_class.diaper_get_request(uri) }
     let(:uri) { 'fake-uri' }
-    let(:fake_request) { { } }
+    let(:fake_request) { {} }
     let(:fake_https_client) { instance_double(Net::HTTP) }
     let(:fake_response) { { status: 'fake' } }
 
@@ -57,14 +56,13 @@ RSpec.describe DiaperBankClient do
       allow(Net::HTTP::Get).to receive(:new).with(uri).and_return(fake_request)
       allow(described_class).to receive(:https).with(uri).and_return(fake_https_client)
       allow(fake_https_client).to receive(:request).with({
-        "Content-Type" => "application/json",
-        "X-Api-Key" => fake_x_api_key
-      }).and_return(fake_response)
+                                                           "Content-Type" => "application/json",
+                                                           "X-Api-Key" => fake_x_api_key
+                                                         }).and_return(fake_response)
     end
 
     it 'should return the https response' do
       expect(subject).to eq(fake_response)
     end
   end
-
 end
