@@ -160,54 +160,68 @@ describe Partner, type: :model, include_shared: true do
     end
   end
 
-  describe "export_json" do
+  describe "export_hash" do
     it "returns a hash" do
       partner = build(:partner)
-      expect(partner.export_json).to be_a(Hash)
+      expect(partner.export_hash).to be_a(Hash)
     end
 
     context "a partner with a form 990" do
       it "returns a hash with a value for form_990_link" do
         partner = build(:partner, :with_990_attached)
-        expect(partner.export_json.dig(:stability, :form_990_link)).to include("f990.pdf")
+        expect(partner.export_hash.dig(:stability, :form_990_link)).to include("f990.pdf")
       end
     end
 
     context "a partner without a form 990" do
       it "returns a hash with an emptry string value for form_990_link" do
         partner = build(:partner)
-        expect(partner.export_json.dig(:stability, :form_990_link)).to eq("")
+        expect(partner.export_hash.dig(:stability, :form_990_link)).to eq("")
       end
     end
 
     context "a partner with a proof of status" do
       it "returns a hash with a value for proof_of_agency_status" do
         partner = build(:partner, :with_status_proof)
-        expect(partner.export_json[:proof_of_agency_status]).to include("status_proof.pdf")
+        expect(partner.export_hash[:proof_of_agency_status]).to include("status_proof.pdf")
       end
     end
 
     context "a partner without a proof of status" do
       it "returns a hash with an emptry string value for proof_of_agency_status" do
         partner = build(:partner)
-        expect(partner.export_json[:proof_of_agency_status]).to eq("")
+        expect(partner.export_hash[:proof_of_agency_status]).to eq("")
       end
     end
 
     context "a partner with additional documents" do
       it "returns a hash with an array of documents" do
         partner = build(:partner, :with_other_documents)
-        expect(partner.export_json[:documents]).to be_a Array
-        expect(partner.export_json[:documents]).not_to be_empty
-        expect(partner.export_json[:documents].first).to have_key(:document_link)
+        expect(partner.export_hash[:documents]).to be_a Array
+        expect(partner.export_hash[:documents]).not_to be_empty
+        expect(partner.export_hash[:documents].first).to have_key(:document_link)
       end
 
       it "contains an attachment path as an element of the doc" do
         partner = build(:partner, :with_other_documents)
-        document_link_list = partner.export_json[:documents].map { |doc| doc.dig(:document_link) }
+        document_link_list = partner.export_hash[:documents].map { |doc| doc.dig(:document_link) }
         document_path_regex = %r(\/rails\/active_storage\/blobs\/\w*\W*\w*\/document\d\.pdf)
         expect(document_link_list.first).to match(document_path_regex)
       end
+    end
+  end
+
+  describe "impact_metrics" do
+    it "returns a hash" do
+      partner = build(:partner)
+      expect(partner.impact_metrics).to be_a(Hash)
+    end
+
+    it "returns a hash with family and children aggregate data" do
+      partner = create(:partner, :with_families)
+      expect(partner.impact_metrics[:families_served]).to eq(1)
+      expect(partner.impact_metrics[:children_served]).to eq(1)
+      expect(partner.impact_metrics[:family_zipcodes]).to eq(1)
     end
   end
 end

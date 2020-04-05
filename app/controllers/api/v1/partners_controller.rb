@@ -49,7 +49,11 @@ class Api::V1::PartnersController < ApiController
 
     partner = Partner.find_by(diaper_partner_id: params[:id])
 
-    render json: { agency: partner.export_json }
+    if params[:impact_metrics]
+      render json: { agency: partner.impact_metrics }
+    else
+      render json: { agency: partner.export_hash }
+    end
   end
 
   private

@@ -104,7 +104,7 @@ class Partner < ApplicationRecord
 
   delegate :email, to: :user
 
-  def export_json
+  def export_hash
     {
       name: name,
       distributor_type: distributor_type,
@@ -228,6 +228,14 @@ class Partner < ApplicationRecord
     "Partner;#{id}"
   end
 
+  def impact_metrics
+    {
+      families_served: families_served_count,
+      children_served: children_served_count,
+      family_zipcodes: family_zipcodes_count
+    }
+  end
+
   private
 
   def expose_attachment_path(documentation)
@@ -251,5 +259,17 @@ class Partner < ApplicationRecord
       list.push(document_link: Rails.application.routes.url_helpers.rails_blob_path(doc, only_path: true))
     end
     list
+  end
+
+  def families_served_count
+    families.count
+  end
+
+  def children_served_count
+    children.count
+  end
+
+  def family_zipcodes_count
+    families.pluck(:guardian_zip_code).uniq.count
   end
 end
