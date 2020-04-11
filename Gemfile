@@ -36,7 +36,7 @@ group :development, :test do
   gem "pry"
   gem "pry-rails"
   gem "pry-remote"
-  gem "rspec-rails", "~> 3.5"
+  gem "rspec-rails", "~> 4.0"
   gem "rubocop"
   gem "rubocop-rails"
   gem "rubocop-rspec"
