@@ -131,6 +131,13 @@ ActiveRecord::Schema.define(version: 2020_04_11_122829) do
     t.index ["partner_request_id"], name: "index_item_requests_on_partner_request_id"
   end
 
+  create_table "partner_forms", force: :cascade do |t|
+    t.integer "diaper_bank_id"
+    t.text "sections", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "partner_requests", force: :cascade do |t|
     t.text "comments"
     t.bigint "partner_id"

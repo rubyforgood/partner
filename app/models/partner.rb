@@ -101,8 +101,21 @@ class Partner < ApplicationRecord
 
   has_many :partner_requests, dependent: :destroy
   has_many :family_requests, dependent: :destroy
+  has_one :partner_form, primary_key: :diaper_bank_id, foreign_key: :diaper_bank_id, dependent: :destroy
 
   delegate :email, to: :user
+
+  ALL_PARTIALS = %w[
+    media_information
+    agency_stability
+    organizational_capacity
+    sources_of_funding
+    population_served
+    executive_director
+    diaper_pick_up_person
+    agency_distribution_information
+    attached_documents
+  ].freeze
 
   def export_hash
     {
@@ -228,6 +241,10 @@ class Partner < ApplicationRecord
     "Partner;#{id}"
   end
 
+  def partials_to_show
+    displayable_partials || ALL_PARTIALS
+  end
+
   def impact_metrics
     {
       families_served: families_served_count,
@@ -237,6 +254,10 @@ class Partner < ApplicationRecord
   end
 
   private
+
+  def displayable_partials
+    partner_form&.sections
+  end
 
   def expose_attachment_path(documentation)
     # NOTE(chaserx): I'm not sure how I feel about this.

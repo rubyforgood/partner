@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :partners, only: [:create, :show, :update]
       resources :add_partners, only: [:create]
+      resources :partner_forms, only: [:create]
     end
   end
 

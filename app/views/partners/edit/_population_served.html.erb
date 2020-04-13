@@ -1,0 +1,124 @@
+<div class="tile">
+  <h3 class="tile-title">Population Served</h3>
+  <div class="tile-body">
+    <div class="form-horizontal">
+      <div class="form-group row">
+        <label class="control-label col-md-3">Clients Have An Income Requirement to Work With You</label>
+        <div class="col-md-8">
+          <%= form.check_box :income_requirement_desc, class: "form-check-input form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Serve Income Cirumstances</label>
+        <div class="col-md-8">
+          <%= form.check_box :serve_income_circumstances, class: "form-check-input form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Do You Verify The Income Of Your Clients</label>
+        <div class="col-md-8">
+          <%= form.check_box :income_verification, class: "form-check-input form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Internal Database</label>
+        <div class="col-md-8">
+          <%= form.check_box :internal_db, class: "form-check-input form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">MAAC Program Participant</label>
+        <div class="col-md-8">
+          <%= form.check_box :maac, class: "form-check-input form-control" %>
+        </div>
+      </div>
+      <h6 class="card-title font-weight-bold pt-3">Ethnic Composition of Those Served</h6>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% African American</label>
+        <div class="col-md-8">
+          <%= form.number_field :population_black, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Caucasian</label>
+        <div class="col-md-8">
+          <%= form.number_field :population_white, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Hispanic</label>
+        <div class="col-md-8">
+          <%= form.number_field :population_hispanic, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Asian</label>
+        <div class="col-md-8">
+          <%= form.number_field :population_asian, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% American Indian</label>
+        <div class="col-md-8">
+          <%= form.number_field :population_american_indian, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Pacific Island</label>
+        <div class="col-md-8">
+          <%= form.number_field :population_island, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Multi-racial</label>
+        <div class="col-md-8">
+          <%= form.number_field :population_multi_racial, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Other</label>
+        <div class="col-md-8">
+          <%= form.number_field :population_other, class: "form-control" %>
+        </div>
+      </div>
+      <h6 class="card-title font-weight-bold pt-3">Zip Codes Served</h6>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Zip Codes Served</label>
+        <div class="col-md-8">
+          <%= form.text_field :zips_served, class: "form-control" %>
+        </div>
+      </div>
+      <h6 class="card-title font-weight-bold pt-3">Poverty Information of Those Served</h6>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% At FPL or Below</label>
+        <div class="col-md-8">
+          <%= form.number_field :at_fpl_or_below, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Above 1-2 times FPL</label>
+        <div class="col-md-8">
+          <%= form.number_field :above_1_2_times_fpl, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Greater than 2 times FPL</label>
+        <div class="col-md-8">
+          <%= form.number_field :greater_2_times_fpl, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">% Poverty Unknown</label>
+        <div class="col-md-8">
+          <%= form.number_field :poverty_unknown, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Ages Served</label>
+        <div class="col-md-8">
+          <%= form.text_field :ages_served, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
