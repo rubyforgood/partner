@@ -37,7 +37,7 @@ server "45.79.146.211", roles: %w{web app db}, primary: true,
                           keys: ["~/.ssh/id_rsa"]
                         }
 
-set :rvm_ruby_version, "2.7.0"
+set :rvm_ruby_version, "2.7.1"
 
 # Custom SSH Options
 # ==================
