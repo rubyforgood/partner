@@ -232,7 +232,8 @@ class Partner < ApplicationRecord
     {
       families_served: families_served_count,
       children_served: children_served_count,
-      family_zipcodes: family_zipcodes_count
+      family_zipcodes: family_zipcodes_count,
+      family_zipcodes_list: family_zipcodes_list
     }
   end
 
@@ -271,5 +272,9 @@ class Partner < ApplicationRecord
 
   def family_zipcodes_count
     families.pluck(:guardian_zip_code).uniq.count
+  end
+
+  def family_zipcodes_list
+    families.pluck(:guardian_zip_code).uniq
   end
 end

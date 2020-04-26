@@ -219,9 +219,12 @@ describe Partner, type: :model, include_shared: true do
 
     it "returns a hash with family and children aggregate data" do
       partner = create(:partner, :with_families)
+      expect(partner.impact_metrics.size).to eq(4)
       expect(partner.impact_metrics[:families_served]).to eq(1)
       expect(partner.impact_metrics[:children_served]).to eq(1)
       expect(partner.impact_metrics[:family_zipcodes]).to eq(1)
+      expect(partner.impact_metrics[:family_zipcodes_list]).to be_a(Array)
+      expect(partner.impact_metrics[:family_zipcodes_list]).to eq(partner.families.pluck(:guardian_zip_code).uniq)
     end
   end
 end
