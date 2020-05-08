@@ -14,6 +14,7 @@ require "devise"
 require "capybara/rails"
 require "capybara/rspec"
 require "capybara-screenshot/rspec"
+require 'webdrivers'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Shoulda::Matchers.configure do |config|
@@ -40,6 +41,11 @@ Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+
+# Chrome
+WebMock.allow_net_connect!
+Webdrivers::Chromedriver.required_version = '2.46'
+Webdrivers::Chromedriver.update
 
 # If an element is hidden, Capybara should ignore it
 Capybara.ignore_hidden_elements = true
@@ -70,6 +76,7 @@ Capybara.ignore_hidden_elements = true
 Capybara.register_driver :chrome do |app|
   args = %w[no-sandbox disable-gpu window-size=1680,1050]
   args << "headless" unless ENV["NOT_HEADLESS"] == "true"
+  Selenium::WebDriver::Chrome.path = '/usr/bin/google-chrome'
   options = Selenium::WebDriver::Chrome::Options.new(args: args)
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end

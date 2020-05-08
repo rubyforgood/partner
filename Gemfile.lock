@@ -63,8 +63,6 @@ GEM
     annotate (3.1.0)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     ast (2.4.0)
     autoprefixer-rails (9.7.4)
       execjs
@@ -118,9 +116,6 @@ GEM
       capybara (>= 1.0, < 4)
       launchy
     childprocess (3.0.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
@@ -188,7 +183,6 @@ GEM
     htmlentities (4.3.4)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    io-like (0.3.1)
     jaro_winkler (1.5.4)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
@@ -397,6 +391,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webdrivers (4.3.0)
+      nokogiri (~> 1.6)
+      rubyzip (>= 1.3.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webmock (3.8.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -429,7 +427,6 @@ DEPENDENCIES
   capistrano3-puma
   capybara (>= 2.15)
   capybara-screenshot
-  chromedriver-helper
   devise
   devise_invitable
   dotenv-rails
@@ -466,6 +463,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webdrivers
   webmock
   wicked_pdf (~> 1.1)
   wkhtmltopdf-binary
