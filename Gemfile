@@ -21,7 +21,7 @@ gem "pundit", "~> 2.1.0"
 gem "rails", "~> 6.0.0"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
-gem "wicked_pdf", "~> 1.1"
+gem "wicked_pdf", "~> 2.0"
 gem "wkhtmltopdf-binary"
 
 group :development, :test do
