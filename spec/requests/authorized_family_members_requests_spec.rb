@@ -31,7 +31,7 @@ RSpec.describe "Authorized Family Members Controller", type: :request do
     let(:authorized_family_member_params) { attributes_for(:authorized_family_member) }
 
     it "creates and redirects to authorized_family_member_path" do
-      post authorized_family_members_path, params: {
+      post authorized_family_members_path(family_id: family.id), params: {
         authorized_family_member: authorized_family_member_params
       }
 
