@@ -11,7 +11,7 @@ RSpec.describe "Authorized Family Members Controller", type: :request do
 
   describe "GET #new" do
     it "returns http status ok" do
-      get new_authorized_family_member_path
+      get new_authorized_family_member_path(family_id: family.id)
 
       expect(response).to have_http_status(:ok)
     end
