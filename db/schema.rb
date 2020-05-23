@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_122829) do
+ActiveRecord::Schema.define(version: 2020_05_18_010905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_122829) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "other_agency_type"
+    t.string "status_in_diaper_base"
     t.index ["diaper_bank_id"], name: "index_partners_on_diaper_bank_id"
   end
 
