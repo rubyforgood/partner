@@ -4,30 +4,29 @@ inherit_from: .rubocop_todo.yml
 # Once it is empty this can be removed!
 # inherit_from: .rubocop_todo.yml
 
+require: rubocop-rails
+
 AllCops:
   TargetRubyVersion: 2.6.4
   Exclude:
-  - "vendor/**/*"
-  - "db/schema.rb"
-  - "db/seeds.rb"
-  - "db/migrate/*"
-  - "bin/*"
-  - "lib/files/cucumber.rake"
-  - "lib/tasks/*"
-  - "config/initializers/*"
-  - "Vagrantfile"
-  - "Rakefile"
-  - "tmp/*"
-  - "config/deploy/*"
-  - "config/deploy.rb"
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - "db/seeds.rb"
+    - "db/migrate/*"
+    - "bin/*"
+    - "lib/files/cucumber.rake"
+    - "lib/tasks/*"
+    - "config/initializers/*"
+    - "Vagrantfile"
+    - "Rakefile"
+    - "tmp/*"
+    - "node_modules/**/*"
   UseCache: false
 Bundler/OrderedGems:
-  Enabled: true
-Layout/TrailingBlankLines:
+  Enabled: false
+Layout/TrailingEmptyLines:
   Description: 'Checks trailing blank lines and final newline.'
   StyleGuide: '#newline-eof'
-  Enabled: false
-Layout/AlignHash:
   Enabled: false
 Naming/AccessorMethodName:
   Description: Check the naming of accessor methods for get_/set_.
@@ -37,20 +36,18 @@ Naming/FileName:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#snake-case-files
   Enabled: false
   Exclude: []
-Naming/MemoizedInstanceVariableName:
-  EnforcedStyleForLeadingUnderscores: optional
 Naming/PredicateName:
   Description: Check the names of predicate methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#bool-methods-qmark
   Enabled: false
   NamePrefix:
-  - is_
-  - has_
-  - have_
-  NamePrefixBlacklist:
-  - is_
+    - is_
+    - has_
+    - have_
+  ForbiddenPrefixes:
+    - is_
   Exclude:
-  - spec/**/*
+    - spec/**/*
 Style/CollectionMethods:
   Description: Preferred collection methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#map-find-select-reduce-size
@@ -66,8 +63,8 @@ Layout/DotPosition:
   Enabled: true
   EnforcedStyle: leading
   SupportedStyles:
-  - leading
-  - trailing
+    - leading
+    - trailing
 Style/AsciiComments:
   Enabled: false
 Style/Lambda:
@@ -104,38 +101,44 @@ Style/RaiseArgs:
   Enabled: false
   EnforcedStyle: exploded
   SupportedStyles:
-  - compact
-  - exploded
+    - compact
+    - exploded
 Style/RegexpLiteral:
   EnforcedStyle: mixed
   AllowInnerSlashes: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
 Style/SignalException:
   Description: Checks for proper usage of fail and raise.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#fail-method
   Enabled: false
   EnforcedStyle: semantic
   SupportedStyles:
-  - only_raise
-  - only_fail
-  - semantic
+    - only_raise
+    - only_fail
+    - semantic
 Style/SingleLineBlockParams:
   Description: Enforces the names of some block params.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#reduce-blocks
   Enabled: false
   Methods:
-  - reduce:
-    - a
-    - e
-  - inject:
-    - a
-    - e
+    - reduce:
+        - a
+        - e
+    - inject:
+        - a
+        - e
 Style/SingleLineMethods:
   Description: Avoid single-line methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-single-line-methods
   Enabled: false
   AllowIfMethodIsEmpty: true
 Style/StringLiterals:
-  Enabled: true
+  Enabled: false
   EnforcedStyle: double_quotes
 Style/StringLiteralsInInterpolation:
   Description: Checks if uses of quotes inside expressions in interpolated strings
@@ -143,29 +146,26 @@ Style/StringLiteralsInInterpolation:
   Enabled: false
   EnforcedStyle: single_quotes
   SupportedStyles:
-  - double_quotes
-  - single_quotes
-Style/SymbolArray:
-  Enabled: true
-  EnforcedStyle: brackets
+    - double_quotes
+    - single_quotes
 Style/TrailingCommaInArguments:
   Description: Checks for trailing comma in argument lists.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
   Enabled: false
   EnforcedStyleForMultiline: no_comma
   SupportedStylesForMultiline:
-  - comma
-  - consistent_comma
-  - no_comma
+    - comma
+    - consistent_comma
+    - no_comma
 Style/TrailingCommaInArrayLiteral:
   Description: Checks for trailing comma in array and hash literals.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
   Enabled: false
   EnforcedStyleForMultiline: no_comma
   SupportedStylesForMultiline:
-  - comma
-  - consistent_comma
-  - no_comma
+    - comma
+    - consistent_comma
+    - no_comma
 Metrics/AbcSize:
   Description: A calculated magnitude based on number of assignments, branches, and
     conditions.
@@ -205,7 +205,7 @@ Metrics/PerceivedComplexity:
     reader.
   Enabled: false
   Max: 7
-Metrics/LineLength:
+Layout/LineLength:
   # This one metric can't be ratcheted via .rubocop_todo.yml :(
   # So instead, make a single PR that changes back to 100 and fix all violations
   Max: 1000
@@ -214,12 +214,8 @@ Metrics/LineLength:
   IgnoredPatterns: ['\A\s*#']
   AllowURI: true
   URISchemes:
-  - http
-  - https
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - "spec/**/*"
-
+    - http
+    - https
 Lint/AssignmentInCondition:
   Description: Don't use assignment in conditions.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition
@@ -284,10 +280,13 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/FormatStringToken:
   Enabled: false
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
 Lint/EachWithObjectArgument:
   Description: Check for immutable argument given to each_with_object.
   Enabled: true
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Description: Don't suppress exception.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#dont-hide-exceptions
   Enabled: false
@@ -310,13 +309,12 @@ Rails/PluralizationGrammar:
   Enabled: true
 Rails/ScopeArgs:
   Enabled: true
-Rails/SkipsModelValidations:
-  Exclude:
-  - "app/controllers/child_item_requests_controller.rb"
 Rails/TimeZone:
   Enabled: true
 Rails/UnknownEnv:
   Environments:
-  - production
-  - development
-  - test
+    - production
+    - development
+    - test
+Style/SymbolArray:
+  Enabled: false

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+DEVISE_DEFAULT_MAIL_SENDER = 'accounts@diaper.app'.freeze
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -18,10 +20,10 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'accounts@diaper.app'
+  config.mailer_sender = DEVISE_DEFAULT_MAIL_SENDER
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'CustomDeviseMailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'

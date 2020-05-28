@@ -1,0 +1,43 @@
+<div class="tile">
+  <h3 class="tile-title">Organization Capacity</h3>
+  <div class="tile-body">
+    <div class="form-horizontal">
+      <div class="form-group row">
+        <label class="control-label col-md-3">Max Serve</label>
+        <div class="col-md-8">
+          <%= form.text_field :max_serve, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Incorporate Plane</label>
+        <div class="col-md-8">
+          <%= form.text_area :incorporate_plan, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Responsible Staff Position</label>
+        <div class="col-md-8">
+          <%= form.check_box :responsible_staff_position, class: "form-check-input form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Storage Space</label>
+        <div class="col-md-8">
+          <%= form.check_box :storage_space, class: "form-control form-check-input" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Storage Space Description</label>
+        <div class="col-md-8">
+          <%= form.text_area :describe_storage_space, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3">Trusted Pickup</label>
+        <div class="col-md-8">
+          <%= form.check_box :trusted_pickup, class: "form-control form-check-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

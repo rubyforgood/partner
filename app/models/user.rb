@@ -24,6 +24,7 @@
 #  invited_by_id          :bigint(8)
 #  invitations_count      :integer          default(0)
 #  partner_id             :bigint(8)
+#  name                   :string
 #
 
 class User < ApplicationRecord
@@ -32,7 +33,8 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  attr_accessor :message
+  attr_accessor :message, :invitation_reply_to
+
   belongs_to :partner
 
   def valid_password?(password)

@@ -13,12 +13,13 @@ class Api::V1::AddPartnersController < ApiController
     else
       user = User.invite!(email: partner_params[:email], partner: partner) do |new_user|
         new_user.message = partner_params[:invitation_text]
+        new_user.invitation_reply_to = partner_params[:organization_email]
       end
     end
 
     render json: {
       email: user.email,
-             id: partner.id
+      id: partner.id
     }
   rescue ActiveRecord::RecordInvalid => e
     render e.message
@@ -36,6 +37,7 @@ class Api::V1::AddPartnersController < ApiController
     params.require(:partner).permit(
       :diaper_partner_id,
       :invitation_text,
+      :organization_email,
       :email
     )
   end

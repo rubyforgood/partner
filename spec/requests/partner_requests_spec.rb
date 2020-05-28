@@ -21,11 +21,11 @@ RSpec.describe PartnerRequestsController, type: :controller do
             .with(
               headers: {
                 "Accept" => "*/*",
-               "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-               "Content-Type" => "application/json",
-               "Host" => "diaper.test",
-               "User-Agent" => "Ruby",
-               "X-Api-Key" => "diaperkey"
+                "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+                "Content-Type" => "application/json",
+                "Host" => "diaper.test",
+                "User-Agent" => "Ruby",
+                "X-Api-Key" => "diaperkey"
               }
             )
             .to_return(status: 200, body: "{}", headers: {})
