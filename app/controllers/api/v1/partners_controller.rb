@@ -40,6 +40,8 @@ class Api::V1::PartnersController < ApiController
       partner.update(partner_status: "pending")
     end
 
+    partner.update(status_in_diaper_base: partner_params[:status])
+
     render json: { message: "Partner status: #{partner.partner_status}." }, status: :ok
   rescue ActiveRecord::RecordNotFound => e
     render e.message
