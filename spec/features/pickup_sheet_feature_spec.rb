@@ -54,7 +54,7 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
     visit partner_requests_path
     find_link("Create New Family Diaper Request").click
     find('input[type="submit"]').click
-    expect(find("h3")).to have_text("Diaper Request History")
+    expect(page).to have_text("Request History")
   end
 
   def verify_correct_table_headers_are_present
@@ -196,7 +196,7 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
   def toggle_pickup
     within "tbody" do
       within find("tr:nth-child(2)") do
-        find("span.button-indecator").click
+        find("label.custom-control-label").click
       end
     end
   end

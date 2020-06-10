@@ -8,26 +8,36 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <!-- Main CSS-->
-  <!-- Font-icon css-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body>
+<body id="devise" class="hold-transition login-page">
+<div class="login-box">
+
 <section class="material-half-bg">
   <div class="cover"></div>
 </section>
 <section class="login-content">
-  <div class="logo">
-    <h1>Partnerbase</h1>
+  <div class="logo" style="text-align: center;color:white">
+    <h1>PartnerBase</h1>
   </div>
-  <div class="login-box">
-    <%= yield %>
+  <div class="login-box-body">
+    <div class="form-group has-feedback">
+      <%= yield %>
+    </div>
   </div>
+  <!-- /.login-box-body -->
 </section>
-<script type="text/javascript">
-    // Login Page Flipbox control
-    $('.login-content [data-toggle="flip"]').click(function() {
-        $('.login-box').toggleClass('flipped');
-        return false;
+</div>
+<script src="/assets/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
     });
+  });
 </script>
 </body>
+</html>
+  <!-- /.login-logo -->

@@ -1,136 +1,69 @@
-<div class="tile">
-  <h3 class="tile-title">Agency Stability</h3>
-  <div class="tile-body">
-    <div class="form-horizontal">
-      <div class="form-group row">
-        <label class="control-label col-md-3">Year Founded</label>
-        <div class="col-md-8">
-          <%= form.number_field :founded, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Form 990 Filed</label>
-        <div class="col-md-8">
-          <%= form.check_box :form_990, class: "form-control form-check-input" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Form 990</label>
-        <% if partner.proof_of_form_990.attached? %>
-          <div class="col-md-8">
-            Attached
-            file: <%= link_to partner.proof_of_form_990.blob['filename'], rails_blob_path(partner.proof_of_form_990), class: "font-weight-bold" %>
-            <%= form.file_field :proof_of_form_990, class: "form-control-file form-control" %>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header bg-white">
+            <h3 class="card-title"><strong>Agency Stability</strong></h3>
           </div>
-        <% else %>
-          <div class="col-md-8">
-            <%= form.file_field :proof_of_form_990, class: "form-control-file" %>
+          <div class="card-body">
+            <%= form.input :founded, label: "Year Founded", class: "form-control", wrapper: :input_group %>
+            <%= form.input :form_990, label: "Form 990 Filed", as: :boolean, class: "form-control", wrapper: :input_group %>
+            <label class="control-label col-md-3">Form 990</label>
+            <% if partner.proof_of_form_990.attached? %>
+              <div class="col-md-8">
+                Attached
+                file: <%= link_to partner.proof_of_form_990.blob['filename'], rails_blob_path(partner.proof_of_form_990), class: "font-weight-bold" %>
+                <%= form.file_field :proof_of_form_990, class: "form-control-file form-control" %>
+              </div>
+            <% else %>
+              <div class="col-md-8">
+                <%= form.file_field :proof_of_form_990, class: "form-control-file" %>
+              </div>
+            <% end %>
+            <%= form.input :program_name, label: "Program Name", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_description, label: "Program Description", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_age, label: "Agency Age", class: "form-control", wrapper: :input_group %>
+            <%= form.input :evidence_based, label: "Do You Track Program Results", as: :boolean,
+                           class: "form-control", wrapper: :input_group %>
+            <%= form.input :case_management, label: "Case Management", class: "form-control", wrapper: :input_group %>
+            <%= form.input :evidence_based_description, label: "Evidence Based Description", as: :text,
+                           class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_client_improvement, label: "Verified Successes of Program", as: :text,
+                           class: "form-control", wrapper: :input_group %>
+            <%= form.input :diaper_use, label: "Diaper Use", as: :text,
+                           class: "form-control", wrapper: :input_group %>
+            <%= form.input :other_diaper_use, label: "Do You Receive Diapers From Other Sources",
+                           class: "form-control", wrapper: :input_group %>
+            <%= form.input :currently_provide_diapers, label: "Currently Providing Diapers?", as: :boolean,
+                           class: "form-control", wrapper: :input_group %>
+            <%= form.input :turn_away_child_care, label: "Turn Away Child Care", class: "form-control", wrapper: :input_group %>
+
           </div>
-        <% end %>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Program Name</label>
-          <div class="col-md-8">
-            <%= form.text_field :program_name, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Program Description</label>
-          <div class="col-md-8">
-            <%= form.text_area :program_description, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Agency Age</label>
-          <div class="col-md-8">
-            <%= form.text_field :program_age, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Do You Track Program Results</label>
-          <div class="col-md-8">
-            <%= form.check_box :evidence_based, class: "form-control form-check-input" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Case Management</label>
-          <div class="col-md-8">
-            <%= form.check_box :case_management, class: "form-control form-check-input" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Evidence Based Description</label>
-          <div class="col-md-8">
-            <%= form.text_area :evidence_based_description, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Verified Successes of Program</label>
-          <div class="col-md-8">
-            <%= form.text_area :program_client_improvement, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Diaper Use</label>
-          <div class="col-md-8">
-            <%= form.text_field :diaper_use, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Do You Receive Diapers From Other Sources</label>
-          <div class="col-md-8">
-            <%= form.text_field :other_diaper_use, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Currently Provide Diapers</label>
-          <div class="col-md-8">
-            <%= form.check_box :currently_provide_diapers, class: "form-check-input form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="control-label col-md-3">Turn Away Child Care</label>
-          <div class="col-md-8">
-            <%= form.check_box :turn_away_child_care, class: "form-check-input form-control" %>
-          </div>
-        </div>
-    </div>
-  </div>
-</div>
-<div class="tile">
-  <h3 class="tile-title">Program Address</h3>
-  <div class="tile-body">
-    <div class="form-horizontal">
-      <div class="form-group row">
-        <label class="control-label col-md-3">Address 1</label>
-        <div class="col-md-8">
-          <%= form.text_field :program_address1, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Address 2</label>
-        <div class="col-md-8">
-          <%= form.text_field :program_address2, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">City</label>
-        <div class="col-md-8">
-          <%= form.text_field :program_city, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">State</label>
-        <div class="col-md-8">
-          <%= form.text_field :program_state, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Zip Code</label>
-        <div class="col-md-8">
-          <%= form.number_field :program_zip_code, class: "form-control" %>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header bg-white">
+            <h3 class="card-title"><strong>Program Address</strong></h3>
+          </div>
+          <div class="card-body">
+            <%= form.input :program_address1, label: "Address (line 1)", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_address2, label: "Address (line 2)", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_city, label: "City", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_state, label: "State", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_zip_code, label: "Zip Code", class: "form-control", wrapper: :input_group %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

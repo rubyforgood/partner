@@ -82,6 +82,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
+    bootstrap-toggle-rails (2.2.1.0)
     bugsnag (6.13.1)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
@@ -167,6 +168,8 @@ GEM
       rack-protection (>= 1.5.3, < 2.1.0)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
+    font-ionicons-rails (2.0.1.6)
+      railties (>= 3.2, < 7.0)
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -199,6 +202,7 @@ GEM
       addressable (~> 2.7)
     letter_opener (1.7.0)
       launchy (~> 2.2)
+    libv8 (7.3.492.27.1)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -214,6 +218,8 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
+    mini_racer (0.2.14)
+      libv8 (> 7.3)
     minitest (5.14.1)
     msgpack (1.3.3)
     nenv (0.3.0)
@@ -352,6 +358,9 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (4.3.0)
       activesupport (>= 4.2.0)
+    simple_form (5.0.2)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     simplecov (0.18.5)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -412,6 +421,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.5.0)
+  bootstrap-toggle-rails
   bugsnag
   byebug
   capistrano-bundler
@@ -432,11 +442,13 @@ DEPENDENCIES
   flipper-active_record
   flipper-ui
   font-awesome-rails
+  font-ionicons-rails
   guard-rspec
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.1)
   letter_opener
   listen (>= 3.0.5, < 3.3)
+  mini_racer
   pg
   prawn-rails
   pry
@@ -452,6 +464,7 @@ DEPENDENCIES
   sass-rails (~> 6.0)
   selenium-webdriver
   shoulda-matchers
+  simple_form
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)

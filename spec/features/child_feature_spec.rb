@@ -77,7 +77,7 @@ describe Child, type: :feature, include_shared: true, js: true do
       visit partner_requests_path
       find_link("Create New Family Diaper Request").click
       find('input[type="submit"]').click
-      expect(find("h3")).to have_text("Diaper Request History")
+      expect(page).to have_text("Request History")
       visit child_path(child)
       within "tbody" do
         within find("tr:nth-child(1)") do

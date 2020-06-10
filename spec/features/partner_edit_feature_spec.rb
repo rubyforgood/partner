@@ -24,7 +24,7 @@ describe "Partner edit", type: :feature do
     end
   end
 
-  scenario "partner can select and provide an Other agency type", js: true do
+  scenario "partner can select and provide an Other agency type" do
     select "Other", from: "partner_agency_type"
     fill_in "partner_other_agency_type", with: Faker::Name.name
     click_button "Update Information"

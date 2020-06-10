@@ -1,31 +1,20 @@
-<div class="tile">
-  <h3 class="tile-title">Sources of Funding</h3>
-  <div class="tile-body">
-    <div class="form-horizontal">
-      <div class="form-group row">
-        <label class="control-label col-md-3">Sources Of Funding</label>
-        <div class="col-md-8">
-          <%= form.text_field :sources_of_funding, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">How do you currently obtain diapers?</label>
-        <div class="col-md-8">
-          <%= form.text_field :sources_of_diapers, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Diaper Budget</label>
-        <div class="col-md-8">
-          <%= form.text_field :diaper_budget, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Diaper Funding Source</label>
-        <div class="col-md-8">
-          <%= form.text_field :diaper_funding_source, class: "form-control" %>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header bg-white">
+            <h3 class="card-title"><strong>Sources of Funding</strong></h3>
+          </div>
+          <div class="card-body">
+            <%= form.input :sources_of_funding, label: "Sources Of Funding", class: "form-control", wrapper: :input_group %>
+            <%= form.input :sources_of_diapers, label: "How do you currently obtain diapers?",
+                           class: "form-control", wrapper: :input_group %>
+            <%= form.input :diaper_budget, label: "Diaper Budget", class: "form-control", wrapper: :input_group %>
+            <%= form.input :diaper_funding_source, label: "Diaper Funding Source", class: "form-control", wrapper: :input_group %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>

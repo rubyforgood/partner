@@ -1,56 +1,38 @@
-<div class="tile">
-  <h3 class="tile-title">Executive Director</h3>
-  <div class="tile-body">
-    <div class="form-horizontal">
-      <div class="form-group row">
-        <label class="control-label col-md-3">Executive Director Name</label>
-        <div class="col-md-8">
-          <%= form.text_field :executive_director_name, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Executive Director Phone</label>
-        <div class="col-md-8">
-          <%= form.text_field :executive_director_phone, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Executive Director Email</label>
-        <div class="col-md-8">
-          <%= form.text_field :executive_director_email, class: "form-control" %>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header bg-white">
+            <h3 class="card-title"><strong>Executive Director</strong></h3>
+          </div>
+          <div class="card-body">
+            <%= form.input :executive_director_name, label: "Executive Director Name", class: "form-control", wrapper: :input_group %>
+            <%= form.input :executive_director_phone, label: "Executive Director Phone", class: "form-control", wrapper: :input_group %>
+            <%= form.input :executive_director_email, label: "Executive Director Email", class: "form-control", wrapper: :input_group %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="tile">
-  <h3 class="tile-title">Program Contact</h3>
-  <div class="tile-body">
-    <div class="form-horizontal">
-      <div class="form-group row">
-        <label class="control-label col-md-3">Program Contact Name</label>
-        <div class="col-md-8">
-          <%= form.text_field :program_contact_name, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Program Contact Phone</label>
-        <div class="col-md-8">
-          <%= form.text_field :program_contact_phone, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Program Contact Cell</label>
-        <div class="col-md-8">
-          <%= form.text_field :program_contact_mobile, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="control-label col-md-3">Program Contact Email</label>
-        <div class="col-md-8">
-          <%= form.text_field :program_contact_email, class: "form-control" %>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header bg-white">
+            <h3 class="card-title"><strong>Program Contact</strong></h3>
+          </div>
+          <div class="card-body">
+            <%= form.input :program_contact_name, label: "Program Contact Name", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_contact_phone, label: "Program Contact Phone", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_contact_mobile, label: "Program Contact Cell", class: "form-control", wrapper: :input_group %>
+            <%= form.input :program_contact_email, label: "Program Contact Email", class: "form-control", wrapper: :input_group %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>

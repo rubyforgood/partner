@@ -30,7 +30,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
       visit partner_requests_path
       find_link("Create New Family Diaper Request").click
       find('input[type="submit"]').click
-      expect(find("h3")).to have_text("Diaper Request History")
+      expect(page).to have_text("Request History")
       expect(ChildItemRequest.count - children.count).to eq(child_item_requests)
       expect(ItemRequest.count - 2).to eq(item_requests)
       expect(PartnerRequest.last.for_families?).to eq(true)
@@ -44,7 +44,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
       visit partner_requests_path
       find_link("Create New Family Diaper Request").click
       find('input[type="submit"]').click
-      expect(find("h3")).to have_text("Diaper Request History")
+      expect(page).to have_text("Request History")
       within "tbody" do
         within find("tr:nth-child(1)") do
           within find("td:nth-child(3)") do
