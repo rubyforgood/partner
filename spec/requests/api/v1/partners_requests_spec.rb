@@ -64,6 +64,11 @@ describe "Partners API Requests", type: :request do
         valid_partner_update_request(params, headers)
         expect(partner.reload.partner_status).to eq("pending")
       end
+
+      it "sets the unaltered status in diaper base" do
+        valid_partner_update_request(params, headers)
+        expect(partner.reload.status_in_diaper_base).to eq("pending")
+      end
     end
 
     context "when we set the partner to recertification_required" do
@@ -91,6 +96,11 @@ describe "Partners API Requests", type: :request do
         valid_partner_update_request(params, headers)
         expect(RecertificationMailer).to have_received(:notice_email).with(user)
       end
+
+      it "sets the unaltered status in diaper base" do
+        valid_partner_update_request(params, headers)
+        expect(partner.reload.status_in_diaper_base).to eq("recertification_required")
+      end
     end
 
     context "when we set the partner to approved" do
@@ -111,6 +121,11 @@ describe "Partners API Requests", type: :request do
         valid_partner_update_request(params, headers)
         expect(JSON.parse(response.body)["message"]).to eq("Partner status: verified.")
       end
+
+      it "sets the unaltered status in diaper base" do
+        valid_partner_update_request(params, headers)
+        expect(partner.reload.status_in_diaper_base).to eq("approved")
+      end
     end
 
     context "when we try to set the partner to blarg" do
@@ -130,6 +145,11 @@ describe "Partners API Requests", type: :request do
       it "shows pending status in the response body" do
         valid_partner_update_request(params, headers)
         expect(JSON.parse(response.body)["message"]).to eq("Partner status: pending.")
+      end
+
+      it "sets the unlatered status in diaper base" do
+        valid_partner_update_request(params, headers)
+        expect(partner.reload.status_in_diaper_base).to eq("blarg")
       end
     end
   end

@@ -82,7 +82,6 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap-toggle-rails (2.2.1.0)
     bugsnag (6.13.1)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
@@ -154,7 +153,7 @@ GEM
     factory_bot_rails (5.2.0)
       factory_bot (~> 5.2.0)
       railties (>= 4.2.0)
-    faker (2.11.0)
+    faker (2.12.0)
       i18n (>= 1.6, < 2)
     ffi (1.12.2)
     flipper (0.17.2)
@@ -234,7 +233,7 @@ GEM
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     parallel (1.19.1)
-    parser (2.7.1.2)
+    parser (2.7.1.3)
       ast (~> 2.4.0)
     pdf-core (0.7.0)
     pg (1.2.3)
@@ -297,7 +296,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (1.7.0)
+    regexp_parser (1.7.1)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -323,10 +322,11 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
-    rubocop (0.84.0)
+    rubocop (0.85.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.7)
       rexml
       rubocop-ast (>= 0.0.3)
       ruby-progressbar (~> 1.7)
@@ -404,7 +404,7 @@ GEM
       hashdiff (>= 0.4.0, < 2.0.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     wicked_pdf (2.0.2)
       activesupport
     wkhtmltopdf-binary (0.12.5.4)
@@ -421,7 +421,6 @@ DEPENDENCIES
   binding_of_caller
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.5.0)
-  bootstrap-toggle-rails
   bugsnag
   byebug
   capistrano-bundler

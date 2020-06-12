@@ -32,15 +32,6 @@
   </div>
   </div>
 <% end %>
-<script>
-  $(document).ready(function () {
-
-    if (document.URL == "https://diaperbase.org/users/sign_in") {
-      $('#exampleModal').modal('show');
-    }
-  });
-</script>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -49,7 +40,7 @@
         <h3 class="modal-title" id="exampleModalLabel">Demo Site Reminder</h3>
       </div>
       <div class="modal-body">
-        Please be aware that diaperbase.org is a demo/test server for <a href="https://diaper.app">diaper.app</a>.
+        Please be aware that partnerbase.org is a demo/test server for <a href="https://partner.diaper.app">partner.diaper.app</a>.
         Multiple people have access to the test accounts so please do not save or upload any sensitive data.
       </div>
       <div class="modal-footer">
@@ -58,3 +49,8 @@
     </div>
   </div>
 </div>
+<script>
+  if (document.URL == "https://partnerbase.org/users/sign_in") {
+    $('#exampleModal').modal('show');
+  }
+</script>
