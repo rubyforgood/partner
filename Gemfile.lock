@@ -63,8 +63,6 @@ GEM
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     ast (2.4.1)
     autoprefixer-rails (9.7.6)
       execjs
@@ -187,8 +185,6 @@ GEM
     htmlentities (4.3.4)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
-    jaro_winkler (1.5.4)
-    io-like (0.3.1)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jquery-rails (4.4.0)
