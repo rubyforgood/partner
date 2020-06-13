@@ -12,6 +12,7 @@ class Api::V1::PartnersController < ApiController
 
     user = User.invite!(email: partner_params[:email], partner: partner) do |new_user|
       new_user.message = partner_params[:invitation_text]
+      new_user.invitation_reply_to = partner_params[:organization_email]
     end
 
     render json: {
@@ -38,6 +39,8 @@ class Api::V1::PartnersController < ApiController
     else
       partner.update(partner_status: "pending")
     end
+
+    partner.update(status_in_diaper_base: partner_params[:status])
 
     render json: { message: "Partner status: #{partner.partner_status}." }, status: :ok
   rescue ActiveRecord::RecordNotFound => e
@@ -69,6 +72,7 @@ class Api::V1::PartnersController < ApiController
       :diaper_bank_id,
       :diaper_partner_id,
       :invitation_text,
+      :organization_email,
       :email,
       :status
     )

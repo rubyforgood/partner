@@ -88,7 +88,7 @@
 class Partner < ApplicationRecord
   include DiaperBankClient
 
-  validates :diaper_partner_id, uniqueness: true
+  validates :diaper_partner_id, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
   has_many :users, dependent: :destroy
   has_one_attached :proof_of_partner_status
