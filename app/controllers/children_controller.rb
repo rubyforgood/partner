@@ -3,10 +3,18 @@ class ChildrenController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @children = current_partner.children
-                               .includes(:family)
-                               .order(active: :desc, last_name: :asc)
-                               .class_filter(filter_params)
+    @children = current_partner.children.includes(:family)
+
+    if filter_params[:child_name_includes].present?
+      # Utilize `concat_ws` to combine the two fields and query by ILIKE on it.
+      @children = @children.where("concat_ws(' ', first_name, last_name) ILIKE ?", "%#{filter_params[:child_name_includes]}%")
+    end
+
+    if filter_params[:guardian_name_includes].present?
+      @children = @children.where("concat_ws(' ', families.guardian_first_name, families.guardian_last_name) ILIKE ?", "%#{filter_params[:guardian_name_includes]}%")
+    end
+
+    @children = @children.order(active: :desc, last_name: :asc)
 
     respond_to do |format|
       format.html
@@ -14,9 +22,6 @@ class ChildrenController < ApplicationController
         render(csv: @children.map(&:to_csv))
       end
     end
-    @family = @children.collect(&:family).compact.uniq.sort
-    @selected_family = filter_params[:from_family]
-    @selected_children_first_name = filter_params[:from_children]
   end
 
   def show
@@ -94,6 +99,6 @@ class ChildrenController < ApplicationController
   def filter_params
     return {} unless params.key?(:filters)
 
-    params.require(:filters).slice(:from_family, :from_children)
+    params.require(:filters).permit(:guardian_name_includes, :child_name_includes)
   end
 end

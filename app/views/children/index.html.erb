@@ -32,18 +32,14 @@
           <div class="card-body">
             <%= form_tag(children_path, method: :get) do |f| %>
               <div class="row">
-                <% if @family.present? %>
-                  <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <%= label_tag "by Guardian Name", "Guardian Name" %>
-                    <%= collection_select(:filters, :from_family, @family || {}, :id, :guardian_display_name, {include_blank: true, selected: @selected_family}, class: "form-control") %>
-                  </div>
-                <% end %>
-                <% if @children.present? %>
-                  <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <%= label_tag "by Children First Name", "Child's First Name" %>
-                    <%= collection_select(:filters, :from_children, @children || {}, :id, :first_name, {include_blank: true, selected: @selected_children_first_name}, class: "form-control") %>
-                  </div>
-                <% end %>
+                <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                  <%= label_tag "by Guardian Name Includes", "Guardian Name Includes:" %>
+                  <%= text_field(:filters, :guardian_name_includes, value: params.dig(:filters, :guardian_name_includes), class: "form-control") %>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                  <%= label_tag "by Child Name Includes", "Child's Name Includes:" %>
+                  <%= text_field(:filters, :child_name_includes, value: params.dig(:filters, :child_name_includes), class: "form-control") %>
+                </div>
               </div>
               </div><!-- /.row -->
               <div class="card-footer">
