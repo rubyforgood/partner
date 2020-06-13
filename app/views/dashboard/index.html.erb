@@ -1,33 +1,43 @@
-<div class="app-title">
-  <div>
-    <% if @partner.partner_status == "recertification_required" %>
-      <div class="alert alert-danger"><i class="fa fa-warning"></i>&nbsp;Please review your application details and submit for approval.</div>
-    <% end %>
-    <h1><i class="fa fa-dashboard"></i> Dashboard <small>for <%= current_partner.name %></small></h1>
-  </div>
-  <ul class="app-breadcrumb breadcrumb">
-    <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
-    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-  </ul>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="container-fluid">
-      <div class="row">
-	<div class="col">
-	  <%= render partial: "partner_details" %>
-	</div>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <% content_for :title, "Families - #{current_partner.name}" %>
+        <h1><i class="fa fa-users"></i>&nbsp;&nbsp;
+          Family Details
+          <small>for <%= current_partner.name %></small>
+        </h1>
       </div>
-      <div class="row">
-	<div class="col">
-	  <%= render partial: "diaper_request_history" %>
-	</div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        </ol>
       </div>
-      <div class="row">
-	<div class="col">
-	  <%= render partial: "family_details" %>
-	</div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col">
+            <%= render partial: "partner_details" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= render partial: "diaper_request_history" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= render partial: "family_details" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
