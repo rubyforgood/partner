@@ -39,7 +39,7 @@ describe Child, type: :feature, include_shared: true, js: true do
     end
   end
 
-  scenario "User can see a list of children filtered matching name" do
+  scenario "User can see a list of children filtered by matching children first or last name" do
     diaper_type = "Magic diaper"
     stub_request(:any, "#{ENV["DIAPERBANK_ENDPOINT"]}/partner_requests/#{partner.id}")
       .to_return(body: [{ id: 1, name: diaper_type }].to_json, status: 200)
@@ -48,13 +48,13 @@ describe Child, type: :feature, include_shared: true, js: true do
     create(:child, first_name: "Arthur", family: family)
 
     click_link "Children"
-    # select "Arthur", from: "filters[from_children]"
-    fill_in 'by Child Name Includes', with: 'Z'
+    fill_in('filters[child_name_includes]', with: 'z')
+
     click_button "Filter"
     expect(page).to have_css("table tbody tr", count: 1)
   end
 
-  scenario "User can see a list of children filtered by guardian name" do
+  scenario "User can see a list of children filtered by string that match guardian first or last name" do
     diaper_type = "Magic diaper"
     stub_request(:any, "#{ENV["DIAPERBANK_ENDPOINT"]}/partner_requests/#{partner.id}")
       .to_return(body: [{ id: 1, name: diaper_type }].to_json, status: 200)
@@ -64,9 +64,11 @@ describe Child, type: :feature, include_shared: true, js: true do
     create(:child, first_name: "Louis", family: other_family)
 
     click_link "Children"
-    fill_in 'by Guardian Name Includes', with: 'Joester'
+
+    fill_in('filters[guardian_name_includes]', with: family.guardian_last_name)
+
     click_button "Filter"
-    expect(page).to have_css("table tbody tr", count: 2)
+    expect(page).to have_css("table tbody tr", count: family.children.size)
   end
 
   describe "Show View" do
