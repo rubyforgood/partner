@@ -14,7 +14,7 @@ class ChildrenController < ApplicationController
       @children = @children.where("concat_ws(' ', families.guardian_first_name, families.guardian_last_name) ILIKE ?", "%#{filter_params[:guardian_name_includes]}%")
     end
 
-    @children = @children.order(active: :desc, last_name: :asc)
+    @children = @children.order(last_name: :asc)
 
     respond_to do |format|
       format.html
