@@ -11,12 +11,17 @@
 // about supported directives.
 //
 //= require jquery3
+//= require filterrific/filterrific-jquery
 //= require rails-ujs
 //= require activestorage
 //= require bootstrap
 //= require popper
 //= require main
 //= require_tree .
+
+$( document ).ready(function() {
+  Filterrific.init();
+});
 
 function timeoutWindow() {
   window.setTimeout(function () {

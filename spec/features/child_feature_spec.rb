@@ -48,9 +48,9 @@ describe Child, type: :feature, include_shared: true, js: true do
     create(:child, first_name: "Arthur", family: family)
 
     click_link "Children"
-    select "Arthur", from: "filters[from_children]"
-    click_button "Filter"
-    expect(page).to have_css("table tbody tr", count: 1)
+    fill_in "Search By Child Name", with: "Arthur"
+    expect(page).to have_text("Arthur")
+    expect(page).to_not have_text("Zeno")
   end
 
   scenario "User can see a list of children filtered by guardian name" do
@@ -63,9 +63,11 @@ describe Child, type: :feature, include_shared: true, js: true do
     create(:child, first_name: "Louis", family: other_family)
 
     click_link "Children"
-    select "Miles Morales", from: "filters[from_family]"
-    click_button "Filter"
+    fill_in "Search By Guardian Name", with: "Morales"
     expect(page).to have_css("table tbody tr", count: 2)
+    expect(page).to have_text("Zeno")
+    expect(page).to have_text("Arthur")
+    expect(page).to_not have_text("Louis")
   end
 
   describe "Show View" do
