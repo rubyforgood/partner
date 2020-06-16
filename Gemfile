@@ -24,7 +24,7 @@ gem "rails", "~> 6.0.3"
 gem "sass-rails", "~> 6.0"
 gem "simple_form"
 gem "uglifier", ">= 1.3.0"
-gem "wicked_pdf", "~> 2.0"
+gem "wicked_pdf", "~> 2.1"
 gem "wkhtmltopdf-binary"
 
 group :development, :test do
