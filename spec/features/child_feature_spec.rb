@@ -82,7 +82,7 @@ describe Child, type: :feature, include_shared: true, js: true do
       within "tbody" do
         within find("tr:nth-child(1)") do
           expect(find("td:nth-child(1)")).to have_text(Time.zone.today.iso8601)
-          expect(find("td:nth-child(2)")).to have_text("Fantastic diaper")
+          expect(find("td:nth-child(2)")).to have_text("Magic diaper")
           expect(find("td:nth-child(3)")).to have_text("Not picked up")
           expect(find("td:nth-child(4)")).to have_text("100")
           expect(find("td:nth-child(5)")).to have_text("Not picked up")
