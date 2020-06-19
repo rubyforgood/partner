@@ -193,6 +193,19 @@ describe "Partners API Requests", type: :request do
     end
   end
 
+  describe "Environment variable not set" do
+    it "responds with forbidden" do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with("DIAPER_KEY").and_return(nil)
+
+      partner = create(:partner)
+
+      get api_v1_partner_path(partner), headers: { 'X-Api-Key': nil }
+
+      expect(response).to have_http_status(:forbidden)
+    end
+  end
+
   def valid_partner_creation_request(
     email: "test@example.com",
     diaper_bank_id: "diaper-bank-id",
