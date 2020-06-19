@@ -36,6 +36,20 @@ class Child < ApplicationRecord
   }
   scope :active, -> { where(active: true) }
 
+  filterrific(
+    available_filters: [
+      :search_names,
+      :search_families,
+      :search_active
+    ],
+  )
+
+  scope :search_names, ->(query) { where('first_name ilike ? OR last_name ilike ?', "%#{query}%", "%#{query}%") }
+  scope :search_active, ->(query) { query.zero? ? nil : where(active: true) }
+  scope :search_families, ->(query) {
+    where("concat_ws(' ', families.guardian_first_name, families.guardian_last_name) ILIKE ?", "%#{query}%")
+  }
+
   CSV_HEADERS = %w[
     id first_name last_name date_of_birth gender child_lives_with race agency_child_id
     health_insurance comments created_at updated_at family_id item_needed_diaperid active archived

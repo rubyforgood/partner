@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Last Name</th>
+    <th scope="col">First Name</th>
+    <th scope="col">Date of Birth</th>
+    <th scope="col">Active</th>
+    <th scope="col">Guardian</th>
+    <th scope="col">Comments</th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @children.each do |child| %>
+    <tr>
+      <td><%= child.last_name %></td>
+      <td><%= child.first_name %></td>
+      <td><%= child.date_of_birth %></td>
+      <td><%= child.active ? "Yes" : "No" %></td>
+      <td><%= child.family.guardian_display_name %></td>
+      <td><%= child.comments %></td>
+      <td><%= link_to 'View Child Details', child, class: "btn btn-sm btn-info" %></td>
+      <td><%= link_to 'Edit Child Details', edit_child_path(child), class: "btn btn-sm btn-success pull-right" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
