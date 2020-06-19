@@ -26,6 +26,7 @@ describe "Partners API Requests", type: :request do
         email: email,
         diaper_partner_id: diaper_partner_id
       }
-    )
+    ),
+    headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
   end
 end

@@ -4,7 +4,7 @@ describe "Partners API Requests", type: :request do
   describe "POST /api/v1/partners" do
     context "when the body is empty" do
       it "responds with an error status code" do
-        post api_v1_partners_path({})
+        post api_v1_partners_path({}), headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
 
         expect(response).to have_http_status(:bad_request)
       end
@@ -35,6 +35,7 @@ describe "Partners API Requests", type: :request do
         diaper_bank_id: diaper_bank_id,
         sections: sections
       }
-    )
+    ),
+    headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
   end
 end
