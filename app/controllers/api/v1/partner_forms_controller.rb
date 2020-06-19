@@ -20,12 +20,6 @@ class Api::V1::PartnerFormsController < ApiController
 
   private
 
-  def api_key_valid?
-    return true if Rails.env.development?
-
-    request.headers["X-Api-Key"] == ENV["DIAPER_KEY"]
-  end
-
   def partner_form_params
     params.require(:partner_form).permit(
       :diaper_bank_id,

@@ -27,12 +27,6 @@ class Api::V1::AddPartnersController < ApiController
 
   private
 
-  def api_key_valid?
-    return true if Rails.env.development?
-
-    request.headers["X-Api-Key"] == ENV["DIAPER_KEY"]
-  end
-
   def partner_params
     params.require(:partner).permit(
       :diaper_partner_id,

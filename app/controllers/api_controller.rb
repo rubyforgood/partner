@@ -14,5 +14,11 @@ class ApiController < ApplicationController
     request.format = :json
   end
 
+  def api_key_valid?
+    return true if Rails.env.development?
+
+    request.headers["X-Api-Key"] == ENV["DIAPER_KEY"]
+  end
+
   def authenticate; end
 end
