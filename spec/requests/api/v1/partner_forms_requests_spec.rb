@@ -35,7 +35,6 @@ describe "Partners API Requests", type: :request do
         diaper_bank_id: diaper_bank_id,
         sections: sections
       }
-    ),
-    headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
+    ), headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
   end
 end
