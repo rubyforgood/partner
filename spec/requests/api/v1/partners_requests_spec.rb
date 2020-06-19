@@ -15,7 +15,7 @@ describe "Partners API Requests", type: :request do
     end
 
     context "with invalid API key" do
-      it "should respond with forbidden" do
+      it "responds with forbidden" do
         get api_v1_partner_path(partner), headers: { 'X-Api-Key': "INVALID" }
 
         expect(response).to have_http_status(:forbidden)
@@ -60,7 +60,7 @@ describe "Partners API Requests", type: :request do
     end
 
     context "with invalid API key" do
-      it "should respond with forbidden" do
+      it "responds with forbidden" do
         post api_v1_partners_path(
           partner: {
             email: "test@example.com",
@@ -182,7 +182,7 @@ describe "Partners API Requests", type: :request do
     end
 
     context "with invalid API key" do
-      it "should respond with forbidden" do
+      it "responds with forbidden" do
         partner = create(:partner)
         params = { partner: { diaper_partner_id: partner.diaper_bank_id, status: "blarg" } }
 
