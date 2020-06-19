@@ -26,6 +26,13 @@ class ApplicationController < ActionController::Base
     current_user&.partner
   end
 
+  def verify_status_in_diaper_base
+    if current_partner.status_in_diaper_base == "deactivated"
+      flash[:alert] = 'Your account has been disabled, contact the organization via their email to reactivate'
+      redirect_to partner_requests_path
+    end
+  end
+
   private
 
   def user_not_authorized
