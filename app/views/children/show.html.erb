@@ -88,7 +88,7 @@
                         <tr>
                           <td><b><%= child_item_request.created_at.to_date.iso8601 %></b>
                           </th>
-                          <td><%= valid_items.dig(child_item_request.ordered_item_diaperid, 'name').to_s %></th>
+                          <td><%= fetch_valid_item(child_item_request.ordered_item_diaperid)&.dig('name')&.to_s %></th>
                           <td><b>
                             <% if (diaperid = child_item_request.picked_up_item_diaperid) && child_item_request.picked_up? %>
                               <%= valid_items.dig(diaperid, 'name') %>
