@@ -2,10 +2,12 @@ class FamilyRequestsController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    verify_status_in_diaper_base
     @children = current_partner.children
   end
 
   def create
+    verify_status_in_diaper_base
     children = current_partner.children.active
     children_grouped_by_diaperid = children.group_by(&:item_needed_diaperid)
     api_response = DiaperBankClient.send_family_request(
