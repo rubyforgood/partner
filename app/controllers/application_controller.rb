@@ -37,6 +37,11 @@ class ApplicationController < ActionController::Base
     @valid_items ||= DiaperBankClient.get_available_items(current_partner.diaper_bank_id)
   end
 
+  helper_method :fetch_valid_item
+  def fetch_valid_item(id)
+    valid_items.find { |vi| vi["id"] == id }
+  end
+
   helper_method :item_id_to_display_string_map
   def item_id_to_display_string_map
     @item_id_to_display_string_map ||= valid_items.each_with_object({}) do |item, hash|
