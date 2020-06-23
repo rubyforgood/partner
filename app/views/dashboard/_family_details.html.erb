@@ -28,7 +28,9 @@
         </div>
         <div class="card col-lg-6 dashboard">
           <div class="card-body">
-            <h2 class="card-text display-4 zip"><%= @families.map {|family| "#{family.guardian_zip_code}"}.join(", ") %></h2>
+            <h2 class="card-text display-4 zip" data-test="zip-codes">
+              <%= @families.pluck(:guardian_zip_code).uniq.join(", ") %>
+            </h2>
           </div>
           <div class="card-footer text-right">
             <h5>Areas Served</h5>
