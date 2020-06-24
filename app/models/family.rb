@@ -31,6 +31,18 @@ class Family < ApplicationRecord
   serialize :sources_of_income, Array
   validates :guardian_first_name, :guardian_last_name, :guardian_zip_code, presence: true
 
+  include Filterable
+
+  filterrific(
+    available_filters: [
+      :search_guardian_names,
+      :search_agency_guardians
+    ],
+  )
+
+  scope :search_guardian_names, ->(query) { where('guardian_first_name ilike ? OR guardian_last_name ilike ?', "%#{query}%", "%#{query}%") }
+  scope :search_agency_guardians, ->(query) { where('agency_guardian_id ilike ?', "%#{query}%") }
+
   INCOME_TYPES = %w[SSI SNAP/FOOD\ Stamps TANF WIC Housing/subsidized Housing/unsubsidized N/A].freeze
   INSURANCE_TYPES = %w[Private\ insurance Medicaid Uninsured].freeze
   EMPLOYMENT_TYPES = %w[Full-time Part-time N/A].freeze
