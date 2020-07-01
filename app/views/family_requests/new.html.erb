@@ -15,6 +15,52 @@
         </ol>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header bg-primary">
+            <h3 class="card-title">Filters</h3>
+          </div>
+          <div class="card-body">
+            <%= form_for_filterrific @filterrific, remote: true do |f| %>
+              <div class="row">
+                <div class="col-3">
+                  <%= f.label :search_names, "Search By Child Name" %>
+                  <%= f.text_field(
+                          :search_names,
+                          class: 'filterrific-periodically-observed form-control'
+                      ) %>
+                </div>
+                <div class="col-3">
+                  <%= f.label :search_families, "Search By Guardian Name" %>
+                  <%= f.text_field(
+                          :search_families,
+                          class: 'filterrific-periodically-observed form-control'
+                      ) %>
+                </div>
+                <div class="col-3">
+                  <%= f.label :search_comments, "Show Active Only?" %>
+                  <%= f.check_box(
+                          :search_active,
+                          class: 'filterrific-periodically-observed form-control'
+                      ) %>
+                </div>
+                <div class="col-3">
+                  <%= render_filterrific_spinner %>
+                </div>
+              </div>
+              </div><!-- /.row -->
+              <div class="card-footer">
+                <%= link_to(
+                        'Reset Search',
+                        reset_filterrific_url,
+                        class: 'btn btn-danger'
+                    ) %>
+            <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
   </div><!-- /.container-fluid -->
 </section>
 
@@ -24,44 +70,13 @@
       <div class="col-md-12">
         <div class="card mb-4">
           <%= form_tag(family_requests_path) do %>
-            <table class='table table-striped'>
-              <thead>
-              <tr>
-                <th>Guardian</th>
-                <th>Child</th>
-                <th>Item Needed</th>
-                <th>Include This Child?</th>
-              </tr>
-              </thead>
-              <tbody class='fields'>
-              <% @children.each_with_index do |child, index| %>
-                <tr>
-                  <td>
-                    <%= child.family.guardian_first_name %>
-                    <%= child.family.guardian_last_name %>
-                  </td>
-                  <td>
-                    <%= child.first_name %> <%= child.last_name %>
-                  </td>
-                  <td>
-                    <%= item_id_to_display_string_map[child.item_needed_diaperid] %>
-                  </td>
-                  <td>
-                    <div class="custom-control custom-switch">
-                    <%= check_box_tag 'Active', child.active, child.active,
-                                          data: {url: child_active_path(child),
-                                                 remote: true, method: :post },
-                                          class: "custom-control-input",
-                                          id: "child-#{child.id}"
-                                          %>
-                      <label class="custom-control-label" for="child-<%= child.id %>"></label>
-                    </div>
-                  </td>
-                </tr>
-              <% end %>
-              </tbody>
-            </table>
-
+            <div id="filterrific_results">
+              <%= render(
+                partial: 'family_requests/list',
+                locals: {children: @children}
+              )%>
+            </div>
+            
             <hr>
 
             <div class="card-footer">

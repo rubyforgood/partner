@@ -3,7 +3,13 @@ class FamilyRequestsController < ApplicationController
 
   def new
     verify_status_in_diaper_base
-    @children = current_partner.children
+    @filterrific = initialize_filterrific(
+      current_partner.children
+          .order(last_name: :asc)
+          .order(first_name: :asc),
+      params[:filterrific]
+    ) || return
+    @children = @filterrific.find.page(params[:page])
   end
 
   def create

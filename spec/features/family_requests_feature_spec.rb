@@ -5,6 +5,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
     let(:partner) { create(:partner, :verified, id: 3) }
     let(:user) { create(:user, partner: partner) }
     let(:family) { create(:family, partner: partner) }
+    let(:other_family) { create(:family, guardian_last_name: "Joester", partner: partner) }
     let(:another_family) { create(:family, partner: partner) }
     let!(:children) do
       [
@@ -35,6 +36,35 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
         expect(ChildItemRequest.count - children.count).to eq(child_item_requests)
         expect(ItemRequest.count - 2).to eq(item_requests)
         expect(PartnerRequest.last.for_families?).to eq(true)
+      end
+
+      scenario "user can see a list of children filtered by first_name" do
+        create(:child, first_name: "Zeno", family: family)
+        create(:child, first_name: "Arthur", family: family)
+
+        stub_successful_items_partner_request
+        stub_successful_family_request
+        visit partner_requests_path
+        find_link("Create New Family Diaper Request").click
+        fill_in "Search By Child Name", with: "Arthur"
+        expect(page).to have_text("Arthur")
+        expect(page).to_not have_text("Zeno")
+      end
+
+      scenario "user can see a list of children filtered by guardian name" do
+        create(:child, first_name: "Zeno", family: family)
+        create(:child, first_name: "Arthur", family: family)
+        create(:child, first_name: "Louis", family: other_family)
+
+        stub_successful_items_partner_request
+        stub_successful_family_request
+        visit partner_requests_path
+        find_link("Create New Family Diaper Request").click
+        fill_in "Search By Guardian Name", with: "Morales"
+        expect(page).to have_css("table tbody tr", count: 7)
+        expect(page).to have_text("Zeno")
+        expect(page).to have_text("Arthur")
+        expect(page).to_not have_text("Louis")
       end
     end
 
