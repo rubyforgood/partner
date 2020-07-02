@@ -14,9 +14,15 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: partner_dev
-  timeout: 5000
+  primary:
+    <<: *default
+    database: partner_dev
+    timeout: 5000
+
+  diaper_base:
+    <<: *default
+    database: diaper_dev
+    timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
