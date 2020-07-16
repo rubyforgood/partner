@@ -39,6 +39,34 @@ describe Child, type: :feature, include_shared: true, js: true do
     end
   end
 
+  scenario "User can see a list of children ordered by the last name" do
+    diaper_type = "Magic diaper"
+    stub_request(:any, "#{ENV["DIAPERBANK_ENDPOINT"]}/partner_requests/#{partner.id}")
+      .to_return(body: [{ id: 1, name: diaper_type }].to_json, status: 200)
+
+    children = [
+      create(:child, last_name: "Zeno", family: family),
+      create(:child, last_name: "Arthur", family: family)
+    ]
+
+    click_link "Children"
+    click_link "Last Name"
+    children.each.with_index do |child, index|
+      within "tbody" do
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(1)"))
+          .to have_text(child.last_name)
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(2)"))
+          .to have_text(child.first_name)
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(3)"))
+          .to have_text(child.date_of_birth)
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(5)"))
+          .to have_text(child.family.guardian_display_name)
+        expect(find("tr:nth-child(#{index + 1}) td:nth-child(6)"))
+          .to have_text(child.comments)
+      end
+    end
+  end
+
   scenario "User can see a list of children filtered by first name" do
     diaper_type = "Magic diaper"
     stub_request(:any, "#{ENV["DIAPERBANK_ENDPOINT"]}/partner_requests/#{partner.id}")
