@@ -1,16 +1,40 @@
 require "rails_helper"
 
 describe "Partners API Requests", type: :request do
-  describe "GET /api/v1/partners/1" do
+  describe "GET /api/v1/partners/:id" do
     let(:partner) { create(:partner) }
 
     context "with valid API key" do
-      it "returns json for the partner" do
-        get api_v1_partner_path(partner), headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
+      context 'when not specifying to include the impact_metrics' do
+        let(:fake_export_hash) { Faker::Lorem.paragraph }
 
-        expect(response).to have_http_status(:ok)
-        result = JSON.parse(response.body)
-        expect(result["agency"]).to be_present
+        before do
+          allow_any_instance_of(Partner).to receive(:export_hash).and_return(fake_export_hash)
+        end
+
+        it "returns json for the partner's export_hash" do
+          get api_v1_partner_path(partner), headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
+
+          expect(response).to have_http_status(:ok)
+          result = JSON.parse(response.body)
+          expect(result["agency"]).to eq(fake_export_hash)
+        end
+      end
+
+      context 'when specifying to include impact_metrics' do
+        let(:fake_impact_metrics) { Faker::Lorem.paragraph }
+
+        before do
+          allow_any_instance_of(Partner).to receive(:impact_metrics).and_return(fake_impact_metrics)
+        end
+
+        it "returns json for the partner's impact_metrics" do
+          get api_v1_partner_path(partner, params: { impact_metrics: 'true' }), headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
+
+          expect(response).to have_http_status(:ok)
+          result = JSON.parse(response.body)
+          expect(result["agency"]).to eq(fake_impact_metrics)
+        end
       end
     end
 
