@@ -4,6 +4,19 @@ describe "Partners API Requests", type: :request do
   describe "GET /api/v1/partners/1" do
     let(:partner) { create(:partner) }
 
+    context 'when trying to retrieve data non existent partner' do
+      let(:nonexistent_partner_id) { 0 }
+
+      before do
+        expect(Partner.find_by(diaper_partner_id: nonexistent_partner_id)).to eq(nil)
+      end
+
+      it "respond with not_found" do
+        get api_v1_partner_path(id: nonexistent_partner_id), headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
     context "with valid API key" do
       it "returns json for the partner" do
         get api_v1_partner_path(partner), headers: { 'X-Api-Key': ENV["DIAPER_KEY"] }
