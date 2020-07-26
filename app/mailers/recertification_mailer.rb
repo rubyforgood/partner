@@ -1,4 +1,4 @@
-class RecertificationMailer < ActionMailer::Base
+class RecertificationMailer < ApplicationMailer
   default from: "partner@diaper-app.org"
   layout "mailer"
 

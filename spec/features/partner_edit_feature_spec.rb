@@ -9,7 +9,22 @@ describe "Partner edit", type: :feature do
     visit "/partners/#{partner.id}/edit"
   end
 
-  scenario "partner can select and provide an Other agency type", js: true do
+  scenario "when there are partner form sections set on the partner" do
+    FactoryBot.create(:partner_form, diaper_bank_id: partner.id, sections: ["agency_information"])
+
+    visit "/partners/#{partner.id}/edit"
+    aggregate_failures do
+      expect(page).to have_content("Agency Information")
+      expect(page).to_not have_content("Agency Stability")
+      expect(page).to_not have_content("Population Served")
+      expect(page).to_not have_content("Program Address")
+      expect(page).to_not have_content("Program Contact")
+      expect(page).to_not have_content("Sources of Funding")
+      expect(page).to_not have_content("Additional Documents")
+    end
+  end
+
+  scenario "partner can select and provide an Other agency type" do
     select "Other", from: "partner_agency_type"
     fill_in "partner_other_agency_type", with: Faker::Name.name
     click_button "Update Information"

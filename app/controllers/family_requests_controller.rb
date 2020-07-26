@@ -2,10 +2,18 @@ class FamilyRequestsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @children = current_partner.children
+    verify_status_in_diaper_base
+    @filterrific = initialize_filterrific(
+      current_partner.children
+          .order(last_name: :asc)
+          .order(first_name: :asc),
+      params[:filterrific]
+    ) || return
+    @children = @filterrific.find.page(params[:page])
   end
 
   def create
+    verify_status_in_diaper_base
     children = current_partner.children.active
     children_grouped_by_diaperid = children.group_by(&:item_needed_diaperid)
     api_response = DiaperBankClient.send_family_request(
@@ -16,8 +24,8 @@ class FamilyRequestsController < ApplicationController
       flash[:notice] = "Request sent to diaper bank successfully"
       partner_request = PartnerRequest.new(
         api_response
-        .slice("partner_id", "organization_id")
-        .merge(sent: true, for_families: true)
+        .slice("organization_id")
+        .merge(partner_id: current_partner.id, sent: true, for_families: true)
       )
       api_response["requested_items"].each do |item_hash|
         partner_request.item_requests.new(

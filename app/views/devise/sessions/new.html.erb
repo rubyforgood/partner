@@ -1,52 +1,56 @@
-<div class="login-form">
-  <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-group">
-      <%= f.label :email, "EMAIL", class: 'control-label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password, "PASSWORD", class: 'control-label' %>
-      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <div class="utility">
-        <div class="animated-checkbox">
-          <label>
-            <input type="checkbox"><span class="label-text">Stay Signed in</span>
-          </label>
+<%= render partial: "shared/flash" %>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+
+        <div class="form-inputs">
+          <%= f.input :email, autofocus: true %>
         </div>
-        <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p>
+        <div class="form-inputs">
+          <%= f.input :password, autofocus: true %>
+        </div>
+
+        <div class="col-12 text-center">
+          <%= f.button :submit, "Log in", class: "btn btn-primary btn-block" %><br />
+          <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn btn-info btn-block" %>
+        </div>
+        <!-- /.col -->
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-9">
+
+        </div>
+
       </div>
     </div>
-    <div class="form-group btn-container">
-      <%= button_tag type: 'submit', class: "btn btn-primary btn-block" do %>
-        <i class="fa fa-sign-in fa-lg fa-fw"></i>Login</button>
-      <% end %>
+    <!-- /.login-card-body -->
+  </div>
+  </div>
+<% end %>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Demo Site Reminder</h3>
+      </div>
+      <div class="modal-body">
+        Please be aware that partnerbase.org is a demo/test server for <a href="https://partner.diaper.app">partner.diaper.app</a>.
+        Multiple people have access to the test accounts so please do not save or upload any sensitive data.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">I Understand</button>
+      </div>
     </div>
-  <% end %>
-</div>
-<div class="forget-form" action="index.html">
-  <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
-    <div class="form-group">
-      <%= f.label :email, "EMAIL", class: 'control-label' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-    </div>
-    <div class="form-group btn-container">
-      <%= button_tag type: 'submit', class: "btn btn-primary btn-block" do %>
-        <i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
-      <% end %>
-    </div>
-  <% end %>
-  <div class="form-group mt-3">
-    <p class="semibold-text mb-0">
-      <a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
   </div>
 </div>
-
 <script>
-    if (document.URL == "https://partnerbase.org/partners/sign_in") {
-        alert("Note: This site is the demo site for https://partner.diaper.app and is a shared demonstration site. Please do not save any information you wouldn't want others to see.");
-    }
+  if (document.URL == "https://partnerbase.org/users/sign_in") {
+    $('#exampleModal').modal('show');
+  }
 </script>

@@ -1,41 +1,45 @@
-<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-<aside class="app-sidebar">
-  <ul class="app-menu">
-    <li>
-      <%= link_to dashboard_path, class: "app-menu__item #{'active' if current_page?(dashboard_path)}" do %>
-        <i class="app-menu__icon fa fa-dashboard"></i> <span class="app-menu__label">Dashboard</span>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to partner_path(current_partner), class: "app-menu__item #{'active' if current_page?(partner_path(id: current_partner.id))}" do %>
-        <i class="app-menu__icon fa fa-building"></i> <span class="app-menu__label">My Organization</span>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to edit_partner_path(current_partner), class: "app-menu__item #{'active' if current_page?(edit_partner_path(id: current_partner.id))}" do %>
-        <i class="app-menu__icon fa fa-cog"></i> <span class="app-menu__label">Edit My Organization</span>
-      <% end %>
-    </li>
-    <% if current_partner.verified? %>
-      <li>
-        <%= link_to partner_requests_path, class: "app-menu__item #{active_class(['partner_requests'])}" do %>
-          <i class="app-menu__icon fa fa-edit"></i> <span class="app-menu__label">Diaper Requests</span>
-        <% end %>
-      </li>
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+  <li class="nav-item">
+    <%= link_to(dashboard_path, class: "nav-link #{active_class(['dashboard'])}") do %>
+      <i class="nav-icon fa fa-dashboard"></i>
+      <p>Dashboard</p>
     <% end %>
-    <% if Flipper[:family_requests].enabled?(current_partner) %>
-    <li>
-      <%= link_to families_path, class: "app-menu__item #{'active' if current_page?(families_path)}" do %>
-        <i class="fa fa-users app-menu__icon"></i>
-        <span class="app-menu__label">Families</span>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to children_path, class: "app-menu__item #{'active' if current_page?(children_path)}" do %>
-        <i class="fa fa-child app-menu__icon"></i>
-        <span class="app-menu__label">Children</span>
-      <% end %>
-    </li>
+  </li>
+  <% is_active = (current_page?(partner_path(current_partner)) && !current_page?(edit_partner_path(current_partner))) %>
+  <li class="nav-item <%= 'active' if is_active %>">
+    <%= link_to(partner_path(current_partner), class: "nav-link #{"active" if is_active}") do %>
+      <i class="nav-icon fa fa-building"></i>
+      <p>My Organization</p>
     <% end %>
-  </ul>
-</aside>
+  </li>
+
+  <li class="nav-item <%= 'active' if current_page?(edit_partner_path(current_partner)) %>">
+    <%= link_to(edit_partner_path(current_partner), class: "nav-link #{"active" if current_page?(edit_partner_path(current_partner))}") do %>
+      <i class="nav-icon fa fa-cog"></i>
+      <p>Edit My Organization</p>
+    <% end %>
+  </li>
+
+  <li class="nav-item <%= 'active' if current_page?(partner_requests_path) %>">
+    <%= link_to(partner_requests_path, class: "nav-link #{"active" if current_page?(partner_requests_path)}") do %>
+      <i class="nav-icon fa fa-edit"></i>
+      <p>Diaper Requests</p>
+    <% end %>
+  </li>
+
+  <li class="nav-item <%= 'active' if current_page?(families_path) %>">
+    <%= link_to(families_path, class: "nav-link #{"active" if current_page?(families_path)}") do %>
+      <i class="nav-icon fa fa-users"></i>
+      <p>Families</p>
+    <% end %>
+  </li>
+
+  <li class="nav-item <%= 'active' if current_page?(children_path) %>">
+    <%= link_to(children_path, class: "nav-link #{"active" if current_page?(children_path)}") do %>
+      <i class="nav-icon fa fa-child"></i>
+      <p>Children</p>
+    <% end %>
+  </li>
+
+
+</ul>

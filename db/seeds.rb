@@ -122,7 +122,7 @@ PartnerRequest.all.each do |pr|
     if pr.for_families
         pr.item_requests.each do |request|
             ChildItemRequest.create(
-                child_id: Child.all.sample,
+                child_id: Child.all.sample.id,
                 item_request: request,
                 picked_up: Faker::Boolean.boolean,
                 quantity_picked_up: Faker::Number.within(range: 10..30),

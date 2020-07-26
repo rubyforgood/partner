@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Partner Requests Controller", type: :request do
+RSpec.describe PartnerRequestsController, type: :controller do
   context "when user authenticated" do
     let!(:partner) { create(:partner, :verified) }
     let!(:user) { create(:user, partner: partner) }
@@ -21,47 +21,42 @@ RSpec.describe "Partner Requests Controller", type: :request do
             .with(
               headers: {
                 "Accept" => "*/*",
-               "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-               "Content-Type" => "application/json",
-               "Host" => "diaper.test",
-               "User-Agent" => "Ruby",
-               "X-Api-Key" => "diaperkey"
+                "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+                "Content-Type" => "application/json",
+                "Host" => "diaper.test",
+                "User-Agent" => "Ruby",
+                "X-Api-Key" => "diaperkey"
               }
             )
             .to_return(status: 200, body: "{}", headers: {})
 
-          get "/partner_requests/"
+          get :new
           expect(response).to have_http_status(200)
         end
-      end
-
-      context "when partner status is pending" do
-        let!(:partner_pending) { create(:partner) }
-
-        before do
-          user.partner = partner_pending
-        end
-
-        it "returns http success" do
-          get new_partner_request_path
-          expect(response).to have_http_status(302)
-        end
-      end
-    end
-
-    describe "GET #show" do
-      let!(:partner_request) { create(:partner_request) }
-
-      it "returns http success" do
-        get partner_requests_path(partner_request.id)
-        expect(response).to have_http_status(200)
       end
     end
 
     describe "GET #index" do
       it "returns http success" do
-        get partner_requests_path
+        get :index
         expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  context "when user is authenticated but the status in diaper base is deactivated" do
+    let!(:partner) { create(:partner, :verified, status_in_diaper_base: "deactivated") }
+    let!(:user) { create(:user, partner: partner) }
+
+    before do
+      sign_in user
+    end
+
+    describe "GET #new" do
+      it "should not send a request" do
+        get :new
+
+        expect(response).to have_http_status(302)
       end
     end
   end
@@ -70,7 +65,7 @@ RSpec.describe "Partner Requests Controller", type: :request do
     let!(:partner) { create(:partner) }
 
     describe "GET #new" do
-      subject { get new_partner_request_path }
+      subject { get :new }
 
       it_behaves_like "user is not logged in"
     end
@@ -78,18 +73,18 @@ RSpec.describe "Partner Requests Controller", type: :request do
     describe "POST #create" do
       it "does not create a new partner_request" do
         expect do
-          post partner_requests_path, params: { partner_request: attributes_for(:partner_request_with_item_requests) }
+          post :create, params: { partner_request: attributes_for(:partner_request_with_item_requests) }
         end.to_not change(PartnerRequest, :count)
       end
     end
 
     describe "GET #index" do
-      subject { get partner_requests_path }
+      subject { get :index }
       it_behaves_like "user is not logged in"
     end
 
     describe "GET #show" do
-      subject { get partner_request_path(partner.id) }
+      subject { get :show, params: { id: partner.id } }
       it_behaves_like "user is not logged in"
     end
   end

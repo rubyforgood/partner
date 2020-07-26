@@ -10,9 +10,6 @@ addons:
     packages:
       - postgresql-10
       - postgresql-client-10
-before_install:
-  - gem update --system
-  - gem install bundler
 bundler_args: "--without production"
 jobs:
   include:
@@ -20,6 +17,7 @@ jobs:
       env:
         - DIAPERBANK_ENDPOINT=https://diaper.test
         - DIAPERBANK_KEY=diaperkey
+        - RUBYOPT='-W:no-deprecated -W:no-experimental'
       script:
         - bundle exec rubocop
         - export RAILS_ENV=test
