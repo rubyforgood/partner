@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Children", type: :request do
+RSpec.describe "Children management", type: :request do
   let(:partner) { create(:partner) }
   let(:family) { create(:family, partner_id: partner.id) }
 
@@ -47,3 +47,4 @@ RSpec.describe "Children", type: :request do
     end
   end
 end
+
