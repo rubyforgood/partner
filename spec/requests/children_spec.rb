@@ -9,6 +9,15 @@ RSpec.describe "Children", type: :request do
     sign_in(user)
   end
 
+  describe "GET #index" do
+    context "when specifying the csv format in the request" do
+      it "responds correct Content-Type" do
+        get children_path, headers: { "ACCEPT" => "text/csv" }
+        expect(response.content_type).to eq "text/csv"
+      end
+    end
+  end
+
   describe "POST #create" do
     it "should create and redirect to child_path" do
       post children_path, params: { family_id: family.id, child: attributes_for(:child) }
@@ -30,15 +39,6 @@ RSpec.describe "Children", type: :request do
     end
   end
 
-  describe "DELETE #destroy" do
-    it "should destroy and redirect to child_path" do
-      delete child_path(child)
-
-      expect(response).to redirect_to(children_path)
-      expect(request.flash[:notice]).to eql "Child was successfully destroyed."
-    end
-  end
-
   describe "POST #active" do
     it "should verify if child is active" do
       post child_active_path(child), params: { child_id: child.id }
@@ -47,3 +47,4 @@ RSpec.describe "Children", type: :request do
     end
   end
 end
+
