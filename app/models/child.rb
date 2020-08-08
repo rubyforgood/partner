@@ -23,8 +23,6 @@
 class Child < ApplicationRecord
   serialize :child_lives_with, Array
   belongs_to :family
-  has_many :family_request_child, dependent: :destroy
-  has_many :family_requests, through: :family_request_child
   has_many :child_item_requests, dependent: :destroy
 
   include Filterable
