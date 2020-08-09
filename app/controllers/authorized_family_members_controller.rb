@@ -1,42 +1,48 @@
 class AuthorizedFamilyMembersController < ApplicationController
-  helper_method :authorized_family_member, :authorized_family_members, :family
+  def new
+    @authorized_family_member = family.authorized_family_members.new
+  end
 
-  def new; end
+  def show
+    @authorized_family_member = current_partner.authorized_family_members.find(params[:id])
+  end
 
-  def show; end
-
-  def edit; end
+  def edit
+    @authorized_family_member = current_partner.authorized_family_members.find_by(id: params[:id])
+  end
 
   def create
-    member = family.authorized_family_members.new(authorized_family_member_params)
-    if member.save
-      redirect_to member, notice: "Authorized member was successfully created."
+    @authorized_family_member = family.authorized_family_members.new(authorized_family_member_params)
+
+    if @authorized_family_member.save
+      redirect_to @authorized_family_member, notice: "Authorized member was successfully created."
     else
       render :new
     end
   end
 
   def update
-    if authorized_family_member.update(authorized_family_member_params)
-      redirect_to authorized_family_member, notice: "Authorized family member was successfully updated."
+    @authorized_family_member = current_partner.authorized_family_members.find_by(id: params[:id])
+
+    if @authorized_family_member.update(authorized_family_member_params)
+      redirect_to @authorized_family_member, notice: "Authorized family member was successfully updated."
     else
       render :edit
     end
   end
 
+  def destroy
+    @authorized_family_member = current_partner.authorized_family_members.find_by(id: params[:id])
+    if @authorized_family_member.present?
+      @authorized_family_member.destroy
+      redirect_back fallback_location: families_url, notice: "Authorized family member removed."
+    end
+  end
+
   private
 
-  def authorized_family_member
-    @authorized_family_member ||= current_partner.authorized_family_members.find_by(id: params[:id]) ||
-                                  family.authorized_family_members.new
-  end
-
-  def authorized_family_members
-    @authorized_family_members ||= current_partner.authorized_family_members.all
-  end
-
   def family
-    @family ||= current_partner.families.find_by(id: params[:family_id])
+    @_family ||= current_partner.families.find_by(id: params[:family_id])
   end
 
   def authorized_family_member_params

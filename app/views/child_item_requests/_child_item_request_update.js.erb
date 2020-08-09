@@ -1,0 +1,21 @@
+$("#flash-message-container-nested-<%= child_item_request_update.item_id %>").html('')
+$("#flash-message-container-nested-<%= child_item_request_update.item_id %>").prepend(`
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert"
+      aria-label="close" style="text-decoration: none;">
+      <%= fa_icon('times') %>
+    </a>
+    <span>
+      <%= sanitize child_item_request_update.message,
+        tags: %w(strong em a b i), attributes: %w(href) %>
+    </span>
+  </div>
+`)
+
+element_id = "child-item-requests-row-<%= child_item_request_update.item_id %>"
+classList = document.getElementById(element_id).classList
+<% if child_item_request_update.picked_up %>
+    classList.add("row-success")
+<% else %>
+    classList.remove("row-success")
+<% end %>

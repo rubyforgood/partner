@@ -2,29 +2,42 @@ class FamilyRequestsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @family_request = current_partner.family_requests.new
-    @children = current_partner.children
+    verify_status_in_diaper_base
+    @filterrific = initialize_filterrific(
+      current_partner.children
+          .order(last_name: :asc)
+          .order(first_name: :asc),
+      params[:filterrific]
+    ) || return
+    @children = @filterrific.find.page(params[:page])
   end
 
   def create
+    verify_status_in_diaper_base
     children = current_partner.children.active
-    @family_request = current_partner.family_requests.new(children: children)
-    if @family_request.save
-      if api_response = DiaperBankClient.send_family_request(@family_request.id)
-        @family_request.update!(sent: true)
-        flash[:notice] = "Request sent to diaper bank successfully"
-        partner_request = PartnerRequest.new(api_response.slice("partner_id", "organization_id"))
-        api_response["requested_items"].each do |item_hash|
-          partner_request.item_requests.new(
-            name: item_hash["item_name"],
-            item_id: item_hash["item_id"],
-            quantity: item_hash["count"]
-          )
+    children_grouped_by_diaperid = children.group_by(&:item_needed_diaperid)
+    api_response = DiaperBankClient.send_family_request(
+      children: children,
+      partner: current_partner
+    )
+    if api_response
+      flash[:notice] = "Request sent to diaper bank successfully"
+      partner_request = PartnerRequest.new(
+        api_response
+        .slice("organization_id")
+        .merge(partner_id: current_partner.id, sent: true, for_families: true)
+      )
+      api_response["requested_items"].each do |item_hash|
+        partner_request.item_requests.new(
+          name: item_hash["item_name"],
+          item_id: item_hash["item_id"],
+          quantity: item_hash["count"],
+        ).tap do |item_request|
+          item_request.children =
+            children_grouped_by_diaperid[item_hash["item_id"]].to_a
         end
-        partner_request.save!
-      else
-        @family_request.errors.add(:base, :sending_failure, message: "Your request saved but failed to send")
       end
+      partner_request.save!
       redirect_to partner_requests_path
     else
       render :new

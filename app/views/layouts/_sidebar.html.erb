@@ -1,0 +1,45 @@
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+  <li class="nav-item">
+    <%= link_to(dashboard_path, class: "nav-link #{active_class(['dashboard'])}") do %>
+      <i class="nav-icon fa fa-dashboard"></i>
+      <p>Dashboard</p>
+    <% end %>
+  </li>
+  <% is_active = (current_page?(partner_path(current_partner)) && !current_page?(edit_partner_path(current_partner))) %>
+  <li class="nav-item <%= 'active' if is_active %>">
+    <%= link_to(partner_path(current_partner), class: "nav-link #{"active" if is_active}") do %>
+      <i class="nav-icon fa fa-building"></i>
+      <p>My Organization</p>
+    <% end %>
+  </li>
+
+  <li class="nav-item <%= 'active' if current_page?(edit_partner_path(current_partner)) %>">
+    <%= link_to(edit_partner_path(current_partner), class: "nav-link #{"active" if current_page?(edit_partner_path(current_partner))}") do %>
+      <i class="nav-icon fa fa-cog"></i>
+      <p>Edit My Organization</p>
+    <% end %>
+  </li>
+
+  <li class="nav-item <%= 'active' if current_page?(partner_requests_path) %>">
+    <%= link_to(partner_requests_path, class: "nav-link #{"active" if current_page?(partner_requests_path)}") do %>
+      <i class="nav-icon fa fa-edit"></i>
+      <p>Diaper Requests</p>
+    <% end %>
+  </li>
+
+  <li class="nav-item <%= 'active' if current_page?(families_path) %>">
+    <%= link_to(families_path, class: "nav-link #{"active" if current_page?(families_path)}") do %>
+      <i class="nav-icon fa fa-users"></i>
+      <p>Families</p>
+    <% end %>
+  </li>
+
+  <li class="nav-item <%= 'active' if current_page?(children_path) %>">
+    <%= link_to(children_path, class: "nav-link #{"active" if current_page?(children_path)}") do %>
+      <i class="nav-icon fa fa-child"></i>
+      <p>Children</p>
+    <% end %>
+  </li>
+
+
+</ul>

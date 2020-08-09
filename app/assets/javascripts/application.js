@@ -11,46 +11,29 @@
 // about supported directives.
 //
 //= require jquery3
+//= require filterrific/filterrific-jquery
 //= require rails-ujs
 //= require activestorage
-//= require popper
 //= require bootstrap
+//= require popper
 //= require main
 //= require_tree .
 
-window.setTimeout(function() {
+$( document ).ready(function() {
+  Filterrific.init();
+});
+
+function timeoutWindow() {
+  window.setTimeout(function () {
     // When the user is given an error message, we should not auto-hide it so that
     // they can fully read it and potentially copy/paste it into an issue.
-    $(".alert").not(".alert-danger").fadeTo(1000, 0).slideUp(1000, function(){
+    $(".alert")
+      .not(".alert-danger")
+      .fadeTo(1000, 0)
+      .slideUp(1000, function () {
         $(this).remove();
-    });
-}, 2500);
-
-
-(function () {
-    "use strict";
-
-    var treeviewMenu = $('.app-menu');
-
-    // Toggle Sidebar
-    $('[data-toggle="sidebar"]').click(function(event) {
-        event.preventDefault();
-        $('.app').toggleClass('sidenav-toggled');
-    });
-
-    // Activate sidebar treeview toggle
-    $("[data-toggle='treeview']").click(function(event) {
-        event.preventDefault();
-        if(!$(this).parent().hasClass('is-expanded')) {
-            treeviewMenu.find("[data-toggle='treeview']").parent().removeClass('is-expanded');
-        }
-        $(this).parent().toggleClass('is-expanded');
-    });
-
-    // Set initial active toggle
-    $("[data-toggle='treeview.'].is-expanded").parent().toggleClass('is-expanded');
-
-    //Activate bootstrip tooltips
-    $("[data-toggle='tooltip']").tooltip();
-
-})();
+      });
+    timeoutWindow();
+  }, 2500);
+}
+timeoutWindow();

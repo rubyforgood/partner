@@ -32,7 +32,7 @@ There are detailed instructions for installation on Ubuntu hosts in the [ubuntu-
 
 ### Ruby Version
 
-This app uses Ruby version 2.6.2, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
+This app uses Ruby version 2.7.1, indicated in `/.ruby-version` and `Gemfile`, which will be auto-selected if you use a Ruby versioning manager like `rvm` or `rbenv`.
 
 ### Database Configuration
 
@@ -82,3 +82,17 @@ Run all the tests with:
 This app uses RSpec, Capybara, and FactoryBot for testing. Make sure the tests run clean & green before submitting a Pull Request. If you are inexperienced in writing tests or get stuck on one, please reach out so one of us can help you. :)
 
 The one situation where you probably don't need to write new tests is when simple re-stylings are done (ie. the page may look slightly different but the Test suite is unaffected by those changes).
+
+##### Feature specs
+
+If you need to see a feature spec run in the browser, you can use the following env variable:
+
+```
+NOT_HEADLESS=true bundle exec rspec
+```
+
+Keep in mind that you need js to be enabled. For example:
+
+```
+describe "PickupSheet", type: :feature, js: true do
+```

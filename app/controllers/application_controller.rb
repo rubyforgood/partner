@@ -26,6 +26,13 @@ class ApplicationController < ActionController::Base
     current_user&.partner
   end
 
+  def verify_status_in_diaper_base
+    if current_partner.status_in_diaper_base == "deactivated"
+      flash[:alert] = 'Your account has been disabled, contact the organization via their email to reactivate'
+      redirect_to partner_requests_path
+    end
+  end
+
   private
 
   def user_not_authorized
@@ -35,6 +42,11 @@ class ApplicationController < ActionController::Base
   helper_method :valid_items
   def valid_items
     @valid_items ||= DiaperBankClient.get_available_items(current_partner.diaper_bank_id)
+  end
+
+  helper_method :fetch_valid_item
+  def fetch_valid_item(id)
+    valid_items.find { |vi| vi["id"] == id }
   end
 
   helper_method :item_id_to_display_string_map

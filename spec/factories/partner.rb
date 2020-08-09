@@ -127,5 +127,12 @@ FactoryBot.define do
         ]
       end
     end
+
+    trait(:with_families) do
+      after(:create) do |partner|
+        family = partner.families.create(attributes_for(:family))
+        family.children.create(attributes_for(:child))
+      end
+    end
   end
 end
