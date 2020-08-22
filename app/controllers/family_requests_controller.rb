@@ -9,7 +9,7 @@ class FamilyRequestsController < ApplicationController
           .order(first_name: :asc),
       params[:filterrific]
     ) || return
-    @children = @filterrific.find.page(params[:page])
+    @children = @filterrific.find
   end
 
   def create
