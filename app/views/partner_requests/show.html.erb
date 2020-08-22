@@ -1,54 +1,57 @@
-<div class="app-title">
-  <div>
-    <h1><i class="fa fa-doc"></i> </h1>
-  </div>
-  <ul class="app-breadcrumb breadcrumb">
-    <li class="breadcrumb-item"><i class="fa fa-users"></i></li>
-    <li class="breadcrumb-item"><a href="#">Show Family</a></li>
-  </ul>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <% if notice %>
-      <div class="alert alert-dismissible alert-success">
-        <button class="close" type="button" data-dismiss="alert">×</button>
-        <p><%= notice %><a class="alert-link" href="#"></p>
-        </a></p>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <% content_for :title, "Bulk Request - #{current_partner.name}" %>
+        <h1><i class="fa fa-doc"></i>&nbsp;&nbsp;
+          Request
+          <small>for <%= current_partner.name %></small>
+        </h1>
       </div>
-    <% end %>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
+          <li class="breadcrumb-item"><a href="#">Request</a></li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="card mb-12">
-            <h5 class="card-header bg-primary text-white">Request Details</h5>
-            <div class="card-body">
-              <div>
-                Request ID: <%= @partner_request.id %>
-                <p><%= @partner_request.partner.name %></p>
-              </div>
 
-              <div>
-                Comments:
-                <p><%= @partner_request.comments  %></p>
-              </div>
-
-              <div>
-                Requested Items:
-                <ul>
-                  <% @partner_request.item_requests.each do |item| %>
-                    <li><%= item.quantity %> of <%= item.name %></li>
-                  <% end %>
-                </ul>
-              </div>
-              <div>
-                <p>Submitted: <%= @partner_request.created_at.localtime.strftime('%F %T') %></p>
-              </div>
-              <p><%= link_to "Your Previous Requests", partner_requests_path, class: 'btn btn-success' %></p>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header bg-primary">
+            <h3 class="card-title">Request Details</h3>
+          </div>
+          <div class="card-body">
+            <div>
+              <h2><%= @partner_request.partner.name %> Request ID: <%= @partner_request.id %></h2>
             </div>
+
+            <div>
+              Comments:
+              <p><%= @partner_request.comments %></p>
+            </div>
+
+            <div>
+              Requested Items:
+              <ul>
+                <% @partner_request.item_requests.each do |item| %>
+                  <li><%= item.quantity %> of <%= item.name %></li>
+                <% end %>
+              </ul>
+            </div>
+            <div>
+              <p>Submitted: <%= @partner_request.created_at.localtime.strftime('%F %T') %></p>
+            </div>
+            <p><%= link_to "Your Previous Requests", partner_requests_path, class: 'btn btn-success' %></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>

@@ -86,11 +86,11 @@
 #
 
 class Partner < ApplicationRecord
-  ACTIVE_FAMILY_REQUESTS = [1, 3, 27].freeze
-
   include DiaperBankClient
 
-  has_one :user, dependent: :destroy
+  validates :diaper_partner_id, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
+
+  has_many :users, dependent: :destroy
   has_one_attached :proof_of_partner_status
   has_one_attached :proof_of_form_990
   has_many_attached :documents
@@ -101,10 +101,23 @@ class Partner < ApplicationRecord
 
   has_many :partner_requests, dependent: :destroy
   has_many :family_requests, dependent: :destroy
+  has_one :partner_form, primary_key: :diaper_bank_id, foreign_key: :diaper_bank_id, dependent: :destroy
 
   delegate :email, to: :user
 
-  def export_json
+  ALL_PARTIALS = %w[
+    media_information
+    agency_stability
+    organizational_capacity
+    sources_of_funding
+    population_served
+    executive_director
+    diaper_pick_up_person
+    agency_distribution_information
+    attached_documents
+  ].freeze
+
+  def export_hash
     {
       name: name,
       distributor_type: distributor_type,
@@ -224,11 +237,28 @@ class Partner < ApplicationRecord
     partner_status.casecmp("pending").zero?
   end
 
-  def family_request_active?
-    ACTIVE_FAMILY_REQUESTS.include?(diaper_bank_id)
+  def flipper_id
+    "Partner;#{id}"
+  end
+
+  def partials_to_show
+    displayable_partials || ALL_PARTIALS
+  end
+
+  def impact_metrics
+    {
+      families_served: families_served_count,
+      children_served: children_served_count,
+      family_zipcodes: family_zipcodes_count,
+      family_zipcodes_list: family_zipcodes_list
+    }
   end
 
   private
+
+  def displayable_partials
+    partner_form&.sections
+  end
 
   def expose_attachment_path(documentation)
     # NOTE(chaserx): I'm not sure how I feel about this.
@@ -251,5 +281,21 @@ class Partner < ApplicationRecord
       list.push(document_link: Rails.application.routes.url_helpers.rails_blob_path(doc, only_path: true))
     end
     list
+  end
+
+  def families_served_count
+    families.count
+  end
+
+  def children_served_count
+    children.count
+  end
+
+  def family_zipcodes_count
+    families.pluck(:guardian_zip_code).uniq.count
+  end
+
+  def family_zipcodes_list
+    families.pluck(:guardian_zip_code).uniq
   end
 end

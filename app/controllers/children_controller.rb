@@ -1,13 +1,39 @@
+require "csv"
 class ChildrenController < ApplicationController
   before_action :authenticate_user!
+  helper_method :sort_column, :sort_direction
 
-  helper_method :child, :children, :family
+  def index
+    @filterrific = initialize_filterrific(
+      current_partner.children
+          .includes(:family)
+          .order(sort_column + ' ' + sort_direction),
+      params[:filterrific]
+    ) || return
+    @children = @filterrific.find.page(params[:page])
 
-  def index; end
+    respond_to do |format|
+      format.js
+      format.html
+      format.csv do
+        render(csv: @children.map(&:to_csv))
+      end
+    end
+    @family = current_partner.children
+                             .includes(:family)
+                             .order(active: :desc, last_name: :asc).collect(&:family).compact.uniq.sort
+  end
 
-  def show; end
+  def show
+    @child = current_partner.children.find_by(id: params[:id])
+    @child_item_requests = @child
+                           .child_item_requests
+                           .includes(:item_request)
+  end
 
-  def new; end
+  def new
+    @child = family.children.new
+  end
 
   def active
     child = current_partner.children.find(params[:child_id])
@@ -15,7 +41,9 @@ class ChildrenController < ApplicationController
     child.save
   end
 
-  def edit; end
+  def edit
+    @child = current_partner.children.find_by(id: params[:id])
+  end
 
   def create
     child = family.children.new(child_params)
@@ -28,6 +56,8 @@ class ChildrenController < ApplicationController
   end
 
   def update
+    child = current_partner.children.find_by(id: params[:id])
+
     if child.update(child_params)
       redirect_to child, notice: "Child was successfully updated."
     else
@@ -35,24 +65,10 @@ class ChildrenController < ApplicationController
     end
   end
 
-  def destroy
-    child.destroy
-    redirect_to children_url, notice: "Child was successfully destroyed."
-  end
-
   private
 
-  def children
-    @children ||= current_partner.children.all
-  end
-
-  def child
-    @child ||= current_partner.children.find_by(id: params[:id]) ||
-               family.children.new
-  end
-
   def family
-    @family ||= current_partner.families.find_by(id: params[:family_id])
+    @_family ||= current_partner.families.find_by(id: params[:family_id])
   end
 
   def child_params
@@ -70,5 +86,13 @@ class ChildrenController < ApplicationController
       :archived,
       child_lives_with: []
     )
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def sort_column
+    Child.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
   end
 end

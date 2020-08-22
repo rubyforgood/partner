@@ -14,7 +14,8 @@ require "devise"
 require "capybara/rails"
 require "capybara/rspec"
 require "capybara-screenshot/rspec"
-require_relative "support/controller_macros"
+require 'webdrivers'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -35,24 +36,18 @@ end
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+# Chrome
+WebMock.allow_net_connect!
+Webdrivers::Chromedriver.update
+
 # If an element is hidden, Capybara should ignore it
 Capybara.ignore_hidden_elements = true
-
-# https://docs.travis-ci.com/user/chrome
-Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1680,1050])
-
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-end
-
-# Enable JS for Capybara tests
-Capybara.javascript_driver = :chrome
 
 Capybara::Screenshot.autosave_on_failure = true
 # The driver name should match the Capybara driver config name.
@@ -78,8 +73,9 @@ Capybara.ignore_hidden_elements = true
 
 # https://docs.travis-ci.com/user/chrome
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1680,1050])
-
+  args = %w[no-sandbox disable-gpu window-size=1680,1050]
+  args << "headless" unless ENV["NOT_HEADLESS"] == "true"
+  options = Selenium::WebDriver::Chrome::Options.new(args: args)
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
@@ -137,7 +133,10 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::ControllerHelpers,  type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
   config.extend ControllerMacros, type: :controller
   config.extend LoginHelper, type: :request
+  config.include RequestSpecHelper, type: :request
+  
   config.include FactoryBot::Syntax::Methods
 end

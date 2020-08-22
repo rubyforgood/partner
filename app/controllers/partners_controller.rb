@@ -14,12 +14,14 @@ class PartnersController < ApplicationController
   def approve
     @partner = Partner.find(params[:partner_id])
     @partner.approve_me
-    redirect_to @partner, notice: "You have submitted your details for approval."
+    flash[:success] = "You have submitted your details for approval."
+    redirect_to @partner
   end
 
   def update
     if @partner.update(partner_params)
-      redirect_to @partner, notice: "Details were successfully updated."
+      flash[:success] = "Details were successfully updated."
+      redirect_to @partner
     else
       render :edit
     end
@@ -27,7 +29,8 @@ class PartnersController < ApplicationController
 
   def destroy
     @partner.destroy
-    redirect_to partners_url, notice: "Partner was successfully destroyed."
+    flash[:success] = "Partner was successfully destroyed."
+    redirect_to partners_path
   end
 
   private

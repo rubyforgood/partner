@@ -2,12 +2,8 @@ class CreatePartners < ActiveRecord::Migration[5.2]
   def change
     create_table :partners do |t|
       t.references :diaper_bank
-      t.string :executive_director_name
-      t.string :program_contact_name
-      t.string :pick_up_name
       t.text :application_data
       t.integer :diaper_partner_id
-      t.integer :diaper_bank_id
       t.string :partner_status, nil: false, default: 'pending'
       t.string :name
       t.string :distributor_type

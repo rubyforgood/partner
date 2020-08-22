@@ -1,84 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Partner Base</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <title>PartnerBase</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <%= csrf_meta_tags %>
-  <!-- Main CSS-->
-  <!-- Font-icon css-->
+  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
 </head>
-<body class="app sidebar-mini rtl">
-<!-- Navbar-->
-<header class="app-header"><a class="app-header__logo" href="#">Partnerbase</a>
-  <!-- Sidebar toggle button-->
-  <!--  <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>-->
-  <!-- Navbar Right Menu-->
-  <ul class="app-nav">
-    <!-- User Menu-->
-    <li class="dropdown">
-      <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-      <ul class="dropdown-menu settings-menu dropdown-menu-right">
-        <li><%= link_to edit_partner_path(current_partner), class: "dropdown-item" do %>
-            <i class="fa fa-cog fa-lg"></i> Edit Partner
-          <% end %>
-        </li>
-        <li><%= link_to destroy_user_session_path, class: "dropdown-item" do %>
-            <i class="fa fa-sign-out fa-lg"></i> Logout
-          <% end %>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</header>
-<!-- Sidebar menu-->
-<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-<aside class="app-sidebar">
-  <ul class="app-menu">
-    <li>
-      <%= link_to partner_path(current_partner), class: "app-menu__item #{'active' if current_page?(partner_path(id: current_partner.id))}" do %>
-        <i class="app-menu__icon fa fa-dashboard"></i> <span class="app-menu__label">My Organization</span>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to edit_partner_path(current_partner), class: "app-menu__item #{'active' if current_page?(edit_partner_path(id: current_partner.id))}" do %>
-        <i class="app-menu__icon fa fa-cog"></i> <span class="app-menu__label">Edit Partner</span>
-      <% end %>
-    </li>
-    <% if current_partner.verified? %>
-      <li>
-        <%= link_to partner_requests_path, class: "app-menu__item #{active_class(['partner_requests'])}" do %>
-          <i class="app-menu__icon fa fa-edit"></i> <span class="app-menu__label">Diaper Request</span>
+<body class="hold-transition sidebar-mini layout-fixed">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <a href="#" data-widget="pushmenu" data-auto-collapse-size="992">
+      <i class="fa fa-bars"></i>
+    </a>
+
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in?  %>
+          <%= render partial: "layouts/navbar" %>
         <% end %>
-      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <%= link_to dashboard_path, class: "brand-link" do %>
+    PartnerBase
     <% end %>
-    <% if current_partner.family_request_active? %>
-    <li>
-      <%= link_to families_path, class: "app-menu__item #{'active' if current_page?(families_path)}" do %>
-        <i class="fa fa-users app-menu__icon"></i>
-        <span class="app-menu__label">Families</span>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to children_path, class: "app-menu__item #{'active' if current_page?(children_path)}" do %>
-        <i class="fa fa-child app-menu__icon"></i>
-        <span class="app-menu__label">Children</span>
-      <% end %>
-    </li>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <% if user_signed_in? %>
+
+              <%= render partial: "layouts/sidebar" %>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="content-wrapper">
+    <% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %> alert-dismissible fade show" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="Close" style="text-decoration: none;"><%= fa_icon('times') %></a>
+        <%= sanitize(value, tags: %w(ul li)) %>
+      </div>
     <% end %>
-  </ul>
-</aside>
-<main class="app-content">
-  <%= yield %>
+    <%= yield %>
+  </div>
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
     </div>
-    <strong>Partnerbase was built with <i class="fa fa-heart"></i> by <a href="http://rubyforgood.org">Ruby for Good</a>.</strong>
+    <strong>PartnerBase was built with <i class="fa fa-heart fa-beat" style="color:red;"></i> by <a href="http://rubyforgood.org">Ruby for Good</a>.</strong>
   </footer>
-</main>
+
+  </aside>
+  <div class="control-sidebar-bg"></div>
+</div>
+
 </body>
+<div class="modal fade" id="modal_new" role="dialog"></div>
 </html>

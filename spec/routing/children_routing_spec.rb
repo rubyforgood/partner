@@ -29,9 +29,5 @@ RSpec.describe ChildrenController, type: :routing do
     it "routes to #update via PATCH" do
       expect(patch: "/children/1").to route_to("children#update", id: "1")
     end
-
-    it "routes to #destroy" do
-      expect(delete: "/children/1").to route_to("children#destroy", id: "1")
-    end
   end
 end

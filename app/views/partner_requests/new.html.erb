@@ -1,69 +1,65 @@
-<div class="app-title">
-  <div>
-    <h1><i class="fa fa-edit"></i> New Diaper Bank Request</h1>
-  </div>
-  <ul class="app-breadcrumb breadcrumb">
-    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-    <li class="breadcrumb-item"><a href="#">New Request</a></li>
-  </ul>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <% if notice %>
-      <div class="alert alert-dismissible alert-success">
-        <button class="close" type="button" data-dismiss="alert">×</button>
-        <p><%= notice %><a class="alert-link" href="#"></p>
-        </a></p>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <% content_for :title, "New Request - #{current_partner.name}" %>
+        <h1><i class="fa fa-users"></i>&nbsp;&nbsp;
+          New Request
+          <small>for <%= current_partner.name %></small>
+        </h1>
       </div>
-    <% end %>
-    <div class="tile">
-      <%= form_with(model: @partner_request, local: true) do |form| %>
-        <% if @partner_request.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@partner_request.errors.count, "error") %> prohibited this request from being saved:</h2>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
 
-            <ul>
-              <% @partner_request.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+          <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
+          <li class="breadcrumb-item"><a href="#">New Diaper Request</a></li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Default box -->
+        <div class="card">
+          <div class="card-body">
+
+            <%= simple_form_for @partner_request, html: {role: 'form', class: 'form-horizontal'} do |form| %>
+
+              <%= form.input :comments, label: "Comments:", as: :text, class: "form-control", wrapper: :input_group %>
+
+              <table class='table'>
+                <thead>
+                <tr>
+                  <th>Item Requested</th>
+                  <th>Quantity</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody class='fields'>
+                <%= form.fields_for :item_requests do |builder| %>
+                  <%= render 'item_request', form: builder %>
+                <% end %>
+                </tbody>
+              </table>
+
+              <div>
+                <%= link_to_add_row('Add Another Item', form, :item_requests, class: 'btn btn-outline-primary') %>
+              </div>
+
+              <hr>
+
           </div>
-        <% end %>
-
-
-        <div class="form-group">
-          <%= form.label(:comments) %>
-          <%= form.text_area :comments, class: 'form-control' %>
+              <div class="card-footer">
+                <!-- TODO(chaserx): we should add some js to prevent submission if the items selected are the blank option or any item has an empty quantity -->
+                <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
+              </div>
+            <% end %>
         </div>
-
-        <table class='table'>
-          <thead>
-          <tr>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody class='fields'>
-          <%= form.fields_for :item_requests do |builder| %>
-            <%= render 'item_request', form: builder %>
-          <% end %>
-          </tbody>
-        </table>
-
-        <div>
-          <%= link_to_add_row('Add Another Item', form, :item_requests, class: 'btn btn-outline-primary') %>
-        </div>
-
-        <hr>
-
-        <div class="actions">
-          <!-- TODO(chaserx): we should add some js to prevent submission if the items selected are the blank option or any item has an empty quantity -->
-    <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
-        </div>
-      <% end %>
-
-
+      </div>
     </div>
   </div>
-</div>
+</section>

@@ -1,22 +1,33 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.6.2"
+ruby "2.7.1"
 
 gem "bootsnap", ">= 1.1.0", require: false
-gem "bootstrap", "~> 4.3.1"
+gem "bootstrap", "~> 4.5.2"
 gem "bugsnag"
 gem "devise"
 gem "devise_invitable"
+gem "filterrific"
+gem "flipper"
+gem "flipper-active_record"
+gem "flipper-ui"
 gem "font-awesome-rails"
+gem "font-ionicons-rails"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails", "~> 4.3", ">= 4.3.1"
+gem "kaminari"
+gem "mini_racer"
 gem "pg"
-gem "puma", "~> 3.11"
-gem "pundit", "~> 2.0.0"
-gem "rails", "~> 5.2.1"
-gem "sass-rails", "~> 5.0"
+gem "prawn-rails"
+gem "puma", "~> 4.3"
+gem "pundit", "~> 2.1.0"
+gem "rails", "~> 6.0.3"
+gem "sass-rails", "~> 6.0"
+gem "simple_form"
 gem "uglifier", ">= 1.3.0"
+gem "wicked_pdf", "~> 2.1"
+gem "wkhtmltopdf-binary"
 
 group :development, :test do
   gem "better_errors"
@@ -30,8 +41,10 @@ group :development, :test do
   gem "pry"
   gem "pry-rails"
   gem "pry-remote"
-  gem "rspec-rails", "~> 3.5"
+  gem "rspec-rails", "~> 4.0"
   gem "rubocop"
+  gem "rubocop-rails"
+  gem "rubocop-rspec"
   gem "simplecov", require: false
 end
 
@@ -43,7 +56,7 @@ group :development do
   gem "capistrano-rvm"
   gem "capistrano3-puma"
   gem "letter_opener"
-  gem "listen", ">= 3.0.5", "< 3.2"
+  gem "listen", ">= 3.0.5", "< 3.3"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console", ">= 3.3.0"
@@ -51,7 +64,7 @@ end
 
 group :test do
   gem "capybara", ">= 2.15"
-  gem "chromedriver-helper"
+  gem "webdrivers"
   gem "email_spec"
   gem "selenium-webdriver"
   gem "shoulda-matchers"

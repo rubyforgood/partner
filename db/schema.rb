@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_172501) do
+ActiveRecord::Schema.define(version: 2020_05_18_010905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["family_id"], name: "index_authorized_family_members_on_family_id"
+  end
+
+  create_table "child_item_requests", force: :cascade do |t|
+    t.bigint "child_id"
+    t.bigint "item_request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "picked_up", default: false
+    t.integer "quantity_picked_up"
+    t.integer "picked_up_item_diaperid"
+    t.integer "authorized_family_member_id"
+    t.index ["child_id"], name: "index_child_item_requests_on_child_id"
+    t.index ["item_request_id"], name: "index_child_item_requests_on_item_request_id"
   end
 
   create_table "children", force: :cascade do |t|
@@ -90,21 +103,20 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.index ["partner_id"], name: "index_families_on_partner_id"
   end
 
-  create_table "family_request_children", force: :cascade do |t|
-    t.bigint "family_request_id"
-    t.bigint "child_id"
+  create_table "flipper_features", force: :cascade do |t|
+    t.string "key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["child_id"], name: "index_family_request_children_on_child_id"
-    t.index ["family_request_id"], name: "index_family_request_children_on_family_request_id"
+    t.index ["key"], name: "index_flipper_features_on_key", unique: true
   end
 
-  create_table "family_requests", force: :cascade do |t|
-    t.bigint "partner_id"
+  create_table "flipper_gates", force: :cascade do |t|
+    t.string "feature_key", null: false
+    t.string "key", null: false
+    t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "sent"
-    t.index ["partner_id"], name: "index_family_requests_on_partner_id"
+    t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
   end
 
   create_table "item_requests", force: :cascade do |t|
@@ -119,6 +131,13 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.index ["partner_request_id"], name: "index_item_requests_on_partner_request_id"
   end
 
+  create_table "partner_forms", force: :cascade do |t|
+    t.integer "diaper_bank_id"
+    t.text "sections", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "partner_requests", force: :cascade do |t|
     t.text "comments"
     t.bigint "partner_id"
@@ -126,15 +145,13 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.boolean "sent", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "for_families"
     t.index ["organization_id"], name: "index_partner_requests_on_organization_id"
     t.index ["partner_id"], name: "index_partner_requests_on_partner_id"
   end
 
   create_table "partners", force: :cascade do |t|
-    t.integer "diaper_bank_id"
-    t.string "executive_director_name"
-    t.string "program_contact_name"
-    t.string "pick_up_name"
+    t.bigint "diaper_bank_id"
     t.text "application_data"
     t.integer "diaper_partner_id"
     t.string "partner_status", default: "pending"
@@ -193,12 +210,15 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.integer "greater_2_times_fpl"
     t.integer "poverty_unknown"
     t.string "ages_served"
+    t.string "executive_director_name"
     t.string "executive_director_phone"
     t.string "executive_director_email"
+    t.string "program_contact_name"
     t.string "program_contact_phone"
     t.string "program_contact_mobile"
     t.string "program_contact_email"
     t.string "pick_up_method"
+    t.string "pick_up_name"
     t.string "pick_up_phone"
     t.string "pick_up_email"
     t.string "distribution_times"
@@ -211,6 +231,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "other_agency_type"
+    t.string "status_in_diaper_base"
     t.index ["diaper_bank_id"], name: "index_partners_on_diaper_bank_id"
   end
 
@@ -236,6 +257,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.bigint "partner_id"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
@@ -245,12 +267,12 @@ ActiveRecord::Schema.define(version: 2019_07_26_172501) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authorized_family_members", "families"
+  add_foreign_key "child_item_requests", "children"
+  add_foreign_key "child_item_requests", "item_requests"
   add_foreign_key "children", "families"
   add_foreign_key "families", "partners"
-  add_foreign_key "family_request_children", "children"
-  add_foreign_key "family_request_children", "family_requests"
-  add_foreign_key "family_requests", "partners"
   add_foreign_key "item_requests", "partner_requests"
   add_foreign_key "users", "partners"
 end

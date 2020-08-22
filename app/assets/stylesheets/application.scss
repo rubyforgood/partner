@@ -11,38 +11,98 @@
  * It is generally better to create a new file per style scope.
  *
  *= require font-awesome
- *= require bootstrap.min
+ *= require fontawesome
+ *= require ionicons
  */
 
+//Use @import in order to process SCSS variables
+// import reusable variables
+@import "colors";
+@import "base/_variables";
 
-@import "partners";
+// import other stylesheets after variables
+@import "AdminLTE";
+@import "bootstrap";
+@import "simple_form-bootstrap/simple_form-bootstrap";
+@import "font-awesome";
 
-.thick-grey-border {
-  border: solid #aaa 2px;
+.brand-link {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 40px;
+}
 
-  h2 {
-    font-weight: 500;
+.fa-beat {
+  -webkit-animation: fa-beat 1s infinite linear;
+  animation: fa-beat 1s infinite linear;
+}
+@-webkit-keyframes fa-beat {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
-
-  label {
-    display: inline-block;
-    font-weight: 600;
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
-
-  a {
-    margin-left: auto;
-    margin-right: auto;
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes fa-beat {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
 
-.main-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #ffffff;
-  padding: 15px;
-  margin-right: -30px;
-  margin-left: -30px;
-  color: #444444;
-  border-top: 1px solid #d2d6de;
+.custom-switch {
+  padding-left: 2.25rem;
+  padding-bottom: 1rem;
+}
+
+.custom-control-label {
+  padding-top: 0.5rem;
+  padding-left: 2rem;
+  padding-bottom: 0.1rem;
+}
+
+.custom-switch .custom-control-label::before {
+  left: -2.25rem;
+  height: 2rem;
+  width: 3.5rem;
+  pointer-events: all;
+  border-radius: 1rem;
+}
+
+.custom-switch .custom-control-label::after {
+  top: calc(0.25rem + 2px);
+  left: calc(-2.25rem + 2px);
+  width: calc(2rem - 4px);
+  height: calc(2rem - 4px);
+  background-color: #adb5bd;
+  border-radius: 2rem;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .custom-switch .custom-control-label::after {
+    transition: none;
+  }
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: #fff;
+  -webkit-transform: translateX(1.5rem);
+  transform: translateX(1.5rem); //translateX(0.75rem);
 }
