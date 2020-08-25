@@ -7,8 +7,9 @@
     <th scope="col"><%= sortable "active", "Active" %></th>
     <th scope="col">Guardian</th>
     <th scope="col">Comments</th>
-    <th scope="col"></th>
-    <th scope="col"></th>
+    <th scope="col" colspan="2">
+      <%= link_to 'Export Results To CSV', children_path(nil, format: :csv), class: "btn btn-info pull-right" %>
+    </th>
   </tr>
   </thead>
   <tbody>
