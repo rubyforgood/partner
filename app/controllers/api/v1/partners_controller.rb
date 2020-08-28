@@ -40,6 +40,8 @@ class Api::V1::PartnersController < ApiController
       partner.update(partner_status: "pending")
     end
 
+    partner.update(status_in_diaper_base: partner_params[:status])
+
     render json: { message: "Partner status: #{partner.partner_status}." }, status: :ok
   rescue ActiveRecord::RecordNotFound => e
     render e.message
@@ -48,7 +50,7 @@ class Api::V1::PartnersController < ApiController
   def show
     return head :forbidden unless api_key_valid?
 
-    partner = Partner.find_by(diaper_partner_id: params[:id])
+    partner = Partner.find_by!(diaper_partner_id: params[:id])
 
     if params[:impact_metrics]
       render json: { agency: partner.impact_metrics }
@@ -58,12 +60,6 @@ class Api::V1::PartnersController < ApiController
   end
 
   private
-
-  def api_key_valid?
-    return true if Rails.env.development?
-
-    request.headers["X-Api-Key"] == ENV["DIAPER_KEY"]
-  end
 
   def partner_params
     params.require(:partner).permit(

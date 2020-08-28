@@ -4,7 +4,7 @@ class AuthorizedFamilyMembersController < ApplicationController
   end
 
   def show
-    @authorized_family_member = current_partner.authorized_family_members.find_by(id: params[:id])
+    @authorized_family_member = current_partner.authorized_family_members.find(params[:id])
   end
 
   def edit
@@ -28,6 +28,14 @@ class AuthorizedFamilyMembersController < ApplicationController
       redirect_to @authorized_family_member, notice: "Authorized family member was successfully updated."
     else
       render :edit
+    end
+  end
+
+  def destroy
+    @authorized_family_member = current_partner.authorized_family_members.find_by(id: params[:id])
+    if @authorized_family_member.present?
+      @authorized_family_member.destroy
+      redirect_back fallback_location: families_url, notice: "Authorized family member removed."
     end
   end
 

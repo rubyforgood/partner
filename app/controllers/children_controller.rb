@@ -1,22 +1,28 @@
 require "csv"
 class ChildrenController < ApplicationController
   before_action :authenticate_user!
+  helper_method :sort_column, :sort_direction
 
   def index
-    @children = current_partner.children
-                               .includes(:family)
-                               .order(active: :desc, last_name: :asc)
-                               .class_filter(filter_params)
+    @filterrific = initialize_filterrific(
+      current_partner.children
+          .includes(:family)
+          .order(sort_column + ' ' + sort_direction),
+      params[:filterrific]
+    ) || return
+
+    @children = @filterrific.find
 
     respond_to do |format|
+      format.js
       format.html
       format.csv do
         render(csv: @children.map(&:to_csv))
       end
     end
-    @family = @children.collect(&:family).compact.uniq.sort
-    @selected_family = filter_params[:from_family]
-    @selected_children_first_name = filter_params[:from_children]
+    @family = current_partner.children
+                             .includes(:family)
+                             .order(active: :desc, last_name: :asc).collect(&:family).compact.uniq.sort
   end
 
   def show
@@ -60,14 +66,6 @@ class ChildrenController < ApplicationController
     end
   end
 
-  def destroy
-    child = current_partner.children.find_by(id: params[:id])
-    if child.present?
-      child.destroy
-      redirect_to children_url, notice: "Child was successfully destroyed."
-    end
-  end
-
   private
 
   def family
@@ -91,9 +89,11 @@ class ChildrenController < ApplicationController
     )
   end
 
-  def filter_params
-    return {} unless params.key?(:filters)
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 
-    params.require(:filters).slice(:from_family, :from_children)
+  def sort_column
+    Child.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
   end
 end

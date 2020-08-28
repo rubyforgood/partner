@@ -1,20 +1,54 @@
-<div class="app-title">
-  <div>
-    <h1><i class="fa fa-edit"></i> Pickup Sheet &nbsp &nbsp<%= link_to 'Create PDF document', family_request_pickup_sheets_path(partner_request, :format => :pdf) %> </h1>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <% content_for :title, "Pickup Sheet - #{current_partner.name}" %>
+        <h1><i class="fa fa-child"></i>&nbsp;&nbsp;
+          Pickup Sheet
+          <small>for <%= current_partner.name %></small>
+        </h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><%= link_to(dashboard_path) do %>
+              <i class="fa fa-home fa-lg"></i> Home
+            <% end %>
+          </li>
+          <li class="breadcrumb-item"><a href="#">Pickup Sheet</a></li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
 
-  </div>
-  <ul class="app-breadcrumb breadcrumb">
-    <li class="breadcrumb-item"><i class="fa fa-scroll fa-lg"></i></li>
-    <li class="breadcrumb-item"><a href="#">Pickup Sheet</a></li>
-  </ul>
-</div>
-<div class="row">
-  <div class="col-md-12">
+<section class="content">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <div class="card mb-12">
-          <table class="table table-striped">
-            <thead>
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+          <div class="card-footer">
+            <%= link_to 'Create a Printable PDF Pickup Sheet', family_request_pickup_sheets_path(partner_request, :format => :pdf), class: 'btn btn-info' %>
+          </div>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
               <tr>
                 <th scope="col">Child's name</th>
                 <th scope="col">Authorized Family Member</th>
@@ -24,85 +58,87 @@
                 <th scope="col">Item Picked Up</th>
                 <th scope="col">Picked up</th>
               </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
               <% child_item_requests.each do |child_item_request| %>
                 <% child = child_item_request.child %>
                 <tr>
-                  <td colspan="7" id="flash-message-container-nested-<%= child_item_request.id%>">
+                  <td colspan="7" id="flash-message-container-nested-<%= child_item_request.id %>">
                   </td>
                 </tr>
-                <tr id="child-item-requests-row-<%= child_item_request.id%>" class="<%= child_item_request.picked_up? ? 'row-success' : '' %>">
+                <tr id="child-item-requests-row-<%= child_item_request.id %>" class="<%= child_item_request.picked_up? ? 'row-success' : '' %>">
                   <td><%= child.display_name %></td>
                   <td>
                     <%= select_tag :authorized_family_member_id,
-                      options_from_collection_for_select(
-                        child.family.authorized_family_members,
-                        :id,
-                        :display_name,
-                        selected: child.family.authorized_family_members.find_by(id: child_item_request.authorized_family_member_id)&.id
-                      ),
-                      {
-                        include_blank: "(Select Member)",
-                        data: {
-                          url: child_item_requests_authorized_family_member_picked_up_path(child_item_request.id),
-                          remote: true,
-                          method: :post
-                        }
-                      }
+                                   options_from_collection_for_select(
+                                       child.family.authorized_family_members,
+                                       :id,
+                                       :display_name,
+                                       selected: child.family.authorized_family_members.find_by(id: child_item_request.authorized_family_member_id)&.id
+                                   ),
+                                   {
+                                       include_blank: "(Select Member)",
+                                       data: {
+                                           url: child_item_requests_authorized_family_member_picked_up_path(child_item_request.id),
+                                           remote: true,
+                                           method: :post
+                                       }
+                                   }
                     %>
                   </td>
                   <td><%= child_item_request.quantity %></td>
                   <td>
                     <%= text_field_tag(
-                      :quantity_picked_up,
-                      child_item_request.quantity_picked_up || child_item_request.quantity,
-                      data: {
-                        url: child_item_requests_quantity_picked_up_path(child_item_request.id),
-                        remote: true,
-                        method: :post
-                      }
-                    ) %>
+                            :quantity_picked_up,
+                            child_item_request.quantity_picked_up || child_item_request.quantity,
+                            data: {
+                                url: child_item_requests_quantity_picked_up_path(child_item_request.id),
+                                remote: true,
+                                method: :post
+                            }
+                        ) %>
                   </td>
                   <td><%= item_id_to_display_string_map[child_item_request.child.item_needed_diaperid] %></td>
                   <td>
                     <%= select_tag :picked_up_item_diaperid,
-                      valid_items_for_select_tag(
-                        valid_items,
-                        child_item_request.picked_up_item_diaperid,
-                        child_item_request.child.item_needed_diaperid
-                      ),
-                      {
-                        data: {
-                          url: child_item_requests_item_picked_up_path(child_item_request.id),
-                          remote: true,
-                          method: :post
-                        }
-                      }
+                                   valid_items_for_select_tag(
+                                       valid_items,
+                                       child_item_request.picked_up_item_diaperid,
+                                       child_item_request.child.item_needed_diaperid
+                                   ),
+                                   {
+                                       data: {
+                                           url: child_item_requests_item_picked_up_path(child_item_request.id),
+                                           remote: true,
+                                           method: :post
+                                       }
+                                   }
                     %>
                   </td>
                   <td>
-                    <div class="toggle lg">
-                      <label>
-                        <%= check_box_tag 'Picked Up',
-                          child_item_request.picked_up,
-                          child_item_request.picked_up,
-                          data: {
-                            url: child_item_requests_toggle_picked_up_path(child_item_request.id),
-                            remote: true,
-                            method: :post
-                          }
-                        %>
-                        <span class="button-indecator"></span>
-                      </label>
+
+
+                    <div class="custom-control custom-switch">
+                      <%= check_box_tag 'Picked Up',
+                                        child_item_request.picked_up,
+                                        child_item_request.picked_up,
+                                        data: {
+                                            url: child_item_requests_toggle_picked_up_path(child_item_request.id),
+                                            remote: true,
+                                            method: :post},
+                                        class: "custom-control-input",
+                                        id: "pick_up-#{child_item_request.id}"
+                      %>
+                      <label class="custom-control-label" for="pick_up-<%= child_item_request.id %>"></label>
                     </div>
                   </td>
                 </tr>
               <% end %>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>

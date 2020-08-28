@@ -9,8 +9,7 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     invitations: "users/invitations"
   }
-  # TODO: remove these two
-  resources :children do
+  resources :children, except: [:destroy] do
     post :active
   end
   resources :families

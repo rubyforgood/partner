@@ -1,11 +1,11 @@
 class RecertificationMailer < ApplicationMailer
-  default from: "partner@diaper-app.org"
+  default from: "info@diaper.app"
   layout "mailer"
 
   def notice_email(user)
     @partner = user.partner
 
     mail to: user.email,
-         subject: "Please update your agency information"
+         subject: "Please Update Your Agency Information"
   end
 end

@@ -2,10 +2,18 @@ class FamilyRequestsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @children = current_partner.children
+    verify_status_in_diaper_base
+    @filterrific = initialize_filterrific(
+      current_partner.children
+          .order(last_name: :asc)
+          .order(first_name: :asc),
+      params[:filterrific]
+    ) || return
+    @children = @filterrific.find
   end
 
   def create
+    verify_status_in_diaper_base
     children = current_partner.children.active
     children_grouped_by_diaperid = children.group_by(&:item_needed_diaperid)
     api_response = DiaperBankClient.send_family_request(

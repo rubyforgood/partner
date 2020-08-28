@@ -5,7 +5,7 @@ describe RecertificationMailer, type: :mailer do
     let!(:mail) { RecertificationMailer.notice_email(user).deliver_now }
 
     it "email renders the subject" do
-      expect(mail.subject).to eq("Please update your agency information")
+      expect(mail.subject).to eq("Please Update Your Agency Information")
     end
 
     it "email renders the receiver email" do
@@ -13,12 +13,12 @@ describe RecertificationMailer, type: :mailer do
     end
 
     it "email renders the sender email" do
-      expect(mail.from).to eq(["partner@diaper-app.org"])
+      expect(mail.from).to eq(["info@diaper.app"])
     end
 
     it "email assigns @recertification_url" do
       expect(mail.body.encoded)
-        .to match(edit_partner_url(partner))
+        .to match('https://partner.diaper.app/')
     end
   end
 end
