@@ -14,12 +14,13 @@ class FamilyRequestsController < ApplicationController
 
   def create
     verify_status_in_diaper_base
-    children = current_partner.children.active
+    children = current_partner.children.active.where.not(item_needed_diaperid: nil)
     children_grouped_by_diaperid = children.group_by(&:item_needed_diaperid)
     api_response = DiaperBankClient.send_family_request(
       children: children,
       partner: current_partner
     )
+
     if api_response
       flash[:notice] = "Request sent to diaper bank successfully"
       partner_request = PartnerRequest.new(

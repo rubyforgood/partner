@@ -18,17 +18,23 @@
         <%= child.first_name %> <%= child.last_name %>
       </td>
       <td>
-        <%= item_id_to_display_string_map[child.item_needed_diaperid] %>
+        <% if child.item_needed_diaperid %>
+          <%= item_id_to_display_string_map[child.item_needed_diaperid] %>
+        <% else %>
+          <%= "N/A" %>
+        <% end %>
       </td>
       <td>
         <div class="custom-control custom-switch">
-        <%= check_box_tag 'Active', child.active, child.active,
+          <% if child.item_needed_diaperid %>
+            <%= check_box_tag 'Active', child.active, child.active,
                               data: {url: child_active_path(child),
                                      remote: true, method: :post },
                               class: "custom-control-input",
                               id: "child-#{child.id}"
                               %>
-          <label class="custom-control-label" for="child-<%= child.id %>"></label>
+            <label class="custom-control-label" for="child-<%= child.id %>"></label>
+          <% end %>
         </div>
       </td>
     </tr>
