@@ -28,5 +28,4 @@ RSpec.describe FamilyRequestsController, type: :request do
       )
     end
   end
-
 end
