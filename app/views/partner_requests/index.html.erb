@@ -26,6 +26,30 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card">
+          <div class="card-footer">
+            <% if @partner.verified? %>
+              <%= link_to 'Create New Bulk Diaper Request', new_partner_request_path, class: 'btn btn-outline-primary' %>
+              <%= link_to 'Create New Family Diaper Request', new_family_request_path, class: 'btn btn-outline-primary' %>
+            <% else %>
+              <p>Your account has not been verified, contact the organization via their email to reactivated</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+  </div>
+  <!-- /.row -->
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
       <div class="col-md-12">
         <!-- Default box -->
         <%= render 'request_card' if @partner.verified? %>

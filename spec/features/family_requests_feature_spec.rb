@@ -114,7 +114,6 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
       visit partner_requests_path
       find_link("Create New Family Essentials Request").click
       expect(page).to have_text("Your account has been disabled, contact the organization via their email to reactivate")
-      expect(current_path).to eq(partner_requests_path)
     end
   end
 end
