@@ -96,3 +96,6 @@ Keep in mind that you need js to be enabled. For example:
 ```
 describe "PickupSheet", type: :feature, js: true do
 ```
+
+# Deployment Process
+Please follow the deployment instructions in the associated diaper application [here](https://github.com/rubyforgood/diaper#deployment-process)
