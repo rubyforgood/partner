@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :impact_stories
   flipper_app = Flipper::UI.app(Flipper.instance) do |builder|
     builder.use Rack::Auth::Basic do |username, password|
       username == ENV["FLIPPER_USERNAME"] && password == ENV["FLIPPER_PASSWORD"]
@@ -66,6 +65,8 @@ Rails.application.routes.draw do
       resources :partner_forms, only: [:create]
     end
   end
+
+  resources :impact_stories
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "pages/:name", to: "static#page", as: "static_page"

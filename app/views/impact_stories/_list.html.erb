@@ -13,8 +13,8 @@
   <% @impact_stories.each do |story| %>
     <tr>
       <td><%= story.title %></td>
-      <td><%= story.created_at %></td>
-      <td><%= story.content %></td>
+      <td><%= story.created_at.strftime("%B %-d %Y") %></td>
+      <td><%= story.blurb(30) %></td>
       <td><%= link_to 'View Story', story, class: "btn btn-sm btn-info pull-right" %></td>
       <td><%= link_to 'Edit Story Details', edit_impact_story_path(story), class: "btn btn-sm btn-success pull-right" %></td>
   <% end %>
