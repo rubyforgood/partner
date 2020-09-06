@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :impact_stories
   flipper_app = Flipper::UI.app(Flipper.instance) do |builder|
     builder.use Rack::Auth::Basic do |username, password|
       username == ENV["FLIPPER_USERNAME"] && password == ENV["FLIPPER_PASSWORD"]

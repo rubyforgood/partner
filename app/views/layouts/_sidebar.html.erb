@@ -41,5 +41,11 @@
     <% end %>
   </li>
 
+  <li class="nav-item <%= 'active' if current_page?(impact_stories_path) %>">
+    <%= link_to(impact_stories_path, class: "nav-link #{"active" if current_page?(impact_stories_path)}") do %>
+      <i class="nav-icon fa fa-child"></i>
+      <p>Share Our Impact</p>
+    <% end %>
+  </li>
 
 </ul>
