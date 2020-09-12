@@ -37,6 +37,10 @@ class ImpactStoriesController < ApplicationController
         end
     end
 
+    def email
+        ImpactStoryMailer.impact_story_email(current_partner.impact_stories.find(params[:id])).deliver_now
+    end
+
     private
 
     def impact_story_params

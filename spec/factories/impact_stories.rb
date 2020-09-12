@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :impact_story do
-    title { "MyString" }
+    title { "MyTitle" }
     content { "MyText" }
+    partner
   end
 end
