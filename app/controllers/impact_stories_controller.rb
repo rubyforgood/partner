@@ -2,7 +2,7 @@ class ImpactStoriesController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @impact_stories = current_partner.impact_stories
+        @impact_stories = current_partner.impact_stories.sort_by { |story| story.created_at }.reverse
     end
 
     def show
