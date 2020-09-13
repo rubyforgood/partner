@@ -14,7 +14,7 @@ describe ImpactStory, type: :feature, include_shared: true, js: true do
     diaper_type = "Magic diaper"
     stub_request(:any, "#{ENV["DIAPERBANK_ENDPOINT"]}/partner_requests/#{partner.id}")
       .to_return(body: [{ id: 1, name: diaper_type }].to_json, status: 200)
-        
+
     impact_stories = [
       create(:impact_story, title: "Title1", content: "Content 1", partner: partner),
       create(:impact_story, title: "Title2", content: "Content 2", partner: partner)
