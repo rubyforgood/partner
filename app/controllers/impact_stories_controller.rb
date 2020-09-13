@@ -1,49 +1,45 @@
 class ImpactStoriesController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
 
-    def index
-        @impact_stories = current_partner.impact_stories.sort_by { |story| story.created_at }.reverse
-    end
+  def index
+    @impact_stories = current_partner.impact_stories.sort_by { |story| story.created_at }.reverse
+  end
 
-    def show
-        @impact_story = current_partner.impact_stories.find(params[:id])
-    end
+  def show
+    @impact_story = current_partner.impact_stories.find(params[:id])
+  end
 
-    def new
-        @impact_story = current_partner.impact_stories.new
-    end
+  def new
+    @impact_story = current_partner.impact_stories.new
+  end
 
-    def create
-        @impact_story = current_partner.impact_stories.new(impact_story_params)
+  def create
+    @impact_story = current_partner.impact_stories.new(impact_story_params)
         
-        if @impact_story.save
-            redirect_to @impact_story, notice: "Impact Story was successfully created."
-        else
-            render :new
-        end
+    if @impact_story.save
+      redirect_to @impact_story, notice: "Impact Story was successfully created."
+    else
+      render :new
     end
+  end
 
-    def edit
-        @impact_story = current_partner.impact_stories.find(params[:id])
-    end
+  def edit
+    @impact_story = current_partner.impact_stories.find(params[:id])
+  end
 
-    def update
-        @impact_story = current_partner.impact_stories.find(params[:id])
+  def update
+    @impact_story = current_partner.impact_stories.find(params[:id])
         
-        if @impact_story.update(impact_story_params)
-            redirect_to @impact_story, notice: "Impact Story was successfully updated."
-        else
-            render :edit
-        end
+    if @impact_story.update(impact_story_params)
+      redirect_to @impact_story, notice: "Impact Story was successfully updated."
+    else
+      render :edit
     end
+  end
 
-    def email
-        ImpactStoryMailer.impact_story_email(current_partner.impact_stories.find(params[:id])).deliver_now
-    end
+  private
 
-    private
-
-    def impact_story_params
-        params.require(:impact_story).permit(:title, :content)
-    end
+  def impact_story_params
+    params.require(:impact_story).permit(:title, :content)
+  end
 end

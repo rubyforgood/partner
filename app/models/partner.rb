@@ -99,7 +99,7 @@ class Partner < ApplicationRecord
   has_many :children, through: :families
   has_many :authorized_family_members, through: :families
 
-  has_many :impact_stories
+  has_many :impact_stories, dependent: :destroy
 
   has_many :partner_requests, dependent: :destroy
   has_many :family_requests, dependent: :destroy
