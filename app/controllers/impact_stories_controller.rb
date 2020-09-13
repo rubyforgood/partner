@@ -2,9 +2,7 @@ class ImpactStoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @impact_stories = current_partner.impact_stories.sort_by do |story|
-      story.created_at
-    end.reverse
+    @impact_stories = current_partner.impact_stories.sort_by(&:created_at).reverse
   end
 
   def show
@@ -17,7 +15,7 @@ class ImpactStoriesController < ApplicationController
 
   def create
     @impact_story = current_partner.impact_stories.new(impact_story_params)
-        
+
     if @impact_story.save
       redirect_to @impact_story, notice: "Impact Story was successfully created."
     else
@@ -31,7 +29,7 @@ class ImpactStoriesController < ApplicationController
 
   def update
     @impact_story = current_partner.impact_stories.find(params[:id])
-        
+
     if @impact_story.update(impact_story_params)
       redirect_to @impact_story, notice: "Impact Story was successfully updated."
     else
