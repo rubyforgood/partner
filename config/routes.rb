@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :impact_stories
+  resources :impact_stories, except: [:destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "pages/:name", to: "static#page", as: "static_page"

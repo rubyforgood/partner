@@ -120,11 +120,12 @@ ActiveRecord::Schema.define(version: 2020_09_05_195722) do
   end
 
   create_table "impact_stories", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "partner_id"
+    t.string "title", null: false
+    t.text "content", null: false
+    t.bigint "partner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_impact_stories_on_partner_id"
   end
 
   create_table "item_requests", force: :cascade do |t|
@@ -281,6 +282,7 @@ ActiveRecord::Schema.define(version: 2020_09_05_195722) do
   add_foreign_key "child_item_requests", "item_requests"
   add_foreign_key "children", "families"
   add_foreign_key "families", "partners"
+  add_foreign_key "impact_stories", "partners"
   add_foreign_key "item_requests", "partner_requests"
   add_foreign_key "users", "partners"
 end
