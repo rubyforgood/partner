@@ -1,4 +1,6 @@
 class PartnerRequestsController < ApplicationController
+  helper MultiItemFormHelper
+
   before_action :authenticate_user!
 
   def index

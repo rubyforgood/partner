@@ -40,14 +40,13 @@
                 </tr>
                 </thead>
                 <tbody class='fields'>
-                <%= form.fields_for :item_requests do |builder| %>
-                  <%= render 'item_request', form: builder %>
-                <% end %>
+                  <%= render 'item_request', form: form %>
                 </tbody>
               </table>
-
               <div>
-                <%= link_to_add_row('Add Another Item', form, :item_requests, class: 'btn btn-outline-primary') %>
+                <%= add_item_button('Add Another Item') do %>
+                  <%= render 'item_request', form: form, object: @partner_request.item_requests.build %>
+                <% end %>
               </div>
 
               <hr>
