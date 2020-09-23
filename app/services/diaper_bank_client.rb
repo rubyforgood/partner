@@ -35,7 +35,7 @@ module DiaperBankClient
   def self.https(uri)
     # Use a uri with `http://` to not use ssl.
     Net::HTTP.new(uri.host, uri.port).tap do |http|
-      http.use_ssl = true
+      http.use_ssl = uri.scheme.eql?("https")
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
   end
