@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index]
   resources :partner_requests, only: [:new, :create, :show, :index]
+  resources :individuals_requests, only: [:new]
   resources :family_requests, only: [:new, :create] do
     resource :pickup_sheets, only: :show
   end
