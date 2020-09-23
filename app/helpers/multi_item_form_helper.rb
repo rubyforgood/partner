@@ -1,6 +1,6 @@
 module MultiItemFormHelper
-  def remove_item_button(label)
-    link_to label, 'javascript:void(0)', class: 'btn btn-warning', data: { remove_item: true }
+  def remove_item_button(label, soft: false)
+    link_to label, 'javascript:void(0)', class: 'btn btn-warning', data: { remove_item: soft ? "soft" : nil }
   end
 
   def add_item_button(label, container: ".fields", &block)

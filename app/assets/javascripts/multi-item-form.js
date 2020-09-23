@@ -3,7 +3,7 @@ $(document).on('click', '[data-add-target][data-add-template]', (event) => {
   var target = button.data('add-target');
   var template = button.data("add-template");
   var templateId = new Date().getTime();
-  var rendered = template.replace(/(_attributes[\]\[_]{1,2})([0-9]+)/g, "$1" + templateId);
+  var rendered = template.replace(/([\[_])([0-9]+)([\]_])/g, "$1" + templateId + '$3');
 
   $(target).append(rendered);
 
@@ -11,7 +11,13 @@ $(document).on('click', '[data-add-target][data-add-template]', (event) => {
 });
 
 $(document).on('click', '[data-remove-item]', (event) => {
-  $(event.target).closest('tr').hide();
-  $(event.target).prev('input[type=hidden]').val('1');
+  var button = $(event.target)
+  var wrapper = button.closest('tr')
+  if (button.data("remove-item") === "soft") {
+    wrapper.hide();
+    button.prev('input[type=hidden]').val('1');
+  } else {
+    wrapper.remove()
+  }
   event.preventDefault();
 });
