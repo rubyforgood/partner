@@ -3,6 +3,7 @@ class PartnerRequestsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :verify_status_in_diaper_base, only: %i[new create]
+  before_action :authorize_verified_partners, only: %i[new]
 
   def index
     @partner = current_partner
@@ -10,12 +11,8 @@ class PartnerRequestsController < ApplicationController
   end
 
   def new
-    if current_partner.partner_status.casecmp("verified").zero?
-      @partner_request = PartnerRequest.new
-      @partner_request.item_requests.build # required to render the empty items form
-    else
-      redirect_to partner_requests_path, notice: "Please review your application details and submit for approval in order to make a new request."
-    end
+    @partner_request = PartnerRequest.new
+    @partner_request.item_requests.build # required to render the empty items form
   end
 
   def create
