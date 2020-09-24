@@ -10,10 +10,19 @@ class IndividualsRequestsController < ApplicationController
   end
 
   def create
-    @request = FamilyRequest.new(
-      params.require(:family_request)
-            .permit(:comments, items_attributes: %i[item_id people_count])
-    )
+    @request = FamilyRequest.new(family_request_params, partner: current_partner)
+
+    FamilyRequestService.execute(@request)
+
+    redirect_to partner_requests_path, notice: "Requested items successfuly!"
+  rescue ActiveModel::ValidationError
     render :new
+  end
+
+private
+
+  def family_request_params
+    params.require(:family_request)
+          .permit(:comments, items_attributes: %i[item_id people_count])
   end
 end
