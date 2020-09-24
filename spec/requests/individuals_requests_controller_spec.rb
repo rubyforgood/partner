@@ -7,8 +7,8 @@ RSpec.describe IndividualsRequestsController, type: :request do
     {
       comments: "I need a lot of diapers",
       items_attributes: {
-        "0" => { item_id: 12, people_count: 25 },
-        "1231" => { item_id: 13, people_count: 45 },
+        "0" => { item_id: 12, person_count: 25 },
+        "1231" => { item_id: 13, person_count: 45 },
       },
     }
   end
@@ -33,8 +33,8 @@ RSpec.describe IndividualsRequestsController, type: :request do
               partner: partner,
               comments: "I need a lot of diapers",
               items: [
-                have_attributes(item_id: "12", people_count: "25"),
-                have_attributes(item_id: "13", people_count: "45"),
+                have_attributes(item_id: "12", person_count: "25"),
+                have_attributes(item_id: "13", person_count: "45"),
               ]
             )
           )

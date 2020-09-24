@@ -12,7 +12,7 @@ class FamilyRequest
 
   def items_attributes=(attributes)
     @items = attributes.map do |_, params|
-      Item.new(params.slice(:item_id, :people_count))
+      Item.new(params.slice(:item_id, :person_count))
     end
   end
 
@@ -27,6 +27,6 @@ class FamilyRequest
   class Item
     include ActiveModel::Model
 
-    attr_accessor :item_id, :people_count
+    attr_accessor :item_id, :person_count
   end
 end

@@ -23,6 +23,6 @@ private
 
   def family_request_params
     params.require(:family_request)
-          .permit(:comments, items_attributes: %i[item_id people_count])
+          .permit(:comments, items_attributes: %i[item_id person_count])
   end
 end

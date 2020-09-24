@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe FamilyRequest do
   let(:items_attributes) do
     {
-      "0" => { item_id: 1, people_count: 10 },
-      "1" => { item_id: 2, people_count: 12 },
-      "21312" => { item_id: 3, people_count: 13 },
+      "0" => { item_id: 1, person_count: 10 },
+      "1" => { item_id: 2, person_count: 12 },
+      "21312" => { item_id: 3, person_count: 13 },
     }
   end
 
@@ -14,7 +14,7 @@ RSpec.describe FamilyRequest do
 
     expect(request.items.size).to eq(2)
     expect(request.items.map(&:item_id)).to match_array [ nil, nil ]
-    expect(request.items.map(&:people_count)).to match_array [ nil, nil ]
+    expect(request.items.map(&:person_count)).to match_array [ nil, nil ]
   end
 
   it "mass assigns items" do
@@ -22,7 +22,7 @@ RSpec.describe FamilyRequest do
 
     expect(request.items.size).to eq(3)
     expect(request.items.map(&:item_id)).to match_array [ 1, 2, 3 ]
-    expect(request.items.map(&:people_count)).to match_array [ 10, 12, 13 ]
+    expect(request.items.map(&:person_count)).to match_array [ 10, 12, 13 ]
   end
 
   describe ".as_payload" do
@@ -34,11 +34,11 @@ RSpec.describe FamilyRequest do
     it { is_expected.to include(partner_id: 2525) }
 
     describe "items" do
-      subject { request.as_payload[:request_items] }
+      subject { request.as_payload[:requested_items] }
 
-      it { is_expected.to include({ "item_id" => 1, "people_count" => 10 }) }
-      it { is_expected.to include({ "item_id" => 2, "people_count" => 12 }) }
-      it { is_expected.to include({ "item_id" => 3, "people_count" => 13 }) }
+      it { is_expected.to include({ item_id: 1, person_count: 10 }) }
+      it { is_expected.to include({ item_id: 2, person_count: 12 }) }
+      it { is_expected.to include({ item_id: 3, person_count: 13 }) }
     end
   end
 end
