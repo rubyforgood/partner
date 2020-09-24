@@ -33,9 +33,8 @@
           <div class="card-footer">
             <% if @partner.verified? %>
               <%= link_to 'Create New Bulk Diaper Request', new_partner_request_path, class: 'btn btn-outline-primary' %>
-            <% end %>
-            <% if @partner.verified? %>
               <%= link_to 'Create New Family Diaper Request', new_family_request_path, class: 'btn btn-outline-primary' %>
+              <%= link_to 'Create New Individuals Diaper Request', new_individuals_request_path, class: 'btn btn-outline-primary' %>
             <% end %>
           </div>
         </div>
