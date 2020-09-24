@@ -4,27 +4,23 @@ class FamilyRequestPayloadService
     new(children: children, partner: partner).execute
   end
 
-  attr_reader :partner, :children
   def initialize(children:, partner:)
-    @children = children
-    @partner = partner
+    @request = FamilyRequest.new({ items_attributes: requested_items(children) }, partner: partner)
   end
 
   def execute
-    {
-      organization_id: partner.diaper_bank_id,
-      partner_id: partner.diaper_partner_id,
-      requested_items: requested_items
-    }
+    @request.as_payload
   end
 
   private
 
-  def requested_items
-    items_count_map.map { |item, count| { item_id: item, person_count: count } }
+  def requested_items(children)
+    items_count_map(children).map do |item, count|
+      [nil, { item_id: item, person_count: count }]
+    end
   end
 
-  def items_count_map
+  def items_count_map(children)
     children.each_with_object({}) do |child, map|
       map[child.item_needed_diaperid] ||= 0
       map[child.item_needed_diaperid] += 1
