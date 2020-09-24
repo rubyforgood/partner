@@ -9,7 +9,7 @@ RSpec.describe FamilyRequestService do
     it "submits the request to DiaperBank" do
       expect(DiaperBankClient).to(
         receive(:send_family_request)
-          .with(hash_including(request_items: [{ "item_id" => 25, "person_count" => 2 }]))
+          .with(hash_including(requested_items: [{ item_id: 25, person_count: 2 }]))
           .and_return(success_response)
       )
 

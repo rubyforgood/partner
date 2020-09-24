@@ -20,7 +20,7 @@ class FamilyRequest
     {
       organization_id: partner&.diaper_bank_id,
       partner_id: partner&.diaper_partner_id,
-      request_items: items.as_json,
+      requested_items: items.map(&:as_payload),
     }
   end
 
@@ -28,5 +28,9 @@ class FamilyRequest
     include ActiveModel::Model
 
     attr_accessor :item_id, :person_count
+
+    def as_payload
+      { item_id: item_id&.to_i, person_count: person_count&.to_i }
+    end
   end
 end
