@@ -13,7 +13,7 @@ class FamilyRequestService
     PartnerRequest.create! response_to_request_attrs(response)
   end
 
-private
+  private
 
   def response_to_request_attrs(response)
     {
@@ -27,13 +27,13 @@ private
 
   def items_response_to_attrs(response)
     item_children = @request.items
-                            .filter {|item| response["item_id"].to_i.eql?(item.item_id) }
+                            .filter { |item| response["item_id"].to_i.eql?(item.item_id) }
                             .flat_map(&:children)
     {
       name: response["item_name"],
       item_id: response["item_id"],
       quantity: response["count"],
-      children: item_children,
+      children: item_children
     }
   end
 end

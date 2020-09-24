@@ -8,7 +8,7 @@ RSpec.describe FamilyRequestService do
           { "item_name" => "Diaper XXL", "item_id" => "25", "count" => "4" },
           { "item_name" => "Diaper SM", "item_id" => "26", "count" => "8" }
         ]
-    }
+      }
     end
     let(:child1) { create(:child) }
     let(:child2) { create(:child) }
@@ -18,7 +18,7 @@ RSpec.describe FamilyRequestService do
       FamilyRequest.new(
         items_attributes: {
           0 => { item_id: 25, person_count: 1, children: [child1] },
-          1 => { item_id: 26, person_count: 2, children: [child2, child3] },
+          1 => { item_id: 26, person_count: 2, children: [child2, child3] }
         },
         partner: partner
       )

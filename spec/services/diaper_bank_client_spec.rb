@@ -5,7 +5,7 @@ RSpec.describe DiaperBankClient do
     it "postst the payload to family_requests API" do
       expect(DiaperBankClient).to(
         receive(:diaper_post_request)
-          .with(having_attributes(path: /family_requests\//), '{"organization_id":"1"}')
+          .with(having_attributes(path: %r{family_requests/}), '{"organization_id":"1"}')
           .and_return(double(body: '{"success":1}'))
       )
 

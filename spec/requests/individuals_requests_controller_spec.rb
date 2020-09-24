@@ -8,13 +8,13 @@ RSpec.describe IndividualsRequestsController, type: :request do
       comments: "I need a lot of diapers",
       items_attributes: {
         "0" => { item_id: 12, person_count: 25 },
-        "1231" => { item_id: 13, person_count: 45 },
-      },
+        "1231" => { item_id: 13, person_count: 45 }
+      }
     }
   end
 
   before { sign_in(user) }
-  subject { post(individuals_requests_path, params: { family_request: family_request_params}) }
+  subject { post(individuals_requests_path, params: { family_request: family_request_params }) }
 
   describe "POST /individuals_requests" do
     it "disallow unverified partners" do

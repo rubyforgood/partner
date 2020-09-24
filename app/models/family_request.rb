@@ -20,7 +20,7 @@ class FamilyRequest
     {
       organization_id: partner&.diaper_bank_id,
       partner_id: partner&.diaper_partner_id,
-      requested_items: items.map(&:as_payload),
+      requested_items: items.map(&:as_payload)
     }
   end
 

@@ -24,7 +24,7 @@ class FamilyRequestsController < ApplicationController
     render :new
   end
 
-private
+  private
 
   def family_request_params
     params.require(:family_request).slice(

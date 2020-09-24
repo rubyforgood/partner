@@ -5,7 +5,7 @@ RSpec.describe FamilyRequest do
     {
       "0" => { item_id: 1, person_count: 10 },
       "1" => { item_id: 2, person_count: 12 },
-      "21312" => { item_id: 3, person_count: 13 },
+      "21312" => { item_id: 3, person_count: 13 }
     }
   end
 
@@ -13,16 +13,16 @@ RSpec.describe FamilyRequest do
     request = FamilyRequest.new({}, initial_items: 2)
 
     expect(request.items.size).to eq(2)
-    expect(request.items.map(&:item_id)).to match_array [ nil, nil ]
-    expect(request.items.map(&:person_count)).to match_array [ nil, nil ]
+    expect(request.items.map(&:item_id)).to match_array [nil, nil]
+    expect(request.items.map(&:person_count)).to match_array [nil, nil]
   end
 
   it "mass assigns items" do
     request = FamilyRequest.new(items_attributes: items_attributes)
 
     expect(request.items.size).to eq(3)
-    expect(request.items.map(&:item_id)).to match_array [ 1, 2, 3 ]
-    expect(request.items.map(&:person_count)).to match_array [ 10, 12, 13 ]
+    expect(request.items.map(&:item_id)).to match_array [1, 2, 3]
+    expect(request.items.map(&:person_count)).to match_array [10, 12, 13]
   end
 
   it "mass assigns items with children associated" do
@@ -30,8 +30,8 @@ RSpec.describe FamilyRequest do
     child2 = build(:child)
 
     request = FamilyRequest.new(items_attributes: {
-      1 => { item_id: 10, person_count: 2, children: [child1, child2] }
-    })
+                                  1 => { item_id: 10, person_count: 2, children: [child1, child2] }
+                                })
 
     expect(request.items.size).to eq(1)
     expect(request.items.flat_map(&:children)).to match_array [child1, child2]
