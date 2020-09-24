@@ -16,10 +16,8 @@ class FamilyRequestsController < ApplicationController
     verify_status_in_diaper_base
     children = current_partner.children.active.where.not(item_needed_diaperid: nil)
     children_grouped_by_diaperid = children.group_by(&:item_needed_diaperid)
-    api_response = DiaperBankClient.send_family_request(
-      children: children,
-      partner: current_partner
-    )
+    payload = FamilyRequestPayloadService.execute(children: children, partner: current_partner)
+    api_response = DiaperBankClient.send_family_request(payload)
 
     if api_response
       flash[:notice] = "Request sent to diaper bank successfully"

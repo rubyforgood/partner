@@ -15,7 +15,7 @@ class FamilyRequestPayloadService
       organization_id: partner.diaper_bank_id,
       partner_id: partner.diaper_partner_id,
       requested_items: requested_items
-    }.to_json
+    }
   end
 
   private
