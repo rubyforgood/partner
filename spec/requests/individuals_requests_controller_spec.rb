@@ -43,11 +43,5 @@ RSpec.describe IndividualsRequestsController, type: :request do
       expect(subject).to redirect_to(partner_requests_path)
       expect(response.request.flash[:notice]).to eql "Requested items successfuly!"
     end
-
-    it "renders the form again in case the request is somehow invalid" do
-      expect(FamilyRequestService).to receive(:execute).and_raise ActiveModel::ValidationError.new(partner)
-
-      expect(subject).to be 200
-    end
   end
 end
