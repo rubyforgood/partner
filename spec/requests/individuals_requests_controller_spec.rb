@@ -47,9 +47,7 @@ RSpec.describe IndividualsRequestsController, type: :request do
     it "renders the form again in case the request is somehow invalid" do
       expect(FamilyRequestService).to receive(:execute).and_raise ActiveModel::ValidationError.new(partner)
 
-      subject
-
-      expect(response).to have_http_status(:ok)
+      expect(subject).to be 200
     end
   end
 end
