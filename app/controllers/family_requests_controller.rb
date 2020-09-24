@@ -23,12 +23,4 @@ class FamilyRequestsController < ApplicationController
   rescue ActiveModel::ValidationError
     render :new
   end
-
-  private
-
-  def family_request_params
-    params.require(:family_request).slice(
-      :child_ids
-    )
-  end
 end
