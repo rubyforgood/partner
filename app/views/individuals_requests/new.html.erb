@@ -26,8 +26,7 @@
         <div class="card">
           <div class="card-body">
 
-            <%= simple_form_for :request, html: {role: 'form', class: 'form-horizontal'} do |form| %>
-
+            <%= simple_form_for @request, url: individuals_requests_path, html: {role: 'form', class: 'form-horizontal'} do |form| %>
               <%= form.input :comments, label: "Comments:", as: :text, class: "form-control", wrapper: :input_group %>
 
               <table class='table'>
