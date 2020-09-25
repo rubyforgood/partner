@@ -15,6 +15,11 @@ class PartnerRequestsController < ApplicationController
     @partner_request.item_requests.build # required to render the empty items form
   end
 
+  def confirm
+    @partner_request = PartnerRequest.new(partner_request_params.merge(partner_id: current_partner.id))
+    @partner_request.item_requests << create_item_requests
+  end
+
   def create
     @partner_request = PartnerRequest.new(partner_request_params.merge(partner_id: current_partner.id))
     @partner_request.item_requests << create_item_requests
@@ -45,7 +50,6 @@ class PartnerRequestsController < ApplicationController
   end
 
   def get_full_item_values(id)
-    valid_items = DiaperBankClient.get_available_items(current_partner.diaper_bank_id)
     valid_items.find { |item| item["id"] == id.to_i }
   end
 
