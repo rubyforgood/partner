@@ -29,25 +29,7 @@
 
             <%= simple_form_for @partner_request, url: confirm_partner_requests_path, html: {role: 'form', class: 'form-horizontal'} do |form| %>
 
-              <%= form.input :comments, label: "Comments:", as: :text, class: "form-control", wrapper: :input_group %>
-
-              <table class='table'>
-                <thead>
-                <tr>
-                  <th>Item Requested</th>
-                  <th>Quantity</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody class='fields'>
-                  <%= render 'item_request', form: form %>
-                </tbody>
-              </table>
-              <div>
-                <%= add_item_button('Add Another Item') do %>
-                  <%= render 'item_request', form: form, object: @partner_request.item_requests.build %>
-                <% end %>
-              </div>
+              <%= render "form", form: form, partner_request: @partner_request %>
 
               <hr>
 
