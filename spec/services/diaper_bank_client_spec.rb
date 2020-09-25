@@ -1,6 +1,20 @@
 require "rails_helper"
 
 RSpec.describe DiaperBankClient do
+  describe ".send_family_request" do
+    it "postst the payload to family_requests API" do
+      expect(DiaperBankClient).to(
+        receive(:diaper_post_request)
+          .with(having_attributes(path: %r{family_requests/}), '{"organization_id":"1"}')
+          .and_return(double(body: '{"success":1}'))
+      )
+
+      response = DiaperBankClient.send_family_request({ "organization_id" => "1" })
+
+      expect(response).to eql("success" => 1)
+    end
+  end
+
   describe ".post_request" do
     it "provides net http request object for post actions" do
       client = DiaperBankClient.post_request(uri: "some_url", body: {})

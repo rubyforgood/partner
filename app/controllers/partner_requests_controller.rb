@@ -1,5 +1,9 @@
 class PartnerRequestsController < ApplicationController
+  helper MultiItemFormHelper
+
   before_action :authenticate_user!
+  before_action :verify_status_in_diaper_base, only: %i[new create]
+  before_action :authorize_verified_partners, only: %i[new]
 
   def index
     @partner = current_partner
@@ -7,17 +11,11 @@ class PartnerRequestsController < ApplicationController
   end
 
   def new
-    verify_status_in_diaper_base
-    if current_partner.partner_status.casecmp("verified").zero?
-      @partner_request = PartnerRequest.new
-      @partner_request.item_requests.build # required to render the empty items form
-    else
-      redirect_to partner_requests_path, notice: "Please review your application details and submit for approval in order to make a new request."
-    end
+    @partner_request = PartnerRequest.new
+    @partner_request.item_requests.build # required to render the empty items form
   end
 
   def create
-    verify_status_in_diaper_base
     @partner_request = PartnerRequest.new(partner_request_params.merge(partner_id: current_partner.id))
     @partner_request.item_requests << create_item_requests
     respond_to do |format|

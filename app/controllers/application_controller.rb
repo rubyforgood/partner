@@ -33,6 +33,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_verified_partners
+    return if current_partner.verified?
+
+    redirect_to partner_requests_path, notice: "Please review your application details and submit for approval in order to make a new request."
+  end
+
   private
 
   def user_not_authorized

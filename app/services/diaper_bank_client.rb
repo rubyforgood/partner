@@ -15,11 +15,8 @@ module DiaperBankClient
     end
   end
 
-  def self.send_family_request(children:, partner:)
-    payload = FamilyRequestPayloadService
-              .execute(children: children, partner: partner)
-
-    response = diaper_post_request(routes.family_requests, payload)
+  def self.send_family_request(payload)
+    response = diaper_post_request(routes.family_requests, payload.to_json)
     response.body ? JSON.parse(response.body) : nil
   end
 
@@ -35,7 +32,7 @@ module DiaperBankClient
   def self.https(uri)
     # Use a uri with `http://` to not use ssl.
     Net::HTTP.new(uri.host, uri.port).tap do |http|
-      http.use_ssl = true
+      http.use_ssl = uri.scheme.eql?("https")
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
   end

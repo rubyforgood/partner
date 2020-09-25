@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <% content_for :title, "New Request - #{current_partner.name}" %>
+        <% content_for :title, "New Individuals Request - #{current_partner.name}" %>
         <h1><i class="fa fa-users"></i>&nbsp;&nbsp;
           New Request
           <small>for <%= current_partner.name %></small>
@@ -10,9 +10,8 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-
           <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
-          <li class="breadcrumb-item"><a href="#">New Diaper Request</a></li>
+          <li class="breadcrumb-item"><a href="#">New Invididuals Order Request</a></li>
         </ol>
       </div>
     </div>
@@ -27,34 +26,34 @@
         <div class="card">
           <div class="card-body">
 
-            <%= simple_form_for @partner_request, html: {role: 'form', class: 'form-horizontal'} do |form| %>
-
+            <%= simple_form_for @request, url: individuals_requests_path, html: {role: 'form', class: 'form-horizontal'} do |form| %>
               <%= form.input :comments, label: "Comments:", as: :text, class: "form-control", wrapper: :input_group %>
 
               <table class='table'>
                 <thead>
                 <tr>
                   <th>Item Requested</th>
-                  <th>Quantity</th>
+                  <th>Number of Individuals</th>
                   <th></th>
                 </tr>
                 </thead>
                 <tbody class='fields'>
-                  <%= render 'item_request', form: form %>
+                  <%= render 'individuals_requests/item_request', form: form %>
                 </tbody>
               </table>
+
               <div>
                 <%= add_item_button('Add Another Item') do %>
-                  <%= render 'item_request', form: form, object: @partner_request.item_requests.build %>
+                  <%= render 'individuals_requests/item_request', form: form %>
                 <% end %>
               </div>
 
-              <hr>
+              <hr />
 
-          </div>
               <div class="card-footer">
                 <!-- TODO(chaserx): we should add some js to prevent submission if the items selected are the blank option or any item has an empty quantity -->
-                <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
+                <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %>
+                <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
               </div>
             <% end %>
         </div>
