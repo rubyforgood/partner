@@ -16,13 +16,11 @@ class PartnerRequestsController < ApplicationController
   end
 
   def confirm
-    @partner_request = PartnerRequest.new(partner_request_params.merge(partner_id: current_partner.id))
-    @partner_request.item_requests << create_item_requests
+    @partner_request = build_partner_request
   end
 
   def create
-    @partner_request = PartnerRequest.new(partner_request_params.merge(partner_id: current_partner.id))
-    @partner_request.item_requests << create_item_requests
+    @partner_request = build_partner_request
     respond_to do |format|
       if @partner_request.save
         # NOTE(chaserx): send request to diaper app.
@@ -44,6 +42,12 @@ class PartnerRequestsController < ApplicationController
   end
 
   private
+
+  def build_partner_request
+    partner_request = PartnerRequest.new(partner_request_params.merge(partner_id: current_partner.id))
+    partner_request.item_requests << create_item_requests
+    partner_request
+  end
 
   def partner_request_params
     params.require(:partner_request).permit(:comments, :item_requests_attributes)
