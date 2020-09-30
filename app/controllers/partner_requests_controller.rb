@@ -51,6 +51,7 @@ class PartnerRequestsController < ApplicationController
 
   def create_item_requests
     item_params = params.dig("partner_request", "item_requests_attributes")&.values
+    item_params.reject! { |item| item["item_id"].empty? }
     item_params.map do |item|
       full_item = get_full_item_values(item["item_id"])
       ItemRequest.new(
