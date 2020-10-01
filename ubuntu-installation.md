@@ -4,7 +4,7 @@ Following are instructions for installing PartnerBase on a freshly installed Ubu
 
 Many of these instructions can probably work as is, or easily be translated to work on a Mac.
 
-There are two kinds of installations; one for a developer and another for a deployment. The only difference between the two is that the former will need git installed and need to `git clone` the repo, whereas the latter can just download a copy of master.
+There are two kinds of installations; one for a developer and another for a deployment. The only difference between the two is that the former will need git installed and need to `git clone` the repo, whereas the latter can just download a copy of main.
 
 Obviously, if any of these steps are already done you will probably not need to do them, so just ignore those steps.
 
@@ -30,7 +30,7 @@ If you will be using this machine for development, you will need to `git clone` 
 If you only need to have the files but don't need to use git, you can download the zip file and unzip it:
 
 ```
-curl -o partner.zip https://codeload.github.com/rubyforgood/partner/zip/master \
+curl -o partner.zip https://codeload.github.com/rubyforgood/partner/zip/main \
     && unzip partner.zip \
     && rm partner.zip
 ```

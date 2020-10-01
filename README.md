@@ -1,6 +1,6 @@
 # README
 
-[![Build Status](https://travis-ci.org/rubyforgood/partner.svg?branch=master)](https://travis-ci.org/rubyforgood/partner)
+[![Build Status](https://travis-ci.org/rubyforgood/partner.svg?branch=main)](https://travis-ci.org/rubyforgood/partner)
 
 This is the companion application to the [diaper](https://github.com/rubyforgood/diaper) app. The diaper app is an
 inventory management system and this partner application handles the onboarding, approving, and handling of requests
