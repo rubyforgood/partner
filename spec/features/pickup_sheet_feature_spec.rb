@@ -52,7 +52,7 @@ describe "PickupSheet", type: :feature, include_shared: true, js: true do
     stub_successful_items_partner_request
     stub_successful_family_request
     visit partner_requests_path
-    find_link("Create New Family Diaper Request").click
+    find_link("Create New Family Essentials Request").click
     find('input[type="submit"]').click
     expect(page).to have_text("Request History")
   end
