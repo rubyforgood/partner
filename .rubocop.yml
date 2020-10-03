@@ -41,13 +41,13 @@ Naming/PredicateName:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#bool-methods-qmark
   Enabled: false
   NamePrefix:
-    - is_
-    - has_
-    - have_
+  - is_
+  - has_
+  - have_
   ForbiddenPrefixes:
-    - is_
+  - is_
   Exclude:
-    - spec/**/*
+  - spec/**/*
 Style/CollectionMethods:
   Description: Preferred collection methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#map-find-select-reduce-size
@@ -63,8 +63,8 @@ Layout/DotPosition:
   Enabled: true
   EnforcedStyle: leading
   SupportedStyles:
-    - leading
-    - trailing
+  - leading
+  - trailing
 Style/AsciiComments:
   Enabled: false
 Style/Lambda:
@@ -101,37 +101,31 @@ Style/RaiseArgs:
   Enabled: false
   EnforcedStyle: exploded
   SupportedStyles:
-    - compact
-    - exploded
+  - compact
+  - exploded
 Style/RegexpLiteral:
   EnforcedStyle: mixed
   AllowInnerSlashes: false
-Style/HashTransformKeys:
-  Enabled: false
-Style/HashEachMethods:
-  Enabled: false
-Style/HashTransformValues:
-  Enabled: false
 Style/SignalException:
   Description: Checks for proper usage of fail and raise.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#fail-method
   Enabled: false
   EnforcedStyle: semantic
   SupportedStyles:
-    - only_raise
-    - only_fail
-    - semantic
+  - only_raise
+  - only_fail
+  - semantic
 Style/SingleLineBlockParams:
   Description: Enforces the names of some block params.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#reduce-blocks
   Enabled: false
   Methods:
-    - reduce:
-        - a
-        - e
-    - inject:
-        - a
-        - e
+  - reduce:
+    - a
+    - e
+  - inject:
+    - a
+    - e
 Style/SingleLineMethods:
   Description: Avoid single-line methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-single-line-methods
@@ -146,26 +140,26 @@ Style/StringLiteralsInInterpolation:
   Enabled: false
   EnforcedStyle: single_quotes
   SupportedStyles:
-    - double_quotes
-    - single_quotes
+  - double_quotes
+  - single_quotes
 Style/TrailingCommaInArguments:
   Description: Checks for trailing comma in argument lists.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
   Enabled: false
   EnforcedStyleForMultiline: no_comma
   SupportedStylesForMultiline:
-    - comma
-    - consistent_comma
-    - no_comma
+  - comma
+  - consistent_comma
+  - no_comma
 Style/TrailingCommaInArrayLiteral:
   Description: Checks for trailing comma in array and hash literals.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
   Enabled: false
   EnforcedStyleForMultiline: no_comma
   SupportedStylesForMultiline:
-    - comma
-    - consistent_comma
-    - no_comma
+  - comma
+  - consistent_comma
+  - no_comma
 Metrics/AbcSize:
   Description: A calculated magnitude based on number of assignments, branches, and
     conditions.
@@ -205,6 +199,12 @@ Metrics/PerceivedComplexity:
     reader.
   Enabled: false
   Max: 7
+Layout/BeginEndAlignment:
+  Enabled: false
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: false
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: false
 Layout/LineLength:
   # This one metric can't be ratcheted via .rubocop_todo.yml :(
   # So instead, make a single PR that changes back to 100 and fix all violations
@@ -221,6 +221,98 @@ Lint/AssignmentInCondition:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition
   Enabled: false
   AllowSafeAssignment: true
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: false
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: false
+Lint/DuplicateElsifCondition:
+  Enabled: false
+Lint/DuplicateRequire:
+  Enabled: false
+Lint/DuplicateRescueException:
+  Enabled: false
+Lint/EmptyConditionalBody:
+  Enabled: false
+Lint/EmptyFile:
+  Enabled: false
+Lint/FloatComparison:
+  Enabled: false
+Lint/IdentityComparison:
+  Enabled: false
+Lint/MissingSuper:
+  Enabled: false
+Lint/MixedRegexpCaptureTypes:
+  Enabled: false
+Lint/OutOfRangeRegexpRef:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: false
+Lint/SelfAssignment:
+  Enabled: false
+Lint/StructNewOverride:
+  Enabled: false
+Lint/TopLevelReturnWithArgument:
+  Enabled: false
+Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: false
+Lint/UnreachableLoop:
+  Enabled: false
+Lint/UselessMethodDefinition:
+  Enabled: false
+Lint/UselessTimes:
+  Enabled: false
+Style/AccessorGrouping:
+  Enabled: false
+Style/ArrayCoercion:
+  Enabled: false
+Style/BisectedAttrAccessor:
+  Enabled: false
+Style/CaseLikeIf:
+  Enabled: false
+Style/CombinableLoops:
+  Enabled: false
+Style/ExplicitBlockArgument:
+  Enabled: false
+Style/ExponentialNotation:
+  Enabled: false
+Style/GlobalStdStream:
+  Enabled: false
+Style/HashAsLastArrayItem:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: false
+Style/HashLikeCase:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
+Style/KeywordParametersOrder:
+  Enabled: false
+Style/OptionalBooleanParameter:
+  Enabled: false
+Style/RedundantAssignment:
+  Enabled: false
+Style/RedundantFetchBlock:
+  Enabled: false
+Style/RedundantFileExtensionInRequire:
+  Enabled: false
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+Style/RedundantRegexpEscape:
+  Enabled: false
+Style/RedundantSelfAssignment:
+  Enabled: false
+Style/SingleArgumentDig:
+  Enabled: false
+Style/SlicingWithRange:
+  Enabled: false
+Style/SoleNestedConditional:
+  Enabled: false
+Style/StringConcatenation:
+  Enabled: false
 Style/BlockComments:
   Enabled: false
 Style/ClassAndModuleChildren:
@@ -317,4 +409,38 @@ Rails/UnknownEnv:
     - development
     - test
 Style/SymbolArray:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex: # We use multiple unique validations where the uniqueness is scoped
+  Enabled: false
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: false
+Rails/AfterCommitOverride:
+  Enabled: false
+Rails/FindById:
+  Enabled: false
+Rails/Inquiry:
+  Enabled: false
+Rails/MailerName:
+  Enabled: false
+Rails/MatchRoute:
+  Enabled: false
+Rails/NegateInclude:
+  Enabled: false
+Rails/Pluck:
+  Enabled: false
+Rails/PluckInWhere:
+  Enabled: false
+Rails/RenderInline:
+  Enabled: false
+Rails/RenderPlainText:
+  Enabled: false
+Rails/ShortI18n:
+  Enabled: false
+Rails/SquishedSQLHeredocs:
+  Enabled: false
+Rails/WhereExists:
+  Enabled: false
+Rails/WhereNot:
+  Enabled: false
+Lint/EnsureReturn: # The service objects return self in an ensure block. Not using an explicit return does not do correct behavior
   Enabled: false

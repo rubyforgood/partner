@@ -1,3 +1,3 @@
 class PartnerForm < ApplicationRecord
-  validates :diaper_bank_id, presence: true, uniqueness: true # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :diaper_bank_id, presence: true, uniqueness: true
 end
