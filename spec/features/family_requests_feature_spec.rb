@@ -30,7 +30,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
         stub_successful_items_partner_request
         stub_successful_family_request
         visit partner_requests_path
-        find_link("Create New Family Diaper Request").click
+        find_link("Create New Family Essentials Request").click
         find('input[type="submit"]').click
         expect(page).to have_text("Request History")
         expect(ChildItemRequest.count - children.count).to eq(child_item_requests)
@@ -45,7 +45,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
         stub_successful_items_partner_request
         stub_successful_family_request
         visit partner_requests_path
-        find_link("Create New Family Diaper Request").click
+        find_link("Create New Family Essentials Request").click
         fill_in "Search By Child Name", with: "Arthur"
         expect(page).to have_text("Arthur")
         expect(page).to_not have_text("Zeno")
@@ -59,7 +59,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
         stub_successful_items_partner_request
         stub_successful_family_request
         visit partner_requests_path
-        find_link("Create New Family Diaper Request").click
+        find_link("Create New Family Essentials Request").click
         fill_in "Search By Guardian Name", with: "Morales"
         expect(page).to have_css("table tbody tr", count: 7)
         expect(page).to have_text("Zeno")
@@ -73,7 +73,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
         stub_successful_items_partner_request
         stub_successful_family_request
         visit partner_requests_path
-        find_link("Create New Family Diaper Request").click
+        find_link("Create New Family Essentials Request").click
         find('input[type="submit"]').click
         expect(page).to have_text("Request History")
         within "tbody" do
@@ -112,7 +112,7 @@ describe FamilyRequestsController, type: :feature, include_shared: true, js: tru
     scenario "it don't create because partner status in diaper base is deactivated" do
       partner.update(status_in_diaper_base: "deactivated")
       visit partner_requests_path
-      find_link("Create New Family Diaper Request").click
+      find_link("Create New Family Essentials Request").click
       expect(page).to have_text("Your account has been disabled, contact the organization via their email to reactivate")
       expect(current_path).to eq(partner_requests_path)
     end

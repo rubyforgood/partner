@@ -12,7 +12,7 @@
         <ol class="breadcrumb float-sm-right">
 
           <li class="breadcrumb-item"><a href="<%= dashboard_path %>"><i class="fa fa-home fa-lg"></i></a></li>
-          <li class="breadcrumb-item"><a href="#">New Diaper Request</a></li>
+          <li class="breadcrumb-item"><a href="#">New Essentials Request</a></li>
         </ol>
       </div>
     </div>
@@ -54,7 +54,7 @@
           </div>
               <div class="card-footer">
                 <!-- TODO(chaserx): we should add some js to prevent submission if the items selected are the blank option or any item has an empty quantity -->
-                <%= form.submit("Submit Diaper Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
+                <%= form.submit("Submit Essentials Request", class: "btn btn-primary") %> <%= link_to "Cancel Request", partner_requests_path, class: "btn btn-danger" %>
               </div>
             <% end %>
         </div>

@@ -2,8 +2,8 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <% content_for :title, "Diaper Requests - #{current_partner.name}" %>
-        <h1><i class="fa fa-edit"></i>&nbsp;&nbsp;Diaper Requests
+        <% content_for :title, "Essentials Requests - #{current_partner.name}" %>
+        <h1><i class="fa fa-edit"></i>&nbsp;&nbsp;Essentials Requests
           <small>for <%= current_partner.name %></small>
         </h1>
       </div>
@@ -15,7 +15,7 @@
           </li>
           <li class="breadcrumb-item">
             <a href="<%= partner_path(current_partner) %>"><%= "#{current_partner.name}" %></a></li>
-          <li class="breadcrumb-item"><a href="#">Diaper Requests</a></li>
+          <li class="breadcrumb-item"><a href="#">Essentials Requests</a></li>
         </ol>
       </div>
     </div>
@@ -32,9 +32,9 @@
         <div class="card">
           <div class="card-footer">
             <% if @partner.verified? %>
-              <%= link_to 'Create New Bulk Diaper Request', new_partner_request_path, class: 'btn btn-outline-primary' %>
-              <%= link_to 'Create New Family Diaper Request', new_family_request_path, class: 'btn btn-outline-primary' %>
-              <%= link_to 'Create New Individuals Diaper Request', new_individuals_request_path, class: 'btn btn-outline-primary' %>
+              <%= link_to 'Create New Bulk Essentials Request', new_partner_request_path, class: 'btn btn-outline-primary' %>
+              <%= link_to 'Create New Family Essentials Request', new_family_request_path, class: 'btn btn-outline-primary' %>
+              <%= link_to 'Create New Individuals Essentials Request', new_individuals_request_path, class: 'btn btn-outline-primary' %>
             <% end %>
           </div>
         </div>
