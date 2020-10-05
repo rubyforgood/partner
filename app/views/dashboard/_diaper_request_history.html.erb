@@ -1,3 +1,24 @@
+
+<div class="w3-card mb-4 ">
+  <% if @partner.verified? %>
+  <h5 class="card-header bg-white">Request Essentials</h5>
+  <% end %> 
+    <div class="col-6-lg">
+      <div class="actions mt-4">
+        <% if @partner.verified? %>
+          <%= link_to 'Create New Bulk Essentials Request', new_partner_request_path, class: 'btn btn-sm btn-primary' %>
+        <% end %>
+        <% if @partner.verified? %>
+          <%= link_to 'Create New Family Essentials Request', new_family_request_path, class: 'btn btn-sm btn-primary' %>
+        <% end %>
+        <% if @partner.verified? %>
+          <%= link_to 'Create New Individuals Essentials Request', new_individuals_request_path, class: 'btn btn-sm btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
 <div class="card mb-4">
   <h5 class="card-header bg-white">Essentials Request History</h5>
   <div class="card-body">
@@ -6,7 +27,7 @@
         <div class="col-6-lg">
           <h2>Your recent essentials requests</h2>
         </div>
-        <div class="col-6-lg">
+    <!--<div class="col-6-lg">
           <div class="actions">
             <% if @partner.verified? %>
               <%= link_to 'Create New Bulk Essentials Request', new_partner_request_path, class: 'btn btn-sm btn-primary' %>
@@ -15,7 +36,7 @@
               <%= link_to 'Create New Family Essentials Request', new_family_request_path, class: 'btn btn-sm btn-primary' %>
             <% end %>
           </div>
-        </div>
+        </div>-->
       </div>
       <table class="table table-striped dashboard">
         <thead>
