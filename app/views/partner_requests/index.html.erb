@@ -30,11 +30,18 @@
       <div class="col-md-12">
         <!-- jquery validation -->
         <div class="card">
+         <h5 class="card-header bg-white">Request Essentials</h5>
           <div class="card-footer">
             <% if @partner.verified? %>
               <%= link_to 'Create New Bulk Essentials Request', new_partner_request_path, class: 'btn btn-outline-primary' %>
+              <p>Use this type of request when you want to specify the number of diapers, period supplies,
+              <br>and other essentials. Example - 1000 Size 1 Diapers, 500 Tampons, etc.</p>
               <%= link_to 'Create New Family Essentials Request', new_family_request_path, class: 'btn btn-outline-primary' %>
+              <p>Use this type of request when you you are using the children and family functionality and
+              <br> are identifying the specific children you are requesting for.</p>
               <%= link_to 'Create New Individuals Essentials Request', new_individuals_request_path, class: 'btn btn-outline-primary' %>
+              <p>Use this type of request when you want to just request by the number of individuals in a specific category. 
+              <br>Example - 10 individuals for Size 1 diapers, 5 individuals need tampons, etc.</p>
             <% end %>
           </div>
         </div>
