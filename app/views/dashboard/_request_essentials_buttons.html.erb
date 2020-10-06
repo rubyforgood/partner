@@ -1,9 +1,9 @@
-<div class="w3-card mb-4 ">
+<div class="w3-card mb-4">
   <% if @partner.verified? %>
   <h5 class="card-header bg-white">Request Essentials</h5>
-  <% end %> 
-    <div class="col-6-lg">
-      <div class="actions mt-4">
+  <% end %>
+    <div class="col-md-7">
+      <div class="actions mt-4 btn-group">
         <% if @partner.verified? %>
           <%= link_to 'Create New Bulk Essentials Request', new_partner_request_path, class: 'btn btn-sm btn-primary' %>
           <p>Use this type of request when you want to specify the number of diapers, period supplies,
