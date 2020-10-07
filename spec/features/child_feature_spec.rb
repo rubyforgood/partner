@@ -23,18 +23,13 @@ describe Child, type: :feature, include_shared: true, js: true do
     ].reverse
 
     click_link "Children"
-    children.each.with_index do |child, index|
+    children.each do |child|
       within "tbody" do
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(1)"))
-          .to have_text(child.last_name)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(2)"))
-          .to have_text(child.first_name)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(3)"))
-          .to have_text(child.date_of_birth)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(5)"))
-          .to have_text(child.family.guardian_display_name)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(6)"))
-          .to have_text(child.comments)
+        expect(page).to have_text(child.first_name) &
+                        have_text(child.last_name) &
+                        have_text(child.date_of_birth) &
+                        have_text(child.family.guardian_display_name) &
+                        have_text(child.comments)
       end
     end
   end
@@ -51,18 +46,13 @@ describe Child, type: :feature, include_shared: true, js: true do
 
     click_link "Children"
     click_link "Last Name"
-    children.each.with_index do |child, index|
+    children.each do |child|
       within "tbody" do
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(1)"))
-          .to have_text(child.last_name)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(2)"))
-          .to have_text(child.first_name)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(3)"))
-          .to have_text(child.date_of_birth)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(5)"))
-          .to have_text(child.family.guardian_display_name)
-        expect(find("tr:nth-child(#{index + 1}) td:nth-child(6)"))
-          .to have_text(child.comments)
+        expect(page).to have_text(child.first_name) &
+                        have_text(child.last_name) &
+                        have_text(child.date_of_birth) &
+                        have_text(child.family.guardian_display_name) &
+                        have_text(child.comments)
       end
     end
   end
@@ -77,8 +67,8 @@ describe Child, type: :feature, include_shared: true, js: true do
 
     click_link "Children"
     fill_in "Search By Child Name", with: "Arthur"
-    expect(page).to have_text("Arthur")
-    expect(page).to_not have_text("Zeno")
+    expect(page).to have_text("Arthur") &
+                    have_no_text("Zeno")
   end
 
   scenario "User can see a list of children filtered by guardian name" do
@@ -92,10 +82,10 @@ describe Child, type: :feature, include_shared: true, js: true do
 
     click_link "Children"
     fill_in "Search By Guardian Name", with: "Morales"
-    expect(page).to have_css("table tbody tr", count: 2)
-    expect(page).to have_text("Zeno")
-    expect(page).to have_text("Arthur")
-    expect(page).to_not have_text("Louis")
+    expect(page).to have_css("table tbody tr", count: 2) &
+                    have_text("Zeno") &
+                    have_text("Arthur") &
+                    have_no_text("Louis")
   end
 
   describe "Show View" do
@@ -111,11 +101,10 @@ describe Child, type: :feature, include_shared: true, js: true do
       visit child_path(child)
       within "tbody" do
         within find("tr:nth-child(1)") do
-          expect(find("td:nth-child(1)")).to have_text(Time.zone.today.iso8601)
-          expect(find("td:nth-child(2)")).to have_text("Magic diaper")
-          expect(find("td:nth-child(3)")).to have_text("Not picked up")
-          expect(find("td:nth-child(4)")).to have_text("100")
-          expect(find("td:nth-child(5)")).to have_text("Not picked up")
+          expect(page).to have_text(Time.zone.today.iso8601) &
+                          have_text("Magic diaper") &
+                          have_text("100") &
+                          have_text("Not picked up", count: 2)
         end
       end
     end

@@ -13,15 +13,13 @@ describe "Partner edit", type: :feature do
     FactoryBot.create(:partner_form, diaper_bank_id: partner.id, sections: ["agency_information"])
 
     visit "/partners/#{partner.id}/edit"
-    aggregate_failures do
-      expect(page).to have_content("Agency Information")
-      expect(page).to_not have_content("Agency Stability")
-      expect(page).to_not have_content("Population Served")
-      expect(page).to_not have_content("Program Address")
-      expect(page).to_not have_content("Program Contact")
-      expect(page).to_not have_content("Sources of Funding")
-      expect(page).to_not have_content("Additional Documents")
-    end
+    expect(page).to have_content("Agency Information") &
+                    have_no_content("Agency Stability") &
+                    have_no_content("Population Served") &
+                    have_no_content("Program Address") &
+                    have_no_content("Program Contact") &
+                    have_no_content("Sources of Funding") &
+                    have_no_content("Additional Documents")
   end
 
   scenario "partner can select and provide an Other agency type" do
@@ -29,7 +27,7 @@ describe "Partner edit", type: :feature do
     fill_in "partner_other_agency_type", with: Faker::Name.name
     click_button "Update Information"
 
-    expect(page).to have_content "Details were successfully updated."
+    expect(page).to have_content("Details were successfully updated.")
   end
 
   scenario "partner can fill out partner details" do
@@ -107,8 +105,8 @@ describe "Partner edit", type: :feature do
 
     click_button "Update Information"
 
-    expect(page).to have_content "pending"
-    expect(page).to have_content "Details were successfully updated."
+    expect(page).to have_content("pending") &
+                    have_content("Details were successfully updated.")
   end
 
   scenario "partner can attach documents" do
@@ -118,9 +116,11 @@ describe "Partner edit", type: :feature do
 
     click_button "Update Information"
 
-    expect(page).to have_content "Details were successfully updated."
-    expect(partner.proof_of_partner_status.attached?).to eq true
-    expect(partner.proof_of_form_990.attached?).to eq true
-    expect(partner.documents.attached?).to eq true
+    aggregate_failures do
+      expect(page).to have_content("Details were successfully updated.")
+      expect(partner.proof_of_partner_status.attached?).to eq true
+      expect(partner.proof_of_form_990.attached?).to eq true
+      expect(partner.documents.attached?).to eq true
+    end
   end
 end
