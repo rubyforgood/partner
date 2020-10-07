@@ -27,9 +27,9 @@
             <%= render partial: "partner_details" %>
           </div>
         </div>
-        <%= render partial: "request_essentials_buttons" %><!-- look here and remove this-->
         <div class="row">
           <div class="col">
+            <%= render partial: "shared/request_card" if @partner.verified? @%> 
             <%= render partial: "diaper_request_history" %>
           </div>
         </div>
