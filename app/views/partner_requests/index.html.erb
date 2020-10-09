@@ -21,7 +21,7 @@
     </div>
   </div><!-- /.container-fluid -->
 </section>
-  <%= render partial: "shared/request_card" %>
+  <%= render partial: "shared/request_card" if @partner.verified? %>
 <section class="content">
   <div class="container-fluid">
     <div class="row">
