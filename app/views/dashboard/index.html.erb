@@ -29,6 +29,7 @@
         </div>
         <div class="row">
           <div class="col">
+            <%= render '/partner_requests/request_card' if @partner.verified? %>
             <%= render partial: "diaper_request_history" %>
           </div>
         </div>
