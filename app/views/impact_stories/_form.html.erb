@@ -1,0 +1,28 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+          <!-- /.card-header -->
+          <!-- form start -->
+          <div class="card-body">
+            <%= simple_form_for impact_story, html: {role: 'form', class: 'form-horizontal'} do |f| %>
+              <%= f.input :title, label: "Story Title", class: "form-control", wrapper: :input_group %>
+
+              <%= f.text_area :content, label: "Story Content", class: "form-control", wrapper: :input_group %>
+
+              <div class="card-footer">
+                <%= f.submit(class: 'btn btn-primary') %>
+              </div>
+            <% end %>
+          </div>
+        <!-- /.card -->
+      </div>
+      <p>We're working on adding image upload. Watch this space for updates!</p>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>

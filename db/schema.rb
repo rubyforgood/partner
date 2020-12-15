@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_010905) do
+ActiveRecord::Schema.define(version: 2020_09_05_195722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,15 @@ ActiveRecord::Schema.define(version: 2020_05_18_010905) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
+  end
+
+  create_table "impact_stories", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content", null: false
+    t.bigint "partner_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_impact_stories_on_partner_id"
   end
 
   create_table "item_requests", force: :cascade do |t|
@@ -273,6 +282,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_010905) do
   add_foreign_key "child_item_requests", "item_requests"
   add_foreign_key "children", "families"
   add_foreign_key "families", "partners"
+  add_foreign_key "impact_stories", "partners"
   add_foreign_key "item_requests", "partner_requests"
   add_foreign_key "users", "partners"
 end
