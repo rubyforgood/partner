@@ -9,8 +9,8 @@ default: &default
   encoding: unicode
   host: <%= ENV.fetch 'PG_HOST', 'localhost' %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['PG_USERNAME'] %> # postgres
-  password: <%= ENV['PG_PASSWORD'] %> # io
+  username: <%= ENV['POSTGRES_USER'] %> # postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %> # io
   timeout: 5000
 
 development:

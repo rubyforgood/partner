@@ -4,7 +4,7 @@
   <%= devise_error_messages! %>
 
 <% resource.class.invite_key_fields.each do |field| -%>
-  <p><%= f.label field %><br />
+  <p><%= f.label field %><br>
   <%= f.text_field field %></p>
 <% end -%>
 

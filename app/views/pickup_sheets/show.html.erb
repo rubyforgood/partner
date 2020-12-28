@@ -40,7 +40,6 @@
   </div><!-- /.container-fluid -->
 </section>
 
-
 <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -83,8 +82,7 @@
                                            remote: true,
                                            method: :post
                                        }
-                                   }
-                    %>
+                                   } %>
                   </td>
                   <td><%= child_item_request.quantity %></td>
                   <td>
@@ -112,11 +110,9 @@
                                            remote: true,
                                            method: :post
                                        }
-                                   }
-                    %>
+                                   } %>
                   </td>
                   <td>
-
 
                     <div class="custom-control custom-switch">
                       <%= check_box_tag 'Picked Up',
@@ -127,8 +123,7 @@
                                             remote: true,
                                             method: :post},
                                         class: "custom-control-input",
-                                        id: "pick_up-#{child_item_request.id}"
-                      %>
+                                        id: "pick_up-#{child_item_request.id}" %>
                       <label class="custom-control-label" for="pick_up-<%= child_item_request.id %>"></label>
                     </div>
                   </td>
