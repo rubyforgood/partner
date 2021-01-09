@@ -151,7 +151,7 @@ GEM
       i18n (>= 1.6, < 2)
     ffi (1.14.2)
     filterrific (5.2.1)
-    flipper (0.19.0)
+    flipper (0.19.1)
     flipper-active_record (0.19.0)
       activerecord (>= 5.0, < 7)
       flipper (~> 0.19.0)
