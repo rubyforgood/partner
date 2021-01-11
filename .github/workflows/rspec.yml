@@ -12,7 +12,7 @@ on:
 jobs:
   rspec:
 
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
 
     services:
       db:
@@ -51,7 +51,6 @@ jobs:
           yarn
           bundle exec rake db:create
           bundle exec rake db:schema:load
-          bundle exec rake db:test:prepare
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
