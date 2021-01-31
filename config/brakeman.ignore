@@ -1,0 +1,86 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "1cac190329f5e03fc20ebf7ee511503d4d0faa0c5139d269f39fa5d0cf065fef",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/families_controller.rb",
+      "line": 9,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "current_partner.families.order(((sort_column + \" \") + sort_direction))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "FamiliesController",
+        "method": "index"
+      },
+      "user_input": "sort_column",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "3741f07b6540344c922b0b07ce5039c3deb4fa8132dd3d658243bb1f0161f494",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/children_controller.rb",
+      "line": 10,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "current_partner.children.includes(:family).order(((sort_column + \" \") + sort_direction))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ChildrenController",
+        "method": "index"
+      },
+      "user_input": "sort_column",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "82ef033042422190ef49507207d51ed6ccd9593483630925baf0bf6c5e65033e",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/controllers/static_controller.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(template => \"static/#{params[:name]}\", {})",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "StaticController",
+        "method": "page"
+      },
+      "user_input": "params[:name]",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "b91a04566fece69d5791c63709fd107f9116b3a9be33fbe5688bb7f0068d13db",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/families_controller.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(current_partner.families.find(params[:id]), :notice => \"Family was successfully updated.\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "FamiliesController",
+        "method": "update"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    }
+  ],
+  "updated": "2020-12-28 14:33:54 -0500",
+  "brakeman_version": "4.10.0"
+}
