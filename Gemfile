@@ -5,7 +5,7 @@ ruby "2.7.2"
 
 gem 'azure-storage', '~> 0.15.0.preview', require: false
 gem "bootsnap", ">= 1.1.0", require: false
-gem "bootstrap", "~> 4.5.3"
+gem "bootstrap", "~> 4.6.0"
 gem "bugsnag"
 gem "devise"
 gem "devise_invitable"
