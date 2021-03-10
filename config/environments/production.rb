@@ -65,6 +65,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  if ENV["EMAIL_DISABLED"]
+    config.action_mailer.perform_deliveries = false
+  end
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
