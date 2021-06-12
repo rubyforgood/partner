@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  before_action :redirect_to_human_essentials
+  def redirect_to_human_essentials
+    redirect_to "https://www.humanessentials.app/partner_users/sign_in"
+  end
+
   include Pundit
 
   helper_method :current_partner
