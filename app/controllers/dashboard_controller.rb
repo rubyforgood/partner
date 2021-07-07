@@ -1,5 +1,6 @@
 # Prepares data to be shown to the users for their dashboard.
 class DashboardController < ApplicationController
+  before_action :verify_status_in_diaper_base
   respond_to :html, :js
 
   def index

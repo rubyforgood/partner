@@ -44,23 +44,6 @@ RSpec.describe PartnerRequestsController, type: :controller do
     end
   end
 
-  context "when user is authenticated but the status in diaper base is deactivated" do
-    let!(:partner) { create(:partner, :verified, status_in_diaper_base: "deactivated") }
-    let!(:user) { create(:user, partner: partner) }
-
-    before do
-      sign_in user
-    end
-
-    describe "GET #new" do
-      it "should not send a request" do
-        get :new
-
-        expect(response).to have_http_status(302)
-      end
-    end
-  end
-
   context "when user not authenticated" do
     let!(:partner) { create(:partner) }
 
