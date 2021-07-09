@@ -6,8 +6,10 @@ module DiaperBankClient
     ).body
   end
 
-  def self.get_available_items(diaper_bank_id)
-    response = diaper_get_request(routes.partner_requests(diaper_bank_id))
+  def self.get_available_items(diaper_bank_id, partner_id)
+    partner_request_uri = routes.partner_requests(diaper_bank_id)
+    partner_request_uri.query = "partner_id=#{partner_id}"
+    response = diaper_get_request(partner_request_uri)
     if response.code.to_i == 200
       JSON.parse(response.body)
     else

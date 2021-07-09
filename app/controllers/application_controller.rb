@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :valid_items
   def valid_items
-    @valid_items ||= DiaperBankClient.get_available_items(current_partner.diaper_bank_id)
+    @valid_items ||= DiaperBankClient.get_available_items(current_partner.diaper_bank_id, current_partner.id)
   end
 
   helper_method :fetch_valid_item
